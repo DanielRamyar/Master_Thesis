@@ -1,0 +1,10 @@
+digraph test {
+"LogicGates.GateInputs" [shape=oval];
+"LogicGates.GateOutput" [shape=oval];
+"LogicGates.ANDGate" [shape=box];
+"LogicGates.LogicGateSimulator" [shape=box];
+"LogicGates.GateInputs" -> "LogicGates.ANDGate";
+"LogicGates.ANDGate" -> "LogicGates.GateOutput";
+"LogicGates.LogicGateSimulator" -> "LogicGates.GateInputs";
+"LogicGates.GateOutput" -> "LogicGates.LogicGateSimulator" [style=dotted];
+}

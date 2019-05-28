@@ -1,0 +1,10 @@
+digraph Decoder_1_Bit {
+"DecoderInput" [shape=oval];
+"DecoderOutput" [shape=oval];
+"Decoder" [shape=box];
+"DecoderSimulator" [shape=box];
+"DecoderInput" -> "Decoder";
+"DecoderSimulator" -> "DecoderInput";
+"Decoder" -> "DecoderOutput";
+"DecoderOutput" -> "DecoderSimulator" [style=dotted];
+}

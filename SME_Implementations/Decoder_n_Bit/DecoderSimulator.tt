@@ -1,0 +1,39 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#int n = 1;#>
+using System;
+using SME;
+
+namespace Decoder_n_Bit {
+    public class DecoderSimulator : SimulationProcess {
+<# for (int i = 0; i < n ; i++) { #>
+        [OutputBus]
+		public readonly DecoderInput_<#= i #> input_<#= i #> = Scope.CreateOrLoadBus<DecoderInput_<#= i #>>();
+<# } #>
+        
+<# for (int i = 0; i < System.Math.Pow(2, n) ; i++) { #>
+        [InputBus]
+		public readonly DecoderOutput_<#= i #> output_<#= i #> = Scope.CreateOrLoadBus<DecoderOutput_<#= i #>>();
+<# } #>
+        
+        public async override System.Threading.Tasks.Task Run() {
+
+            Console.WriteLine("Starting test!\n");
+            await ClockAsync();
+<# for (int i = 0; i < System.Math.Pow(2, n) ; i++) { #>
+<# for (int j = 0; j < n ; j++) { #> 
+            input_<#= j #>.in_Bit = <#= (i >> j & 1) == 1 #>; <# } #>
+
+
+            await ClockAsync();
+
+<# for (int k = 0; k < System.Math.Pow(2, n) ; k++) { #>
+            System.Diagnostics.Debug.Assert(<#=(i != k) ? "!output_" + Convert.ToString(k) : "output_" + Convert.ToString(k) #>); 
+<# } #>
+<# } #>
+
+            Console.WriteLine("Done testing!");
+
+        }
+    }
+}

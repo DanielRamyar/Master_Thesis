@@ -1,0 +1,25 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#int n = 1;#>
+using System;
+using SME;
+
+namespace Decoder_n_Bit {
+    <# for (int i = 0; i < n ; i++) { #>
+
+    [TopLevelInputBus]
+    public interface DecoderInput_<#= i #> : IBus {
+        [InitialValue]
+        bool in_Bit {get; set;}
+    }
+    <# } #>
+    <# for (int i = 0; i < System.Math.Pow(2, n); i++) { #>
+
+    [TopLevelOutputBus]
+    public interface DecoderOutput_<#= i #> : IBus {
+        [InitialValue]
+        bool out_Bit {get; set;}
+    }
+    <# } #>
+
+}

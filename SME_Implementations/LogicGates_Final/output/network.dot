@@ -1,0 +1,19 @@
+digraph test {
+"LogicGates.GateInputs" [shape=oval];
+"LogicGates.GateOutput" [shape=oval];
+"LogicGates.ANDGate" [shape=box];
+"LogicGates.ORGate" [shape=box];
+"LogicGates.NOTGate" [shape=box];
+"LogicGates.XORGate" [shape=box];
+"LogicGates.LogicGateSimulator" [shape=box];
+"LogicGates.GateInputs" -> "LogicGates.ANDGate";
+"LogicGates.GateInputs" -> "LogicGates.ORGate";
+"LogicGates.GateInputs" -> "LogicGates.NOTGate";
+"LogicGates.GateInputs" -> "LogicGates.XORGate";
+"LogicGates.LogicGateSimulator" -> "LogicGates.GateInputs";
+"LogicGates.ANDGate" -> "LogicGates.GateOutput";
+"LogicGates.ORGate" -> "LogicGates.GateOutput";
+"LogicGates.NOTGate" -> "LogicGates.GateOutput";
+"LogicGates.XORGate" -> "LogicGates.GateOutput";
+"LogicGates.GateOutput" -> "LogicGates.LogicGateSimulator" [style=dotted];
+}

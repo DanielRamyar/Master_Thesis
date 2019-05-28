@@ -1,0 +1,6 @@
+LogicGates.GateInputs.in_1,LogicGates.GateInputs.in_2,LogicGates.GateOutput.out_AND,LogicGates.GateOutput.out_NOT,LogicGates.GateOutput.out_OR,LogicGates.GateOutput.out_XOR
+0,0,0,0,0,0
+0,0,0,1,0,0
+1,0,0,0,1,1
+0,1,0,1,1,1
+1,1,1,0,1,0
