@@ -16,19 +16,19 @@ namespace Decoder_n_Bit {
             Console.WriteLine("Starting test!\n");
             await ClockAsync();
  
-            input_0.in_Bit = False; 
+            input_0.in_Value = False; 
 
             await ClockAsync();
 
-            System.Diagnostics.Debug.Assert(output_0); 
-            System.Diagnostics.Debug.Assert(!output_1); 
+            System.Diagnostics.Debug.Assert(output_0.out_Value); 
+            System.Diagnostics.Debug.Assert(!output_1.out_Value); 
  
-            input_0.in_Bit = True; 
+            input_0.in_Value = True; 
 
             await ClockAsync();
 
-            System.Diagnostics.Debug.Assert(!output_0); 
-            System.Diagnostics.Debug.Assert(output_1); 
+            System.Diagnostics.Debug.Assert(!output_0.out_Value); 
+            System.Diagnostics.Debug.Assert(output_1.out_Value); 
 
             Console.WriteLine("Done testing!");
 

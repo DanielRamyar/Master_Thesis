@@ -1,0 +1,19 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#int n = 1;#>
+using System;
+using SME;
+
+namespace Decoder_n_Bit {
+    public class Decoder : SimpleProcess {
+<# for (int i = 0; i < n ; i++) { #>
+        [OutputBus]
+		public readonly DecoderInput_<#= i #> input_<#= i #> = Scope.CreateOrLoadBus<DecoderInput_<#= i #>>();
+<# } #>
+        
+<# for (int i = 0; i < System.Math.Pow(2, n) ; i++) { #>
+        [InputBus]
+		public readonly DecoderOutput_<#= i #> output_<#= i #> = Scope.CreateOrLoadBus<DecoderOutput_<#= i #>>();
+<# } #>
+    }
+}

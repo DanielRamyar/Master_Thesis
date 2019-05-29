@@ -10,7 +10,7 @@ namespace Decoder_n_Bit {
     [TopLevelInputBus]
     public interface DecoderInput_<#= i #> : IBus {
         [InitialValue]
-        bool in_Bit {get; set;}
+        bool in_Value {get; set;}
     }
     <# } #>
     <# for (int i = 0; i < System.Math.Pow(2, n); i++) { #>
@@ -18,7 +18,7 @@ namespace Decoder_n_Bit {
     [TopLevelOutputBus]
     public interface DecoderOutput_<#= i #> : IBus {
         [InitialValue]
-        bool out_Bit {get; set;}
+        bool out_Value {get; set;}
     }
     <# } #>
 

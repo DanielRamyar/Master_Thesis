@@ -22,13 +22,13 @@ namespace Decoder_n_Bit {
             await ClockAsync();
 <# for (int i = 0; i < System.Math.Pow(2, n) ; i++) { #>
 <# for (int j = 0; j < n ; j++) { #> 
-            input_<#= j #>.in_Bit = <#= (i >> j & 1) == 1 #>; <# } #>
+            input_<#= j #>.in_Value = <#= (i >> j & 1) == 1 #>; <# } #>
 
 
             await ClockAsync();
 
 <# for (int k = 0; k < System.Math.Pow(2, n) ; k++) { #>
-            System.Diagnostics.Debug.Assert(<#=(i != k) ? "!output_" + Convert.ToString(k) : "output_" + Convert.ToString(k) #>); 
+            System.Diagnostics.Debug.Assert(<#=(i != k) ? "!output_" + Convert.ToString(k) : "output_" + Convert.ToString(k) #>.out_Value); 
 <# } #>
 <# } #>
 
