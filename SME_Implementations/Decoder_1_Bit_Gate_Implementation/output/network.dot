@@ -1,10 +1,19 @@
 digraph Decoder_1_Bit {
-"DecoderInput" [shape=oval];
-"DecoderOutput" [shape=oval];
-"Decoder" [shape=box];
+"DecoderInput_0" [shape=oval];
+"NOTOutput_0" [shape=oval];
+"DecoderOutput_0" [shape=oval];
+"DecoderOutput_1" [shape=oval];
+"NOTGate_0" [shape=box];
+"ANDGate_1" [shape=box];
+"ANDGate_0" [shape=box];
 "DecoderSimulator" [shape=box];
-"DecoderInput" -> "Decoder";
-"DecoderSimulator" -> "DecoderInput";
-"Decoder" -> "DecoderOutput";
-"DecoderOutput" -> "DecoderSimulator" [style=dotted];
+"DecoderInput_0" -> "NOTGate_0";
+"DecoderInput_0" -> "ANDGate_1";
+"NOTOutput_0" -> "ANDGate_0";
+"DecoderSimulator" -> "DecoderInput_0";
+"NOTGate_0" -> "NOTOutput_0";
+"ANDGate_0" -> "DecoderOutput_0";
+"ANDGate_1" -> "DecoderOutput_1";
+"DecoderOutput_0" -> "DecoderSimulator" [style=dotted];
+"DecoderOutput_1" -> "DecoderSimulator" [style=dotted];
 }

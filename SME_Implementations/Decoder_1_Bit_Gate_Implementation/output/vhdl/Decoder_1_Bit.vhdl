@@ -16,12 +16,17 @@ entity Decoder_1_Bit is
   port(
 
 
-    -- Top-level bus DecoderInput signals
-    DecoderInput_in_0: in T_SYSTEM_BOOL;
+    -- Top-level bus DecoderInput_0 signals
+    DecoderInput_0_in_Value: in T_SYSTEM_BOOL;
 
-    -- Top-level bus DecoderOutput signals
-    DecoderOutput_out_0: out T_SYSTEM_BOOL;
-    DecoderOutput_out_1: out T_SYSTEM_BOOL;
+    -- Top-level bus NOTOutput_0 signals
+    NOTOutput_0_out_Value: out T_SYSTEM_BOOL;
+
+    -- Top-level bus DecoderOutput_0 signals
+    DecoderOutput_0_out_Value: out T_SYSTEM_BOOL;
+
+    -- Top-level bus DecoderOutput_1 signals
+    DecoderOutput_1_out_Value: out T_SYSTEM_BOOL;
 
 
 
@@ -51,7 +56,11 @@ architecture RTL of Decoder_1_Bit is
 
     -- Process ready triggers
 
-    signal FIN_Decoder, RDY_Decoder : std_logic;
+    signal FIN_NOTGate_0, RDY_NOTGate_0 : std_logic;
+
+    signal FIN_ANDGate_0, RDY_ANDGate_0 : std_logic;
+
+    signal FIN_ANDGate_1, RDY_ANDGate_1 : std_logic;
 
 
     -- The primary ready driver signal
@@ -60,32 +69,82 @@ architecture RTL of Decoder_1_Bit is
 begin
 
 
-    -- Entity  Decoder signals
-    Decoder: entity work.Decoder
+    -- Entity  NOTGate_0 signals
+    NOTGate_0: entity work.NOTGate_0
     port map (
-        -- Input bus DecoderInput
-        m_input_in_0 => DecoderInput_in_0,
+        -- Input bus DecoderInput_0
+        m_input_in_Value => DecoderInput_0_in_Value,
 
 
-        -- Output bus DecoderOutput
-        output_out_0 => DecoderOutput_out_0,
-        output_out_1 => DecoderOutput_out_1,
+        -- Output bus NOTOutput_0
+        output_0_out_Value => NOTOutput_0_out_Value,
 
 
 
         CLK => CLK,
-        RDY => RDY_Decoder,
-        FIN => FIN_Decoder,
+        RDY => RDY_NOTGate_0,
+        FIN => FIN_NOTGate_0,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  ANDGate_0 signals
+    ANDGate_0: entity work.ANDGate_0
+    port map (
+        -- Input bus NOTOutput_0
+        m_input_out_Value => NOTOutput_0_out_Value,
+
+
+        -- Output bus DecoderOutput_0
+        output_0_out_Value => DecoderOutput_0_out_Value,
+
+
+
+        CLK => CLK,
+        RDY => RDY_ANDGate_0,
+        FIN => FIN_ANDGate_0,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  ANDGate_1 signals
+    ANDGate_1: entity work.ANDGate_1
+    port map (
+        -- Input bus DecoderInput_0
+        m_input_in_Value => DecoderInput_0_in_Value,
+
+
+        -- Output bus DecoderOutput_1
+        output_1_out_Value => DecoderOutput_1_out_Value,
+
+
+
+        CLK => CLK,
+        RDY => RDY_ANDGate_1,
+        FIN => FIN_ANDGate_1,
         ENB => ENB,
         RST => RST
     );
 
 
     -- Connect ready signals
-    RDY_Decoder <= RDY;
+    RDY_NOTGate_0 <= RDY;
+    RDY_ANDGate_0 <= FIN_NOTGate_0;
+    RDY_ANDGate_1 <= RDY;
 
     -- Setup the FIN feedback signals
-    FIN <= FIN_Decoder;
+    process(
+      FIN_NOTGate_0, 
+      FIN_ANDGate_0, 
+      FIN_ANDGate_1
+    )
+    begin
+      if FIN_NOTGate_0 = FIN_ANDGate_0 AND FIN_NOTGate_0 = FIN_ANDGate_1 then
+        FIN <= FIN_NOTGate_0;
+      end if;
+    end process;
 
     -- Propagate all clocked and feedback signals
     process(

@@ -15,12 +15,17 @@ use work.CUSTOM_TYPES.ALL;
 entity Decoder_1_Bit_export is
   port(
 
-    -- Top-level bus DecoderInput signals
-    DecoderInput_in_0: in STD_LOGIC;
+    -- Top-level bus DecoderInput_0 signals
+    DecoderInput_0_in_Value: in STD_LOGIC;
 
-    -- Top-level bus DecoderOutput signals
-    DecoderOutput_out_0: out STD_LOGIC;
-    DecoderOutput_out_1: out STD_LOGIC;
+    -- Top-level bus NOTOutput_0 signals
+    NOTOutput_0_out_Value: out STD_LOGIC;
+
+    -- Top-level bus DecoderOutput_0 signals
+    DecoderOutput_0_out_Value: out STD_LOGIC;
+
+    -- Top-level bus DecoderOutput_1 signals
+    DecoderOutput_1_out_Value: out STD_LOGIC;
 
 
     -- User defined signals here
@@ -55,12 +60,17 @@ begin
     -- Entity Decoder_1_Bit signals
     Decoder_1_Bit: entity work.Decoder_1_Bit
     port map (
-        -- Input bus DecoderInput
-        DecoderInput_in_0 => DecoderInput_in_0,
+        -- Input bus DecoderInput_0
+        DecoderInput_0_in_Value => DecoderInput_0_in_Value,
 
-        -- Output bus DecoderOutput
-        DecoderOutput_out_0 => DecoderOutput_out_0,
-        DecoderOutput_out_1 => DecoderOutput_out_1,
+        -- Output bus NOTOutput_0
+        NOTOutput_0_out_Value => NOTOutput_0_out_Value,
+
+        -- Output bus DecoderOutput_0
+        DecoderOutput_0_out_Value => DecoderOutput_0_out_Value,
+
+        -- Output bus DecoderOutput_1
+        DecoderOutput_1_out_Value => DecoderOutput_1_out_Value,
 
         ENB => ENB,
         RST => RST,

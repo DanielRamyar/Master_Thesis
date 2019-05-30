@@ -10,6 +10,12 @@ namespace Decoder_1_Bit {
     }
 
     [TopLevelOutputBus]
+    public interface NOTOutput_0 : IBus {
+        [InitialValue]
+        bool out_Value {get; set;}
+    }
+
+    [TopLevelOutputBus]
     public interface DecoderOutput_0 : IBus {
         [InitialValue]
         bool out_Value {get; set;}

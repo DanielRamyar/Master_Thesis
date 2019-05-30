@@ -1,3 +1,5 @@
-DecoderInput_0.in_Value,DecoderOutput_0.out_Value,DecoderOutput_1.out_Value
-0,0,0
-0,0,0
+DecoderInput_0.in_Value,DecoderOutput_0.out_Value,DecoderOutput_1.out_Value,NOTOutput_0.out_Value
+0,0,0,0
+0,1,0,1
+1,0,1,0
+1,0,1,0

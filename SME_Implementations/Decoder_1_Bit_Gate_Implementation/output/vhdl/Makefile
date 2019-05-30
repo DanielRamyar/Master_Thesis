@@ -30,14 +30,18 @@ $(WORKDIR)/system_types.o: system_types.vhdl $(WORKDIR)
 $(WORKDIR)/Types_Decoder_1_Bit.o: Types_Decoder_1_Bit.vhdl $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Types_Decoder_1_Bit.vhdl
 
-$(WORKDIR)/Decoder.o: Decoder.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Decoder_1_Bit.o $(WORKDIR)
-	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Decoder.vhdl
+$(WORKDIR)/NOTGate_0.o: NOTGate_0.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Decoder_1_Bit.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) NOTGate_0.vhdl
+$(WORKDIR)/ANDGate_0.o: ANDGate_0.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Decoder_1_Bit.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) ANDGate_0.vhdl
+$(WORKDIR)/ANDGate_1.o: ANDGate_1.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Decoder_1_Bit.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) ANDGate_1.vhdl
 $(WORKDIR)/csv_util.o: csv_util.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Decoder_1_Bit.o $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) csv_util.vhdl
 
 
 
-$(WORKDIR)/Decoder_1_Bit.o: Decoder_1_Bit.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Decoder_1_Bit.o $(WORKDIR)/Decoder.o $(WORKDIR)/csv_util.o 
+$(WORKDIR)/Decoder_1_Bit.o: Decoder_1_Bit.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Decoder_1_Bit.o $(WORKDIR)/NOTGate_0.o $(WORKDIR)/ANDGate_0.o $(WORKDIR)/ANDGate_1.o $(WORKDIR)/csv_util.o 
 
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Decoder_1_Bit.vhdl
 

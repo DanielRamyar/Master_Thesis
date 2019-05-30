@@ -27,18 +27,20 @@ architecture TestBench of Decoder_1_Bit_tb is
   signal RESET : Std_logic;
   signal ENABLE : Std_logic;
 
-  signal DecoderInput_in_0 : T_SYSTEM_BOOL;
-  signal DecoderOutput_out_0 : T_SYSTEM_BOOL;
-  signal DecoderOutput_out_1 : T_SYSTEM_BOOL;
+  signal DecoderInput_0_in_Value : T_SYSTEM_BOOL;
+  signal NOTOutput_0_out_Value : T_SYSTEM_BOOL;
+  signal DecoderOutput_0_out_Value : T_SYSTEM_BOOL;
+  signal DecoderOutput_1_out_Value : T_SYSTEM_BOOL;
 
 begin
 
   uut: entity work.Decoder_1_Bit
   port map (
 
-    DecoderInput_in_0 => DecoderInput_in_0,
-    DecoderOutput_out_0 => DecoderOutput_out_0,
-    DecoderOutput_out_1 => DecoderOutput_out_1,
+    DecoderInput_0_in_Value => DecoderInput_0_in_Value,
+    NOTOutput_0_out_Value => NOTOutput_0_out_Value,
+    DecoderOutput_0_out_Value => DecoderOutput_0_out_Value,
+    DecoderOutput_1_out_Value => DecoderOutput_1_out_Value,
 
     ENB => ENABLE,
     RST => RESET,
@@ -85,13 +87,16 @@ begin
 
         fieldno := 0;
         read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "DecoderInput.in_0") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected DecoderInput.in_0" severity Failure;
+        assert are_strings_equal(tmp, "DecoderInput_0.in_Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected DecoderInput_0.in_Value" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "DecoderOutput.out_0") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected DecoderOutput.out_0" severity Failure;
+        assert are_strings_equal(tmp, "DecoderOutput_0.out_Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected DecoderOutput_0.out_Value" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "DecoderOutput.out_1") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected DecoderOutput.out_1" severity Failure;
+        assert are_strings_equal(tmp, "DecoderOutput_1.out_Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected DecoderOutput_1.out_Value" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "NOTOutput_0.out_Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected NOTOutput_0.out_Value" severity Failure;
         fieldno := fieldno + 1;
 
         RESET <= '1';
@@ -116,9 +121,9 @@ begin
 
             read_csv_field(L, tmp);
             if are_strings_equal(tmp, "U") then
-                DecoderInput_in_0 <= 'U';
+                DecoderInput_0_in_Value <= 'U';
             else
-                DecoderInput_in_0 <= to_std_logic(truncate(tmp));
+                DecoderInput_0_in_Value <= to_std_logic(truncate(tmp));
             end if;
             fieldno := fieldno + 1;
 
@@ -133,18 +138,27 @@ begin
             -- Compare each signal with the value in the CSV file
 	        read_csv_field(L, tmp);
 	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(DecoderOutput_out_0), tmp) then
+            	if not are_strings_equal(str(DecoderOutput_0_out_Value), tmp) then
                     newfailures := newfailures + 1;
-                    report "Value for DecoderOutput_out_0 in cycle " & integer'image(clockcycle) & " was: " & str(DecoderOutput_out_0) & " but should have been: " & truncate(tmp) severity Error;
+                    report "Value for DecoderOutput_0_out_Value in cycle " & integer'image(clockcycle) & " was: " & str(DecoderOutput_0_out_Value) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;
 
 	        read_csv_field(L, tmp);
 	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(DecoderOutput_out_1), tmp) then
+            	if not are_strings_equal(str(DecoderOutput_1_out_Value), tmp) then
                     newfailures := newfailures + 1;
-                    report "Value for DecoderOutput_out_1 in cycle " & integer'image(clockcycle) & " was: " & str(DecoderOutput_out_1) & " but should have been: " & truncate(tmp) severity Error;
+                    report "Value for DecoderOutput_1_out_Value in cycle " & integer'image(clockcycle) & " was: " & str(DecoderOutput_1_out_Value) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(NOTOutput_0_out_Value), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for NOTOutput_0_out_Value in cycle " & integer'image(clockcycle) & " was: " & str(NOTOutput_0_out_Value) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;
