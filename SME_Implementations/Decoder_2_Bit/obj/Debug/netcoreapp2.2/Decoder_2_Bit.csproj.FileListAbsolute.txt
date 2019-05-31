@@ -1,0 +1,11 @@
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/bin/Debug/netcoreapp2.2/Decoder_2_Bit.deps.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/bin/Debug/netcoreapp2.2/Decoder_2_Bit.runtimeconfig.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/bin/Debug/netcoreapp2.2/Decoder_2_Bit.runtimeconfig.dev.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/bin/Debug/netcoreapp2.2/Decoder_2_Bit.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/bin/Debug/netcoreapp2.2/Decoder_2_Bit.pdb
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/obj/Debug/netcoreapp2.2/Decoder_2_Bit.csprojAssemblyReference.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/obj/Debug/netcoreapp2.2/Decoder_2_Bit.csproj.CoreCompileInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/obj/Debug/netcoreapp2.2/Decoder_2_Bit.AssemblyInfoInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/obj/Debug/netcoreapp2.2/Decoder_2_Bit.AssemblyInfo.cs
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/obj/Debug/netcoreapp2.2/Decoder_2_Bit.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_2_Bit/obj/Debug/netcoreapp2.2/Decoder_2_Bit.pdb
