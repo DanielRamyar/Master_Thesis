@@ -3275,9 +3275,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_n_Bit/Decoder_1_Bit.csproj",
-      "projectName": "Decoder_1_Bit",
-      "projectPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_n_Bit/Decoder_1_Bit.csproj",
+      "projectUniqueName": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_n_Bit/Decoder_n_Bit.csproj",
+      "projectName": "Decoder_n_Bit",
+      "projectPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_n_Bit/Decoder_n_Bit.csproj",
       "packagesPath": "/Users/danielramyar/.nuget/packages/",
       "outputPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Decoder_n_Bit/obj/",
       "projectStyle": "PackageReference",

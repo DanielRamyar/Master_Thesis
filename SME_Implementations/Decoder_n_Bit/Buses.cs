@@ -6,19 +6,49 @@ namespace Decoder_n_Bit {
     [TopLevelInputBus]
     public interface DecoderInput_0 : IBus {
         [InitialValue]
-        bool in_Value {get; set;}
+        bool Value {get; set;}
+    }
+    
+    [TopLevelInputBus]
+    public interface DecoderInput_1 : IBus {
+        [InitialValue]
+        bool Value {get; set;}
+    }
+        
+    [TopLevelOutputBus]
+    public interface DecoderNOTInput_0 : IBus {
+        [InitialValue]
+        bool Value {get; set;}
+    }
+    
+    [TopLevelOutputBus]
+    public interface DecoderNOTInput_1 : IBus {
+        [InitialValue]
+        bool Value {get; set;}
     }
         
     [TopLevelOutputBus]
     public interface DecoderOutput_0 : IBus {
         [InitialValue]
-        bool out_Value {get; set;}
+        bool Value {get; set;}
     }
     
     [TopLevelOutputBus]
     public interface DecoderOutput_1 : IBus {
         [InitialValue]
-        bool out_Value {get; set;}
+        bool Value {get; set;}
+    }
+    
+    [TopLevelOutputBus]
+    public interface DecoderOutput_2 : IBus {
+        [InitialValue]
+        bool Value {get; set;}
+    }
+    
+    [TopLevelOutputBus]
+    public interface DecoderOutput_3 : IBus {
+        [InitialValue]
+        bool Value {get; set;}
     }
     
 }

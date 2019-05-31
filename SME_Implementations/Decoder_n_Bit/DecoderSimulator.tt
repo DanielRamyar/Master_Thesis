@@ -1,6 +1,6 @@
 <#@ template hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
-<#int n = 1;#>
+<#int n = 2;#>
 using System;
 using SME;
 
@@ -22,13 +22,15 @@ namespace Decoder_n_Bit {
             await ClockAsync();
 <# for (int i = 0; i < System.Math.Pow(2, n) ; i++) { #>
 <# for (int j = 0; j < n ; j++) { #> 
-            input_<#= j #>.in_Value = <#= (i >> j & 1) == 1 #>; <# } #>
-
+            input_<#= j #>.Value = <#= ((i >> j & 1) == 1).ToString().ToLower() #>; <# } #>
+<#
+    // Needed to add .ToString().ToLower() since the template outputs capitalized boolean (True/False)
+#>
 
             await ClockAsync();
 
 <# for (int k = 0; k < System.Math.Pow(2, n) ; k++) { #>
-            System.Diagnostics.Debug.Assert(<#=(i != k) ? "!output_" + Convert.ToString(k) : "output_" + Convert.ToString(k) #>.out_Value); 
+            System.Diagnostics.Debug.Assert(<#=(i != k) ? "!output_" + Convert.ToString(k) : "output_" + Convert.ToString(k) #>.Value); 
 <# } #>
 <# } #>
 

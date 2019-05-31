@@ -1,0 +1,7 @@
+DecoderInput_0.Value,DecoderInput_1.Value,DecoderNOTInput_0.Value,DecoderNOTInput_1.Value,DecoderOutput_0.Value,DecoderOutput_1.Value,DecoderOutput_2.Value,DecoderOutput_3.Value
+0,0,0,0,0,0,0,0
+0,0,1,1,1,0,0,0
+1,0,0,1,0,1,0,0
+0,1,1,0,0,0,1,0
+1,1,0,0,0,0,0,1
+1,1,0,0,0,0,0,1

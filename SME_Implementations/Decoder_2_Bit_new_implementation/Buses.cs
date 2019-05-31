@@ -7,7 +7,7 @@ namespace Decoder_2_Bit {
         [InitialValue]
         bool Value {get; set;}
     }
-
+    [TopLevelInputBus]
     public interface Input_1 : IBus {
         [InitialValue]
         bool Value {get; set;}

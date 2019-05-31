@@ -1,12 +1,52 @@
 <#@ template hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
-<#int n = 1;#>
+<#int n = 2;#>
 using System;
 using SME;
 
 namespace Decoder_n_Bit {
+    <# for (int i = 0; i < n ; i++) { #>
 
-    public class NOT : SimpleProcess {
+    public class NOTGate_<#= i #> : SimpleProcess {
+        [OutputBus]
+        public readonly DecoderNOTInput_<#= i #> output_<#= i #> = Scope.CreateOrLoadBus<DecoderNOTInput_<#= i #>>();
 
+        [InputBus]
+        private readonly DecoderInput_<#= i #> m_input = Scope.CreateOrLoadBus<DecoderInput_<#= i #>>();
+
+        protected override void OnTick() {
+            output_<#= i #>.Value = !m_input.Value;
+        }
     }
+    <# } #>
+
+    <# for (int i = 0; i < System.Math.Pow(2, n) ; i++) { #>
+
+    public class ANDGate_<#= i #> : SimpleProcess {
+        [OutputBus]
+        public readonly DecoderOutput_<#= i #> output_<#= i #> = Scope.CreateOrLoadBus<DecoderOutput_<#= i #>>();
+
+<# for (int j = 0; j < n ; j++) { #>
+        [InputBus]
+        <#=((i >> j & 1) == 1) ? 
+           "DecoderInput_" + Convert.ToString(j) : 
+           "DecoderNOTInput_" + Convert.ToString(j) #> <#=
+
+            ((i >> j & 1) == 1) ? 
+           "m_input_" + Convert.ToString(j) : 
+           "m_input_NOT_" + Convert.ToString(j) #> = Scope.CreateOrLoadBus<<#=
+
+            ((i >> j & 1) == 1) ? 
+           "DecoderInput_" + Convert.ToString(j) : 
+           "DecoderNOTInput_" + Convert.ToString(j) #>>(); 
+
+<# } #>
+        protected override void OnTick() {
+            output_<#= i #>.Value =<# for (int j = 0; j < n ; j++) { #> <#=
+            ((i >> j & 1) == 1) ? 
+           "m_input_" + Convert.ToString(j) + ".Value" : 
+           "m_input_NOT_" + Convert.ToString(j) + ".Value" #> <#if (j == 0) { #>&&<# } #><# } #>;
+        }
+    }
+<# } #>
 }

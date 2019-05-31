@@ -1,0 +1,30 @@
+<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#int n = 2;#>
+using System;
+using SME;
+
+namespace Decoder_2_Bit {
+    class Program {
+        static void Main(string[] args) {
+            using(var sim = new Simulation()) {
+
+                var simulator = new DecoderSimulator();
+
+<# for (int i = 0; i < n ; i++) { #>
+                var NOTGate_<#= i #> = new NOTGate_<#= i #>();
+<# } #>
+
+<# for (int i = 0; i < System.Math.Pow(2, n) ; i++) { #>
+                var ANDGate_<#= i #> = new ANDGate_<#= i #>();
+<# } #>
+
+                sim
+                    .BuildCSVFile()
+                    .BuildGraph()
+                    .BuildVHDL()
+    			    .Run();
+            }
+        }
+    }
+}
