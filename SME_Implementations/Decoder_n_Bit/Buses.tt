@@ -1,6 +1,6 @@
 <#@ template hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
-<#int n = 2;#>
+<#int n = 8;#>
 using System;
 using SME;
 

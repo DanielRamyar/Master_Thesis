@@ -20,6 +20,18 @@ entity ANDGate_2 is
         m_input_NOT_0_Value: in T_SYSTEM_BOOL;
         -- Input bus m_input_1 signals
         m_input_1_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_input_NOT_2 signals
+        m_input_NOT_2_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_input_NOT_3 signals
+        m_input_NOT_3_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_input_NOT_4 signals
+        m_input_NOT_4_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_input_NOT_5 signals
+        m_input_NOT_5_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_input_NOT_6 signals
+        m_input_NOT_6_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_input_NOT_7 signals
+        m_input_NOT_7_Value: in T_SYSTEM_BOOL;
 
         -- Output bus output_2 signals
         output_2_Value: out T_SYSTEM_BOOL;
@@ -96,7 +108,7 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            if (m_input_NOT_0_Value = '1') and (m_input_1_Value = '1') then
+            if (((((((m_input_NOT_0_Value = '1') and (m_input_1_Value = '1')) and (m_input_NOT_2_Value = '1')) and (m_input_NOT_3_Value = '1')) and (m_input_NOT_4_Value = '1')) and (m_input_NOT_5_Value = '1')) and (m_input_NOT_6_Value = '1')) and (m_input_NOT_7_Value = '1') then
                 output_2_Value <= '1';
             else
                 output_2_Value <= '0';
