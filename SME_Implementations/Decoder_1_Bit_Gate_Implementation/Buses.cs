@@ -6,7 +6,6 @@ namespace Decoder_1_Bit {
     public interface DecoderInput_0 : IBus {
         [InitialValue]
         bool in_Value {get; set;}
-
     }
 
     [TopLevelOutputBus]
