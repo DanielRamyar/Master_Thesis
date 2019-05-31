@@ -1,0 +1,7 @@
+Input_0.Value,ANDOutput_0.Value,ANDOutput_1.Value,ANDOutput_2.Value,ANDOutput_3.Value,Input_1.Value,NOTOutput_0.Value,NOTOutput_1.Value
+0,0,0,0,0,0,0,0
+0,1,0,0,0,0,1,1
+1,0,1,0,0,0,0,1
+0,0,0,1,0,1,1,0
+1,0,0,0,1,1,0,0
+1,0,0,0,1,1,0,0
