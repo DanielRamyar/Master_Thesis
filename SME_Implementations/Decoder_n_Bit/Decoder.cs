@@ -33,10 +33,10 @@ namespace Decoder_n_Bit {
         public readonly DecoderOutput_0 output_0 = Scope.CreateOrLoadBus<DecoderOutput_0>();
 
         [InputBus]
-        DecoderNOTInput_0 m_input_NOT_0 = Scope.CreateOrLoadBus<DecoderNOTInput_0>(); 
+        private readonly DecoderNOTInput_0 m_input_NOT_0 = Scope.CreateOrLoadBus<DecoderNOTInput_0>(); 
 
         [InputBus]
-        DecoderNOTInput_1 m_input_NOT_1 = Scope.CreateOrLoadBus<DecoderNOTInput_1>(); 
+        private readonly DecoderNOTInput_1 m_input_NOT_1 = Scope.CreateOrLoadBus<DecoderNOTInput_1>(); 
 
         protected override void OnTick() {
             output_0.Value = m_input_NOT_0.Value && m_input_NOT_1.Value ;
@@ -48,10 +48,10 @@ namespace Decoder_n_Bit {
         public readonly DecoderOutput_1 output_1 = Scope.CreateOrLoadBus<DecoderOutput_1>();
 
         [InputBus]
-        DecoderInput_0 m_input_0 = Scope.CreateOrLoadBus<DecoderInput_0>(); 
+        private readonly DecoderInput_0 m_input_0 = Scope.CreateOrLoadBus<DecoderInput_0>(); 
 
         [InputBus]
-        DecoderNOTInput_1 m_input_NOT_1 = Scope.CreateOrLoadBus<DecoderNOTInput_1>(); 
+        private readonly DecoderNOTInput_1 m_input_NOT_1 = Scope.CreateOrLoadBus<DecoderNOTInput_1>(); 
 
         protected override void OnTick() {
             output_1.Value = m_input_0.Value && m_input_NOT_1.Value ;
@@ -63,10 +63,10 @@ namespace Decoder_n_Bit {
         public readonly DecoderOutput_2 output_2 = Scope.CreateOrLoadBus<DecoderOutput_2>();
 
         [InputBus]
-        DecoderNOTInput_0 m_input_NOT_0 = Scope.CreateOrLoadBus<DecoderNOTInput_0>(); 
+        private readonly DecoderNOTInput_0 m_input_NOT_0 = Scope.CreateOrLoadBus<DecoderNOTInput_0>(); 
 
         [InputBus]
-        DecoderInput_1 m_input_1 = Scope.CreateOrLoadBus<DecoderInput_1>(); 
+        private readonly DecoderInput_1 m_input_1 = Scope.CreateOrLoadBus<DecoderInput_1>(); 
 
         protected override void OnTick() {
             output_2.Value = m_input_NOT_0.Value && m_input_1.Value ;
@@ -78,10 +78,10 @@ namespace Decoder_n_Bit {
         public readonly DecoderOutput_3 output_3 = Scope.CreateOrLoadBus<DecoderOutput_3>();
 
         [InputBus]
-        DecoderInput_0 m_input_0 = Scope.CreateOrLoadBus<DecoderInput_0>(); 
+        private readonly DecoderInput_0 m_input_0 = Scope.CreateOrLoadBus<DecoderInput_0>(); 
 
         [InputBus]
-        DecoderInput_1 m_input_1 = Scope.CreateOrLoadBus<DecoderInput_1>(); 
+        private readonly DecoderInput_1 m_input_1 = Scope.CreateOrLoadBus<DecoderInput_1>(); 
 
         protected override void OnTick() {
             output_3.Value = m_input_0.Value && m_input_1.Value ;

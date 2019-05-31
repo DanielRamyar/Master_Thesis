@@ -28,7 +28,7 @@ namespace Decoder_n_Bit {
 
 <# for (int j = 0; j < n ; j++) { #>
         [InputBus]
-        <#=((i >> j & 1) == 1) ? 
+        private readonly <#=((i >> j & 1) == 1) ? 
            "DecoderInput_" + Convert.ToString(j) : 
            "DecoderNOTInput_" + Convert.ToString(j) #> <#=
 
