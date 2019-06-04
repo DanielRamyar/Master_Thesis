@@ -7,20 +7,21 @@ namespace Multiplexer_2_Input {
         [InitialValue]
         bool Value {get; set;}
     }
+
     [TopLevelInputBus]
     public interface Input_1 : IBus {
         [InitialValue]
         bool Value {get; set;}
     }
 
-    [TopLevelOutputBus]
-    public interface NOTOutput_0 : IBus {
+    [TopLevelInputBus]
+    public interface Input_2 : IBus {
         [InitialValue]
         bool Value {get; set;}
     }
 
     [TopLevelOutputBus]
-    public interface NOTOutput_1 : IBus {
+    public interface NOTOutput_0 : IBus {
         [InitialValue]
         bool Value {get; set;}
     }
@@ -38,13 +39,7 @@ namespace Multiplexer_2_Input {
     }
 
     [TopLevelOutputBus]
-    public interface ANDOutput_2 : IBus {
-        [InitialValue]
-        bool Value {get; set;}
-    }
-
-    [TopLevelOutputBus]
-    public interface ANDOutput_3 : IBus {
+    public interface OROutput_0 : IBus {
         [InitialValue]
         bool Value {get; set;}
     }

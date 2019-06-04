@@ -1,0 +1,31 @@
+digraph Multiplexer_2_input {
+"Multiplexer_2_Input.Input_2" [shape=oval];
+"Multiplexer_2_Input.NOTOutput_0" [shape=oval];
+"Multiplexer_2_Input.Input_0" [shape=oval];
+"Multiplexer_2_Input.Input_1" [shape=oval];
+"Multiplexer_2_Input.ANDOutput_0" [shape=oval];
+"Multiplexer_2_Input.ANDOutput_1" [shape=oval];
+"Multiplexer_2_Input.OROutput_0" [shape=oval];
+"Multiplexer_2_Input.NOTGate_0" [shape=box];
+"Multiplexer_2_Input.ANDGate_1" [shape=box];
+"Multiplexer_2_Input.ANDGate_0" [shape=box];
+"Multiplexer_2_Input.ORGate_0" [shape=box];
+"Multiplexer_2_Input.MultiplexerSimulator" [shape=box];
+"Multiplexer_2_Input.Input_2" -> "Multiplexer_2_Input.NOTGate_0";
+"Multiplexer_2_Input.Input_2" -> "Multiplexer_2_Input.ANDGate_1";
+"Multiplexer_2_Input.NOTOutput_0" -> "Multiplexer_2_Input.ANDGate_0";
+"Multiplexer_2_Input.Input_0" -> "Multiplexer_2_Input.ANDGate_0";
+"Multiplexer_2_Input.Input_1" -> "Multiplexer_2_Input.ANDGate_1";
+"Multiplexer_2_Input.ANDOutput_0" -> "Multiplexer_2_Input.ORGate_0";
+"Multiplexer_2_Input.ANDOutput_1" -> "Multiplexer_2_Input.ORGate_0";
+"Multiplexer_2_Input.MultiplexerSimulator" -> "Multiplexer_2_Input.Input_0";
+"Multiplexer_2_Input.MultiplexerSimulator" -> "Multiplexer_2_Input.Input_1";
+"Multiplexer_2_Input.MultiplexerSimulator" -> "Multiplexer_2_Input.Input_2";
+"Multiplexer_2_Input.NOTGate_0" -> "Multiplexer_2_Input.NOTOutput_0";
+"Multiplexer_2_Input.ANDGate_0" -> "Multiplexer_2_Input.ANDOutput_0";
+"Multiplexer_2_Input.ANDGate_1" -> "Multiplexer_2_Input.ANDOutput_1";
+"Multiplexer_2_Input.ORGate_0" -> "Multiplexer_2_Input.OROutput_0";
+"Multiplexer_2_Input.ANDOutput_0" -> "Multiplexer_2_Input.MultiplexerSimulator" [style=dotted];
+"Multiplexer_2_Input.ANDOutput_1" -> "Multiplexer_2_Input.MultiplexerSimulator" [style=dotted];
+"Multiplexer_2_Input.OROutput_0" -> "Multiplexer_2_Input.MultiplexerSimulator" [style=dotted];
+}

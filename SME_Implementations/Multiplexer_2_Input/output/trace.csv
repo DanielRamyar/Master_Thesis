@@ -1,0 +1,10 @@
+Multiplexer_2_Input.Input_0.Value,Multiplexer_2_Input.Input_1.Value,Multiplexer_2_Input.Input_2.Value,Multiplexer_2_Input.ANDOutput_0.Value,Multiplexer_2_Input.ANDOutput_1.Value,Multiplexer_2_Input.NOTOutput_0.Value,Multiplexer_2_Input.OROutput_0.Value
+0,0,0,0,0,0,0
+0,0,0,0,0,1,0
+0,1,0,0,0,1,0
+1,0,0,1,0,1,1
+1,1,0,1,0,1,1
+0,1,1,0,1,0,1
+1,0,1,0,0,0,0
+1,1,1,0,1,0,1
+1,1,1,0,1,0,1
