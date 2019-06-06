@@ -1,0 +1,11 @@
+A.Value,B.Value,CarryIn.Value,ANDOutput_0.Value,ANDOutput_1.Value,ANDOutput_2.Value,ANDOutput_3.Value,ANDOutput_4.Value,ANDOutput_5.Value,ANDOutput_6.Value,CarryOut.Value,NOT_A.Value,NOT_B.Value,NOT_CarryIn.Value,SUM.Value
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,1,1,1,0
+0,0,1,1,0,0,0,0,0,0,0,1,1,0,1
+0,1,0,0,1,0,0,0,0,0,0,1,0,1,1
+0,1,1,0,0,0,0,0,1,0,1,1,0,0,0
+1,0,0,0,0,1,0,0,0,0,0,0,1,1,1
+1,0,1,0,0,0,0,1,0,0,1,0,1,0,0
+1,1,0,0,0,0,0,0,0,1,1,0,0,1,0
+1,1,1,0,0,0,1,1,1,1,1,0,0,0,1
+1,1,1,0,0,0,1,1,1,1,1,0,0,0,1
