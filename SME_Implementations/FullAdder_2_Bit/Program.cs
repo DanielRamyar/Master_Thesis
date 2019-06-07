@@ -6,7 +6,7 @@ namespace FullAdder_2_Bit {
         static void Main(string[] args) {
             using(var sim = new Simulation()) {
 
-                var simulator = new MultiplexerSimulator();
+                var simulator = new FullAdderSimulator();
                 var NOT_A = new Invert_A();
                 var NOT_B = new Invert_B();
                 var NOT_CarryIn = new Invert_CarryIn();
