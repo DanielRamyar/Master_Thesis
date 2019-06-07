@@ -2,7 +2,7 @@ using System;
 using SME;
 
 namespace FullAdder_2_Bit {
-    public class MultiplexerSimulator : SimulationProcess {
+    public class FullAdderSimulator : SimulationProcess {
         [InputBus]
 		public readonly CarryOut output_0 = Scope.CreateOrLoadBus<CarryOut>();
         [InputBus]
