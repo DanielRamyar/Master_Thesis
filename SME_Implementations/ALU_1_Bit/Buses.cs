@@ -17,7 +17,7 @@ namespace ALU_1_Bit {
     [TopLevelInputBus]
     public interface OperationCode : IBus {
         [InitialValue]
-        bool Value {get; set;}
+        byte Value {get; set;}
     }
 
     [TopLevelOutputBus]
