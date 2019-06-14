@@ -1,0 +1,16 @@
+digraph ALU_1_Bit {
+"OperationCode" [shape=oval];
+"A" [shape=oval];
+"B" [shape=oval];
+"Output" [shape=oval];
+"ALU" [shape=box];
+"ALU_1_Bit_Simulator" [shape=box];
+"OperationCode" -> "ALU";
+"A" -> "ALU";
+"B" -> "ALU";
+"ALU_1_Bit_Simulator" -> "OperationCode";
+"ALU_1_Bit_Simulator" -> "A";
+"ALU_1_Bit_Simulator" -> "B";
+"ALU" -> "Output";
+"Output" -> "ALU_1_Bit_Simulator" [style=dotted];
+}

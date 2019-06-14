@@ -3275,9 +3275,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/FullAdder_2_Bit.csproj",
-      "projectName": "FullAdder_2_Bit",
-      "projectPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/FullAdder_2_Bit.csproj",
+      "projectUniqueName": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/ALU_1_Bit.csproj",
+      "projectName": "ALU_1_Bit",
+      "projectPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/ALU_1_Bit.csproj",
       "packagesPath": "/Users/danielramyar/.nuget/packages/",
       "outputPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/obj/",
       "projectStyle": "PackageReference",

@@ -5,13 +5,13 @@ namespace ALU_1_Bit {
     [TopLevelInputBus]
     public interface A : IBus {
         [InitialValue]
-        bool Value {get; set;}
+        uint Value {get; set;}
     }
 
     [TopLevelInputBus]
     public interface B : IBus {
         [InitialValue]
-        bool Value {get; set;}
+        uint Value {get; set;}
     }
 
     [TopLevelInputBus]
@@ -23,7 +23,7 @@ namespace ALU_1_Bit {
     [TopLevelOutputBus]
     public interface Output : IBus {
         [InitialValue]
-        bool Value {get; set;}
+        uint Value {get; set;}
     }
 
 }

@@ -1,0 +1,11 @@
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/bin/Debug/netcoreapp2.2/ALU_1_Bit.deps.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/bin/Debug/netcoreapp2.2/ALU_1_Bit.runtimeconfig.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/bin/Debug/netcoreapp2.2/ALU_1_Bit.runtimeconfig.dev.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/bin/Debug/netcoreapp2.2/ALU_1_Bit.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/bin/Debug/netcoreapp2.2/ALU_1_Bit.pdb
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/obj/Debug/netcoreapp2.2/ALU_1_Bit.csprojAssemblyReference.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/obj/Debug/netcoreapp2.2/ALU_1_Bit.csproj.CoreCompileInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/obj/Debug/netcoreapp2.2/ALU_1_Bit.AssemblyInfoInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/obj/Debug/netcoreapp2.2/ALU_1_Bit.AssemblyInfo.cs
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/obj/Debug/netcoreapp2.2/ALU_1_Bit.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ALU_1_Bit/obj/Debug/netcoreapp2.2/ALU_1_Bit.pdb

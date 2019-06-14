@@ -4,7 +4,7 @@ using SME;
 namespace ALU_1_Bit {
     public class ALU : SimpleProcess {
         [OutputBus]
-		public readonly Output output_0 = Scope.CreateOrLoadBus<Output>();
+		public readonly Output output = Scope.CreateOrLoadBus<Output>();
 
         [InputBus]
         private readonly OperationCode m_OperationCode = Scope.CreateOrLoadBus<OperationCode>();
@@ -15,11 +15,17 @@ namespace ALU_1_Bit {
 
         protected override void OnTick() {
             switch (m_OperationCode.Value) {
+                case 0:
+                    output.Value = m_A.Value & m_B.Value;
+                    break;
                 case 1:
+                    output.Value = m_A.Value | m_B.Value;
                     break;
                 case 2:
+                    output.Value = m_A.Value + m_B.Value;
                     break;
                 case 3:
+                    output.Value = m_A.Value - m_B.Value;
                     break;
 
             }
