@@ -8,7 +8,7 @@ namespace Program_Counter {
         uint Address {get; set;}
     }
 
-    [TopLevelInputBus]
+    [TopLevelOutputBus]
     public interface PC_Output : IBus {
         [InitialValue]
         uint Address {get; set;}
