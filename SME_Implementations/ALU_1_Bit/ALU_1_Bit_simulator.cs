@@ -24,32 +24,32 @@ namespace ALU_1_Bit {
             OperationCode.Value = 0; // AND
 
             await ClockAsync();
-            Console.WriteLine($"Decoder input: {A.Value} (Input 0) - {B.Value} (Input 1) - {OperationCode.Value} (Input 2)\n");
-            Console.WriteLine($"Decoder outputs: {output.Value} (Output 0) \n");
+            Console.WriteLine($"ALU input: {A.Value} (Input 0) - {B.Value} (Input 1) - {OperationCode.Value} (Input 2)\n");
+            Console.WriteLine($"ALU outputs: {output.Value} (Output 0) \n");
                
             A.Value = 6;
             B.Value = 3;
             OperationCode.Value = 1; // OR
 
             await ClockAsync();
-            Console.WriteLine($"Decoder input: {A.Value} (Input 0) - {B.Value} (Input 1) - {OperationCode.Value} (Input 2)\n");
-            Console.WriteLine($"Decoder outputs: {output.Value} (Output 0) \n");
+            Console.WriteLine($"ALU input: {A.Value} (Input 0) - {B.Value} (Input 1) - {OperationCode.Value} (Input 2)\n");
+            Console.WriteLine($"ALU outputs: {output.Value} (Output 0) \n");
                
             A.Value = 5;
             B.Value = 5;
             OperationCode.Value = 2; // Sum
 
             await ClockAsync();
-            Console.WriteLine($"Decoder input: {A.Value} (Input 0) - {B.Value} (Input 1) - {OperationCode.Value} (Input 2)\n");
-            Console.WriteLine($"Decoder outputs: {output.Value} (Output 0) \n");
+            Console.WriteLine($"ALU input: {A.Value} (Input 0) - {B.Value} (Input 1) - {OperationCode.Value} (Input 2)\n");
+            Console.WriteLine($"ALU outputs: {output.Value} (Output 0) \n");
                
             A.Value = 10;
             B.Value = 3;
             OperationCode.Value = 3;
 
             await ClockAsync();
-            Console.WriteLine($"Decoder input: {A.Value} (Input 0) - {B.Value} (Input 1) - {OperationCode.Value} (Input 2)\n");
-            Console.WriteLine($"Decoder outputs: {output.Value} (Output 0) \n");
+            Console.WriteLine($"ALU input: {A.Value} (Input 0) - {B.Value} (Input 1) - {OperationCode.Value} (Input 2)\n");
+            Console.WriteLine($"ALU outputs: {output.Value} (Output 0) \n");
 
             Console.WriteLine("Done testing!");
 
