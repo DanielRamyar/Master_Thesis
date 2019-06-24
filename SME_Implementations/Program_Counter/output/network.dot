@@ -1,0 +1,10 @@
+digraph Program_Counter {
+"PC_Input" [shape=oval];
+"PC_Output" [shape=oval];
+"PC" [shape=box];
+"PC_Simulator" [shape=box];
+"PC_Input" -> "PC";
+"PC_Simulator" -> "PC_Input";
+"PC" -> "PC_Output";
+"PC_Output" -> "PC_Simulator" [style=dotted];
+}
