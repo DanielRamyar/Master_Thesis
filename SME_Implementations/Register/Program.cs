@@ -1,13 +1,13 @@
 ﻿using System;
 using SME;
 
-namespace Register {
+namespace RegisterNS {
     class Program {
         static void Main(string[] args) {
             using(var sim = new Simulation()) {
 
                 var simulator = new Register_Simulator();
-                var PC = new PC();
+                var Register = new Register();
 
                 sim
                     .BuildCSVFile()

@@ -1,0 +1,11 @@
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/bin/Debug/netcoreapp2.2/Register.deps.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/bin/Debug/netcoreapp2.2/Register.runtimeconfig.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/bin/Debug/netcoreapp2.2/Register.runtimeconfig.dev.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/bin/Debug/netcoreapp2.2/Register.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/bin/Debug/netcoreapp2.2/Register.pdb
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/obj/Debug/netcoreapp2.2/Register.csprojAssemblyReference.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/obj/Debug/netcoreapp2.2/Register.csproj.CoreCompileInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/obj/Debug/netcoreapp2.2/Register.AssemblyInfoInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/obj/Debug/netcoreapp2.2/Register.AssemblyInfo.cs
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/obj/Debug/netcoreapp2.2/Register.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Register/obj/Debug/netcoreapp2.2/Register.pdb

@@ -1,17 +1,47 @@
 using System;
 using SME;
 
-namespace Register {
+namespace RegisterNS {
     [TopLevelInputBus]
     public interface Read_Register_1 : IBus {
         [InitialValue]
-        uint register_number {get; set;}
+        uint address {get; set;}
     }
 
     [TopLevelInputBus]
     public interface Read_Register_2 : IBus {
         [InitialValue]
-        uint register_number {get; set;}
+        uint address {get; set;}
+    }
+
+    [TopLevelInputBus]
+    public interface Write_Register : IBus {
+        [InitialValue]
+        uint address {get; set;}
+    }
+
+    [TopLevelInputBus]
+    public interface Write_Data : IBus {
+        [InitialValue]
+        int Data {get; set;}
+    }
+
+    [TopLevelInputBus]
+    public interface Write_Control : IBus {
+        [InitialValue]
+        bool Enable {get; set;}
+    }
+
+    [TopLevelOutputBus]
+    public interface Read_Output_1 : IBus {
+        [InitialValue]
+        int Data {get; set;}
+    }
+
+    [TopLevelOutputBus]
+    public interface Read_Output_2 : IBus {
+        [InitialValue]
+        int Data {get; set;}
     }
 
 }

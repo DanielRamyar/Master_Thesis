@@ -1,0 +1,25 @@
+digraph Register {
+"RegisterNS.Read_Register_1" [shape=oval];
+"RegisterNS.Read_Register_2" [shape=oval];
+"RegisterNS.Write_Register" [shape=oval];
+"RegisterNS.Write_Data" [shape=oval];
+"RegisterNS.Write_Control" [shape=oval];
+"RegisterNS.Read_Output_1" [shape=oval];
+"RegisterNS.Read_Output_2" [shape=oval];
+"RegisterNS.Register" [shape=box];
+"RegisterNS.Register_Simulator" [shape=box];
+"RegisterNS.Read_Register_1" -> "RegisterNS.Register";
+"RegisterNS.Read_Register_2" -> "RegisterNS.Register";
+"RegisterNS.Write_Register" -> "RegisterNS.Register";
+"RegisterNS.Write_Data" -> "RegisterNS.Register";
+"RegisterNS.Write_Control" -> "RegisterNS.Register";
+"RegisterNS.Register_Simulator" -> "RegisterNS.Read_Register_1";
+"RegisterNS.Register_Simulator" -> "RegisterNS.Read_Register_2";
+"RegisterNS.Register_Simulator" -> "RegisterNS.Write_Register";
+"RegisterNS.Register_Simulator" -> "RegisterNS.Write_Data";
+"RegisterNS.Register_Simulator" -> "RegisterNS.Write_Control";
+"RegisterNS.Register" -> "RegisterNS.Read_Output_1";
+"RegisterNS.Register" -> "RegisterNS.Read_Output_2";
+"RegisterNS.Read_Output_1" -> "RegisterNS.Register_Simulator" [style=dotted];
+"RegisterNS.Read_Output_2" -> "RegisterNS.Register_Simulator" [style=dotted];
+}

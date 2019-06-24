@@ -15,7 +15,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RootNamespace>Register</RootNamespace>
+    <RootNamespace>RegisterNS</RootNamespace>
   </PropertyGroup>
 
 </Project>

@@ -1,19 +1,41 @@
 using System;
 using SME;
 
-namespace Register {
-    public class PC : SimpleProcess {
+namespace RegisterNS {
+    public class Register : SimpleProcess {
         [OutputBus]
-		public readonly PC_Output output = Scope.CreateOrLoadBus<PC_Output>();
+		public readonly Read_Output_1 output_1 = Scope.CreateOrLoadBus<Read_Output_1>();
+        [OutputBus]
+		public readonly Read_Output_2 output_2 = Scope.CreateOrLoadBus<Read_Output_2>();
 
         [InputBus]
-        private readonly PC_Input m_input = Scope.CreateOrLoadBus<PC_Input>();
+        private readonly Read_Register_1 m_read_1 = Scope.CreateOrLoadBus<Read_Register_1>();
+        [InputBus]
+        private readonly Read_Register_2 m_read_2 = Scope.CreateOrLoadBus<Read_Register_2>();
+        [InputBus]
+        private readonly Write_Register m_write = Scope.CreateOrLoadBus<Write_Register>();
+        [InputBus]
+        private readonly Write_Data m_write_data = Scope.CreateOrLoadBus<Write_Data>();
+        [InputBus]
+        private readonly Write_Control m_write_control = Scope.CreateOrLoadBus<Write_Control>();
+        
 
-        uint address_hold;
+        private readonly int[] m_register = new int[32];
 
         protected override void OnTick() {
-            address_hold = m_input.Address;
-            output.Address = address_hold;
+
+            if (m_read_1.address >= 0 && m_read_1.address <= 32) { // Check if given register address is between 0-32
+                output_1.Data = m_register[m_read_1.address];
+            }
+            if (m_read_2.address >= 0 && m_read_2.address <= 32) { // Check if given register address is between 0-32
+                output_2.Data = m_register[m_read_2.address];
+            }
+            if (m_write_control.Enable == true && m_write.address > 0 && m_write.address <= 32) { // Check if written register is between 1-32 and control is asserted
+                m_register[m_write.address] = m_write_data.Data;                                  // Register 0 should always be zero therefore cannot be written to
+            }
+
+
+
         }
     }
 
