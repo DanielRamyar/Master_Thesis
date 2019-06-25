@@ -22,6 +22,7 @@ namespace RegisterNS {
 
         private readonly int[] m_register = new int[32];
 
+
         protected override void OnTick() {
 
             if (m_read_1.address >= 0 && m_read_1.address <= 32) { // Check if given register address is between 0-32
@@ -34,6 +35,7 @@ namespace RegisterNS {
                 m_register[m_write.address] = m_write_data.Data;                                  // Register 0 should always be zero therefore cannot be written to
             }
 
+            // Console.WriteLine(string.Join(", ", m_register)); // Using this to print whole register
 
 
         }

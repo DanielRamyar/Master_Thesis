@@ -23,6 +23,7 @@ namespace RegisterNS {
 
             Console.WriteLine("Starting test!\n");
             await ClockAsync();
+            // write to register 4 and read register 0 and 4
             write_control.Enable = true;
             write_input.address = 4;
             write_data.Data = 297;
@@ -31,14 +32,33 @@ namespace RegisterNS {
             read_input_2.address = 4;
 
             await ClockAsync();
+            // deassert write signal and try to write register 6 should not write
+            write_control.Enable = false;
+            write_input.address = 6;
+            write_data.Data = 27;
+
             await ClockAsync();
             Console.WriteLine($"Register input: {write_control.Enable}, {write_input.address}, {write_data.Data}");
             Console.WriteLine($"Program counter outputs: {output_1.Data} and {output_2.Data} \n");
-               
+            
+            // Write all registers, note it is not possible to write to register 0 or above register 31
+            for (uint i = 1; i < 32; i++) {
+                write_control.Enable = true;
+                write_input.address = i;
+                write_data.Data = 87 + (int)i;
 
+                await ClockAsync();
+            }
+
+            for (uint i = 1; i < 32; i++) {
+                write_control.Enable = false;
+                read_input_1.address = i-1;
+                read_input_2.address = i;
+
+                await ClockAsync();
+                Console.WriteLine($"Register {i-1} and {i}: {output_1.Data} and {output_2.Data} \n");
+            }
             await ClockAsync();
-            Console.WriteLine($"placeholder");
-
 
             Console.WriteLine("Done testing!");
 
