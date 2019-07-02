@@ -1,0 +1,10 @@
+digraph Program_Counter {
+"Instruction_Memory.IM_Input" [shape=oval];
+"Instruction_Memory.IM_Output" [shape=oval];
+"Instruction_Memory.IM" [shape=box];
+"Instruction_Memory.Instruction_Memory_Simulator" [shape=box];
+"Instruction_Memory.IM_Input" -> "Instruction_Memory.IM";
+"Instruction_Memory.Instruction_Memory_Simulator" -> "Instruction_Memory.IM_Input";
+"Instruction_Memory.IM" -> "Instruction_Memory.IM_Output";
+"Instruction_Memory.IM_Output" -> "Instruction_Memory.Instruction_Memory_Simulator" [style=dotted];
+}
