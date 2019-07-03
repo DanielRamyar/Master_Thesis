@@ -1,0 +1,19 @@
+digraph Data_Memory {
+"DM_input" [shape=oval];
+"DM_Data_input" [shape=oval];
+"MemRead" [shape=oval];
+"MemWrite" [shape=oval];
+"DM_Output" [shape=oval];
+"DM" [shape=box];
+"Instruction_Memory_Simulator" [shape=box];
+"DM_input" -> "DM";
+"DM_Data_input" -> "DM";
+"MemRead" -> "DM";
+"MemWrite" -> "DM";
+"Instruction_Memory_Simulator" -> "DM_input";
+"Instruction_Memory_Simulator" -> "DM_Data_input";
+"Instruction_Memory_Simulator" -> "MemRead";
+"Instruction_Memory_Simulator" -> "MemWrite";
+"DM" -> "DM_Output";
+"DM_Output" -> "Instruction_Memory_Simulator" [style=dotted];
+}

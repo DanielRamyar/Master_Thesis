@@ -5,13 +5,13 @@ namespace Data_Memory {
     [TopLevelInputBus]
     public interface MemWrite : IBus {
         [InitialValue]
-        bool Value {get; set;}
+        bool Enable {get; set;}
     }
 
     [TopLevelInputBus]
     public interface MemRead : IBus {
         [InitialValue]
-        bool Value {get; set;}
+        bool Enable {get; set;}
     }
 
     [TopLevelInputBus]

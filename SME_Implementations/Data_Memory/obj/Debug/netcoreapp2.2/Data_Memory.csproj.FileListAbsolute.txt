@@ -1,0 +1,11 @@
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/bin/Debug/netcoreapp2.2/Data_Memory.deps.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/bin/Debug/netcoreapp2.2/Data_Memory.runtimeconfig.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/bin/Debug/netcoreapp2.2/Data_Memory.runtimeconfig.dev.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/bin/Debug/netcoreapp2.2/Data_Memory.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/bin/Debug/netcoreapp2.2/Data_Memory.pdb
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/obj/Debug/netcoreapp2.2/Data_Memory.csprojAssemblyReference.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/obj/Debug/netcoreapp2.2/Data_Memory.csproj.CoreCompileInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/obj/Debug/netcoreapp2.2/Data_Memory.AssemblyInfoInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/obj/Debug/netcoreapp2.2/Data_Memory.AssemblyInfo.cs
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/obj/Debug/netcoreapp2.2/Data_Memory.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Data_Memory/obj/Debug/netcoreapp2.2/Data_Memory.pdb

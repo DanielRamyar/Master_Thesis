@@ -18,10 +18,10 @@ namespace Data_Memory {
         int[] Data_Memory = new int[100];
 
         protected override void OnTick() {
-            if (m_MemRead.Value) {
+            if (m_MemRead.Enable) {
                 output.Data = Data_Memory[m_input.Address];
             }
-            else if (m_MemWrite.Value) {
+            else if (m_MemWrite.Enable) {
                 Data_Memory[m_input.Address] = m_Data_input.Data;
             }
         }
