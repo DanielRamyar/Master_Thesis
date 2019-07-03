@@ -12,15 +12,15 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-START
 -- #### USER-DATA-IMPORTS-END
 
-entity Program_Counter is
+entity Instruction_Memory is
   port(
 
 
-    -- Top-level bus Instruction_Memory_IM_Input signals
-    Instruction_Memory_IM_Input_Address: in T_SYSTEM_UINT32;
+    -- Top-level bus IM_Input signals
+    IM_Input_Address: in T_SYSTEM_UINT32;
 
-    -- Top-level bus Instruction_Memory_IM_Output signals
-    Instruction_Memory_IM_Output_Instruction: out T_SYSTEM_UINT32;
+    -- Top-level bus IM_Output signals
+    IM_Output_Instruction: out T_SYSTEM_UINT32;
 
 
 
@@ -40,9 +40,9 @@ entity Program_Counter is
 	-- Clock signal
 	CLK : in Std_logic
   );
-end Program_Counter;
+end Instruction_Memory;
 
-architecture RTL of Program_Counter is  
+architecture RTL of Instruction_Memory is  
     -- User defined signals here
     -- #### USER-DATA-SIGNALS-START
     -- #### USER-DATA-SIGNALS-END
@@ -50,7 +50,7 @@ architecture RTL of Program_Counter is
 
     -- Process ready triggers
 
-    signal FIN_Instruction_Memory_IM, RDY_Instruction_Memory_IM : std_logic;
+    signal FIN_IM, RDY_IM : std_logic;
 
 
     -- The primary ready driver signal
@@ -59,34 +59,34 @@ architecture RTL of Program_Counter is
 begin
 
 
-    -- Entity  Instruction_Memory.IM signals
-    Instruction_Memory_IM: entity work.Instruction_Memory_IM
+    -- Entity  IM signals
+    IM: entity work.IM
     generic map(
         reset_Instruction_Memory => (TO_UNSIGNED(3, 32), TO_UNSIGNED(7, 32), TO_UNSIGNED(9, 32), TO_UNSIGNED(8, 32), TO_UNSIGNED(11, 32), TO_UNSIGNED(4, 32), others => TO_UNSIGNED(97, 32))
     )
     port map (
-        -- Input bus Instruction_Memory_IM_Input
-        m_input_Address => Instruction_Memory_IM_Input_Address,
+        -- Input bus IM_Input
+        m_input_Address => IM_Input_Address,
 
 
-        -- Output bus Instruction_Memory_IM_Output
-        output_Instruction => Instruction_Memory_IM_Output_Instruction,
+        -- Output bus IM_Output
+        output_Instruction => IM_Output_Instruction,
 
 
 
         CLK => CLK,
-        RDY => RDY_Instruction_Memory_IM,
-        FIN => FIN_Instruction_Memory_IM,
+        RDY => RDY_IM,
+        FIN => FIN_IM,
         ENB => ENB,
         RST => RST
     );
 
 
     -- Connect ready signals
-    RDY_Instruction_Memory_IM <= RDY;
+    RDY_IM <= RDY;
 
     -- Setup the FIN feedback signals
-    FIN <= FIN_Instruction_Memory_IM;
+    FIN <= FIN_IM;
 
     -- Propagate all clocked and feedback signals
     process(

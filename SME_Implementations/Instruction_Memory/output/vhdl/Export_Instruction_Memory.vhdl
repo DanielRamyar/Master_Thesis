@@ -12,14 +12,14 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-START
 -- #### USER-DATA-IMPORTS-END
 
-entity Program_Counter_export is
+entity Instruction_Memory_export is
   port(
 
-    -- Top-level bus Instruction_Memory_IM_Input signals
-    Instruction_Memory_IM_Input_Address: in STD_LOGIC_VECTOR(31 downto 0);
+    -- Top-level bus IM_Input signals
+    IM_Input_Address: in STD_LOGIC_VECTOR(31 downto 0);
 
-    -- Top-level bus Instruction_Memory_IM_Output signals
-    Instruction_Memory_IM_Output_Instruction: out STD_LOGIC_VECTOR(31 downto 0);
+    -- Top-level bus IM_Output signals
+    IM_Output_Instruction: out STD_LOGIC_VECTOR(31 downto 0);
 
 
     -- User defined signals here
@@ -39,31 +39,31 @@ entity Program_Counter_export is
     -- Clock signal
     CLK : in STD_LOGIC
   );
-end Program_Counter_export;
+end Instruction_Memory_export;
 
 
 
-architecture RTL of Program_Counter_export is  
+architecture RTL of Instruction_Memory_export is  
   -- User defined signals here
   -- #### USER-DATA-SIGNALS-START
   -- #### USER-DATA-SIGNALS-END
 
   -- Intermediate conversion signal to convert internal types to external ones
-  signal tmp_Instruction_Memory_IM_Output_Instruction : T_SYSTEM_UINT32;
+  signal tmp_IM_Output_Instruction : T_SYSTEM_UINT32;
 
 begin
 
     -- Carry converted signals from entity to wrapped outputs
-  Instruction_Memory_IM_Output_Instruction <= std_logic_vector(tmp_Instruction_Memory_IM_Output_Instruction);
+  IM_Output_Instruction <= std_logic_vector(tmp_IM_Output_Instruction);
 
-    -- Entity Program_Counter signals
-    Program_Counter: entity work.Program_Counter
+    -- Entity Instruction_Memory signals
+    Instruction_Memory: entity work.Instruction_Memory
     port map (
-        -- Input bus Instruction_Memory_IM_Input
-        Instruction_Memory_IM_Input_Address => unsigned(Instruction_Memory_IM_Input_Address),
+        -- Input bus IM_Input
+        IM_Input_Address => unsigned(IM_Input_Address),
 
-        -- Output bus Instruction_Memory_IM_Output
-        Instruction_Memory_IM_Output_Instruction => tmp_Instruction_Memory_IM_Output_Instruction,
+        -- Output bus IM_Output
+        IM_Output_Instruction => tmp_IM_Output_Instruction,
 
         ENB => ENB,
         RST => RST,

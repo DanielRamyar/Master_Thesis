@@ -3275,9 +3275,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/Program_Counter.csproj",
-      "projectName": "Program_Counter",
-      "projectPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/Program_Counter.csproj",
+      "projectUniqueName": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/Instruction_Memory.csproj",
+      "projectName": "Instruction_Memory",
+      "projectPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/Instruction_Memory.csproj",
       "packagesPath": "/Users/danielramyar/.nuget/packages/",
       "outputPath": "/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/obj/",
       "projectStyle": "PackageReference",

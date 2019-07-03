@@ -17,26 +17,26 @@ use work.csv_util.all;
 -- #### USER-DATA-IMPORTS-START
 -- #### USER-DATA-IMPORTS-END
 
-entity Program_Counter_tb is
+entity Instruction_Memory_tb is
 end;
 
-architecture TestBench of Program_Counter_tb is
+architecture TestBench of Instruction_Memory_tb is
 
   signal CLOCK : Std_logic;
   signal StopClock : BOOLEAN;
   signal RESET : Std_logic;
   signal ENABLE : Std_logic;
 
-  signal Instruction_Memory_IM_Input_Address : T_SYSTEM_UINT32;
-  signal Instruction_Memory_IM_Output_Instruction : T_SYSTEM_UINT32;
+  signal IM_Input_Address : T_SYSTEM_UINT32;
+  signal IM_Output_Instruction : T_SYSTEM_UINT32;
 
 begin
 
-  uut: entity work.Program_Counter
+  uut: entity work.Instruction_Memory
   port map (
 
-    Instruction_Memory_IM_Input_Address => Instruction_Memory_IM_Input_Address,
-    Instruction_Memory_IM_Output_Instruction => Instruction_Memory_IM_Output_Instruction,
+    IM_Input_Address => IM_Input_Address,
+    IM_Output_Instruction => IM_Output_Instruction,
 
     ENB => ENABLE,
     RST => RESET,
@@ -83,10 +83,10 @@ begin
 
         fieldno := 0;
         read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "Instruction_Memory.IM_Input.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Instruction_Memory.IM_Input.Address" severity Failure;
+        assert are_strings_equal(tmp, "IM_Input.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected IM_Input.Address" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "Instruction_Memory.IM_Output.Instruction") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Instruction_Memory.IM_Output.Instruction" severity Failure;
+        assert are_strings_equal(tmp, "IM_Output.Instruction") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected IM_Output.Instruction" severity Failure;
         fieldno := fieldno + 1;
 
         RESET <= '1';
@@ -111,9 +111,9 @@ begin
 
             read_csv_field(L, tmp);
             if are_strings_equal(tmp, "U") then
-                Instruction_Memory_IM_Input_Address <= (others => 'U');
+                IM_Input_Address <= (others => 'U');
             else
-                Instruction_Memory_IM_Input_Address <= unsigned(to_std_logic_vector(truncate(tmp)));
+                IM_Input_Address <= unsigned(to_std_logic_vector(truncate(tmp)));
             end if;
             fieldno := fieldno + 1;
 
@@ -128,9 +128,9 @@ begin
             -- Compare each signal with the value in the CSV file
 	        read_csv_field(L, tmp);
 	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(Instruction_Memory_IM_Output_Instruction), tmp) then
+            	if not are_strings_equal(str(IM_Output_Instruction), tmp) then
                     newfailures := newfailures + 1;
-                    report "Value for Instruction_Memory_IM_Output_Instruction in cycle " & integer'image(clockcycle) & " was: " & str(Instruction_Memory_IM_Output_Instruction) & " but should have been: " & truncate(tmp) severity Error;
+                    report "Value for IM_Output_Instruction in cycle " & integer'image(clockcycle) & " was: " & str(IM_Output_Instruction) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

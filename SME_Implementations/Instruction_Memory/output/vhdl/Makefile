@@ -1,7 +1,7 @@
 ﻿all: test export
 
-testbench: program_counter_tb
-export: Program_Counter_export
+testbench: instruction_memory_tb
+export: Instruction_Memory_export
 build: export testbench
 
 # Use a temporary folder for compiled stuff
@@ -27,35 +27,35 @@ $(WORKDIR):
 $(WORKDIR)/system_types.o: system_types.vhdl $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) system_types.vhdl
 
-$(WORKDIR)/Types_Program_Counter.o: Types_Program_Counter.vhdl $(WORKDIR)
-	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Types_Program_Counter.vhdl
+$(WORKDIR)/Types_Instruction_Memory.o: Types_Instruction_Memory.vhdl $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Types_Instruction_Memory.vhdl
 
-$(WORKDIR)/Instruction_Memory_IM.o: Instruction_Memory_IM.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Program_Counter.o $(WORKDIR)
-	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Instruction_Memory_IM.vhdl
-$(WORKDIR)/csv_util.o: csv_util.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Program_Counter.o $(WORKDIR)
+$(WORKDIR)/IM.o: IM.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Instruction_Memory.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) IM.vhdl
+$(WORKDIR)/csv_util.o: csv_util.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Instruction_Memory.o $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) csv_util.vhdl
 
 
 
-$(WORKDIR)/Program_Counter.o: Program_Counter.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Program_Counter.o $(WORKDIR)/Instruction_Memory_IM.o $(WORKDIR)/csv_util.o 
+$(WORKDIR)/Instruction_Memory.o: Instruction_Memory.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_Instruction_Memory.o $(WORKDIR)/IM.o $(WORKDIR)/csv_util.o 
 
-	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Program_Counter.vhdl
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Instruction_Memory.vhdl
 
-$(WORKDIR)/TestBench_Program_Counter.o: TestBench_Program_Counter.vhdl $(WORKDIR)/Program_Counter.o
-	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) TestBench_Program_Counter.vhdl
+$(WORKDIR)/TestBench_Instruction_Memory.o: TestBench_Instruction_Memory.vhdl $(WORKDIR)/Instruction_Memory.o
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) TestBench_Instruction_Memory.vhdl
 
-program_counter_tb: $(WORKDIR)/TestBench_Program_Counter.o
-	ghdl -e --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Program_Counter_tb
+instruction_memory_tb: $(WORKDIR)/TestBench_Instruction_Memory.o
+	ghdl -e --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Instruction_Memory_tb
 
-Program_Counter_export: $(WORKDIR)/Program_Counter.o
-	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Export_Program_Counter.vhdl
+Instruction_Memory_export: $(WORKDIR)/Instruction_Memory.o
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Export_Instruction_Memory.vhdl
 
-test: program_counter_tb
+test: instruction_memory_tb
 	cp "../trace.csv" .
-	ghdl -r --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Program_Counter_tb --vcd=$(VCDFILE)
+	ghdl -r --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Instruction_Memory_tb --vcd=$(VCDFILE)
 
 clean:
-	rm -rf $(WORKDIR) *.o program_counter_tb
+	rm -rf $(WORKDIR) *.o instruction_memory_tb
 
 
 .PHONY: all clean test export build

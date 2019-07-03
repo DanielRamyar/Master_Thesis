@@ -14,9 +14,9 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Instruction_Memory_IM is
+entity IM is
     generic(
-        reset_Instruction_Memory: in Instruction_Memory_IM_Instruction_Memory_type
+        reset_Instruction_Memory: in IM_Instruction_Memory_type
     );
     port(
         -- Input bus m_input signals
@@ -41,9 +41,9 @@ entity Instruction_Memory_IM is
         -- Reset signal
         RST : in Std_logic
     );
-end Instruction_Memory_IM;
+end IM;
 
-architecture RTL of Instruction_Memory_IM is
+architecture RTL of IM is
 
 
 
@@ -69,7 +69,7 @@ begin
         RST
     )
     -- Internal variables
-    variable Instruction_Memory : Instruction_Memory_IM_Instruction_Memory_type := reset_Instruction_Memory;
+    variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
 
     variable reentry_guard: std_logic;
 

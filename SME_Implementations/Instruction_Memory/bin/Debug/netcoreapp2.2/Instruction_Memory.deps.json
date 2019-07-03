@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
-      "Program_Counter/1.0.0": {
+      "Instruction_Memory/1.0.0": {
         "dependencies": {
           "SME": "0.4.0-beta",
           "SME.GraphViz": "0.4.0-beta",
@@ -17,7 +17,7 @@
           "runtime.osx.10.10-x64.CoreCompat.System.Drawing": "5.6.20"
         },
         "runtime": {
-          "Program_Counter.dll": {}
+          "Instruction_Memory.dll": {}
         }
       },
       "Humanizer.Core/2.2.0": {
@@ -542,7 +542,7 @@
     }
   },
   "libraries": {
-    "Program_Counter/1.0.0": {
+    "Instruction_Memory/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

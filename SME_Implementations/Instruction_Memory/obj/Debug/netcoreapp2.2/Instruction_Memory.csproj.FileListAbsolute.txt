@@ -1,0 +1,11 @@
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/bin/Debug/netcoreapp2.2/Instruction_Memory.deps.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/bin/Debug/netcoreapp2.2/Instruction_Memory.runtimeconfig.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/bin/Debug/netcoreapp2.2/Instruction_Memory.runtimeconfig.dev.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/bin/Debug/netcoreapp2.2/Instruction_Memory.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/bin/Debug/netcoreapp2.2/Instruction_Memory.pdb
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/obj/Debug/netcoreapp2.2/Instruction_Memory.csprojAssemblyReference.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/obj/Debug/netcoreapp2.2/Instruction_Memory.csproj.CoreCompileInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/obj/Debug/netcoreapp2.2/Instruction_Memory.AssemblyInfoInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/obj/Debug/netcoreapp2.2/Instruction_Memory.AssemblyInfo.cs
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/obj/Debug/netcoreapp2.2/Instruction_Memory.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/Instruction_Memory/obj/Debug/netcoreapp2.2/Instruction_Memory.pdb
