@@ -27,6 +27,9 @@ entity ALU_1_Bit_export is
     -- Top-level bus Output signals
     Output_Value: out STD_LOGIC_VECTOR(31 downto 0);
 
+    -- Top-level bus Zero_out signals
+    Zero_out_Value: out STD_LOGIC;
+
 
     -- User defined signals here
     -- #### USER-DATA-ENTITYSIGNALS-START
@@ -76,6 +79,9 @@ begin
 
         -- Output bus Output
         Output_Value => tmp_Output_Value,
+
+        -- Output bus Zero_out
+        Zero_out_Value => Zero_out_Value,
 
         ENB => ENB,
         RST => RST,

@@ -26,4 +26,10 @@ namespace ALU_1_Bit {
         uint Value {get; set;}
     }
 
+    [TopLevelOutputBus]
+    public interface Zero_out : IBus {
+        [InitialValue]
+        bool Value {get; set;}
+    }
+
 }

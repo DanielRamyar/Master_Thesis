@@ -28,6 +28,9 @@ entity ALU_1_Bit is
     -- Top-level bus Output signals
     Output_Value: out T_SYSTEM_UINT32;
 
+    -- Top-level bus Zero_out signals
+    Zero_out_Value: out T_SYSTEM_BOOL;
+
 
 
     -- User defined signals here
@@ -82,6 +85,10 @@ begin
 
         -- Output bus Output
         output_Value => Output_Value,
+
+
+        -- Output bus Zero_out
+        zero_out_Value => Zero_out_Value,
 
 
 

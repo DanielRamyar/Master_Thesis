@@ -72,10 +72,10 @@ begin
         RST
     )
     -- Internal variables
-    variable num : T_SYSTEM_UINT32;
-    variable num2 : T_SYSTEM_UINT32;
-    variable num3 : T_SYSTEM_UINT32;
-    variable num4 : T_SYSTEM_UINT32;
+    variable value : T_SYSTEM_UINT32;
+    variable value2 : T_SYSTEM_UINT32;
+    variable value3 : T_SYSTEM_UINT32;
+    variable value4 : T_SYSTEM_UINT32;
     variable local_var_0 : INTEGER;
 
     variable reentry_guard: std_logic;
@@ -90,10 +90,10 @@ begin
         if RST = '1' then
             output_Value <= TO_UNSIGNED(0, 32);
             zero_out_Value <= '0';
-            num := TO_UNSIGNED(0, 32);
-            num2 := TO_UNSIGNED(0, 32);
-            num3 := TO_UNSIGNED(0, 32);
-            num4 := TO_UNSIGNED(0, 32);
+            value := TO_UNSIGNED(0, 32);
+            value2 := TO_UNSIGNED(0, 32);
+            value3 := TO_UNSIGNED(0, 32);
+            value4 := TO_UNSIGNED(0, 32);
             local_var_0 := 0;
 
                                     
@@ -115,33 +115,33 @@ begin
             local_var_0 := TO_INTEGER(m_OperationCode_Value);
             case local_var_0 is
                 when 0 =>
-                    num := m_A_Value and m_B_Value;
-                    output_Value <= num;
-                    if num = TO_UNSIGNED(0, 32) then
+                    value := m_A_Value and m_B_Value;
+                    output_Value <= value;
+                    if value = TO_UNSIGNED(0, 32) then
                         zero_out_Value <= '1';
                     else
                         zero_out_Value <= '0';
                     end if;
                 when 1 =>
-                    num2 := m_A_Value or m_B_Value;
-                    output_Value <= num2;
-                    if num2 = TO_UNSIGNED(0, 32) then
+                    value2 := m_A_Value or m_B_Value;
+                    output_Value <= value2;
+                    if output_Value = TO_UNSIGNED(0, 32) then
                         zero_out_Value <= '1';
                     else
                         zero_out_Value <= '0';
                     end if;
                 when 2 =>
-                    num3 := m_A_Value + m_B_Value;
-                    output_Value <= num3;
-                    if num3 = TO_UNSIGNED(0, 32) then
+                    value3 := m_A_Value + m_B_Value;
+                    output_Value <= value3;
+                    if output_Value = TO_UNSIGNED(0, 32) then
                         zero_out_Value <= '1';
                     else
                         zero_out_Value <= '0';
                     end if;
                 when 3 =>
-                    num4 := m_A_Value - m_B_Value;
-                    output_Value <= num4;
-                    if num4 = TO_UNSIGNED(0, 32) then
+                    value4 := m_A_Value - m_B_Value;
+                    output_Value <= value4;
+                    if output_Value = TO_UNSIGNED(0, 32) then
                         zero_out_Value <= '1';
                     else
                         zero_out_Value <= '0';

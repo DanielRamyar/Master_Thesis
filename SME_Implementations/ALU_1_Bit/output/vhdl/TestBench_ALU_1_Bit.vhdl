@@ -31,6 +31,7 @@ architecture TestBench of ALU_1_Bit_tb is
   signal A_Value : T_SYSTEM_UINT32;
   signal B_Value : T_SYSTEM_UINT32;
   signal Output_Value : T_SYSTEM_UINT32;
+  signal Zero_out_Value : T_SYSTEM_BOOL;
 
 begin
 
@@ -41,6 +42,7 @@ begin
     A_Value => A_Value,
     B_Value => B_Value,
     Output_Value => Output_Value,
+    Zero_out_Value => Zero_out_Value,
 
     ENB => ENABLE,
     RST => RESET,
@@ -97,6 +99,9 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Output.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Output.Value" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Zero_out.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Zero_out.Value" severity Failure;
         fieldno := fieldno + 1;
 
         RESET <= '1';
@@ -155,6 +160,15 @@ begin
             	if not are_strings_equal(str(Output_Value), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for Output_Value in cycle " & integer'image(clockcycle) & " was: " & str(Output_Value) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(Zero_out_Value), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for Zero_out_Value in cycle " & integer'image(clockcycle) & " was: " & str(Zero_out_Value) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;
