@@ -16,7 +16,7 @@ package CUSTOM_TYPES is
 -- #### USER-DATA-CORETYPES-START
 -- #### USER-DATA-CORETYPES-END
 
-    subtype IM_Instruction_Memory_type is T_SYSTEM_UINT32_ARRAY(0 to 6);
+    subtype IM_Instruction_Memory_type is T_SYSTEM_UINT8_ARRAY(0 to 3);
 
 
 

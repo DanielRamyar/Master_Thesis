@@ -21,15 +21,7 @@ namespace SingleCycleRISCV {
             Console.WriteLine("Starting test!\n");
             await ClockAsync();
                
-            PC_input.Address = 4;
-
-            await ClockAsync();
-            Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
-            Console.WriteLine($"Program counter outputs: {PC_output.Address}");
-            Console.WriteLine($"Instrcution memory input: {PC_output.Address}");
-            Console.WriteLine($"Instrcution memory output: {IM_output.Instruction} \n");
-               
-            PC_input.Address = 1;
+            PC_input.Address = 0;
 
             await ClockAsync();
             Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
@@ -38,7 +30,6 @@ namespace SingleCycleRISCV {
             Console.WriteLine($"Instrcution memory output: {IM_output.Instruction} \n");
 
             await ClockAsync();
-            Console.WriteLine($"No new PC_input given checks if PC holds old address");
             Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
             Console.WriteLine($"Program counter outputs: {PC_output.Address}");
             Console.WriteLine($"Instrcution memory input: {PC_output.Address}");

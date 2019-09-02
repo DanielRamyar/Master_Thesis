@@ -90,7 +90,7 @@ begin
     -- Entity  IM signals
     IM: entity work.IM
     generic map(
-        reset_Instruction_Memory => (TO_UNSIGNED(3, 32), TO_UNSIGNED(7, 32), TO_UNSIGNED(9, 32), TO_UNSIGNED(8, 32), TO_UNSIGNED(11, 32), TO_UNSIGNED(4, 32), others => TO_UNSIGNED(97, 32))
+        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), others => TO_UNSIGNED(51, 8))
     )
     port map (
         -- Input bus PC_Output
