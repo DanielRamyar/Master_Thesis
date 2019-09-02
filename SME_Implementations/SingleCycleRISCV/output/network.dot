@@ -1,0 +1,10 @@
+digraph SingleCycleRISCV {
+"PC_Input" [shape=oval];
+"PC_Output" [shape=oval];
+"PC" [shape=box];
+"SingleCycleRISCV_Simulator" [shape=box];
+"PC_Input" -> "PC";
+"SingleCycleRISCV_Simulator" -> "PC_Input";
+"PC" -> "PC_Output";
+"PC_Output" -> "SingleCycleRISCV_Simulator" [style=dotted];
+}
