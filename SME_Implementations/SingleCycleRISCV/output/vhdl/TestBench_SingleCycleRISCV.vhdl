@@ -29,6 +29,7 @@ architecture TestBench of SingleCycleRISCV_tb is
 
   signal PC_Input_Address : T_SYSTEM_UINT32;
   signal PC_Output_Address : T_SYSTEM_UINT32;
+  signal IM_Output_Instruction : T_SYSTEM_UINT32;
 
 begin
 
@@ -37,6 +38,7 @@ begin
 
     PC_Input_Address => PC_Input_Address,
     PC_Output_Address => PC_Output_Address,
+    IM_Output_Instruction => IM_Output_Instruction,
 
     ENB => ENABLE,
     RST => RESET,
@@ -86,6 +88,9 @@ begin
         assert are_strings_equal(tmp, "PC_Input.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected PC_Input.Address" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "IM_Output.Instruction") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected IM_Output.Instruction" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "PC_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected PC_Output.Address" severity Failure;
         fieldno := fieldno + 1;
 
@@ -126,6 +131,15 @@ begin
             wait until falling_edge(CLOCK);
 
             -- Compare each signal with the value in the CSV file
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(IM_Output_Instruction), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for IM_Output_Instruction in cycle " & integer'image(clockcycle) & " was: " & str(IM_Output_Instruction) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
 	        read_csv_field(L, tmp);
 	        if not are_strings_equal(tmp, "U") then
             	if not are_strings_equal(str(PC_Output_Address), tmp) then

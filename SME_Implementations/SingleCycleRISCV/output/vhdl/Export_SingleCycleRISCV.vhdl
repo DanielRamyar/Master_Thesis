@@ -21,6 +21,9 @@ entity SingleCycleRISCV_export is
     -- Top-level bus PC_Output signals
     PC_Output_Address: out STD_LOGIC_VECTOR(31 downto 0);
 
+    -- Top-level bus IM_Output signals
+    IM_Output_Instruction: out STD_LOGIC_VECTOR(31 downto 0);
+
 
     -- User defined signals here
     -- #### USER-DATA-ENTITYSIGNALS-START
@@ -50,11 +53,13 @@ architecture RTL of SingleCycleRISCV_export is
 
   -- Intermediate conversion signal to convert internal types to external ones
   signal tmp_PC_Output_Address : T_SYSTEM_UINT32;
+  signal tmp_IM_Output_Instruction : T_SYSTEM_UINT32;
 
 begin
 
     -- Carry converted signals from entity to wrapped outputs
   PC_Output_Address <= std_logic_vector(tmp_PC_Output_Address);
+  IM_Output_Instruction <= std_logic_vector(tmp_IM_Output_Instruction);
 
     -- Entity SingleCycleRISCV signals
     SingleCycleRISCV: entity work.SingleCycleRISCV
@@ -64,6 +69,9 @@ begin
 
         -- Output bus PC_Output
         PC_Output_Address => tmp_PC_Output_Address,
+
+        -- Output bus IM_Output
+        IM_Output_Instruction => tmp_IM_Output_Instruction,
 
         ENB => ENB,
         RST => RST,

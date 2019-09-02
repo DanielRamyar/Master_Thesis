@@ -1,7 +1,7 @@
 using System;
 using SME;
 
-namespace Instruction_Memory {
+namespace SingleCycleRISCV {
     [TopLevelInputBus]
     public interface IM_Input : IBus {
         [InitialValue]
