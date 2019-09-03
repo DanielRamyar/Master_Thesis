@@ -20,7 +20,11 @@ namespace SingleCycleRISCV {
         private readonly Write_Control m_write_control = Scope.CreateOrLoadBus<Write_Control>();
         
 
-        private readonly int[] m_register = new int[32];
+        // private readonly int[] m_register = new int[32];
+        private readonly int[] m_register = {0, 0, 0, 0, 0, 0, 0, 0,
+                                             0, 0, 0, 0, 0, 0, 0, 0,
+                                             4, 7, 0, 0, 0, 0, 0, 0,
+                                             0, 0, 0, 0, 0, 0, 0, 0,};
 
 
         protected override void OnTick() {
