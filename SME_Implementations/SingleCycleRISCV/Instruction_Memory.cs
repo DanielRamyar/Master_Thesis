@@ -9,13 +9,15 @@ namespace SingleCycleRISCV {
         [InputBus]
         private readonly PC_Output m_input = Scope.CreateOrLoadBus<PC_Output>();
 
-        byte[] Instruction_Memory = {1, 8, 137, 51};
+        private readonly byte[] Instruction_Memory = {1, 8, 137, 51};
 
         protected override void OnTick() {
-            output.Instruction = 0u | (uint)Instruction_Memory[m_input.Address]     << 24
-                                    | (uint)Instruction_Memory[m_input.Address + 1] << 16
-                                    | (uint)Instruction_Memory[m_input.Address + 2] << 8
-                                    | (uint)Instruction_Memory[m_input.Address + 3];
+            uint temp_address = m_input.Address;
+
+            output.Instruction = 0u | (uint)Instruction_Memory[temp_address]     << 24
+                                    | (uint)Instruction_Memory[temp_address + 1] << 16
+                                    | (uint)Instruction_Memory[temp_address + 2] << 8
+                                    | (uint)Instruction_Memory[temp_address + 3];
         }
     }
 
