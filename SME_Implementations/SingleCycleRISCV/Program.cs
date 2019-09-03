@@ -9,6 +9,8 @@ namespace SingleCycleRISCV {
                 var simulator = new SingleCycleRISCV_Simulator();
                 var PC = new PC();
                 var IM = new IM();
+                var Split = new splitter();
+                var Reg = new Register();
 
                 sim
                     .BuildCSVFile()
