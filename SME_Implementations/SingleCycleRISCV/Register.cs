@@ -22,7 +22,7 @@ namespace SingleCycleRISCV {
 
         // private readonly int[] m_register = new int[32];
         private readonly int[] m_register = {0, 0, 0, 0, 0, 0, 0, 0,
-                                             0, 0, 0, 0, 0, 0, 0, 0,
+                                             0, 0, 0, 0, 0, 0, 0, 2,
                                              4, 7, 0, 0, 0, 0, 0, 0,
                                              0, 0, 0, 0, 0, 0, 0, 0,};
 
