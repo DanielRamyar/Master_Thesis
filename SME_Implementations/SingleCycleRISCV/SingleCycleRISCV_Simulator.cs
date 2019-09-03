@@ -16,6 +16,13 @@ namespace SingleCycleRISCV {
         
         [OutputBus]
         public readonly IM_Input IM_input = Scope.CreateOrLoadBus<IM_Input>();
+
+        // Register Output
+        [InputBus]
+		public readonly Read_Output_1 Register_output_1 = Scope.CreateOrLoadBus<Read_Output_1>();
+        [InputBus]
+		public readonly Read_Output_2 Register_output_2 = Scope.CreateOrLoadBus<Read_Output_2>();
+
         public async override System.Threading.Tasks.Task Run() {
 
             Console.WriteLine("Starting test!\n");
@@ -28,6 +35,8 @@ namespace SingleCycleRISCV {
             Console.WriteLine($"Program counter outputs: {PC_output.Address}");
             Console.WriteLine($"Instrcution memory input: {PC_output.Address}");
             Console.WriteLine($"Instrcution memory output: {IM_output.Instruction} \n");
+            Console.WriteLine($"Register Output 1: {Register_output_1.Data}");
+            Console.WriteLine($"Register Output 2: {Register_output_2.Data}");
 
             await ClockAsync();
             Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
