@@ -14,16 +14,16 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity IM is
+entity PC is
     generic(
-        reset_Instruction_Memory: in IM_Instruction_Memory_type
+        reset_address_hold: in T_SYSTEM_UINT32
     );
     port(
         -- Input bus m_input signals
         m_input_Address: in T_SYSTEM_UINT32;
 
         -- Output bus output signals
-        output_Instruction: out T_SYSTEM_UINT32;
+        output_Address: out T_SYSTEM_UINT32;
 
 
         -- Clock signal
@@ -41,9 +41,9 @@ entity IM is
         -- Reset signal
         RST : in Std_logic
     );
-end IM;
+end PC;
 
-architecture RTL of IM is
+architecture RTL of PC is
 
 
 
@@ -69,8 +69,7 @@ begin
         RST
     )
     -- Internal variables
-    variable address : T_SYSTEM_UINT32;
-    variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
+    variable address_hold : T_SYSTEM_UINT32 := reset_address_hold;
 
     variable reentry_guard: std_logic;
 
@@ -82,9 +81,8 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            output_Instruction <= TO_UNSIGNED(0, 32);
-            address := TO_UNSIGNED(0, 32);
-            Instruction_Memory := reset_Instruction_Memory;
+            output_Address <= TO_UNSIGNED(0, 32);
+            address_hold := reset_address_hold;
 
                                     
             reentry_guard := '0';
@@ -102,8 +100,8 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            address := m_input_Address;
-            output_Instruction <= UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
+            address_hold := m_input_Address;
+            output_Address <= address_hold;
 
 
 

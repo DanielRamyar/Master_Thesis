@@ -69,7 +69,6 @@ begin
         RST
     )
     -- Internal variables
-    variable address : T_SYSTEM_UINT32;
     variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
 
     variable reentry_guard: std_logic;
@@ -83,7 +82,6 @@ begin
 
         if RST = '1' then
             output_Instruction <= TO_UNSIGNED(0, 32);
-            address := TO_UNSIGNED(0, 32);
             Instruction_Memory := reset_Instruction_Memory;
 
                                     
@@ -102,8 +100,7 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            address := m_input_Address;
-            output_Instruction <= UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
+            output_Instruction <= UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(m_input_Address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((m_input_Address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((m_input_Address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((m_input_Address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
 
 
 

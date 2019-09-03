@@ -25,6 +25,27 @@ entity SingleCycleRISCV is
     -- Top-level bus IM_Output signals
     IM_Output_Instruction: out T_SYSTEM_UINT32;
 
+    -- Top-level bus Read_Register_1 signals
+    Read_Register_1_address: in T_SYSTEM_UINT32;
+
+    -- Top-level bus Read_Register_2 signals
+    Read_Register_2_address: in T_SYSTEM_UINT32;
+
+    -- Top-level bus Write_Register signals
+    Write_Register_address: in T_SYSTEM_UINT32;
+
+    -- Top-level bus Write_Data signals
+    Write_Data_Data: in T_SYSTEM_INT32;
+
+    -- Top-level bus Write_Control signals
+    Write_Control_Enable: in T_SYSTEM_BOOL;
+
+    -- Top-level bus Read_Output_1 signals
+    Read_Output_1_Data: out T_SYSTEM_INT32;
+
+    -- Top-level bus Read_Output_2 signals
+    Read_Output_2_Data: out T_SYSTEM_INT32;
+
 
 
     -- User defined signals here
@@ -56,6 +77,10 @@ architecture RTL of SingleCycleRISCV is
     signal FIN_PC, RDY_PC : std_logic;
 
     signal FIN_IM, RDY_IM : std_logic;
+
+    signal FIN_splitter, RDY_splitter : std_logic;
+
+    signal FIN_Register, RDY_Register : std_logic;
 
 
     -- The primary ready driver signal
@@ -110,17 +135,100 @@ begin
     );
 
 
+    -- Entity  splitter signals
+    splitter: entity work.splitter
+    port map (
+        -- Input bus IM_Output
+        m_input_Instruction => IM_Output_Instruction,
+
+
+        -- Output bus Read_Register_1
+        m_read_1_address => Read_Register_1_address,
+
+
+        -- Output bus Read_Register_2
+        m_read_2_address => Read_Register_2_address,
+
+
+        -- Output bus Write_Register
+        m_write_address => Write_Register_address,
+
+
+        -- Output bus Write_Data
+        m_write_data_Data => Write_Data_Data,
+
+
+        -- Output bus Write_Control
+        m_write_control_Enable => Write_Control_Enable,
+
+
+
+        CLK => CLK,
+        RDY => RDY_splitter,
+        FIN => FIN_splitter,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  Register signals
+    vhdl_Register: entity work.vhdl_Register
+    generic map(
+        reset_m_register => (TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(2, 32), TO_SIGNED(4, 32), TO_SIGNED(7, 32), others => TO_SIGNED(0, 32))
+    )
+    port map (
+        -- Input bus Read_Register_1
+        m_read_1_address => Read_Register_1_address,
+
+
+        -- Input bus Read_Register_2
+        m_read_2_address => Read_Register_2_address,
+
+
+        -- Input bus Write_Register
+        m_write_address => Write_Register_address,
+
+
+        -- Input bus Write_Data
+        m_write_data_Data => Write_Data_Data,
+
+
+        -- Input bus Write_Control
+        m_write_control_Enable => Write_Control_Enable,
+
+
+        -- Output bus Read_Output_1
+        output_1_Data => Read_Output_1_Data,
+
+
+        -- Output bus Read_Output_2
+        output_2_Data => Read_Output_2_Data,
+
+
+
+        CLK => CLK,
+        RDY => RDY_Register,
+        FIN => FIN_Register,
+        ENB => ENB,
+        RST => RST
+    );
+
+
     -- Connect ready signals
     RDY_PC <= RDY;
     RDY_IM <= FIN_PC;
+    RDY_splitter <= FIN_IM;
+    RDY_Register <= FIN_splitter;
 
     -- Setup the FIN feedback signals
     process(
       FIN_PC, 
-      FIN_IM
+      FIN_IM, 
+      FIN_splitter, 
+      FIN_Register
     )
     begin
-      if FIN_PC = FIN_IM then
+      if FIN_PC = FIN_IM AND FIN_PC = FIN_splitter AND FIN_PC = FIN_Register then
         FIN <= FIN_PC;
       end if;
     end process;

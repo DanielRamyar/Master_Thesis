@@ -14,16 +14,17 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity IM is
-    generic(
-        reset_Instruction_Memory: in IM_Instruction_Memory_type
-    );
+entity splitter is
     port(
         -- Input bus m_input signals
-        m_input_Address: in T_SYSTEM_UINT32;
+        m_input_Instruction: in T_SYSTEM_UINT32;
 
-        -- Output bus output signals
-        output_Instruction: out T_SYSTEM_UINT32;
+        -- Output bus m_read_1 signals
+        m_read_1_address: out T_SYSTEM_UINT32;
+        -- Output bus m_read_2 signals
+        m_read_2_address: out T_SYSTEM_UINT32;
+        -- Output bus m_write signals
+        m_write_address: out T_SYSTEM_UINT32;
 
 
         -- Clock signal
@@ -41,9 +42,9 @@ entity IM is
         -- Reset signal
         RST : in Std_logic
     );
-end IM;
+end splitter;
 
-architecture RTL of IM is
+architecture RTL of splitter is
 
 
 
@@ -69,8 +70,7 @@ begin
         RST
     )
     -- Internal variables
-    variable address : T_SYSTEM_UINT32;
-    variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
+    variable instruction : T_SYSTEM_UINT32;
 
     variable reentry_guard: std_logic;
 
@@ -82,9 +82,10 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            output_Instruction <= TO_UNSIGNED(0, 32);
-            address := TO_UNSIGNED(0, 32);
-            Instruction_Memory := reset_Instruction_Memory;
+            m_read_1_address <= TO_UNSIGNED(0, 32);
+            m_read_2_address <= TO_UNSIGNED(0, 32);
+            m_write_address <= TO_UNSIGNED(0, 32);
+            instruction := TO_UNSIGNED(0, 32);
 
                                     
             reentry_guard := '0';
@@ -102,8 +103,10 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            address := m_input_Address;
-            output_Instruction <= UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
+            instruction := m_input_Instruction;
+            m_read_1_address <= (shift_right(instruction, 15)) and TO_UNSIGNED(31, 32);
+            m_read_2_address <= (shift_right(instruction, 20)) and TO_UNSIGNED(31, 32);
+            m_write_address <= (shift_right(instruction, 7)) and TO_UNSIGNED(31, 32);
 
 
 
