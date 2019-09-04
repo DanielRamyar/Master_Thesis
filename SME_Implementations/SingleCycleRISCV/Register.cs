@@ -8,6 +8,10 @@ namespace SingleCycleRISCV {
         [OutputBus]
 		public readonly Read_Output_2 output_2 = Scope.CreateOrLoadBus<Read_Output_2>();
 
+        // for test purposes
+        [OutputBus]
+        private readonly OperationCode m_OperationCode = Scope.CreateOrLoadBus<OperationCode>();
+
         [InputBus]
         private readonly Read_Register_1 m_read_1 = Scope.CreateOrLoadBus<Read_Register_1>();
         [InputBus]
@@ -41,6 +45,7 @@ namespace SingleCycleRISCV {
 
             // Console.WriteLine(string.Join(", ", m_register)); // Using this to print whole register
 
+            m_OperationCode.Value = 2;
 
         }
     }
