@@ -13,7 +13,7 @@ namespace SingleCycleRISCV {
         [InputBus]
         private readonly Read_Output_1 m_ALU_In_1 = Scope.CreateOrLoadBus<Read_Output_1>();
         [InputBus]
-        private readonly Read_Output_2 m_ALU_In_2 = Scope.CreateOrLoadBus<Read_Output_2>();
+        private readonly Reg_Mux_Output m_ALU_In_2 = Scope.CreateOrLoadBus<Reg_Mux_Output>();
 
         protected override void OnTick() {
             int temp; // Need to use temporary variable as i cant write and do zero test in same clock cycle wihtout it
