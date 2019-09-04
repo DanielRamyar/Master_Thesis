@@ -41,6 +41,7 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal Reg_Mux_Output_Data : T_SYSTEM_INT32;
   signal ALU_Output_Value : T_SYSTEM_INT32;
   signal Zero_out_Value : T_SYSTEM_BOOL;
+  signal Mem_Mux_Output_Data : T_SYSTEM_INT32;
 
 begin
 
@@ -61,6 +62,7 @@ begin
     Reg_Mux_Output_Data => Reg_Mux_Output_Data,
     ALU_Output_Value => ALU_Output_Value,
     Zero_out_Value => Zero_out_Value,
+    Mem_Mux_Output_Data => Mem_Mux_Output_Data,
 
     ENB => ENABLE,
     RST => RESET,
@@ -132,6 +134,9 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "IM_Output.Instruction") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected IM_Output.Instruction" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Mem_Mux_Output.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Mem_Mux_Output.Data" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "PC_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected PC_Output.Address" severity Failure;
@@ -242,6 +247,15 @@ begin
             	if not are_strings_equal(str(IM_Output_Instruction), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for IM_Output_Instruction in cycle " & integer'image(clockcycle) & " was: " & str(IM_Output_Instruction) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(Mem_Mux_Output_Data), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for Mem_Mux_Output_Data in cycle " & integer'image(clockcycle) & " was: " & str(Mem_Mux_Output_Data) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

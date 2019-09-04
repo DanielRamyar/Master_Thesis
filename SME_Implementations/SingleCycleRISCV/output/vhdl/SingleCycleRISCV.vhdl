@@ -58,6 +58,9 @@ entity SingleCycleRISCV is
     -- Top-level bus Zero_out signals
     Zero_out_Value: out T_SYSTEM_BOOL;
 
+    -- Top-level bus Mem_Mux_Output signals
+    Mem_Mux_Output_Data: out T_SYSTEM_INT32;
+
 
 
     -- User defined signals here
@@ -97,6 +100,8 @@ architecture RTL of SingleCycleRISCV is
     signal FIN_ALU, RDY_ALU : std_logic;
 
     signal FIN_Reg_mux, RDY_Reg_mux : std_logic;
+
+    signal FIN_Mem_mux, RDY_Mem_mux : std_logic;
 
 
     -- The primary ready driver signal
@@ -286,6 +291,26 @@ begin
     );
 
 
+    -- Entity  Mem_mux signals
+    Mem_mux: entity work.Mem_mux
+    port map (
+        -- Input bus ALU_Output
+        m_ALU_in_Value => ALU_Output_Value,
+
+
+        -- Output bus Mem_Mux_Output
+        Mux_out_Data => Mem_Mux_Output_Data,
+
+
+
+        CLK => CLK,
+        RDY => RDY_Mem_mux,
+        FIN => FIN_Mem_mux,
+        ENB => ENB,
+        RST => RST
+    );
+
+
     -- Connect ready signals
     RDY_PC <= RDY;
     RDY_IM <= FIN_PC;
@@ -302,6 +327,7 @@ begin
       end if;
     end process;
     RDY_Reg_mux <= FIN_Register;
+    RDY_Mem_mux <= FIN_ALU;
 
     -- Setup the FIN feedback signals
     process(
@@ -310,10 +336,11 @@ begin
       FIN_splitter, 
       FIN_Register, 
       FIN_ALU, 
-      FIN_Reg_mux
+      FIN_Reg_mux, 
+      FIN_Mem_mux
     )
     begin
-      if FIN_PC = FIN_IM AND FIN_PC = FIN_splitter AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux then
+      if FIN_PC = FIN_IM AND FIN_PC = FIN_splitter AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux then
         FIN <= FIN_PC;
       end if;
     end process;
