@@ -38,12 +38,16 @@ $(WORKDIR)/splitter.o: splitter.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) splitter.vhdl
 $(WORKDIR)/vhdl_Register.o: vhdl_Register.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) vhdl_Register.vhdl
+$(WORKDIR)/ALU.o: ALU.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) ALU.vhdl
+$(WORKDIR)/Reg_mux.o: Reg_mux.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Reg_mux.vhdl
 $(WORKDIR)/csv_util.o: csv_util.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) csv_util.vhdl
 
 
 
-$(WORKDIR)/SingleCycleRISCV.o: SingleCycleRISCV.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)/PC.o $(WORKDIR)/IM.o $(WORKDIR)/splitter.o $(WORKDIR)/vhdl_Register.o $(WORKDIR)/csv_util.o 
+$(WORKDIR)/SingleCycleRISCV.o: SingleCycleRISCV.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)/PC.o $(WORKDIR)/IM.o $(WORKDIR)/splitter.o $(WORKDIR)/vhdl_Register.o $(WORKDIR)/ALU.o $(WORKDIR)/Reg_mux.o $(WORKDIR)/csv_util.o 
 
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) SingleCycleRISCV.vhdl
 

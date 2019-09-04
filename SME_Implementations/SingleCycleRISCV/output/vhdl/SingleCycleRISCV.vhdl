@@ -46,6 +46,18 @@ entity SingleCycleRISCV is
     -- Top-level bus Read_Output_2 signals
     Read_Output_2_Data: out T_SYSTEM_INT32;
 
+    -- Top-level bus OperationCode signals
+    OperationCode_Value: in T_SYSTEM_UINT8;
+
+    -- Top-level bus Reg_Mux_Output signals
+    Reg_Mux_Output_Data: out T_SYSTEM_INT32;
+
+    -- Top-level bus ALU_Output signals
+    ALU_Output_Value: out T_SYSTEM_INT32;
+
+    -- Top-level bus Zero_out signals
+    Zero_out_Value: out T_SYSTEM_BOOL;
+
 
 
     -- User defined signals here
@@ -81,6 +93,10 @@ architecture RTL of SingleCycleRISCV is
     signal FIN_splitter, RDY_splitter : std_logic;
 
     signal FIN_Register, RDY_Register : std_logic;
+
+    signal FIN_ALU, RDY_ALU : std_logic;
+
+    signal FIN_Reg_mux, RDY_Reg_mux : std_logic;
 
 
     -- The primary ready driver signal
@@ -205,10 +221,66 @@ begin
         output_2_Data => Read_Output_2_Data,
 
 
+        -- Output bus OperationCode
+        m_OperationCode_Value => OperationCode_Value,
+
+
 
         CLK => CLK,
         RDY => RDY_Register,
         FIN => FIN_Register,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  ALU signals
+    ALU: entity work.ALU
+    port map (
+        -- Input bus OperationCode
+        m_OperationCode_Value => OperationCode_Value,
+
+
+        -- Input bus Read_Output_1
+        m_ALU_In_1_Data => Read_Output_1_Data,
+
+
+        -- Input bus Reg_Mux_Output
+        m_ALU_In_2_Data => Reg_Mux_Output_Data,
+
+
+        -- Output bus ALU_Output
+        output_Value => ALU_Output_Value,
+
+
+        -- Output bus Zero_out
+        zero_out_Value => Zero_out_Value,
+
+
+
+        CLK => CLK,
+        RDY => RDY_ALU,
+        FIN => FIN_ALU,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  Reg_mux signals
+    Reg_mux: entity work.Reg_mux
+    port map (
+        -- Input bus Read_Output_2
+        m_Reg_in_Data => Read_Output_2_Data,
+
+
+        -- Output bus Reg_Mux_Output
+        Mux_out_Data => Reg_Mux_Output_Data,
+
+
+
+        CLK => CLK,
+        RDY => RDY_Reg_mux,
+        FIN => FIN_Reg_mux,
         ENB => ENB,
         RST => RST
     );
@@ -219,16 +291,29 @@ begin
     RDY_IM <= FIN_PC;
     RDY_splitter <= FIN_IM;
     RDY_Register <= FIN_splitter;
+    -- Setup the RDY signal for ALU
+    process(
+      FIN_Register, 
+      FIN_Reg_mux
+    )
+    begin
+      if FIN_Register = FIN_Reg_mux then
+        RDY_ALU <= FIN_Register;
+      end if;
+    end process;
+    RDY_Reg_mux <= FIN_Register;
 
     -- Setup the FIN feedback signals
     process(
       FIN_PC, 
       FIN_IM, 
       FIN_splitter, 
-      FIN_Register
+      FIN_Register, 
+      FIN_ALU, 
+      FIN_Reg_mux
     )
     begin
-      if FIN_PC = FIN_IM AND FIN_PC = FIN_splitter AND FIN_PC = FIN_Register then
+      if FIN_PC = FIN_IM AND FIN_PC = FIN_splitter AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux then
         FIN <= FIN_PC;
       end if;
     end process;

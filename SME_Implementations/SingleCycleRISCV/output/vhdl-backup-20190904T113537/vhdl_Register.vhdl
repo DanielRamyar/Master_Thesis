@@ -34,8 +34,6 @@ entity vhdl_Register is
         output_1_Data: out T_SYSTEM_INT32;
         -- Output bus output_2 signals
         output_2_Data: out T_SYSTEM_INT32;
-        -- Output bus m_OperationCode signals
-        m_OperationCode_Value: out T_SYSTEM_UINT8;
 
 
         -- Clock signal
@@ -95,7 +93,6 @@ begin
         if RST = '1' then
             output_1_Data <= TO_SIGNED(0, 32);
             output_2_Data <= TO_SIGNED(0, 32);
-            m_OperationCode_Value <= TO_UNSIGNED(0, 8);
             m_register := reset_m_register;
 
                                     
@@ -123,7 +120,6 @@ begin
             if ((m_write_control_Enable = '1') and (m_write_address /= TO_UNSIGNED(0, 32))) and (m_write_address <= TO_UNSIGNED(32, 32)) then
                 m_register(TO_INTEGER(m_write_address)) := m_write_data_Data;
             end if;
-            m_OperationCode_Value <= TO_UNSIGNED(2, 8);
 
 
 

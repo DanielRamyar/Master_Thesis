@@ -14,28 +14,21 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity vhdl_Register is
-    generic(
-        reset_m_register: in vhdl_Register_m_register_type
-    );
+entity splitter is
     port(
-        -- Input bus m_read_1 signals
-        m_read_1_address: in T_SYSTEM_UINT32;
-        -- Input bus m_read_2 signals
-        m_read_2_address: in T_SYSTEM_UINT32;
-        -- Input bus m_write signals
-        m_write_address: in T_SYSTEM_UINT32;
-        -- Input bus m_write_data signals
-        m_write_data_Data: in T_SYSTEM_INT32;
-        -- Input bus m_write_control signals
-        m_write_control_Enable: in T_SYSTEM_BOOL;
+        -- Input bus m_input signals
+        m_input_Instruction: in T_SYSTEM_UINT32;
 
-        -- Output bus output_1 signals
-        output_1_Data: out T_SYSTEM_INT32;
-        -- Output bus output_2 signals
-        output_2_Data: out T_SYSTEM_INT32;
-        -- Output bus m_OperationCode signals
-        m_OperationCode_Value: out T_SYSTEM_UINT8;
+        -- Output bus m_read_1 signals
+        m_read_1_address: out T_SYSTEM_UINT32;
+        -- Output bus m_read_2 signals
+        m_read_2_address: out T_SYSTEM_UINT32;
+        -- Output bus m_write signals
+        m_write_address: out T_SYSTEM_UINT32;
+        -- Output bus m_write_data signals
+        m_write_data_Data: out T_SYSTEM_INT32;
+        -- Output bus m_write_control signals
+        m_write_control_Enable: out T_SYSTEM_BOOL;
 
 
         -- Clock signal
@@ -53,9 +46,9 @@ entity vhdl_Register is
         -- Reset signal
         RST : in Std_logic
     );
-end vhdl_Register;
+end splitter;
 
-architecture RTL of vhdl_Register is
+architecture RTL of splitter is
 
 
 
@@ -81,7 +74,7 @@ begin
         RST
     )
     -- Internal variables
-    variable m_register : vhdl_Register_m_register_type := reset_m_register;
+    variable instruction : T_SYSTEM_UINT32;
 
     variable reentry_guard: std_logic;
 
@@ -93,10 +86,12 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            output_1_Data <= TO_SIGNED(0, 32);
-            output_2_Data <= TO_SIGNED(0, 32);
-            m_OperationCode_Value <= TO_UNSIGNED(0, 8);
-            m_register := reset_m_register;
+            m_read_1_address <= TO_UNSIGNED(0, 32);
+            m_read_2_address <= TO_UNSIGNED(0, 32);
+            m_write_address <= TO_UNSIGNED(0, 32);
+            m_write_data_Data <= TO_SIGNED(0, 32);
+            m_write_control_Enable <= '0';
+            instruction := TO_UNSIGNED(0, 32);
 
                                     
             reentry_guard := '0';
@@ -114,16 +109,12 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            if (m_read_1_address >= TO_UNSIGNED(0, 32)) and (m_read_1_address <= TO_UNSIGNED(32, 32)) then
-                output_1_Data <= m_register(TO_INTEGER(m_read_1_address));
-            end if;
-            if (m_read_2_address >= TO_UNSIGNED(0, 32)) and (m_read_2_address <= TO_UNSIGNED(32, 32)) then
-                output_2_Data <= m_register(TO_INTEGER(m_read_2_address));
-            end if;
-            if ((m_write_control_Enable = '1') and (m_write_address /= TO_UNSIGNED(0, 32))) and (m_write_address <= TO_UNSIGNED(32, 32)) then
-                m_register(TO_INTEGER(m_write_address)) := m_write_data_Data;
-            end if;
-            m_OperationCode_Value <= TO_UNSIGNED(2, 8);
+            instruction := m_input_Instruction;
+            m_read_1_address <= (shift_right(instruction, 15)) and TO_UNSIGNED(31, 32);
+            m_read_2_address <= (shift_right(instruction, 20)) and TO_UNSIGNED(31, 32);
+            m_write_address <= (shift_right(instruction, 7)) and TO_UNSIGNED(31, 32);
+            m_write_data_Data <= TO_SIGNED(44, 32);
+            m_write_control_Enable <= '0';
 
 
 

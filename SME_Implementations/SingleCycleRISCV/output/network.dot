@@ -7,13 +7,19 @@ digraph SingleCycleRISCV {
 "Write_Register" [shape=oval];
 "Write_Data" [shape=oval];
 "Write_Control" [shape=oval];
-"IM_Input" [shape=oval];
+"OperationCode" [shape=oval];
 "Read_Output_1" [shape=oval];
+"Reg_Mux_Output" [shape=oval];
 "Read_Output_2" [shape=oval];
+"IM_Input" [shape=oval];
+"ALU_Output" [shape=oval];
+"Zero_out" [shape=oval];
 "PC" [shape=box];
 "IM" [shape=box];
 "splitter" [shape=box];
 "Register" [shape=box];
+"ALU" [shape=box];
+"Reg_mux" [shape=box];
 "SingleCycleRISCV_Simulator" [shape=box];
 "PC_Input" -> "PC";
 "PC_Output" -> "IM";
@@ -23,6 +29,10 @@ digraph SingleCycleRISCV {
 "Write_Register" -> "Register";
 "Write_Data" -> "Register";
 "Write_Control" -> "Register";
+"OperationCode" -> "ALU";
+"Read_Output_1" -> "ALU";
+"Reg_Mux_Output" -> "ALU";
+"Read_Output_2" -> "Reg_mux";
 "SingleCycleRISCV_Simulator" -> "PC_Input";
 "SingleCycleRISCV_Simulator" -> "IM_Input";
 "PC" -> "PC_Output";
@@ -34,8 +44,13 @@ digraph SingleCycleRISCV {
 "splitter" -> "Write_Control";
 "Register" -> "Read_Output_1";
 "Register" -> "Read_Output_2";
+"Register" -> "OperationCode";
+"ALU" -> "ALU_Output";
+"ALU" -> "Zero_out";
+"Reg_mux" -> "Reg_Mux_Output";
 "PC_Output" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "IM_Output" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "Read_Output_1" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "Read_Output_2" -> "SingleCycleRISCV_Simulator" [style=dotted];
+"ALU_Output" -> "SingleCycleRISCV_Simulator" [style=dotted];
 }

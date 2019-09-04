@@ -14,28 +14,16 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity vhdl_Register is
+entity PC is
     generic(
-        reset_m_register: in vhdl_Register_m_register_type
+        reset_address_hold: in T_SYSTEM_UINT32
     );
     port(
-        -- Input bus m_read_1 signals
-        m_read_1_address: in T_SYSTEM_UINT32;
-        -- Input bus m_read_2 signals
-        m_read_2_address: in T_SYSTEM_UINT32;
-        -- Input bus m_write signals
-        m_write_address: in T_SYSTEM_UINT32;
-        -- Input bus m_write_data signals
-        m_write_data_Data: in T_SYSTEM_INT32;
-        -- Input bus m_write_control signals
-        m_write_control_Enable: in T_SYSTEM_BOOL;
+        -- Input bus m_input signals
+        m_input_Address: in T_SYSTEM_UINT32;
 
-        -- Output bus output_1 signals
-        output_1_Data: out T_SYSTEM_INT32;
-        -- Output bus output_2 signals
-        output_2_Data: out T_SYSTEM_INT32;
-        -- Output bus m_OperationCode signals
-        m_OperationCode_Value: out T_SYSTEM_UINT8;
+        -- Output bus output signals
+        output_Address: out T_SYSTEM_UINT32;
 
 
         -- Clock signal
@@ -53,9 +41,9 @@ entity vhdl_Register is
         -- Reset signal
         RST : in Std_logic
     );
-end vhdl_Register;
+end PC;
 
-architecture RTL of vhdl_Register is
+architecture RTL of PC is
 
 
 
@@ -81,7 +69,7 @@ begin
         RST
     )
     -- Internal variables
-    variable m_register : vhdl_Register_m_register_type := reset_m_register;
+    variable address_hold : T_SYSTEM_UINT32 := reset_address_hold;
 
     variable reentry_guard: std_logic;
 
@@ -93,10 +81,8 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            output_1_Data <= TO_SIGNED(0, 32);
-            output_2_Data <= TO_SIGNED(0, 32);
-            m_OperationCode_Value <= TO_UNSIGNED(0, 8);
-            m_register := reset_m_register;
+            output_Address <= TO_UNSIGNED(0, 32);
+            address_hold := reset_address_hold;
 
                                     
             reentry_guard := '0';
@@ -114,16 +100,8 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            if (m_read_1_address >= TO_UNSIGNED(0, 32)) and (m_read_1_address <= TO_UNSIGNED(32, 32)) then
-                output_1_Data <= m_register(TO_INTEGER(m_read_1_address));
-            end if;
-            if (m_read_2_address >= TO_UNSIGNED(0, 32)) and (m_read_2_address <= TO_UNSIGNED(32, 32)) then
-                output_2_Data <= m_register(TO_INTEGER(m_read_2_address));
-            end if;
-            if ((m_write_control_Enable = '1') and (m_write_address /= TO_UNSIGNED(0, 32))) and (m_write_address <= TO_UNSIGNED(32, 32)) then
-                m_register(TO_INTEGER(m_write_address)) := m_write_data_Data;
-            end if;
-            m_OperationCode_Value <= TO_UNSIGNED(2, 8);
+            address_hold := m_input_Address;
+            output_Address <= address_hold;
 
 
 

@@ -23,6 +23,10 @@ namespace SingleCycleRISCV {
         [InputBus]
 		public readonly Read_Output_2 Register_output_2 = Scope.CreateOrLoadBus<Read_Output_2>();
 
+        // ALU Output
+        [InputBus]
+		public readonly ALU_Output ALU_output = Scope.CreateOrLoadBus<ALU_Output>();
+
         public async override System.Threading.Tasks.Task Run() {
 
             Console.WriteLine("Starting test!\n");
@@ -34,9 +38,10 @@ namespace SingleCycleRISCV {
             Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
             Console.WriteLine($"Program counter outputs: {PC_output.Address}");
             Console.WriteLine($"Instrcution memory input: {PC_output.Address}");
-            Console.WriteLine($"Instrcution memory output: {IM_output.Instruction} \n");
+            Console.WriteLine($"Instrcution memory output: {IM_output.Instruction}");
             Console.WriteLine($"Register Output 1: {Register_output_1.Data}");
             Console.WriteLine($"Register Output 2: {Register_output_2.Data}");
+            Console.WriteLine($"ALU Output: {ALU_output.Value} \n");
 
             await ClockAsync();
             Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
