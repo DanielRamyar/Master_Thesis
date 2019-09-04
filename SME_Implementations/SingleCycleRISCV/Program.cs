@@ -12,6 +12,7 @@ namespace SingleCycleRISCV {
                 var Split = new splitter();
                 var Reg = new Register();
                 var mALU = new ALU();
+                var regmux = new Reg_mux();
 
                 sim
                     .BuildCSVFile()
