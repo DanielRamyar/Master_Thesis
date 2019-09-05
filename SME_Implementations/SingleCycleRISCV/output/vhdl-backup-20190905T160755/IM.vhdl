@@ -22,16 +22,8 @@ entity IM is
         -- Input bus m_input signals
         m_input_Address: in T_SYSTEM_UINT32;
 
-        -- Output bus m_read_1 signals
-        m_read_1_address: out T_SYSTEM_UINT32;
-        -- Output bus m_read_2 signals
-        m_read_2_address: out T_SYSTEM_UINT32;
-        -- Output bus m_write signals
-        m_write_address: out T_SYSTEM_UINT32;
-        -- Output bus m_write_data signals
-        m_write_data_Data: out T_SYSTEM_INT32;
-        -- Output bus m_write_control signals
-        m_write_control_Enable: out T_SYSTEM_BOOL;
+        -- Output bus output signals
+        output_Instruction: out T_SYSTEM_UINT32;
 
 
         -- Clock signal
@@ -78,7 +70,6 @@ begin
     )
     -- Internal variables
     variable address : T_SYSTEM_UINT32;
-    variable num : T_SYSTEM_UINT32;
     variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
 
     variable reentry_guard: std_logic;
@@ -91,13 +82,8 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            m_read_1_address <= TO_UNSIGNED(0, 32);
-            m_read_2_address <= TO_UNSIGNED(0, 32);
-            m_write_address <= TO_UNSIGNED(0, 32);
-            m_write_data_Data <= TO_SIGNED(0, 32);
-            m_write_control_Enable <= '0';
+            output_Instruction <= TO_UNSIGNED(0, 32);
             address := TO_UNSIGNED(0, 32);
-            num := TO_UNSIGNED(0, 32);
             Instruction_Memory := reset_Instruction_Memory;
 
                                     
@@ -117,12 +103,7 @@ begin
 
 
             address := m_input_Address;
-            num := UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
-            m_read_1_address <= (shift_right(num, 15)) and TO_UNSIGNED(31, 32);
-            m_read_2_address <= (shift_right(num, 20)) and TO_UNSIGNED(31, 32);
-            m_write_address <= (shift_right(num, 7)) and TO_UNSIGNED(31, 32);
-            m_write_data_Data <= TO_SIGNED(44, 32);
-            m_write_control_Enable <= '0';
+            output_Instruction <= UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
 
 
 

@@ -18,11 +18,8 @@ entity SingleCycleRISCV_export is
     -- Top-level bus PC_Input signals
     PC_Input_Address: in STD_LOGIC_VECTOR(31 downto 0);
 
-    -- Top-level bus PC_Output signals
-    PC_Output_Address: out STD_LOGIC_VECTOR(31 downto 0);
-
-    -- Top-level bus IM_Output signals
-    IM_Output_Instruction: out STD_LOGIC_VECTOR(31 downto 0);
+    -- Top-level bus ProgramCounter_To_InstructionMemory signals
+    ProgramCounter_To_InstructionMemory_Address: out STD_LOGIC_VECTOR(31 downto 0);
 
     -- Top-level bus Read_Register_1 signals
     Read_Register_1_address: in STD_LOGIC_VECTOR(31 downto 0);
@@ -39,11 +36,11 @@ entity SingleCycleRISCV_export is
     -- Top-level bus Write_Control signals
     Write_Control_Enable: in STD_LOGIC;
 
-    -- Top-level bus Read_Output_1 signals
-    Read_Output_1_Data: out STD_LOGIC_VECTOR(31 downto 0);
+    -- Top-level bus Reg1_To_ALU signals
+    Reg1_To_ALU_Data: out STD_LOGIC_VECTOR(31 downto 0);
 
-    -- Top-level bus Read_Output_2 signals
-    Read_Output_2_Data: out STD_LOGIC_VECTOR(31 downto 0);
+    -- Top-level bus Reg2_To_Mux signals
+    Reg2_To_Mux_Data: out STD_LOGIC_VECTOR(31 downto 0);
 
     -- Top-level bus OperationCode signals
     OperationCode_Value: in STD_LOGIC_VECTOR(7 downto 0);
@@ -56,9 +53,6 @@ entity SingleCycleRISCV_export is
 
     -- Top-level bus Zero_out signals
     Zero_out_Value: out STD_LOGIC;
-
-    -- Top-level bus Mem_Mux_Output signals
-    Mem_Mux_Output_Data: out STD_LOGIC_VECTOR(31 downto 0);
 
 
     -- User defined signals here
@@ -88,24 +82,20 @@ architecture RTL of SingleCycleRISCV_export is
   -- #### USER-DATA-SIGNALS-END
 
   -- Intermediate conversion signal to convert internal types to external ones
-  signal tmp_PC_Output_Address : T_SYSTEM_UINT32;
-  signal tmp_IM_Output_Instruction : T_SYSTEM_UINT32;
-  signal tmp_Read_Output_1_Data : T_SYSTEM_INT32;
-  signal tmp_Read_Output_2_Data : T_SYSTEM_INT32;
+  signal tmp_ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT32;
+  signal tmp_Reg1_To_ALU_Data : T_SYSTEM_INT32;
+  signal tmp_Reg2_To_Mux_Data : T_SYSTEM_INT32;
   signal tmp_Reg_Mux_Output_Data : T_SYSTEM_INT32;
   signal tmp_ALU_Output_Value : T_SYSTEM_INT32;
-  signal tmp_Mem_Mux_Output_Data : T_SYSTEM_INT32;
 
 begin
 
     -- Carry converted signals from entity to wrapped outputs
-  PC_Output_Address <= std_logic_vector(tmp_PC_Output_Address);
-  IM_Output_Instruction <= std_logic_vector(tmp_IM_Output_Instruction);
-  Read_Output_1_Data <= std_logic_vector(tmp_Read_Output_1_Data);
-  Read_Output_2_Data <= std_logic_vector(tmp_Read_Output_2_Data);
+  ProgramCounter_To_InstructionMemory_Address <= std_logic_vector(tmp_ProgramCounter_To_InstructionMemory_Address);
+  Reg1_To_ALU_Data <= std_logic_vector(tmp_Reg1_To_ALU_Data);
+  Reg2_To_Mux_Data <= std_logic_vector(tmp_Reg2_To_Mux_Data);
   Reg_Mux_Output_Data <= std_logic_vector(tmp_Reg_Mux_Output_Data);
   ALU_Output_Value <= std_logic_vector(tmp_ALU_Output_Value);
-  Mem_Mux_Output_Data <= std_logic_vector(tmp_Mem_Mux_Output_Data);
 
     -- Entity SingleCycleRISCV signals
     SingleCycleRISCV: entity work.SingleCycleRISCV
@@ -113,11 +103,8 @@ begin
         -- Input bus PC_Input
         PC_Input_Address => unsigned(PC_Input_Address),
 
-        -- Output bus PC_Output
-        PC_Output_Address => tmp_PC_Output_Address,
-
-        -- Output bus IM_Output
-        IM_Output_Instruction => tmp_IM_Output_Instruction,
+        -- Output bus ProgramCounter_To_InstructionMemory
+        ProgramCounter_To_InstructionMemory_Address => tmp_ProgramCounter_To_InstructionMemory_Address,
 
         -- Input bus Read_Register_1
         Read_Register_1_address => unsigned(Read_Register_1_address),
@@ -134,11 +121,11 @@ begin
         -- Input bus Write_Control
         Write_Control_Enable => Write_Control_Enable,
 
-        -- Output bus Read_Output_1
-        Read_Output_1_Data => tmp_Read_Output_1_Data,
+        -- Output bus Reg1_To_ALU
+        Reg1_To_ALU_Data => tmp_Reg1_To_ALU_Data,
 
-        -- Output bus Read_Output_2
-        Read_Output_2_Data => tmp_Read_Output_2_Data,
+        -- Output bus Reg2_To_Mux
+        Reg2_To_Mux_Data => tmp_Reg2_To_Mux_Data,
 
         -- Input bus OperationCode
         OperationCode_Value => unsigned(OperationCode_Value),
@@ -151,9 +138,6 @@ begin
 
         -- Output bus Zero_out
         Zero_out_Value => Zero_out_Value,
-
-        -- Output bus Mem_Mux_Output
-        Mem_Mux_Output_Data => tmp_Mem_Mux_Output_Data,
 
         ENB => ENB,
         RST => RST,

@@ -14,24 +14,13 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity IM is
-    generic(
-        reset_Instruction_Memory: in IM_Instruction_Memory_type
-    );
+entity Reg_mux is
     port(
-        -- Input bus m_input signals
-        m_input_Address: in T_SYSTEM_UINT32;
+        -- Input bus m_Reg_in signals
+        m_Reg_in_Data: in T_SYSTEM_INT32;
 
-        -- Output bus m_read_1 signals
-        m_read_1_address: out T_SYSTEM_UINT32;
-        -- Output bus m_read_2 signals
-        m_read_2_address: out T_SYSTEM_UINT32;
-        -- Output bus m_write signals
-        m_write_address: out T_SYSTEM_UINT32;
-        -- Output bus m_write_data signals
-        m_write_data_Data: out T_SYSTEM_INT32;
-        -- Output bus m_write_control signals
-        m_write_control_Enable: out T_SYSTEM_BOOL;
+        -- Output bus Mux_out signals
+        Mux_out_Data: out T_SYSTEM_INT32;
 
 
         -- Clock signal
@@ -49,9 +38,9 @@ entity IM is
         -- Reset signal
         RST : in Std_logic
     );
-end IM;
+end Reg_mux;
 
-architecture RTL of IM is
+architecture RTL of Reg_mux is
 
 
 
@@ -76,10 +65,6 @@ begin
         RDY,
         RST
     )
-    -- Internal variables
-    variable address : T_SYSTEM_UINT32;
-    variable num : T_SYSTEM_UINT32;
-    variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
 
     variable reentry_guard: std_logic;
 
@@ -91,14 +76,7 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            m_read_1_address <= TO_UNSIGNED(0, 32);
-            m_read_2_address <= TO_UNSIGNED(0, 32);
-            m_write_address <= TO_UNSIGNED(0, 32);
-            m_write_data_Data <= TO_SIGNED(0, 32);
-            m_write_control_Enable <= '0';
-            address := TO_UNSIGNED(0, 32);
-            num := TO_UNSIGNED(0, 32);
-            Instruction_Memory := reset_Instruction_Memory;
+            Mux_out_Data <= TO_SIGNED(0, 32);
 
                                     
             reentry_guard := '0';
@@ -116,13 +94,11 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            address := m_input_Address;
-            num := UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
-            m_read_1_address <= (shift_right(num, 15)) and TO_UNSIGNED(31, 32);
-            m_read_2_address <= (shift_right(num, 20)) and TO_UNSIGNED(31, 32);
-            m_write_address <= (shift_right(num, 7)) and TO_UNSIGNED(31, 32);
-            m_write_data_Data <= TO_SIGNED(44, 32);
-            m_write_control_Enable <= '0';
+            case 0 is
+                when 0 =>
+                    Mux_out_Data <= m_Reg_in_Data;
+                when others =>
+            end case;
 
 
 

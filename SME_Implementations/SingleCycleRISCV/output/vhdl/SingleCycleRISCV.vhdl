@@ -19,11 +19,8 @@ entity SingleCycleRISCV is
     -- Top-level bus PC_Input signals
     PC_Input_Address: in T_SYSTEM_UINT32;
 
-    -- Top-level bus PC_Output signals
-    PC_Output_Address: out T_SYSTEM_UINT32;
-
-    -- Top-level bus IM_Output signals
-    IM_Output_Instruction: out T_SYSTEM_UINT32;
+    -- Top-level bus ProgramCounter_To_InstructionMemory signals
+    ProgramCounter_To_InstructionMemory_Address: out T_SYSTEM_UINT32;
 
     -- Top-level bus Read_Register_1 signals
     Read_Register_1_address: in T_SYSTEM_UINT32;
@@ -40,11 +37,11 @@ entity SingleCycleRISCV is
     -- Top-level bus Write_Control signals
     Write_Control_Enable: in T_SYSTEM_BOOL;
 
-    -- Top-level bus Read_Output_1 signals
-    Read_Output_1_Data: out T_SYSTEM_INT32;
+    -- Top-level bus Reg1_To_ALU signals
+    Reg1_To_ALU_Data: out T_SYSTEM_INT32;
 
-    -- Top-level bus Read_Output_2 signals
-    Read_Output_2_Data: out T_SYSTEM_INT32;
+    -- Top-level bus Reg2_To_Mux signals
+    Reg2_To_Mux_Data: out T_SYSTEM_INT32;
 
     -- Top-level bus OperationCode signals
     OperationCode_Value: in T_SYSTEM_UINT8;
@@ -57,9 +54,6 @@ entity SingleCycleRISCV is
 
     -- Top-level bus Zero_out signals
     Zero_out_Value: out T_SYSTEM_BOOL;
-
-    -- Top-level bus Mem_Mux_Output signals
-    Mem_Mux_Output_Data: out T_SYSTEM_INT32;
 
 
 
@@ -93,15 +87,11 @@ architecture RTL of SingleCycleRISCV is
 
     signal FIN_IM, RDY_IM : std_logic;
 
-    signal FIN_splitter, RDY_splitter : std_logic;
-
     signal FIN_Register, RDY_Register : std_logic;
 
     signal FIN_ALU, RDY_ALU : std_logic;
 
     signal FIN_Reg_mux, RDY_Reg_mux : std_logic;
-
-    signal FIN_Mem_mux, RDY_Mem_mux : std_logic;
 
 
     -- The primary ready driver signal
@@ -120,8 +110,8 @@ begin
         m_input_Address => PC_Input_Address,
 
 
-        -- Output bus PC_Output
-        output_Address => PC_Output_Address,
+        -- Output bus ProgramCounter_To_InstructionMemory
+        output_Address => ProgramCounter_To_InstructionMemory_Address,
 
 
 
@@ -139,28 +129,8 @@ begin
         reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), others => TO_UNSIGNED(51, 8))
     )
     port map (
-        -- Input bus PC_Output
-        m_input_Address => PC_Output_Address,
-
-
-        -- Output bus IM_Output
-        output_Instruction => IM_Output_Instruction,
-
-
-
-        CLK => CLK,
-        RDY => RDY_IM,
-        FIN => FIN_IM,
-        ENB => ENB,
-        RST => RST
-    );
-
-
-    -- Entity  splitter signals
-    splitter: entity work.splitter
-    port map (
-        -- Input bus IM_Output
-        m_input_Instruction => IM_Output_Instruction,
+        -- Input bus ProgramCounter_To_InstructionMemory
+        m_input_Address => ProgramCounter_To_InstructionMemory_Address,
 
 
         -- Output bus Read_Register_1
@@ -185,8 +155,8 @@ begin
 
 
         CLK => CLK,
-        RDY => RDY_splitter,
-        FIN => FIN_splitter,
+        RDY => RDY_IM,
+        FIN => FIN_IM,
         ENB => ENB,
         RST => RST
     );
@@ -218,12 +188,12 @@ begin
         m_write_control_Enable => Write_Control_Enable,
 
 
-        -- Output bus Read_Output_1
-        output_1_Data => Read_Output_1_Data,
+        -- Output bus Reg1_To_ALU
+        output_1_Data => Reg1_To_ALU_Data,
 
 
-        -- Output bus Read_Output_2
-        output_2_Data => Read_Output_2_Data,
+        -- Output bus Reg2_To_Mux
+        output_2_Data => Reg2_To_Mux_Data,
 
 
         -- Output bus OperationCode
@@ -246,8 +216,8 @@ begin
         m_OperationCode_Value => OperationCode_Value,
 
 
-        -- Input bus Read_Output_1
-        m_ALU_In_1_Data => Read_Output_1_Data,
+        -- Input bus Reg1_To_ALU
+        m_ALU_In_1_Data => Reg1_To_ALU_Data,
 
 
         -- Input bus Reg_Mux_Output
@@ -274,8 +244,8 @@ begin
     -- Entity  Reg_mux signals
     Reg_mux: entity work.Reg_mux
     port map (
-        -- Input bus Read_Output_2
-        m_Reg_in_Data => Read_Output_2_Data,
+        -- Input bus Reg2_To_Mux
+        m_Reg_in_Data => Reg2_To_Mux_Data,
 
 
         -- Output bus Reg_Mux_Output
@@ -291,31 +261,10 @@ begin
     );
 
 
-    -- Entity  Mem_mux signals
-    Mem_mux: entity work.Mem_mux
-    port map (
-        -- Input bus ALU_Output
-        m_ALU_in_Value => ALU_Output_Value,
-
-
-        -- Output bus Mem_Mux_Output
-        Mux_out_Data => Mem_Mux_Output_Data,
-
-
-
-        CLK => CLK,
-        RDY => RDY_Mem_mux,
-        FIN => FIN_Mem_mux,
-        ENB => ENB,
-        RST => RST
-    );
-
-
     -- Connect ready signals
     RDY_PC <= RDY;
     RDY_IM <= FIN_PC;
-    RDY_splitter <= FIN_IM;
-    RDY_Register <= FIN_splitter;
+    RDY_Register <= FIN_IM;
     -- Setup the RDY signal for ALU
     process(
       FIN_Register, 
@@ -327,20 +276,17 @@ begin
       end if;
     end process;
     RDY_Reg_mux <= FIN_Register;
-    RDY_Mem_mux <= FIN_ALU;
 
     -- Setup the FIN feedback signals
     process(
       FIN_PC, 
       FIN_IM, 
-      FIN_splitter, 
       FIN_Register, 
       FIN_ALU, 
-      FIN_Reg_mux, 
-      FIN_Mem_mux
+      FIN_Reg_mux
     )
     begin
-      if FIN_PC = FIN_IM AND FIN_PC = FIN_splitter AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux then
+      if FIN_PC = FIN_IM AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux then
         FIN <= FIN_PC;
       end if;
     end process;

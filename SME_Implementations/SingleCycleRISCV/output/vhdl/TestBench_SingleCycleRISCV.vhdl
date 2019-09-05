@@ -28,20 +28,18 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal ENABLE : Std_logic;
 
   signal PC_Input_Address : T_SYSTEM_UINT32;
-  signal PC_Output_Address : T_SYSTEM_UINT32;
-  signal IM_Output_Instruction : T_SYSTEM_UINT32;
+  signal ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT32;
   signal Read_Register_1_address : T_SYSTEM_UINT32;
   signal Read_Register_2_address : T_SYSTEM_UINT32;
   signal Write_Register_address : T_SYSTEM_UINT32;
   signal Write_Data_Data : T_SYSTEM_INT32;
   signal Write_Control_Enable : T_SYSTEM_BOOL;
-  signal Read_Output_1_Data : T_SYSTEM_INT32;
-  signal Read_Output_2_Data : T_SYSTEM_INT32;
+  signal Reg1_To_ALU_Data : T_SYSTEM_INT32;
+  signal Reg2_To_Mux_Data : T_SYSTEM_INT32;
   signal OperationCode_Value : T_SYSTEM_UINT8;
   signal Reg_Mux_Output_Data : T_SYSTEM_INT32;
   signal ALU_Output_Value : T_SYSTEM_INT32;
   signal Zero_out_Value : T_SYSTEM_BOOL;
-  signal Mem_Mux_Output_Data : T_SYSTEM_INT32;
 
 begin
 
@@ -49,20 +47,18 @@ begin
   port map (
 
     PC_Input_Address => PC_Input_Address,
-    PC_Output_Address => PC_Output_Address,
-    IM_Output_Instruction => IM_Output_Instruction,
+    ProgramCounter_To_InstructionMemory_Address => ProgramCounter_To_InstructionMemory_Address,
     Read_Register_1_address => Read_Register_1_address,
     Read_Register_2_address => Read_Register_2_address,
     Write_Register_address => Write_Register_address,
     Write_Data_Data => Write_Data_Data,
     Write_Control_Enable => Write_Control_Enable,
-    Read_Output_1_Data => Read_Output_1_Data,
-    Read_Output_2_Data => Read_Output_2_Data,
+    Reg1_To_ALU_Data => Reg1_To_ALU_Data,
+    Reg2_To_Mux_Data => Reg2_To_Mux_Data,
     OperationCode_Value => OperationCode_Value,
     Reg_Mux_Output_Data => Reg_Mux_Output_Data,
     ALU_Output_Value => ALU_Output_Value,
     Zero_out_Value => Zero_out_Value,
-    Mem_Mux_Output_Data => Mem_Mux_Output_Data,
 
     ENB => ENABLE,
     RST => RESET,
@@ -133,22 +129,16 @@ begin
         assert are_strings_equal(tmp, "ALU_Output.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ALU_Output.Value" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "IM_Output.Instruction") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected IM_Output.Instruction" severity Failure;
-        fieldno := fieldno + 1;
-        read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "Mem_Mux_Output.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Mem_Mux_Output.Data" severity Failure;
-        fieldno := fieldno + 1;
-        read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "PC_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected PC_Output.Address" severity Failure;
-        fieldno := fieldno + 1;
-        read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "Read_Output_1.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Read_Output_1.Data" severity Failure;
-        fieldno := fieldno + 1;
-        read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "Read_Output_2.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Read_Output_2.Data" severity Failure;
+        assert are_strings_equal(tmp, "ProgramCounter_To_InstructionMemory.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ProgramCounter_To_InstructionMemory.Address" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Reg_Mux_Output.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Reg_Mux_Output.Data" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Reg1_To_ALU.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Reg1_To_ALU.Data" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Reg2_To_Mux.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Reg2_To_Mux.Data" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Zero_out.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Zero_out.Value" severity Failure;
@@ -244,45 +234,9 @@ begin
 
 	        read_csv_field(L, tmp);
 	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(IM_Output_Instruction), tmp) then
+            	if not are_strings_equal(str(ProgramCounter_To_InstructionMemory_Address), tmp) then
                     newfailures := newfailures + 1;
-                    report "Value for IM_Output_Instruction in cycle " & integer'image(clockcycle) & " was: " & str(IM_Output_Instruction) & " but should have been: " & truncate(tmp) severity Error;
-                end if;
-            end if;
-            fieldno := fieldno + 1;
-
-	        read_csv_field(L, tmp);
-	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(Mem_Mux_Output_Data), tmp) then
-                    newfailures := newfailures + 1;
-                    report "Value for Mem_Mux_Output_Data in cycle " & integer'image(clockcycle) & " was: " & str(Mem_Mux_Output_Data) & " but should have been: " & truncate(tmp) severity Error;
-                end if;
-            end if;
-            fieldno := fieldno + 1;
-
-	        read_csv_field(L, tmp);
-	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(PC_Output_Address), tmp) then
-                    newfailures := newfailures + 1;
-                    report "Value for PC_Output_Address in cycle " & integer'image(clockcycle) & " was: " & str(PC_Output_Address) & " but should have been: " & truncate(tmp) severity Error;
-                end if;
-            end if;
-            fieldno := fieldno + 1;
-
-	        read_csv_field(L, tmp);
-	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(Read_Output_1_Data), tmp) then
-                    newfailures := newfailures + 1;
-                    report "Value for Read_Output_1_Data in cycle " & integer'image(clockcycle) & " was: " & str(Read_Output_1_Data) & " but should have been: " & truncate(tmp) severity Error;
-                end if;
-            end if;
-            fieldno := fieldno + 1;
-
-	        read_csv_field(L, tmp);
-	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(Read_Output_2_Data), tmp) then
-                    newfailures := newfailures + 1;
-                    report "Value for Read_Output_2_Data in cycle " & integer'image(clockcycle) & " was: " & str(Read_Output_2_Data) & " but should have been: " & truncate(tmp) severity Error;
+                    report "Value for ProgramCounter_To_InstructionMemory_Address in cycle " & integer'image(clockcycle) & " was: " & str(ProgramCounter_To_InstructionMemory_Address) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;
@@ -292,6 +246,24 @@ begin
             	if not are_strings_equal(str(Reg_Mux_Output_Data), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for Reg_Mux_Output_Data in cycle " & integer'image(clockcycle) & " was: " & str(Reg_Mux_Output_Data) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(Reg1_To_ALU_Data), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for Reg1_To_ALU_Data in cycle " & integer'image(clockcycle) & " was: " & str(Reg1_To_ALU_Data) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(Reg2_To_Mux_Data), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for Reg2_To_Mux_Data in cycle " & integer'image(clockcycle) & " was: " & str(Reg2_To_Mux_Data) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

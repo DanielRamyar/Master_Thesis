@@ -14,24 +14,28 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity IM is
+entity vhdl_Register is
     generic(
-        reset_Instruction_Memory: in IM_Instruction_Memory_type
+        reset_m_register: in vhdl_Register_m_register_type
     );
     port(
-        -- Input bus m_input signals
-        m_input_Address: in T_SYSTEM_UINT32;
+        -- Input bus m_read_1 signals
+        m_read_1_address: in T_SYSTEM_UINT32;
+        -- Input bus m_read_2 signals
+        m_read_2_address: in T_SYSTEM_UINT32;
+        -- Input bus m_write signals
+        m_write_address: in T_SYSTEM_UINT32;
+        -- Input bus m_write_data signals
+        m_write_data_Data: in T_SYSTEM_INT32;
+        -- Input bus m_write_control signals
+        m_write_control_Enable: in T_SYSTEM_BOOL;
 
-        -- Output bus m_read_1 signals
-        m_read_1_address: out T_SYSTEM_UINT32;
-        -- Output bus m_read_2 signals
-        m_read_2_address: out T_SYSTEM_UINT32;
-        -- Output bus m_write signals
-        m_write_address: out T_SYSTEM_UINT32;
-        -- Output bus m_write_data signals
-        m_write_data_Data: out T_SYSTEM_INT32;
-        -- Output bus m_write_control signals
-        m_write_control_Enable: out T_SYSTEM_BOOL;
+        -- Output bus output_1 signals
+        output_1_Data: out T_SYSTEM_INT32;
+        -- Output bus output_2 signals
+        output_2_Data: out T_SYSTEM_INT32;
+        -- Output bus m_OperationCode signals
+        m_OperationCode_Value: out T_SYSTEM_UINT8;
 
 
         -- Clock signal
@@ -49,9 +53,9 @@ entity IM is
         -- Reset signal
         RST : in Std_logic
     );
-end IM;
+end vhdl_Register;
 
-architecture RTL of IM is
+architecture RTL of vhdl_Register is
 
 
 
@@ -77,9 +81,7 @@ begin
         RST
     )
     -- Internal variables
-    variable address : T_SYSTEM_UINT32;
-    variable num : T_SYSTEM_UINT32;
-    variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
+    variable m_register : vhdl_Register_m_register_type := reset_m_register;
 
     variable reentry_guard: std_logic;
 
@@ -91,14 +93,10 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            m_read_1_address <= TO_UNSIGNED(0, 32);
-            m_read_2_address <= TO_UNSIGNED(0, 32);
-            m_write_address <= TO_UNSIGNED(0, 32);
-            m_write_data_Data <= TO_SIGNED(0, 32);
-            m_write_control_Enable <= '0';
-            address := TO_UNSIGNED(0, 32);
-            num := TO_UNSIGNED(0, 32);
-            Instruction_Memory := reset_Instruction_Memory;
+            output_1_Data <= TO_SIGNED(0, 32);
+            output_2_Data <= TO_SIGNED(0, 32);
+            m_OperationCode_Value <= TO_UNSIGNED(0, 8);
+            m_register := reset_m_register;
 
                                     
             reentry_guard := '0';
@@ -116,13 +114,16 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            address := m_input_Address;
-            num := UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
-            m_read_1_address <= (shift_right(num, 15)) and TO_UNSIGNED(31, 32);
-            m_read_2_address <= (shift_right(num, 20)) and TO_UNSIGNED(31, 32);
-            m_write_address <= (shift_right(num, 7)) and TO_UNSIGNED(31, 32);
-            m_write_data_Data <= TO_SIGNED(44, 32);
-            m_write_control_Enable <= '0';
+            if (m_read_1_address >= TO_UNSIGNED(0, 32)) and (m_read_1_address <= TO_UNSIGNED(32, 32)) then
+                output_1_Data <= m_register(TO_INTEGER(m_read_1_address));
+            end if;
+            if (m_read_2_address >= TO_UNSIGNED(0, 32)) and (m_read_2_address <= TO_UNSIGNED(32, 32)) then
+                output_2_Data <= m_register(TO_INTEGER(m_read_2_address));
+            end if;
+            if ((m_write_control_Enable = '1') and (m_write_address /= TO_UNSIGNED(0, 32))) and (m_write_address <= TO_UNSIGNED(32, 32)) then
+                m_register(TO_INTEGER(m_write_address)) := m_write_data_Data;
+            end if;
+            m_OperationCode_Value <= TO_UNSIGNED(2, 8);
 
 
 
