@@ -11,7 +11,7 @@ namespace SingleCycleRISCV {
         [InputBus]
         private readonly OperationCode m_OperationCode = Scope.CreateOrLoadBus<OperationCode>();
         [InputBus]
-        private readonly Read_Output_1 m_ALU_In_1 = Scope.CreateOrLoadBus<Read_Output_1>();
+        private readonly Reg1_To_ALU m_ALU_In_1 = Scope.CreateOrLoadBus<Reg1_To_ALU>();
         [InputBus]
         private readonly Reg_Mux_Output m_ALU_In_2 = Scope.CreateOrLoadBus<Reg_Mux_Output>();
 

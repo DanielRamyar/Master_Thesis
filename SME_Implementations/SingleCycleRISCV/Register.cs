@@ -4,9 +4,9 @@ using SME;
 namespace SingleCycleRISCV {
     public class Register : SimpleProcess {
         [OutputBus]
-		public readonly Read_Output_1 output_1 = Scope.CreateOrLoadBus<Read_Output_1>();
+		public readonly Reg1_To_ALU output_1 = Scope.CreateOrLoadBus<Reg1_To_ALU>();
         [OutputBus]
-		public readonly Read_Output_2 output_2 = Scope.CreateOrLoadBus<Read_Output_2>();
+		public readonly Reg2_To_Mux output_2 = Scope.CreateOrLoadBus<Reg2_To_Mux>();
 
         // for test purposes
         [OutputBus]

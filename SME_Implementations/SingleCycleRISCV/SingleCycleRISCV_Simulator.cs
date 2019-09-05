@@ -24,9 +24,9 @@ namespace SingleCycleRISCV {
 
         // Register Output
         [InputBus]
-		public readonly Read_Output_1 Register_output_1 = Scope.CreateOrLoadBus<Read_Output_1>();
+		public readonly Reg1_To_ALU Register_output_1 = Scope.CreateOrLoadBus<Reg1_To_ALU>();
         [InputBus]
-		public readonly Read_Output_2 Register_output_2 = Scope.CreateOrLoadBus<Read_Output_2>();
+		public readonly Reg2_To_Mux Register_output_2 = Scope.CreateOrLoadBus<Reg2_To_Mux>();
 
         // ALU Output
         [InputBus]
@@ -51,9 +51,9 @@ namespace SingleCycleRISCV {
             Console.WriteLine($"Register input 2: {m_read_2.address}");
             Console.WriteLine($"Register Write: {m_write.address}");
             Console.WriteLine($"Register Write: {m_write_data.Data}");
-            Console.WriteLine($"Register Write: {m_write_control.Enable} \n");
-            // Console.WriteLine($"Register Output 1: {Register_output_1.Data}");
-            // Console.WriteLine($"Register Output 2: {Register_output_2.Data}");
+            Console.WriteLine($"Register Write: {m_write_control.Enable}");
+            Console.WriteLine($"Register Output 1: {Register_output_1.Data}");
+            Console.WriteLine($"Register Output 2: {Register_output_2.Data}  \n");
             // Console.WriteLine($"ALU Output: {ALU_output.Value}");
             // Console.WriteLine($"Memmux Output: {Mux_out.Data} \n");
 

@@ -33,13 +33,13 @@ namespace SingleCycleRISCV {
     }
 
     [TopLevelOutputBus]
-    public interface Read_Output_1 : IBus {
+    public interface Reg1_To_ALU : IBus {
         [InitialValue]
         int Data {get; set;}
     }
 
     [TopLevelOutputBus]
-    public interface Read_Output_2 : IBus {
+    public interface Reg2_To_Mux : IBus {
         [InitialValue]
         int Data {get; set;}
     }
