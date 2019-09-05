@@ -9,7 +9,7 @@ namespace SingleCycleRISCV {
     }
 
     [TopLevelOutputBus]
-    public interface PC_Output : IBus {
+    public interface ProgramCounter_To_InstructionMemory : IBus {
         [InitialValue]
         uint Address {get; set;}
     }
