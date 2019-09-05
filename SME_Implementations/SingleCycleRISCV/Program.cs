@@ -9,11 +9,11 @@ namespace SingleCycleRISCV {
                 var simulator = new SingleCycleRISCV_Simulator();
                 var PC = new PC();
                 var IM = new IM();
-                var Split = new splitter();
-                var Reg = new Register();
-                var mALU = new ALU();
-                var regmux = new Reg_mux();
-                var memmux = new Mem_mux();
+                // var Split = new splitter();
+                // var Reg = new Register();
+                // var mALU = new ALU();
+                // var regmux = new Reg_mux();
+                // var memmux = new Mem_mux();
 
                 sim
                     .BuildCSVFile()

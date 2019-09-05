@@ -7,7 +7,7 @@ namespace SingleCycleRISCV {
         private readonly ALU_Output m_ALU_in = Scope.CreateOrLoadBus<ALU_Output>();
 
         [OutputBus]
-        public readonly Mem_Mux_Output Mux_out = Scope.CreateOrLoadBus<Mem_Mux_Output>();
+        public readonly Write_Data Mux_out = Scope.CreateOrLoadBus<Write_Data>();
 
         protected override void OnTick() {
             byte mux_opcode = 0;
