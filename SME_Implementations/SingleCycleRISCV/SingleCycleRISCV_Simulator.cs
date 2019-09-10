@@ -10,6 +10,10 @@ namespace SingleCycleRISCV {
         [OutputBus]
         public readonly PC_Input PC_input = Scope.CreateOrLoadBus<PC_Input>();
 
+        // Incrementer buses
+        [InputBus]
+		public readonly Incrementer_Output incrementer_output = Scope.CreateOrLoadBus<Incrementer_Output>();
+
         // Instruction memory buses
         [InputBus]
         private readonly Read_Register_1 m_read_1 = Scope.CreateOrLoadBus<Read_Register_1>();
@@ -46,6 +50,7 @@ namespace SingleCycleRISCV {
             await ClockAsync();
             Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
             Console.WriteLine($"Program counter output: {PC_output.Address}");
+            Console.WriteLine($"Incrementer output: {incrementer_output.Address}");
             Console.WriteLine($"Instruction memory input: {PC_output.Address}");
             Console.WriteLine($"Register input 1: {m_read_1.address}");
             Console.WriteLine($"Register input 2: {m_read_2.address}");

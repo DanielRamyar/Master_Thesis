@@ -8,6 +8,7 @@ namespace SingleCycleRISCV {
 
                 var simulator = new SingleCycleRISCV_Simulator();
                 var PC = new PC();
+                var Incre = new Incrementer();
                 var IM = new IM();
                 var Reg = new Register();
                 var mALU = new ALU();
