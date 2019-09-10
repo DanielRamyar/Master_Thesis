@@ -17,11 +17,11 @@ namespace SingleCycleRISCV {
         [InputBus]
         private readonly Read_Register_2 m_read_2 = Scope.CreateOrLoadBus<Read_Register_2>();
         [InputBus]
-        private readonly Write_Register m_write = Scope.CreateOrLoadBus<Write_Register>();
+        private readonly WB_Data m_write_data = Scope.CreateOrLoadBus<WB_Data>();
         [InputBus]
-        private readonly Write_Data m_write_data = Scope.CreateOrLoadBus<Write_Data>();
+        private readonly WB_RegisterWrite m_write = Scope.CreateOrLoadBus<WB_RegisterWrite>();
         [InputBus]
-        private readonly Write_Control m_write_control = Scope.CreateOrLoadBus<Write_Control>();
+        private readonly WB_WriteControl m_write_control = Scope.CreateOrLoadBus<WB_WriteControl>();
         
 
         // private readonly int[] m_register = new int[32];
@@ -30,18 +30,17 @@ namespace SingleCycleRISCV {
                                              4, 7, 0, 0, 0, 0, 0, 0,
                                              0, 0, 0, 0, 0, 0, 0, 0,};
 
-
         protected override void OnTick() {
-
+            if (m_write_control.Enable == true && m_write.address > 0 && m_write.address <= 32) { // Check if written register is between 1-32 and control is asserted
+                m_register[m_write.address] = m_write_data.Data;                                  // Register 0 should always be zero therefore cannot be written to
+            }
             if (m_read_1.address >= 0 && m_read_1.address <= 32) { // Check if given register address is between 0-32
                 output_1.Data = m_register[m_read_1.address];
             }
             if (m_read_2.address >= 0 && m_read_2.address <= 32) { // Check if given register address is between 0-32
                 output_2.Data = m_register[m_read_2.address];
             }
-            if (m_write_control.Enable == true && m_write.address > 0 && m_write.address <= 32) { // Check if written register is between 1-32 and control is asserted
-                m_register[m_write.address] = m_write_data.Data;                                  // Register 0 should always be zero therefore cannot be written to
-            }
+            
 
             // Console.WriteLine(string.Join(", ", m_register)); // Using this to print whole register
 
