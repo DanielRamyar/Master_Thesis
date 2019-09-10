@@ -7,7 +7,7 @@ namespace SingleCycleRISCV {
         [InputBus]
 		public readonly ProgramCounter_To_InstructionMemory PC_output = Scope.CreateOrLoadBus<ProgramCounter_To_InstructionMemory>();
 
-        [OutputBus]
+        [InputBus]
         public readonly PC_Input PC_input = Scope.CreateOrLoadBus<PC_Input>();
 
         // Incrementer buses
@@ -44,8 +44,6 @@ namespace SingleCycleRISCV {
 
             Console.WriteLine("Starting test!\n");
             await ClockAsync();
-               
-            PC_input.Address = 0;
 
             await ClockAsync();
             Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
@@ -59,10 +57,8 @@ namespace SingleCycleRISCV {
             Console.WriteLine($"Register Control: {m_write_control.Enable}");
             Console.WriteLine($"Register Output 1: {Register_output_1.Data}");
             Console.WriteLine($"Register Output 2: {Register_output_2.Data}");
-            Console.WriteLine($"ALU Output: {ALU_output.Value} ");
-            Console.WriteLine($"Memmux Output: {Mux_out.Data} \n");
+            Console.WriteLine($"ALU Output: {ALU_output.Value} \n");
 
-            await ClockAsync();
 
             Console.WriteLine("Done testing!");
 
