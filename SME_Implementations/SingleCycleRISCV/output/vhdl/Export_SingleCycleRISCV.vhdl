@@ -21,6 +21,9 @@ entity SingleCycleRISCV_export is
     -- Top-level bus ProgramCounter_To_InstructionMemory signals
     ProgramCounter_To_InstructionMemory_Address: out STD_LOGIC_VECTOR(31 downto 0);
 
+    -- Top-level bus Incrementer_Output signals
+    Incrementer_Output_Address: out STD_LOGIC_VECTOR(31 downto 0);
+
     -- Top-level bus Read_Register_1 signals
     Read_Register_1_address: in STD_LOGIC_VECTOR(31 downto 0);
 
@@ -92,6 +95,7 @@ architecture RTL of SingleCycleRISCV_export is
 
   -- Intermediate conversion signal to convert internal types to external ones
   signal tmp_ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT32;
+  signal tmp_Incrementer_Output_Address : T_SYSTEM_UINT32;
   signal tmp_WB_Data_Data : T_SYSTEM_INT32;
   signal tmp_WB_RegisterWrite_address : T_SYSTEM_UINT32;
   signal tmp_Reg1_To_ALU_Data : T_SYSTEM_INT32;
@@ -103,6 +107,7 @@ begin
 
     -- Carry converted signals from entity to wrapped outputs
   ProgramCounter_To_InstructionMemory_Address <= std_logic_vector(tmp_ProgramCounter_To_InstructionMemory_Address);
+  Incrementer_Output_Address <= std_logic_vector(tmp_Incrementer_Output_Address);
   WB_Data_Data <= std_logic_vector(tmp_WB_Data_Data);
   WB_RegisterWrite_address <= std_logic_vector(tmp_WB_RegisterWrite_address);
   Reg1_To_ALU_Data <= std_logic_vector(tmp_Reg1_To_ALU_Data);
@@ -118,6 +123,9 @@ begin
 
         -- Output bus ProgramCounter_To_InstructionMemory
         ProgramCounter_To_InstructionMemory_Address => tmp_ProgramCounter_To_InstructionMemory_Address,
+
+        -- Output bus Incrementer_Output
+        Incrementer_Output_Address => tmp_Incrementer_Output_Address,
 
         -- Input bus Read_Register_1
         Read_Register_1_address => unsigned(Read_Register_1_address),

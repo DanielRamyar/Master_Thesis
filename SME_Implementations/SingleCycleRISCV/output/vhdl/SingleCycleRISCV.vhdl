@@ -22,6 +22,9 @@ entity SingleCycleRISCV is
     -- Top-level bus ProgramCounter_To_InstructionMemory signals
     ProgramCounter_To_InstructionMemory_Address: out T_SYSTEM_UINT32;
 
+    -- Top-level bus Incrementer_Output signals
+    Incrementer_Output_Address: out T_SYSTEM_UINT32;
+
     -- Top-level bus Read_Register_1 signals
     Read_Register_1_address: in T_SYSTEM_UINT32;
 
@@ -94,6 +97,10 @@ architecture RTL of SingleCycleRISCV is
 
     signal FIN_PC, RDY_PC : std_logic;
 
+    signal FIN_Incrementer, RDY_Incrementer : std_logic;
+
+    signal FIN_Inc_mux : std_logic;
+
     signal FIN_IM, RDY_IM : std_logic;
 
     signal FIN_Register, RDY_Register : std_logic;
@@ -136,10 +143,53 @@ begin
     );
 
 
+    -- Entity  Incrementer signals
+    Incrementer: entity work.Incrementer
+    generic map(
+        reset_temp => TO_UNSIGNED(0, 32)
+    )
+    port map (
+        -- Input bus ProgramCounter_To_InstructionMemory
+        m_input_Address => ProgramCounter_To_InstructionMemory_Address,
+
+
+        -- Output bus Incrementer_Output
+        output_Address => Incrementer_Output_Address,
+
+
+
+        CLK => CLK,
+        RDY => RDY_Incrementer,
+        FIN => FIN_Incrementer,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  Inc_mux signals
+    Inc_mux: entity work.Inc_mux
+    port map (
+        -- Input bus Incrementer_Output
+        m_input_Address => Incrementer_Output_Address,
+
+
+        -- Output bus PC_Input
+        Mux_out_Address => PC_Input_Address,
+
+
+
+        CLK => CLK,
+        RDY => RDY,
+        FIN => FIN_Inc_mux,
+        ENB => ENB,
+        RST => RST
+    );
+
+
     -- Entity  IM signals
     IM: entity work.IM
     generic map(
-        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), others => TO_UNSIGNED(51, 8))
+        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), TO_UNSIGNED(51, 8), TO_UNSIGNED(0, 8), TO_UNSIGNED(248, 8), TO_UNSIGNED(10, 8), others => TO_UNSIGNED(51, 8))
     )
     port map (
         -- Input bus ProgramCounter_To_InstructionMemory
@@ -332,7 +382,8 @@ begin
 
 
     -- Connect ready signals
-    RDY_PC <= RDY;
+    RDY_PC <= FIN_Inc_mux;
+    RDY_Incrementer <= FIN_PC;
     RDY_IM <= FIN_PC;
     -- Setup the RDY signal for Register
     process(
@@ -360,6 +411,8 @@ begin
     -- Setup the FIN feedback signals
     process(
       FIN_PC, 
+      FIN_Incrementer, 
+      FIN_Inc_mux, 
       FIN_IM, 
       FIN_Register, 
       FIN_ALU, 
@@ -368,7 +421,7 @@ begin
       FIN_WriteBuffer
     )
     begin
-      if FIN_PC = FIN_IM AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
+      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
         FIN <= FIN_PC;
       end if;
     end process;

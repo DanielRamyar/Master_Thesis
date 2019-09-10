@@ -29,6 +29,7 @@ architecture TestBench of SingleCycleRISCV_tb is
 
   signal PC_Input_Address : T_SYSTEM_UINT32;
   signal ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT32;
+  signal Incrementer_Output_Address : T_SYSTEM_UINT32;
   signal Read_Register_1_address : T_SYSTEM_UINT32;
   signal Read_Register_2_address : T_SYSTEM_UINT32;
   signal Write_Register_address : T_SYSTEM_UINT32;
@@ -51,6 +52,7 @@ begin
 
     PC_Input_Address => PC_Input_Address,
     ProgramCounter_To_InstructionMemory_Address => ProgramCounter_To_InstructionMemory_Address,
+    Incrementer_Output_Address => Incrementer_Output_Address,
     Read_Register_1_address => Read_Register_1_address,
     Read_Register_2_address => Read_Register_2_address,
     Write_Register_address => Write_Register_address,
@@ -133,6 +135,9 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "ALU_Output.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ALU_Output.Value" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Incrementer_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Incrementer_Output.Address" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "ProgramCounter_To_InstructionMemory.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ProgramCounter_To_InstructionMemory.Address" severity Failure;
@@ -243,6 +248,15 @@ begin
             	if not are_strings_equal(str(ALU_Output_Value), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for ALU_Output_Value in cycle " & integer'image(clockcycle) & " was: " & str(ALU_Output_Value) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(Incrementer_Output_Address), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for Incrementer_Output_Address in cycle " & integer'image(clockcycle) & " was: " & str(Incrementer_Output_Address) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;
