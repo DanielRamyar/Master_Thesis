@@ -12,7 +12,8 @@ namespace SingleCycleRISCV {
                 var Reg = new Register();
                 var mALU = new ALU();
                 var regmux = new Reg_mux();
-                // var memmux = new Mem_mux();
+                var memmux = new Mem_mux();
+                var WB = new WriteBuffer();
 
                 sim
                     .BuildCSVFile()
