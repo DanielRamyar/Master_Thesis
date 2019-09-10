@@ -32,14 +32,17 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal Read_Register_1_address : T_SYSTEM_UINT32;
   signal Read_Register_2_address : T_SYSTEM_UINT32;
   signal Write_Register_address : T_SYSTEM_UINT32;
-  signal Write_Data_Data : T_SYSTEM_INT32;
   signal Write_Control_Enable : T_SYSTEM_BOOL;
+  signal WB_Data_Data : T_SYSTEM_INT32;
+  signal WB_RegisterWrite_address : T_SYSTEM_UINT32;
+  signal WB_WriteControl_Enable : T_SYSTEM_BOOL;
   signal Reg1_To_ALU_Data : T_SYSTEM_INT32;
   signal Reg2_To_Mux_Data : T_SYSTEM_INT32;
   signal OperationCode_Value : T_SYSTEM_UINT8;
   signal Reg_Mux_Output_Data : T_SYSTEM_INT32;
   signal ALU_Output_Value : T_SYSTEM_INT32;
   signal Zero_out_Value : T_SYSTEM_BOOL;
+  signal Write_Data_Data : T_SYSTEM_INT32;
 
 begin
 
@@ -51,14 +54,17 @@ begin
     Read_Register_1_address => Read_Register_1_address,
     Read_Register_2_address => Read_Register_2_address,
     Write_Register_address => Write_Register_address,
-    Write_Data_Data => Write_Data_Data,
     Write_Control_Enable => Write_Control_Enable,
+    WB_Data_Data => WB_Data_Data,
+    WB_RegisterWrite_address => WB_RegisterWrite_address,
+    WB_WriteControl_Enable => WB_WriteControl_Enable,
     Reg1_To_ALU_Data => Reg1_To_ALU_Data,
     Reg2_To_Mux_Data => Reg2_To_Mux_Data,
     OperationCode_Value => OperationCode_Value,
     Reg_Mux_Output_Data => Reg_Mux_Output_Data,
     ALU_Output_Value => ALU_Output_Value,
     Zero_out_Value => Zero_out_Value,
+    Write_Data_Data => Write_Data_Data,
 
     ENB => ENABLE,
     RST => RESET,
@@ -139,6 +145,15 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Reg2_To_Mux.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Reg2_To_Mux.Data" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "WB_Data.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected WB_Data.Data" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "WB_RegisterWrite.address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected WB_RegisterWrite.address" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "WB_WriteControl.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected WB_WriteControl.Enable" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Zero_out.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Zero_out.Value" severity Failure;
@@ -264,6 +279,33 @@ begin
             	if not are_strings_equal(str(Reg2_To_Mux_Data), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for Reg2_To_Mux_Data in cycle " & integer'image(clockcycle) & " was: " & str(Reg2_To_Mux_Data) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(WB_Data_Data), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for WB_Data_Data in cycle " & integer'image(clockcycle) & " was: " & str(WB_Data_Data) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(WB_RegisterWrite_address), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for WB_RegisterWrite_address in cycle " & integer'image(clockcycle) & " was: " & str(WB_RegisterWrite_address) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(WB_WriteControl_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for WB_WriteControl_Enable in cycle " & integer'image(clockcycle) & " was: " & str(WB_WriteControl_Enable) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

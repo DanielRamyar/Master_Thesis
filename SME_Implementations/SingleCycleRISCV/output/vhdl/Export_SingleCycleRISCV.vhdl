@@ -30,11 +30,17 @@ entity SingleCycleRISCV_export is
     -- Top-level bus Write_Register signals
     Write_Register_address: in STD_LOGIC_VECTOR(31 downto 0);
 
-    -- Top-level bus Write_Data signals
-    Write_Data_Data: in STD_LOGIC_VECTOR(31 downto 0);
-
     -- Top-level bus Write_Control signals
     Write_Control_Enable: in STD_LOGIC;
+
+    -- Top-level bus WB_Data signals
+    WB_Data_Data: out STD_LOGIC_VECTOR(31 downto 0);
+
+    -- Top-level bus WB_RegisterWrite signals
+    WB_RegisterWrite_address: out STD_LOGIC_VECTOR(31 downto 0);
+
+    -- Top-level bus WB_WriteControl signals
+    WB_WriteControl_Enable: out STD_LOGIC;
 
     -- Top-level bus Reg1_To_ALU signals
     Reg1_To_ALU_Data: out STD_LOGIC_VECTOR(31 downto 0);
@@ -53,6 +59,9 @@ entity SingleCycleRISCV_export is
 
     -- Top-level bus Zero_out signals
     Zero_out_Value: out STD_LOGIC;
+
+    -- Top-level bus Write_Data signals
+    Write_Data_Data: in STD_LOGIC_VECTOR(31 downto 0);
 
 
     -- User defined signals here
@@ -83,6 +92,8 @@ architecture RTL of SingleCycleRISCV_export is
 
   -- Intermediate conversion signal to convert internal types to external ones
   signal tmp_ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT32;
+  signal tmp_WB_Data_Data : T_SYSTEM_INT32;
+  signal tmp_WB_RegisterWrite_address : T_SYSTEM_UINT32;
   signal tmp_Reg1_To_ALU_Data : T_SYSTEM_INT32;
   signal tmp_Reg2_To_Mux_Data : T_SYSTEM_INT32;
   signal tmp_Reg_Mux_Output_Data : T_SYSTEM_INT32;
@@ -92,6 +103,8 @@ begin
 
     -- Carry converted signals from entity to wrapped outputs
   ProgramCounter_To_InstructionMemory_Address <= std_logic_vector(tmp_ProgramCounter_To_InstructionMemory_Address);
+  WB_Data_Data <= std_logic_vector(tmp_WB_Data_Data);
+  WB_RegisterWrite_address <= std_logic_vector(tmp_WB_RegisterWrite_address);
   Reg1_To_ALU_Data <= std_logic_vector(tmp_Reg1_To_ALU_Data);
   Reg2_To_Mux_Data <= std_logic_vector(tmp_Reg2_To_Mux_Data);
   Reg_Mux_Output_Data <= std_logic_vector(tmp_Reg_Mux_Output_Data);
@@ -115,11 +128,17 @@ begin
         -- Input bus Write_Register
         Write_Register_address => unsigned(Write_Register_address),
 
-        -- Input bus Write_Data
-        Write_Data_Data => signed(Write_Data_Data),
-
         -- Input bus Write_Control
         Write_Control_Enable => Write_Control_Enable,
+
+        -- Output bus WB_Data
+        WB_Data_Data => tmp_WB_Data_Data,
+
+        -- Output bus WB_RegisterWrite
+        WB_RegisterWrite_address => tmp_WB_RegisterWrite_address,
+
+        -- Output bus WB_WriteControl
+        WB_WriteControl_Enable => WB_WriteControl_Enable,
 
         -- Output bus Reg1_To_ALU
         Reg1_To_ALU_Data => tmp_Reg1_To_ALU_Data,
@@ -138,6 +157,9 @@ begin
 
         -- Output bus Zero_out
         Zero_out_Value => Zero_out_Value,
+
+        -- Input bus Write_Data
+        Write_Data_Data => signed(Write_Data_Data),
 
         ENB => ENB,
         RST => RST,

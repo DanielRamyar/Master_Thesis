@@ -31,11 +31,17 @@ entity SingleCycleRISCV is
     -- Top-level bus Write_Register signals
     Write_Register_address: in T_SYSTEM_UINT32;
 
-    -- Top-level bus Write_Data signals
-    Write_Data_Data: in T_SYSTEM_INT32;
-
     -- Top-level bus Write_Control signals
     Write_Control_Enable: in T_SYSTEM_BOOL;
+
+    -- Top-level bus WB_Data signals
+    WB_Data_Data: out T_SYSTEM_INT32;
+
+    -- Top-level bus WB_RegisterWrite signals
+    WB_RegisterWrite_address: out T_SYSTEM_UINT32;
+
+    -- Top-level bus WB_WriteControl signals
+    WB_WriteControl_Enable: out T_SYSTEM_BOOL;
 
     -- Top-level bus Reg1_To_ALU signals
     Reg1_To_ALU_Data: out T_SYSTEM_INT32;
@@ -54,6 +60,9 @@ entity SingleCycleRISCV is
 
     -- Top-level bus Zero_out signals
     Zero_out_Value: out T_SYSTEM_BOOL;
+
+    -- Top-level bus Write_Data signals
+    Write_Data_Data: in T_SYSTEM_INT32;
 
 
 
@@ -92,6 +101,10 @@ architecture RTL of SingleCycleRISCV is
     signal FIN_ALU, RDY_ALU : std_logic;
 
     signal FIN_Reg_mux, RDY_Reg_mux : std_logic;
+
+    signal FIN_Mem_mux, RDY_Mem_mux : std_logic;
+
+    signal FIN_WriteBuffer : std_logic;
 
 
     -- The primary ready driver signal
@@ -145,10 +158,6 @@ begin
         m_write_address => Write_Register_address,
 
 
-        -- Output bus Write_Data
-        m_write_data_Data => Write_Data_Data,
-
-
         -- Output bus Write_Control
         m_write_control_Enable => Write_Control_Enable,
 
@@ -176,16 +185,16 @@ begin
         m_read_2_address => Read_Register_2_address,
 
 
-        -- Input bus Write_Register
-        m_write_address => Write_Register_address,
+        -- Input bus WB_Data
+        m_write_data_Data => WB_Data_Data,
 
 
-        -- Input bus Write_Data
-        m_write_data_Data => Write_Data_Data,
+        -- Input bus WB_RegisterWrite
+        m_write_address => WB_RegisterWrite_address,
 
 
-        -- Input bus Write_Control
-        m_write_control_Enable => Write_Control_Enable,
+        -- Input bus WB_WriteControl
+        m_write_control_Enable => WB_WriteControl_Enable,
 
 
         -- Output bus Reg1_To_ALU
@@ -261,10 +270,80 @@ begin
     );
 
 
+    -- Entity  Mem_mux signals
+    Mem_mux: entity work.Mem_mux
+    port map (
+        -- Input bus ALU_Output
+        m_ALU_in_Value => ALU_Output_Value,
+
+
+        -- Output bus Write_Data
+        Mux_out_Data => Write_Data_Data,
+
+
+
+        CLK => CLK,
+        RDY => RDY_Mem_mux,
+        FIN => FIN_Mem_mux,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  WriteBuffer signals
+    WriteBuffer: entity work.WriteBuffer
+    generic map(
+        reset_WB_Data_Hold => TO_SIGNED(0, 32),
+        reset_WB_RegisterWrite_Hold => TO_UNSIGNED(0, 32),
+        reset_WB_WriteControl_Hold => '0'
+    )
+    port map (
+        -- Input bus Write_Data
+        m_write_data_Data => Write_Data_Data,
+
+
+        -- Input bus Write_Register
+        m_write_address => Write_Register_address,
+
+
+        -- Input bus Write_Control
+        m_write_control_Enable => Write_Control_Enable,
+
+
+        -- Output bus WB_Data
+        m_WB_Data_Data => WB_Data_Data,
+
+
+        -- Output bus WB_RegisterWrite
+        m_WB_RegisterWrite_address => WB_RegisterWrite_address,
+
+
+        -- Output bus WB_WriteControl
+        m_WB_WriteControl_Enable => WB_WriteControl_Enable,
+
+
+
+        CLK => CLK,
+        RDY => RDY,
+        FIN => FIN_WriteBuffer,
+        ENB => ENB,
+        RST => RST
+    );
+
+
     -- Connect ready signals
     RDY_PC <= RDY;
     RDY_IM <= FIN_PC;
-    RDY_Register <= FIN_IM;
+    -- Setup the RDY signal for Register
+    process(
+      FIN_IM, 
+      FIN_WriteBuffer
+    )
+    begin
+      if FIN_IM = FIN_WriteBuffer then
+        RDY_Register <= FIN_IM;
+      end if;
+    end process;
     -- Setup the RDY signal for ALU
     process(
       FIN_Register, 
@@ -276,6 +355,7 @@ begin
       end if;
     end process;
     RDY_Reg_mux <= FIN_Register;
+    RDY_Mem_mux <= FIN_ALU;
 
     -- Setup the FIN feedback signals
     process(
@@ -283,10 +363,12 @@ begin
       FIN_IM, 
       FIN_Register, 
       FIN_ALU, 
-      FIN_Reg_mux
+      FIN_Reg_mux, 
+      FIN_Mem_mux, 
+      FIN_WriteBuffer
     )
     begin
-      if FIN_PC = FIN_IM AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux then
+      if FIN_PC = FIN_IM AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
         FIN <= FIN_PC;
       end if;
     end process;
