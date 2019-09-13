@@ -34,6 +34,15 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal Read_Register_2_address : T_SYSTEM_UINT32;
   signal Write_Register_address : T_SYSTEM_UINT32;
   signal Write_Control_Enable : T_SYSTEM_BOOL;
+  signal Control_Input_Opcode : T_SYSTEM_UINT32;
+  signal ALUSrc_Enable : T_SYSTEM_BOOL;
+  signal MemtoReg_Enable : T_SYSTEM_BOOL;
+  signal RegWrite_Enable : T_SYSTEM_BOOL;
+  signal MemRead_Enable : T_SYSTEM_BOOL;
+  signal MemWrite_Enable : T_SYSTEM_BOOL;
+  signal Branch_Enable : T_SYSTEM_BOOL;
+  signal ALU1_Enable : T_SYSTEM_BOOL;
+  signal ALU0_Enable : T_SYSTEM_BOOL;
   signal WB_Data_Data : T_SYSTEM_INT32;
   signal WB_RegisterWrite_address : T_SYSTEM_UINT32;
   signal WB_WriteControl_Enable : T_SYSTEM_BOOL;
@@ -57,6 +66,15 @@ begin
     Read_Register_2_address => Read_Register_2_address,
     Write_Register_address => Write_Register_address,
     Write_Control_Enable => Write_Control_Enable,
+    Control_Input_Opcode => Control_Input_Opcode,
+    ALUSrc_Enable => ALUSrc_Enable,
+    MemtoReg_Enable => MemtoReg_Enable,
+    RegWrite_Enable => RegWrite_Enable,
+    MemRead_Enable => MemRead_Enable,
+    MemWrite_Enable => MemWrite_Enable,
+    Branch_Enable => Branch_Enable,
+    ALU1_Enable => ALU1_Enable,
+    ALU0_Enable => ALU0_Enable,
     WB_Data_Data => WB_Data_Data,
     WB_RegisterWrite_address => WB_RegisterWrite_address,
     WB_WriteControl_Enable => WB_WriteControl_Enable,
@@ -113,6 +131,9 @@ begin
 
         fieldno := 0;
         read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Control_Input.Opcode") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Control_Input.Opcode" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "OperationCode.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected OperationCode.Value" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
@@ -137,7 +158,28 @@ begin
         assert are_strings_equal(tmp, "ALU_Output.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ALU_Output.Value" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "ALU0.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ALU0.Enable" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "ALU1.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ALU1.Enable" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "ALUSrc.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ALUSrc.Enable" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Branch.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Branch.Enable" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Incrementer_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Incrementer_Output.Address" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "MemRead.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected MemRead.Enable" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "MemtoReg.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected MemtoReg.Enable" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "MemWrite.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected MemWrite.Enable" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "ProgramCounter_To_InstructionMemory.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ProgramCounter_To_InstructionMemory.Address" severity Failure;
@@ -150,6 +192,9 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Reg2_To_Mux.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Reg2_To_Mux.Data" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "RegWrite.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected RegWrite.Enable" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "WB_Data.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected WB_Data.Data" severity Failure;
@@ -184,6 +229,13 @@ begin
                 wait until rising_edge(CLOCK);
             end if;
 
+            read_csv_field(L, tmp);
+            if are_strings_equal(tmp, "U") then
+                Control_Input_Opcode <= (others => 'U');
+            else
+                Control_Input_Opcode <= unsigned(to_std_logic_vector(truncate(tmp)));
+            end if;
+            fieldno := fieldno + 1;
             read_csv_field(L, tmp);
             if are_strings_equal(tmp, "U") then
                 OperationCode_Value <= (others => 'U');
@@ -254,9 +306,72 @@ begin
 
 	        read_csv_field(L, tmp);
 	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(ALU0_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for ALU0_Enable in cycle " & integer'image(clockcycle) & " was: " & str(ALU0_Enable) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(ALU1_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for ALU1_Enable in cycle " & integer'image(clockcycle) & " was: " & str(ALU1_Enable) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(ALUSrc_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for ALUSrc_Enable in cycle " & integer'image(clockcycle) & " was: " & str(ALUSrc_Enable) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(Branch_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for Branch_Enable in cycle " & integer'image(clockcycle) & " was: " & str(Branch_Enable) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
             	if not are_strings_equal(str(Incrementer_Output_Address), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for Incrementer_Output_Address in cycle " & integer'image(clockcycle) & " was: " & str(Incrementer_Output_Address) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(MemRead_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for MemRead_Enable in cycle " & integer'image(clockcycle) & " was: " & str(MemRead_Enable) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(MemtoReg_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for MemtoReg_Enable in cycle " & integer'image(clockcycle) & " was: " & str(MemtoReg_Enable) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(MemWrite_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for MemWrite_Enable in cycle " & integer'image(clockcycle) & " was: " & str(MemWrite_Enable) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;
@@ -293,6 +408,15 @@ begin
             	if not are_strings_equal(str(Reg2_To_Mux_Data), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for Reg2_To_Mux_Data in cycle " & integer'image(clockcycle) & " was: " & str(Reg2_To_Mux_Data) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(RegWrite_Enable), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for RegWrite_Enable in cycle " & integer'image(clockcycle) & " was: " & str(RegWrite_Enable) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

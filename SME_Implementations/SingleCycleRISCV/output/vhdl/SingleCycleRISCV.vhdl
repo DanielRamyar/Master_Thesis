@@ -37,6 +37,33 @@ entity SingleCycleRISCV is
     -- Top-level bus Write_Control signals
     Write_Control_Enable: in T_SYSTEM_BOOL;
 
+    -- Top-level bus Control_Input signals
+    Control_Input_Opcode: in T_SYSTEM_UINT32;
+
+    -- Top-level bus ALUSrc signals
+    ALUSrc_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus MemtoReg signals
+    MemtoReg_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus RegWrite signals
+    RegWrite_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus MemRead signals
+    MemRead_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus MemWrite signals
+    MemWrite_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus Branch signals
+    Branch_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus ALU1 signals
+    ALU1_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus ALU0 signals
+    ALU0_Enable: out T_SYSTEM_BOOL;
+
     -- Top-level bus WB_Data signals
     WB_Data_Data: out T_SYSTEM_INT32;
 
@@ -102,6 +129,8 @@ architecture RTL of SingleCycleRISCV is
     signal FIN_Inc_mux : std_logic;
 
     signal FIN_IM, RDY_IM : std_logic;
+
+    signal FIN_Control, RDY_Control : std_logic;
 
     signal FIN_Register, RDY_Register : std_logic;
 
@@ -212,10 +241,76 @@ begin
         m_write_control_Enable => Write_Control_Enable,
 
 
+        -- Output bus Control_Input
+        m_control_input_Opcode => Control_Input_Opcode,
+
+
 
         CLK => CLK,
         RDY => RDY_IM,
         FIN => FIN_IM,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  Control signals
+    Control: entity work.Control
+    generic map(
+        reset_Opcode => TO_UNSIGNED(0, 32),
+        reset_Op0 => '0',
+        reset_Op1 => '0',
+        reset_Op2 => '0',
+        reset_Op3 => '0',
+        reset_Op4 => '0',
+        reset_Op5 => '0',
+        reset_Op6 => '0',
+        reset_A => '0',
+        reset_B => '0',
+        reset_C => '0',
+        reset_D => '0'
+    )
+    port map (
+        -- Input bus Control_Input
+        m_input_Opcode => Control_Input_Opcode,
+
+
+        -- Output bus ALUSrc
+        ALUSrc_out_Enable => ALUSrc_Enable,
+
+
+        -- Output bus MemtoReg
+        MemtoReg_out_Enable => MemtoReg_Enable,
+
+
+        -- Output bus RegWrite
+        RegWrite_out_Enable => RegWrite_Enable,
+
+
+        -- Output bus MemRead
+        MemRead_out_Enable => MemRead_Enable,
+
+
+        -- Output bus MemWrite
+        MemWrite_out_Enable => MemWrite_Enable,
+
+
+        -- Output bus Branch
+        Branch_out_Enable => Branch_Enable,
+
+
+        -- Output bus ALU1
+        ALU1_out_Enable => ALU1_Enable,
+
+
+        -- Output bus ALU0
+        ALU0_out_Enable => ALU0_Enable,
+
+
+
+        CLK => CLK,
+        RDY => RDY_Control,
+        FIN => FIN_Control,
         ENB => ENB,
         RST => RST
     );
@@ -385,6 +480,7 @@ begin
     RDY_PC <= FIN_Inc_mux;
     RDY_Incrementer <= FIN_PC;
     RDY_IM <= FIN_PC;
+    RDY_Control <= FIN_IM;
     -- Setup the RDY signal for Register
     process(
       FIN_IM, 
@@ -414,6 +510,7 @@ begin
       FIN_Incrementer, 
       FIN_Inc_mux, 
       FIN_IM, 
+      FIN_Control, 
       FIN_Register, 
       FIN_ALU, 
       FIN_Reg_mux, 
@@ -421,7 +518,7 @@ begin
       FIN_WriteBuffer
     )
     begin
-      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
+      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_Control AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
         FIN <= FIN_PC;
       end if;
     end process;

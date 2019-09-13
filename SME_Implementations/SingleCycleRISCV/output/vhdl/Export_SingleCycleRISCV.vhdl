@@ -36,6 +36,33 @@ entity SingleCycleRISCV_export is
     -- Top-level bus Write_Control signals
     Write_Control_Enable: in STD_LOGIC;
 
+    -- Top-level bus Control_Input signals
+    Control_Input_Opcode: in STD_LOGIC_VECTOR(31 downto 0);
+
+    -- Top-level bus ALUSrc signals
+    ALUSrc_Enable: out STD_LOGIC;
+
+    -- Top-level bus MemtoReg signals
+    MemtoReg_Enable: out STD_LOGIC;
+
+    -- Top-level bus RegWrite signals
+    RegWrite_Enable: out STD_LOGIC;
+
+    -- Top-level bus MemRead signals
+    MemRead_Enable: out STD_LOGIC;
+
+    -- Top-level bus MemWrite signals
+    MemWrite_Enable: out STD_LOGIC;
+
+    -- Top-level bus Branch signals
+    Branch_Enable: out STD_LOGIC;
+
+    -- Top-level bus ALU1 signals
+    ALU1_Enable: out STD_LOGIC;
+
+    -- Top-level bus ALU0 signals
+    ALU0_Enable: out STD_LOGIC;
+
     -- Top-level bus WB_Data signals
     WB_Data_Data: out STD_LOGIC_VECTOR(31 downto 0);
 
@@ -138,6 +165,33 @@ begin
 
         -- Input bus Write_Control
         Write_Control_Enable => Write_Control_Enable,
+
+        -- Input bus Control_Input
+        Control_Input_Opcode => unsigned(Control_Input_Opcode),
+
+        -- Output bus ALUSrc
+        ALUSrc_Enable => ALUSrc_Enable,
+
+        -- Output bus MemtoReg
+        MemtoReg_Enable => MemtoReg_Enable,
+
+        -- Output bus RegWrite
+        RegWrite_Enable => RegWrite_Enable,
+
+        -- Output bus MemRead
+        MemRead_Enable => MemRead_Enable,
+
+        -- Output bus MemWrite
+        MemWrite_Enable => MemWrite_Enable,
+
+        -- Output bus Branch
+        Branch_Enable => Branch_Enable,
+
+        -- Output bus ALU1
+        ALU1_Enable => ALU1_Enable,
+
+        -- Output bus ALU0
+        ALU0_Enable => ALU0_Enable,
 
         -- Output bus WB_Data
         WB_Data_Data => tmp_WB_Data_Data,

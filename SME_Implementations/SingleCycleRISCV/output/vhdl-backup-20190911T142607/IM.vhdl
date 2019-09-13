@@ -30,8 +30,6 @@ entity IM is
         m_write_address: out T_SYSTEM_UINT32;
         -- Output bus m_write_control signals
         m_write_control_Enable: out T_SYSTEM_BOOL;
-        -- Output bus m_control_input signals
-        m_control_input_Opcode: out T_SYSTEM_UINT32;
 
 
         -- Clock signal
@@ -95,7 +93,6 @@ begin
             m_read_2_address <= TO_UNSIGNED(0, 32);
             m_write_address <= TO_UNSIGNED(0, 32);
             m_write_control_Enable <= '0';
-            m_control_input_Opcode <= TO_UNSIGNED(0, 32);
             address := TO_UNSIGNED(0, 32);
             num := TO_UNSIGNED(0, 32);
             Instruction_Memory := reset_Instruction_Memory;
@@ -121,7 +118,6 @@ begin
             m_read_1_address <= (shift_right(num, 15)) and TO_UNSIGNED(31, 32);
             m_read_2_address <= (shift_right(num, 20)) and TO_UNSIGNED(31, 32);
             m_write_address <= (shift_right(num, 7)) and TO_UNSIGNED(31, 32);
-            m_control_input_Opcode <= num and TO_UNSIGNED(63, 32);
             m_write_control_Enable <= '1';
 
 

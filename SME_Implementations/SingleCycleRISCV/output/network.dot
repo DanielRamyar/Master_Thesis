@@ -1,6 +1,7 @@
 digraph SingleCycleRISCV {
 "PC_Input" [shape=oval];
 "ProgramCounter_To_InstructionMemory" [shape=oval];
+"Control_Input" [shape=oval];
 "Read_Register_1" [shape=oval];
 "Read_Register_2" [shape=oval];
 "WB_Data" [shape=oval];
@@ -14,12 +15,21 @@ digraph SingleCycleRISCV {
 "Incrementer_Output" [shape=oval];
 "Write_Register" [shape=oval];
 "Write_Control" [shape=oval];
+"ALUSrc" [shape=oval];
+"MemtoReg" [shape=oval];
+"RegWrite" [shape=oval];
+"MemRead" [shape=oval];
+"MemWrite" [shape=oval];
+"Branch" [shape=oval];
+"ALU1" [shape=oval];
+"ALU0" [shape=oval];
 "Zero_out" [shape=oval];
 "Write_Data" [shape=oval];
 "Mem_Mux_Output" [shape=oval];
 "PC" [shape=box];
 "Incrementer" [shape=box];
 "IM" [shape=box];
+"Control" [shape=box];
 "Register" [shape=box];
 "ALU" [shape=box];
 "Reg_mux" [shape=box];
@@ -30,6 +40,7 @@ digraph SingleCycleRISCV {
 "PC_Input" -> "PC";
 "ProgramCounter_To_InstructionMemory" -> "Incrementer";
 "ProgramCounter_To_InstructionMemory" -> "IM";
+"Control_Input" -> "Control";
 "Read_Register_1" -> "Register";
 "Read_Register_2" -> "Register";
 "WB_Data" -> "Register";
@@ -47,6 +58,15 @@ digraph SingleCycleRISCV {
 "IM" -> "Read_Register_2";
 "IM" -> "Write_Register";
 "IM" -> "Write_Control";
+"IM" -> "Control_Input";
+"Control" -> "ALUSrc";
+"Control" -> "MemtoReg";
+"Control" -> "RegWrite";
+"Control" -> "MemRead";
+"Control" -> "MemWrite";
+"Control" -> "Branch";
+"Control" -> "ALU1";
+"Control" -> "ALU0";
 "Register" -> "Reg1_To_ALU";
 "Register" -> "Reg2_To_Mux";
 "Register" -> "OperationCode";
