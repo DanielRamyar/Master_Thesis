@@ -21,7 +21,7 @@ namespace SingleCycleRISCV {
                 case 0:
                     temp = m_ALU_In_1.Data & m_ALU_In_2.Data; 
                     output.Value = temp;
-                    zero_out.Value = (temp == 0); // Check if output i zero
+                    zero_out.Value = (temp == 0); // Check if output is zero
                     break;
                 case 1:
                     temp = m_ALU_In_1.Data | m_ALU_In_2.Data;
