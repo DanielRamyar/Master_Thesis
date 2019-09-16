@@ -24,7 +24,7 @@ namespace SingleCycleRISCV {
         [InputBus]
         private readonly Write_Data m_write_data = Scope.CreateOrLoadBus<Write_Data>();
         [InputBus]
-        private readonly Write_Control m_write_control = Scope.CreateOrLoadBus<Write_Control>();
+        private readonly RegWrite m_write_control = Scope.CreateOrLoadBus<RegWrite>();
 
         // Register Output
         [InputBus]

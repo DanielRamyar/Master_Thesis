@@ -26,12 +26,6 @@ namespace SingleCycleRISCV {
         int Data {get; set;}
     }
 
-    [TopLevelInputBus]
-    public interface Write_Control : IBus {
-        [InitialValue]
-        bool Enable {get; set;}
-    }
-
     [TopLevelOutputBus]
     public interface Reg1_To_ALU : IBus {
         [InitialValue]

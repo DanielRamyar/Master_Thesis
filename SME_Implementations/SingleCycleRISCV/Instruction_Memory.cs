@@ -10,8 +10,6 @@ namespace SingleCycleRISCV {
         [OutputBus]
         private readonly Write_Register m_write = Scope.CreateOrLoadBus<Write_Register>();
         [OutputBus]
-        private readonly Write_Control m_write_control = Scope.CreateOrLoadBus<Write_Control>();
-        [OutputBus]
         private readonly Control_Input m_control_input = Scope.CreateOrLoadBus<Control_Input>();
 
         [InputBus]
@@ -34,7 +32,6 @@ namespace SingleCycleRISCV {
             m_write.address        = (uint)temp_instruction >> 7  & (uint)31; // Takes out bit number 7 to 11 from instruction
             m_control_input.Opcode = (uint)temp_instruction & (uint)63;       // Takes out bit number 0 to 6 from instruction
 
-            m_write_control.Enable = true;
         }
     }
 
