@@ -5,17 +5,19 @@ namespace SingleCycleRISCV {
     public class Mem_mux : SimpleProcess {
         [InputBus]
         private readonly ALU_Output m_ALU_in = Scope.CreateOrLoadBus<ALU_Output>();
+        [InputBus]
+        private readonly MemtoReg m_MemtoReg = Scope.CreateOrLoadBus<MemtoReg>();
 
         [OutputBus]
         public readonly Write_Data Mux_out = Scope.CreateOrLoadBus<Write_Data>();
 
         protected override void OnTick() {
-            byte mux_opcode = 0;
+            bool mux_opcode = m_MemtoReg.Enable;
             switch (mux_opcode) {
-                case 0:
+                case false:
                     Mux_out.Data = m_ALU_in.Value; 
                     break;
-                case 1:
+                case true:
                     
                     break;
 
