@@ -12,6 +12,7 @@ namespace SingleCycleRISCV {
                 var incmux = new Inc_mux();
                 var IM = new IM();
                 var Con = new Control();
+                var ALUCon = new ALU_Control();
                 var Reg = new Register();
                 var mALU = new ALU();
                 var regmux = new Reg_mux();
