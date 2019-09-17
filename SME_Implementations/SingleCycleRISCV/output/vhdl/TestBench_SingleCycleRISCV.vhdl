@@ -30,28 +30,28 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal PC_Input_Address : T_SYSTEM_UINT32;
   signal ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT32;
   signal Incrementer_Output_Address : T_SYSTEM_UINT32;
+  signal Zero_out_Value : T_SYSTEM_BOOL;
+  signal Branch_Enable : T_SYSTEM_BOOL;
   signal Read_Register_1_address : T_SYSTEM_UINT32;
   signal Read_Register_2_address : T_SYSTEM_UINT32;
   signal Write_Register_address : T_SYSTEM_UINT32;
-  signal Write_Control_Enable : T_SYSTEM_BOOL;
   signal Control_Input_Opcode : T_SYSTEM_UINT32;
+  signal Instruction_current : T_SYSTEM_UINT32;
   signal ALUSrc_Enable : T_SYSTEM_BOOL;
   signal MemtoReg_Enable : T_SYSTEM_BOOL;
   signal RegWrite_Enable : T_SYSTEM_BOOL;
   signal MemRead_Enable : T_SYSTEM_BOOL;
   signal MemWrite_Enable : T_SYSTEM_BOOL;
-  signal Branch_Enable : T_SYSTEM_BOOL;
   signal ALU1_Enable : T_SYSTEM_BOOL;
   signal ALU0_Enable : T_SYSTEM_BOOL;
+  signal OperationCode_Value : T_SYSTEM_UINT8;
   signal WB_Data_Data : T_SYSTEM_INT32;
   signal WB_RegisterWrite_address : T_SYSTEM_UINT32;
   signal WB_WriteControl_Enable : T_SYSTEM_BOOL;
   signal Reg1_To_ALU_Data : T_SYSTEM_INT32;
   signal Reg2_To_Mux_Data : T_SYSTEM_INT32;
-  signal OperationCode_Value : T_SYSTEM_UINT8;
   signal Reg_Mux_Output_Data : T_SYSTEM_INT32;
   signal ALU_Output_Value : T_SYSTEM_INT32;
-  signal Zero_out_Value : T_SYSTEM_BOOL;
   signal Write_Data_Data : T_SYSTEM_INT32;
 
 begin
@@ -62,28 +62,28 @@ begin
     PC_Input_Address => PC_Input_Address,
     ProgramCounter_To_InstructionMemory_Address => ProgramCounter_To_InstructionMemory_Address,
     Incrementer_Output_Address => Incrementer_Output_Address,
+    Zero_out_Value => Zero_out_Value,
+    Branch_Enable => Branch_Enable,
     Read_Register_1_address => Read_Register_1_address,
     Read_Register_2_address => Read_Register_2_address,
     Write_Register_address => Write_Register_address,
-    Write_Control_Enable => Write_Control_Enable,
     Control_Input_Opcode => Control_Input_Opcode,
+    Instruction_current => Instruction_current,
     ALUSrc_Enable => ALUSrc_Enable,
     MemtoReg_Enable => MemtoReg_Enable,
     RegWrite_Enable => RegWrite_Enable,
     MemRead_Enable => MemRead_Enable,
     MemWrite_Enable => MemWrite_Enable,
-    Branch_Enable => Branch_Enable,
     ALU1_Enable => ALU1_Enable,
     ALU0_Enable => ALU0_Enable,
+    OperationCode_Value => OperationCode_Value,
     WB_Data_Data => WB_Data_Data,
     WB_RegisterWrite_address => WB_RegisterWrite_address,
     WB_WriteControl_Enable => WB_WriteControl_Enable,
     Reg1_To_ALU_Data => Reg1_To_ALU_Data,
     Reg2_To_Mux_Data => Reg2_To_Mux_Data,
-    OperationCode_Value => OperationCode_Value,
     Reg_Mux_Output_Data => Reg_Mux_Output_Data,
     ALU_Output_Value => ALU_Output_Value,
-    Zero_out_Value => Zero_out_Value,
     Write_Data_Data => Write_Data_Data,
 
     ENB => ENABLE,
@@ -146,9 +146,6 @@ begin
         assert are_strings_equal(tmp, "Read_Register_2.address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Read_Register_2.address" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "Write_Control.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Write_Control.Enable" severity Failure;
-        fieldno := fieldno + 1;
-        read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Write_Data.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Write_Data.Data" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
@@ -171,6 +168,9 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Incrementer_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Incrementer_Output.Address" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Instruction.current") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Instruction.current" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "MemRead.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected MemRead.Enable" severity Failure;
@@ -266,13 +266,6 @@ begin
             fieldno := fieldno + 1;
             read_csv_field(L, tmp);
             if are_strings_equal(tmp, "U") then
-                Write_Control_Enable <= 'U';
-            else
-                Write_Control_Enable <= to_std_logic(truncate(tmp));
-            end if;
-            fieldno := fieldno + 1;
-            read_csv_field(L, tmp);
-            if are_strings_equal(tmp, "U") then
                 Write_Data_Data <= (others => 'U');
             else
                 Write_Data_Data <= signed(to_std_logic_vector(truncate(tmp)));
@@ -345,6 +338,15 @@ begin
             	if not are_strings_equal(str(Incrementer_Output_Address), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for Incrementer_Output_Address in cycle " & integer'image(clockcycle) & " was: " & str(Incrementer_Output_Address) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(Instruction_current), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for Instruction_current in cycle " & integer'image(clockcycle) & " was: " & str(Instruction_current) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

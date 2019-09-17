@@ -25,6 +25,12 @@ entity SingleCycleRISCV is
     -- Top-level bus Incrementer_Output signals
     Incrementer_Output_Address: out T_SYSTEM_UINT32;
 
+    -- Top-level bus Zero_out signals
+    Zero_out_Value: out T_SYSTEM_BOOL;
+
+    -- Top-level bus Branch signals
+    Branch_Enable: out T_SYSTEM_BOOL;
+
     -- Top-level bus Read_Register_1 signals
     Read_Register_1_address: in T_SYSTEM_UINT32;
 
@@ -34,11 +40,11 @@ entity SingleCycleRISCV is
     -- Top-level bus Write_Register signals
     Write_Register_address: in T_SYSTEM_UINT32;
 
-    -- Top-level bus Write_Control signals
-    Write_Control_Enable: in T_SYSTEM_BOOL;
-
     -- Top-level bus Control_Input signals
     Control_Input_Opcode: in T_SYSTEM_UINT32;
+
+    -- Top-level bus Instruction signals
+    Instruction_current: out T_SYSTEM_UINT32;
 
     -- Top-level bus ALUSrc signals
     ALUSrc_Enable: out T_SYSTEM_BOOL;
@@ -55,14 +61,14 @@ entity SingleCycleRISCV is
     -- Top-level bus MemWrite signals
     MemWrite_Enable: out T_SYSTEM_BOOL;
 
-    -- Top-level bus Branch signals
-    Branch_Enable: out T_SYSTEM_BOOL;
-
     -- Top-level bus ALU1 signals
     ALU1_Enable: out T_SYSTEM_BOOL;
 
     -- Top-level bus ALU0 signals
     ALU0_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus OperationCode signals
+    OperationCode_Value: in T_SYSTEM_UINT8;
 
     -- Top-level bus WB_Data signals
     WB_Data_Data: out T_SYSTEM_INT32;
@@ -79,17 +85,11 @@ entity SingleCycleRISCV is
     -- Top-level bus Reg2_To_Mux signals
     Reg2_To_Mux_Data: out T_SYSTEM_INT32;
 
-    -- Top-level bus OperationCode signals
-    OperationCode_Value: in T_SYSTEM_UINT8;
-
     -- Top-level bus Reg_Mux_Output signals
     Reg_Mux_Output_Data: out T_SYSTEM_INT32;
 
     -- Top-level bus ALU_Output signals
     ALU_Output_Value: out T_SYSTEM_INT32;
-
-    -- Top-level bus Zero_out signals
-    Zero_out_Value: out T_SYSTEM_BOOL;
 
     -- Top-level bus Write_Data signals
     Write_Data_Data: in T_SYSTEM_INT32;
@@ -131,6 +131,8 @@ architecture RTL of SingleCycleRISCV is
     signal FIN_IM, RDY_IM : std_logic;
 
     signal FIN_Control, RDY_Control : std_logic;
+
+    signal FIN_ALU_Control, RDY_ALU_Control : std_logic;
 
     signal FIN_Register, RDY_Register : std_logic;
 
@@ -202,6 +204,14 @@ begin
         m_input_Address => Incrementer_Output_Address,
 
 
+        -- Input bus Zero_out
+        m_zero_out_Value => Zero_out_Value,
+
+
+        -- Input bus Branch
+        m_Branch_Enable => Branch_Enable,
+
+
         -- Output bus PC_Input
         Mux_out_Address => PC_Input_Address,
 
@@ -237,12 +247,12 @@ begin
         m_write_address => Write_Register_address,
 
 
-        -- Output bus Write_Control
-        m_write_control_Enable => Write_Control_Enable,
-
-
         -- Output bus Control_Input
         m_control_input_Opcode => Control_Input_Opcode,
+
+
+        -- Output bus Instruction
+        m_Instruction_current => Instruction_current,
 
 
 
@@ -316,6 +326,56 @@ begin
     );
 
 
+    -- Entity  ALU_Control signals
+    ALU_Control: entity work.ALU_Control
+    generic map(
+        reset_Op0 => TO_UNSIGNED(0, 32),
+        reset_Op1 => TO_UNSIGNED(0, 32),
+        reset_Op2 => TO_UNSIGNED(0, 32),
+        reset_Op3 => TO_UNSIGNED(0, 32),
+        reset_A => '0',
+        reset_B => '0',
+        reset_C => '0',
+        reset_D => '0',
+        reset_E => '0',
+        reset_F => '0',
+        reset_G => '0',
+        reset_H => '0',
+        reset_I => '0',
+        reset_J => '0',
+        reset_K => '0',
+        reset_L => '0',
+        reset_temp1 => '0',
+        reset_temp2 => '0',
+        reset_temp3 => '0',
+        reset_temp4 => '0'
+    )
+    port map (
+        -- Input bus ALU1
+        m_ALUOp1_Enable => ALU1_Enable,
+
+
+        -- Input bus ALU0
+        m_ALUOp0_Enable => ALU0_Enable,
+
+
+        -- Input bus Instruction
+        m_Instruction_current => Instruction_current,
+
+
+        -- Output bus OperationCode
+        m_ALUOp_out_Value => OperationCode_Value,
+
+
+
+        CLK => CLK,
+        RDY => RDY_ALU_Control,
+        FIN => FIN_ALU_Control,
+        ENB => ENB,
+        RST => RST
+    );
+
+
     -- Entity  Register signals
     vhdl_Register: entity work.vhdl_Register
     generic map(
@@ -348,10 +408,6 @@ begin
 
         -- Output bus Reg2_To_Mux
         output_2_Data => Reg2_To_Mux_Data,
-
-
-        -- Output bus OperationCode
-        m_OperationCode_Value => OperationCode_Value,
 
 
 
@@ -402,6 +458,10 @@ begin
         m_Reg_in_Data => Reg2_To_Mux_Data,
 
 
+        -- Input bus ALUSrc
+        m_ALUSrc_Enable => ALUSrc_Enable,
+
+
         -- Output bus Reg_Mux_Output
         Mux_out_Data => Reg_Mux_Output_Data,
 
@@ -420,6 +480,10 @@ begin
     port map (
         -- Input bus ALU_Output
         m_ALU_in_Value => ALU_Output_Value,
+
+
+        -- Input bus MemtoReg
+        m_MemtoReg_Enable => MemtoReg_Enable,
 
 
         -- Output bus Write_Data
@@ -451,8 +515,8 @@ begin
         m_write_address => Write_Register_address,
 
 
-        -- Input bus Write_Control
-        m_write_control_Enable => Write_Control_Enable,
+        -- Input bus RegWrite
+        m_write_control_Enable => RegWrite_Enable,
 
 
         -- Output bus WB_Data
@@ -481,6 +545,16 @@ begin
     RDY_Incrementer <= FIN_PC;
     RDY_IM <= FIN_PC;
     RDY_Control <= FIN_IM;
+    -- Setup the RDY signal for ALU_Control
+    process(
+      FIN_Control, 
+      FIN_IM
+    )
+    begin
+      if FIN_Control = FIN_IM then
+        RDY_ALU_Control <= FIN_Control;
+      end if;
+    end process;
     -- Setup the RDY signal for Register
     process(
       FIN_IM, 
@@ -493,16 +567,35 @@ begin
     end process;
     -- Setup the RDY signal for ALU
     process(
+      FIN_ALU_Control, 
       FIN_Register, 
       FIN_Reg_mux
     )
     begin
-      if FIN_Register = FIN_Reg_mux then
-        RDY_ALU <= FIN_Register;
+      if FIN_ALU_Control = FIN_Register AND FIN_ALU_Control = FIN_Reg_mux then
+        RDY_ALU <= FIN_ALU_Control;
       end if;
     end process;
-    RDY_Reg_mux <= FIN_Register;
-    RDY_Mem_mux <= FIN_ALU;
+    -- Setup the RDY signal for Reg_mux
+    process(
+      FIN_Register, 
+      FIN_Control
+    )
+    begin
+      if FIN_Register = FIN_Control then
+        RDY_Reg_mux <= FIN_Register;
+      end if;
+    end process;
+    -- Setup the RDY signal for Mem_mux
+    process(
+      FIN_ALU, 
+      FIN_Control
+    )
+    begin
+      if FIN_ALU = FIN_Control then
+        RDY_Mem_mux <= FIN_ALU;
+      end if;
+    end process;
 
     -- Setup the FIN feedback signals
     process(
@@ -511,6 +604,7 @@ begin
       FIN_Inc_mux, 
       FIN_IM, 
       FIN_Control, 
+      FIN_ALU_Control, 
       FIN_Register, 
       FIN_ALU, 
       FIN_Reg_mux, 
@@ -518,7 +612,7 @@ begin
       FIN_WriteBuffer
     )
     begin
-      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_Control AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
+      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_Control AND FIN_PC = FIN_ALU_Control AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
         FIN <= FIN_PC;
       end if;
     end process;
