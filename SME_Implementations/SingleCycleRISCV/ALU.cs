@@ -33,7 +33,7 @@ namespace SingleCycleRISCV {
                     output.Value = temp;
                     zero_out.Value = (temp == 0); 
                     break;
-                case 3:
+                case 6:
                     temp = m_ALU_In_1.Data - m_ALU_In_2.Data;
                     output.Value = temp;
                     zero_out.Value = (temp== 0); 
