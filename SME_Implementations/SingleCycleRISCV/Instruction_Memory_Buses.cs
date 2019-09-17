@@ -3,9 +3,9 @@ using SME;
 
 namespace SingleCycleRISCV {
     [TopLevelOutputBus]
-    public interface IM_To_Reg : IBus {
+    public interface Instruction : IBus {
         [InitialValue]
-        uint Instruction {get; set;}
+        uint current {get; set;}
     }
 
 }
