@@ -23,17 +23,8 @@ namespace SingleCycleRISCV {
 		public readonly ALU0 ALU0_out = Scope.CreateOrLoadBus<ALU0>();
         
         uint Opcode;
-        bool Op0;
-        bool Op1;
-        bool Op2;
-        bool Op3;
-        bool Op4;
-        bool Op5;
-        bool Op6;
-        bool A;
-        bool B;
-        bool C;
-        bool D;
+        bool Op0; bool Op1; bool Op2; bool Op3; bool Op4; bool Op5; bool Op6;
+        bool A; bool B; bool C; bool D;
 
         protected override void OnTick() {
             Opcode = m_input.Opcode;
@@ -45,7 +36,7 @@ namespace SingleCycleRISCV {
             Op5 = (Opcode >> 5 & (uint)1) != 0;
             Op6 = (Opcode >> 6 & (uint)1) != 0;
 
-            // All the logic is manually calculated 
+            // All the logic is calculated by hand from logic table
             A = (!Op6 && Op5 && !Op4 && !Op3 && !Op2 && Op1 && Op0);
             B = (!Op6 && !Op5 && !Op4 && !Op3 && !Op2 && Op1 && Op0);
             C = (!Op6 && Op5 && Op4 && !Op3 && !Op2 && Op1 && Op0);
