@@ -379,7 +379,7 @@ begin
     -- Entity  Register signals
     vhdl_Register: entity work.vhdl_Register
     generic map(
-        reset_m_register => (TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(2, 32), TO_SIGNED(4, 32), TO_SIGNED(7, 32), others => TO_SIGNED(0, 32))
+        reset_m_register => (TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(2, 32), TO_SIGNED(8, 32), TO_SIGNED(7, 32), others => TO_SIGNED(0, 32))
     )
     port map (
         -- Input bus Read_Register_1
