@@ -45,6 +45,9 @@ entity SingleCycleRISCV_export is
     -- Top-level bus Instruction signals
     Instruction_current: out STD_LOGIC_VECTOR(31 downto 0);
 
+    -- Top-level bus ImmGen_Out signals
+    ImmGen_Out_Immediate: in STD_LOGIC_VECTOR(63 downto 0);
+
     -- Top-level bus ALUSrc signals
     ALUSrc_Enable: out STD_LOGIC;
 
@@ -176,6 +179,9 @@ begin
 
         -- Output bus Instruction
         Instruction_current => tmp_Instruction_current,
+
+        -- Input bus ImmGen_Out
+        ImmGen_Out_Immediate => signed(ImmGen_Out_Immediate),
 
         -- Output bus ALUSrc
         ALUSrc_Enable => ALUSrc_Enable,

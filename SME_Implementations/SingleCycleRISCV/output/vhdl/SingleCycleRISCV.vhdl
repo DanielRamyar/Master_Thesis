@@ -46,6 +46,9 @@ entity SingleCycleRISCV is
     -- Top-level bus Instruction signals
     Instruction_current: out T_SYSTEM_UINT32;
 
+    -- Top-level bus ImmGen_Out signals
+    ImmGen_Out_Immediate: in T_SYSTEM_INT64;
+
     -- Top-level bus ALUSrc signals
     ALUSrc_Enable: out T_SYSTEM_BOOL;
 
@@ -129,6 +132,8 @@ architecture RTL of SingleCycleRISCV is
     signal FIN_Inc_mux : std_logic;
 
     signal FIN_IM, RDY_IM : std_logic;
+
+    signal FIN_ImmGen, RDY_ImmGen : std_logic;
 
     signal FIN_Control, RDY_Control : std_logic;
 
@@ -259,6 +264,33 @@ begin
         CLK => CLK,
         RDY => RDY_IM,
         FIN => FIN_IM,
+        ENB => ENB,
+        RST => RST
+    );
+
+
+    -- Entity  ImmGen signals
+    ImmGen: entity work.ImmGen
+    generic map(
+        reset_temp0 => TO_SIGNED(0, 64),
+        reset_temp1 => TO_UNSIGNED(0, 32),
+        reset_temp2 => TO_UNSIGNED(0, 32),
+        reset_temp3 => TO_UNSIGNED(0, 32),
+        reset_temp4 => TO_UNSIGNED(0, 32)
+    )
+    port map (
+        -- Input bus Instruction
+        m_instruction_current => Instruction_current,
+
+
+        -- Output bus ImmGen_Out
+        output_Immediate => ImmGen_Out_Immediate,
+
+
+
+        CLK => CLK,
+        RDY => RDY_ImmGen,
+        FIN => FIN_ImmGen,
         ENB => ENB,
         RST => RST
     );
@@ -544,6 +576,7 @@ begin
     RDY_PC <= FIN_Inc_mux;
     RDY_Incrementer <= FIN_PC;
     RDY_IM <= FIN_PC;
+    RDY_ImmGen <= FIN_IM;
     RDY_Control <= FIN_IM;
     -- Setup the RDY signal for ALU_Control
     process(
@@ -603,6 +636,7 @@ begin
       FIN_Incrementer, 
       FIN_Inc_mux, 
       FIN_IM, 
+      FIN_ImmGen, 
       FIN_Control, 
       FIN_ALU_Control, 
       FIN_Register, 
@@ -612,7 +646,7 @@ begin
       FIN_WriteBuffer
     )
     begin
-      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_Control AND FIN_PC = FIN_ALU_Control AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
+      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_ImmGen AND FIN_PC = FIN_Control AND FIN_PC = FIN_ALU_Control AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
         FIN <= FIN_PC;
       end if;
     end process;

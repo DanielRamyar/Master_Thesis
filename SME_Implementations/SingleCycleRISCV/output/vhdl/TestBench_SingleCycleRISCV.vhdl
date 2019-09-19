@@ -37,6 +37,7 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal Write_Register_address : T_SYSTEM_UINT32;
   signal Control_Input_Opcode : T_SYSTEM_UINT32;
   signal Instruction_current : T_SYSTEM_UINT32;
+  signal ImmGen_Out_Immediate : T_SYSTEM_INT64;
   signal ALUSrc_Enable : T_SYSTEM_BOOL;
   signal MemtoReg_Enable : T_SYSTEM_BOOL;
   signal RegWrite_Enable : T_SYSTEM_BOOL;
@@ -69,6 +70,7 @@ begin
     Write_Register_address => Write_Register_address,
     Control_Input_Opcode => Control_Input_Opcode,
     Instruction_current => Instruction_current,
+    ImmGen_Out_Immediate => ImmGen_Out_Immediate,
     ALUSrc_Enable => ALUSrc_Enable,
     MemtoReg_Enable => MemtoReg_Enable,
     RegWrite_Enable => RegWrite_Enable,
@@ -132,6 +134,9 @@ begin
         fieldno := 0;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Control_Input.Opcode") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Control_Input.Opcode" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "ImmGen_Out.Immediate") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ImmGen_Out.Immediate" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "OperationCode.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected OperationCode.Value" severity Failure;
@@ -234,6 +239,13 @@ begin
                 Control_Input_Opcode <= (others => 'U');
             else
                 Control_Input_Opcode <= unsigned(to_std_logic_vector(truncate(tmp)));
+            end if;
+            fieldno := fieldno + 1;
+            read_csv_field(L, tmp);
+            if are_strings_equal(tmp, "U") then
+                ImmGen_Out_Immediate <= (others => 'U');
+            else
+                ImmGen_Out_Immediate <= signed(to_std_logic_vector(truncate(tmp)));
             end if;
             fieldno := fieldno + 1;
             read_csv_field(L, tmp);

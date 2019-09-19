@@ -122,7 +122,7 @@ begin
             m_read_1_address <= (shift_right(num, 15)) and TO_UNSIGNED(31, 32);
             m_read_2_address <= (shift_right(num, 20)) and TO_UNSIGNED(31, 32);
             m_write_address <= (shift_right(num, 7)) and TO_UNSIGNED(31, 32);
-            m_control_input_Opcode <= num and TO_UNSIGNED(127, 32);
+            m_control_input_Opcode <= num and TO_UNSIGNED(63, 32);
 
 
 
