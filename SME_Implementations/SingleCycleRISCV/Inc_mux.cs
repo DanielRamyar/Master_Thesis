@@ -10,6 +10,8 @@ namespace SingleCycleRISCV {
         private readonly Zero_out m_zero_out = Scope.CreateOrLoadBus<Zero_out>();
         [InputBus]
         private readonly Branch m_Branch = Scope.CreateOrLoadBus<Branch>();
+        [InputBus]
+        private readonly BranchUnit_Output m_BranchUnit_Output = Scope.CreateOrLoadBus<BranchUnit_Output>();
         [OutputBus]
         public readonly PC_Input Mux_out = Scope.CreateOrLoadBus<PC_Input>();
 
@@ -21,7 +23,7 @@ namespace SingleCycleRISCV {
                     Mux_out.Address = m_input.Address; 
                     break;
                 case true:
-                    
+                    Mux_out.Address = m_BranchUnit_Output.Address; 
                     break;
 
             }
