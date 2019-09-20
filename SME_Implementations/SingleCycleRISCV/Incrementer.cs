@@ -9,7 +9,7 @@ namespace SingleCycleRISCV {
         [OutputBus]
 		public readonly Incrementer_Output output = Scope.CreateOrLoadBus<Incrementer_Output>();
 
-        uint temp;
+        ulong temp;
 
         protected override void OnTick() {
             temp = m_input.Address + 4;

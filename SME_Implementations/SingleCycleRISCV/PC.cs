@@ -9,7 +9,7 @@ namespace SingleCycleRISCV {
         [InputBus]
         private readonly PC_Input m_input = Scope.CreateOrLoadBus<PC_Input>();
 
-        uint address_hold;
+        ulong address_hold;
 
         protected override void OnTick() {
             address_hold = m_input.Address;

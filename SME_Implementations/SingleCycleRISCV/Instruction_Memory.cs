@@ -21,7 +21,7 @@ namespace SingleCycleRISCV {
                                                       0, 248, 10, 51};
 
         protected override void OnTick() {
-            uint temp_address = m_input.Address;
+            ulong temp_address = m_input.Address;
             uint temp_instruction;
 
             temp_instruction = 0u | (uint)Instruction_Memory[temp_address]     << 24
