@@ -11,7 +11,7 @@ namespace SingleCycleRISCV {
     [TopLevelOutputBus]
     public interface ALU_Output : IBus {
         [InitialValue]
-        int Value {get; set;}
+        long Value {get; set;}
     }
 
     [TopLevelOutputBus]

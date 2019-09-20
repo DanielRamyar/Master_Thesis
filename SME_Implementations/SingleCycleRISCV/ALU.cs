@@ -16,7 +16,7 @@ namespace SingleCycleRISCV {
         private readonly Reg_Mux_Output m_ALU_In_2 = Scope.CreateOrLoadBus<Reg_Mux_Output>();
 
         protected override void OnTick() {
-            int temp; // Need to use temporary variable as i cant write and do zero test in same clock cycle wihtout it
+            long temp; // Need to use temporary variable as i cant write and do zero test in same clock cycle wihtout it
             switch (m_OperationCode.Value) {
                 case 0:
                     temp = m_ALU_In_1.Data & m_ALU_In_2.Data; 

@@ -5,7 +5,7 @@ namespace SingleCycleRISCV {
     [TopLevelOutputBus]
     public interface WB_Data : IBus {
         [InitialValue]
-        int Data {get; set;}
+        long Data {get; set;}
     }
     [TopLevelOutputBus]
     public interface WB_RegisterWrite : IBus {

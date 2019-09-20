@@ -23,19 +23,19 @@ namespace SingleCycleRISCV {
     [TopLevelInputBus]
     public interface Write_Data : IBus {
         [InitialValue]
-        int Data {get; set;}
+        long Data {get; set;}
     }
 
     [TopLevelOutputBus]
     public interface Reg1_To_ALU : IBus {
         [InitialValue]
-        int Data {get; set;}
+        long Data {get; set;}
     }
 
     [TopLevelOutputBus]
     public interface Reg2_To_Mux : IBus {
         [InitialValue]
-        int Data {get; set;}
+        long Data {get; set;}
     }
 
 }

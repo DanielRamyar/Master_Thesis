@@ -18,7 +18,7 @@ namespace SingleCycleRISCV {
         [OutputBus]
         public readonly WB_WriteControl m_WB_WriteControl = Scope.CreateOrLoadBus<WB_WriteControl>();
 
-        int WB_Data_Hold;
+        long WB_Data_Hold;
         uint WB_RegisterWrite_Hold;
         bool WB_WriteControl_Hold;
 
