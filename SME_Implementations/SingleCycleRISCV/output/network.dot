@@ -15,11 +15,11 @@ digraph SingleCycleRISCV {
 "Reg_Mux_Output" [shape=oval];
 "Reg2_To_Mux" [shape=oval];
 "ALUSrc" [shape=oval];
+"ImmGen_Out" [shape=oval];
 "ALU_Output" [shape=oval];
 "MemtoReg" [shape=oval];
 "Incrementer_Output" [shape=oval];
 "Write_Register" [shape=oval];
-"ImmGen_Out" [shape=oval];
 "RegWrite" [shape=oval];
 "MemRead" [shape=oval];
 "MemWrite" [shape=oval];
@@ -27,6 +27,7 @@ digraph SingleCycleRISCV {
 "Zero_out" [shape=oval];
 "Write_Data" [shape=oval];
 "Mem_Mux_Output" [shape=oval];
+"BranchUnit_Output" [shape=oval];
 "PC" [shape=box];
 "Incrementer" [shape=box];
 "IM" [shape=box];
@@ -58,6 +59,7 @@ digraph SingleCycleRISCV {
 "Reg_Mux_Output" -> "ALU";
 "Reg2_To_Mux" -> "Reg_mux";
 "ALUSrc" -> "Reg_mux";
+"ImmGen_Out" -> "Reg_mux";
 "ALU_Output" -> "Mem_mux";
 "MemtoReg" -> "Mem_mux";
 "PC" -> "ProgramCounter_To_InstructionMemory";
@@ -105,4 +107,5 @@ digraph SingleCycleRISCV {
 "Mem_Mux_Output" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "Zero_out" -> "Inc_mux" [style=dotted];
 "Branch" -> "Inc_mux" [style=dotted];
+"BranchUnit_Output" -> "Inc_mux" [style=dotted];
 }

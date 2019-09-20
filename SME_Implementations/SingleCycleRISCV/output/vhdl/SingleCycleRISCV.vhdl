@@ -17,19 +17,22 @@ entity SingleCycleRISCV is
 
 
     -- Top-level bus PC_Input signals
-    PC_Input_Address: in T_SYSTEM_UINT32;
+    PC_Input_Address: in T_SYSTEM_UINT64;
 
     -- Top-level bus ProgramCounter_To_InstructionMemory signals
-    ProgramCounter_To_InstructionMemory_Address: out T_SYSTEM_UINT32;
+    ProgramCounter_To_InstructionMemory_Address: out T_SYSTEM_UINT64;
 
     -- Top-level bus Incrementer_Output signals
-    Incrementer_Output_Address: out T_SYSTEM_UINT32;
+    Incrementer_Output_Address: out T_SYSTEM_UINT64;
 
     -- Top-level bus Zero_out signals
     Zero_out_Value: out T_SYSTEM_BOOL;
 
     -- Top-level bus Branch signals
     Branch_Enable: out T_SYSTEM_BOOL;
+
+    -- Top-level bus BranchUnit_Output signals
+    BranchUnit_Output_Address: out T_SYSTEM_UINT64;
 
     -- Top-level bus Read_Register_1 signals
     Read_Register_1_address: in T_SYSTEM_UINT32;
@@ -74,7 +77,7 @@ entity SingleCycleRISCV is
     OperationCode_Value: in T_SYSTEM_UINT8;
 
     -- Top-level bus WB_Data signals
-    WB_Data_Data: out T_SYSTEM_INT32;
+    WB_Data_Data: out T_SYSTEM_INT64;
 
     -- Top-level bus WB_RegisterWrite signals
     WB_RegisterWrite_address: out T_SYSTEM_UINT32;
@@ -83,19 +86,19 @@ entity SingleCycleRISCV is
     WB_WriteControl_Enable: out T_SYSTEM_BOOL;
 
     -- Top-level bus Reg1_To_ALU signals
-    Reg1_To_ALU_Data: out T_SYSTEM_INT32;
+    Reg1_To_ALU_Data: out T_SYSTEM_INT64;
 
     -- Top-level bus Reg2_To_Mux signals
-    Reg2_To_Mux_Data: out T_SYSTEM_INT32;
+    Reg2_To_Mux_Data: out T_SYSTEM_INT64;
 
     -- Top-level bus Reg_Mux_Output signals
-    Reg_Mux_Output_Data: out T_SYSTEM_INT32;
+    Reg_Mux_Output_Data: out T_SYSTEM_INT64;
 
     -- Top-level bus ALU_Output signals
-    ALU_Output_Value: out T_SYSTEM_INT32;
+    ALU_Output_Value: out T_SYSTEM_INT64;
 
     -- Top-level bus Write_Data signals
-    Write_Data_Data: in T_SYSTEM_INT32;
+    Write_Data_Data: in T_SYSTEM_INT64;
 
 
 
@@ -159,7 +162,7 @@ begin
     -- Entity  PC signals
     PC: entity work.PC
     generic map(
-        reset_address_hold => TO_UNSIGNED(0, 32)
+        reset_address_hold => TO_UNSIGNED(0, 64)
     )
     port map (
         -- Input bus PC_Input
@@ -182,7 +185,7 @@ begin
     -- Entity  Incrementer signals
     Incrementer: entity work.Incrementer
     generic map(
-        reset_temp => TO_UNSIGNED(0, 32)
+        reset_temp => TO_UNSIGNED(0, 64)
     )
     port map (
         -- Input bus ProgramCounter_To_InstructionMemory
@@ -215,6 +218,10 @@ begin
 
         -- Input bus Branch
         m_Branch_Enable => Branch_Enable,
+
+
+        -- Input bus BranchUnit_Output
+        m_BranchUnit_Output_Address => BranchUnit_Output_Address,
 
 
         -- Output bus PC_Input
@@ -411,7 +418,7 @@ begin
     -- Entity  Register signals
     vhdl_Register: entity work.vhdl_Register
     generic map(
-        reset_m_register => (TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(0, 32), TO_SIGNED(2, 32), TO_SIGNED(8, 32), TO_SIGNED(7, 32), others => TO_SIGNED(0, 32))
+        reset_m_register => (TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(0, 64), TO_SIGNED(2, 64), TO_SIGNED(8, 64), TO_SIGNED(7, 64), others => TO_SIGNED(0, 64))
     )
     port map (
         -- Input bus Read_Register_1
@@ -494,6 +501,10 @@ begin
         m_ALUSrc_Enable => ALUSrc_Enable,
 
 
+        -- Input bus ImmGen_Out
+        m_ImmGen_in_Immediate => ImmGen_Out_Immediate,
+
+
         -- Output bus Reg_Mux_Output
         Mux_out_Data => Reg_Mux_Output_Data,
 
@@ -534,7 +545,7 @@ begin
     -- Entity  WriteBuffer signals
     WriteBuffer: entity work.WriteBuffer
     generic map(
-        reset_WB_Data_Hold => TO_SIGNED(0, 32),
+        reset_WB_Data_Hold => TO_SIGNED(0, 64),
         reset_WB_RegisterWrite_Hold => TO_UNSIGNED(0, 32),
         reset_WB_WriteControl_Hold => '0'
     )
@@ -612,10 +623,11 @@ begin
     -- Setup the RDY signal for Reg_mux
     process(
       FIN_Register, 
-      FIN_Control
+      FIN_Control, 
+      FIN_ImmGen
     )
     begin
-      if FIN_Register = FIN_Control then
+      if FIN_Register = FIN_Control AND FIN_Register = FIN_ImmGen then
         RDY_Reg_mux <= FIN_Register;
       end if;
     end process;

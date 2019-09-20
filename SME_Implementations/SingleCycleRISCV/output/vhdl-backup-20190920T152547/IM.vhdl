@@ -20,7 +20,7 @@ entity IM is
     );
     port(
         -- Input bus m_input signals
-        m_input_Address: in T_SYSTEM_UINT64;
+        m_input_Address: in T_SYSTEM_UINT32;
 
         -- Output bus m_read_1 signals
         m_read_1_address: out T_SYSTEM_UINT32;
@@ -77,7 +77,7 @@ begin
         RST
     )
     -- Internal variables
-    variable address : T_SYSTEM_UINT64;
+    variable address : T_SYSTEM_UINT32;
     variable num : T_SYSTEM_UINT32;
     variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
 
@@ -96,7 +96,7 @@ begin
             m_write_address <= TO_UNSIGNED(0, 32);
             m_control_input_Opcode <= TO_UNSIGNED(0, 32);
             m_Instruction_current <= TO_UNSIGNED(0, 32);
-            address := TO_UNSIGNED(0, 64);
+            address := TO_UNSIGNED(0, 32);
             num := TO_UNSIGNED(0, 32);
             Instruction_Memory := reset_Instruction_Memory;
 
@@ -117,7 +117,7 @@ begin
 
 
             address := m_input_Address;
-            num := UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 64)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 64)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 64)))), T_SYSTEM_INT32'length))));
+            num := UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 32)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 32)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 32)))), T_SYSTEM_INT32'length))));
             m_Instruction_current <= num;
             m_read_1_address <= (shift_right(num, 15)) and TO_UNSIGNED(31, 32);
             m_read_2_address <= (shift_right(num, 20)) and TO_UNSIGNED(31, 32);

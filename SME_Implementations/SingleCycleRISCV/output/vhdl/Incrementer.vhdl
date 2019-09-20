@@ -16,14 +16,14 @@ use work.CUSTOM_TYPES.ALL;
 
 entity Incrementer is
     generic(
-        reset_temp: in T_SYSTEM_UINT32
+        reset_temp: in T_SYSTEM_UINT64
     );
     port(
         -- Input bus m_input signals
-        m_input_Address: in T_SYSTEM_UINT32;
+        m_input_Address: in T_SYSTEM_UINT64;
 
         -- Output bus output signals
-        output_Address: out T_SYSTEM_UINT32;
+        output_Address: out T_SYSTEM_UINT64;
 
 
         -- Clock signal
@@ -69,7 +69,7 @@ begin
         RST
     )
     -- Internal variables
-    variable temp : T_SYSTEM_UINT32 := reset_temp;
+    variable temp : T_SYSTEM_UINT64 := reset_temp;
 
     variable reentry_guard: std_logic;
 
@@ -81,7 +81,7 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            output_Address <= TO_UNSIGNED(0, 32);
+            output_Address <= TO_UNSIGNED(0, 64);
             temp := reset_temp;
 
                                     
@@ -100,7 +100,7 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            temp := m_input_Address + TO_UNSIGNED(4, 32);
+            temp := m_input_Address + TO_UNSIGNED(4, 64);
             output_Address <= temp;
 
 

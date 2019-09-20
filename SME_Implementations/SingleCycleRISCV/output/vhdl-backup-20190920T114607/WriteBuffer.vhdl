@@ -14,26 +14,26 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity vhdl_Register is
+entity WriteBuffer is
     generic(
-        reset_m_register: in vhdl_Register_m_register_type
+        reset_WB_Data_Hold: in T_SYSTEM_INT32;
+        reset_WB_RegisterWrite_Hold: in T_SYSTEM_UINT32;
+        reset_WB_WriteControl_Hold: in T_SYSTEM_BOOL
     );
     port(
-        -- Input bus m_read_1 signals
-        m_read_1_address: in T_SYSTEM_UINT32;
-        -- Input bus m_read_2 signals
-        m_read_2_address: in T_SYSTEM_UINT32;
         -- Input bus m_write_data signals
-        m_write_data_Data: in T_SYSTEM_INT64;
+        m_write_data_Data: in T_SYSTEM_INT32;
         -- Input bus m_write signals
         m_write_address: in T_SYSTEM_UINT32;
         -- Input bus m_write_control signals
         m_write_control_Enable: in T_SYSTEM_BOOL;
 
-        -- Output bus output_1 signals
-        output_1_Data: out T_SYSTEM_INT64;
-        -- Output bus output_2 signals
-        output_2_Data: out T_SYSTEM_INT64;
+        -- Output bus m_WB_Data signals
+        m_WB_Data_Data: out T_SYSTEM_INT32;
+        -- Output bus m_WB_RegisterWrite signals
+        m_WB_RegisterWrite_address: out T_SYSTEM_UINT32;
+        -- Output bus m_WB_WriteControl signals
+        m_WB_WriteControl_Enable: out T_SYSTEM_BOOL;
 
 
         -- Clock signal
@@ -51,9 +51,9 @@ entity vhdl_Register is
         -- Reset signal
         RST : in Std_logic
     );
-end vhdl_Register;
+end WriteBuffer;
 
-architecture RTL of vhdl_Register is
+architecture RTL of WriteBuffer is
 
 
 
@@ -75,13 +75,14 @@ begin
         -- Custom sensitivity signals here
         -- #### USER-DATA-SENSITIVITY-START
         -- #### USER-DATA-SENSITIVITY-END
-        RDY,
+        CLK,
         RST
     )
     -- Internal variables
-    variable m_register : vhdl_Register_m_register_type := reset_m_register;
+    variable WB_Data_Hold : T_SYSTEM_INT32 := reset_WB_Data_Hold;
+    variable WB_RegisterWrite_Hold : T_SYSTEM_UINT32 := reset_WB_RegisterWrite_Hold;
+    variable WB_WriteControl_Hold : T_SYSTEM_BOOL := reset_WB_WriteControl_Hold;
 
-    variable reentry_guard: std_logic;
 
     -- #### USER-DATA-NONCLOCKEDVARIABLES-START
     -- #### USER-DATA-NONCLOCKEDVARIABLES-END
@@ -91,39 +92,37 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            output_1_Data <= TO_SIGNED(0, 64);
-            output_2_Data <= TO_SIGNED(0, 64);
-            m_register := reset_m_register;
+            m_WB_Data_Data <= TO_SIGNED(0, 32);
+            m_WB_RegisterWrite_address <= TO_UNSIGNED(0, 32);
+            m_WB_WriteControl_Enable <= '0';
+            WB_Data_Hold := reset_WB_Data_Hold;
+            WB_RegisterWrite_Hold := reset_WB_RegisterWrite_Hold;
+            WB_WriteControl_Hold := reset_WB_WriteControl_Hold;
 
                                     
-            reentry_guard := '0';
             FIN <= '0';
 
             -- Initialize code here
             -- #### USER-DATA-NONCLOCKEDRESETCODE-START
             -- #### USER-DATA-NONCLOCKEDRESETCODE-END
 
-        elsif reentry_guard /= RDY then
-            reentry_guard := RDY;
+        elsif rising_edge(CLK) then
 
             -- Initialize code here
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-START
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            if ((m_write_control_Enable = '1') and (m_write_address /= TO_UNSIGNED(0, 32))) and (m_write_address <= TO_UNSIGNED(32, 32)) then
-                m_register(TO_INTEGER(m_write_address)) := m_write_data_Data;
-            end if;
-            if (m_read_1_address >= TO_UNSIGNED(0, 32)) and (m_read_1_address <= TO_UNSIGNED(32, 32)) then
-                output_1_Data <= m_register(TO_INTEGER(m_read_1_address));
-            end if;
-            if (m_read_2_address >= TO_UNSIGNED(0, 32)) and (m_read_2_address <= TO_UNSIGNED(32, 32)) then
-                output_2_Data <= m_register(TO_INTEGER(m_read_2_address));
-            end if;
+            WB_Data_Hold := m_write_data_Data;
+            WB_RegisterWrite_Hold := m_write_address;
+            WB_WriteControl_Hold := m_write_control_Enable;
+            m_WB_Data_Data <= WB_Data_Hold;
+            m_WB_RegisterWrite_address <= WB_RegisterWrite_Hold;
+            m_WB_WriteControl_Enable <= WB_WriteControl_Hold;
 
 
 
-            FIN <= RDY;
+            FIN <= CLK;
 
         end if;
 

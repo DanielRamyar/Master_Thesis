@@ -17,14 +17,16 @@ use work.CUSTOM_TYPES.ALL;
 entity Inc_mux is
     port(
         -- Input bus m_input signals
-        m_input_Address: in T_SYSTEM_UINT32;
+        m_input_Address: in T_SYSTEM_UINT64;
         -- Input bus m_zero_out signals
         m_zero_out_Value: in T_SYSTEM_BOOL;
         -- Input bus m_Branch signals
         m_Branch_Enable: in T_SYSTEM_BOOL;
+        -- Input bus m_BranchUnit_Output signals
+        m_BranchUnit_Output_Address: in T_SYSTEM_UINT64;
 
         -- Output bus Mux_out signals
-        Mux_out_Address: out T_SYSTEM_UINT32;
+        Mux_out_Address: out T_SYSTEM_UINT64;
 
 
         -- Clock signal
@@ -81,7 +83,7 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_out_Address <= TO_UNSIGNED(0, 32);
+            Mux_out_Address <= TO_UNSIGNED(0, 64);
             local_var_0 := '0';
 
                                     
@@ -106,6 +108,8 @@ begin
             case local_var_0 is
                 when '0' =>
                     Mux_out_Address <= m_input_Address;
+                when '1' =>
+                    Mux_out_Address <= m_BranchUnit_Output_Address;
                 when others =>
             end case;
 

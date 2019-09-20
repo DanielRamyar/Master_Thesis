@@ -16,19 +16,22 @@ entity SingleCycleRISCV_export is
   port(
 
     -- Top-level bus PC_Input signals
-    PC_Input_Address: in STD_LOGIC_VECTOR(31 downto 0);
+    PC_Input_Address: in STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus ProgramCounter_To_InstructionMemory signals
-    ProgramCounter_To_InstructionMemory_Address: out STD_LOGIC_VECTOR(31 downto 0);
+    ProgramCounter_To_InstructionMemory_Address: out STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus Incrementer_Output signals
-    Incrementer_Output_Address: out STD_LOGIC_VECTOR(31 downto 0);
+    Incrementer_Output_Address: out STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus Zero_out signals
     Zero_out_Value: out STD_LOGIC;
 
     -- Top-level bus Branch signals
     Branch_Enable: out STD_LOGIC;
+
+    -- Top-level bus BranchUnit_Output signals
+    BranchUnit_Output_Address: out STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus Read_Register_1 signals
     Read_Register_1_address: in STD_LOGIC_VECTOR(31 downto 0);
@@ -73,7 +76,7 @@ entity SingleCycleRISCV_export is
     OperationCode_Value: in STD_LOGIC_VECTOR(7 downto 0);
 
     -- Top-level bus WB_Data signals
-    WB_Data_Data: out STD_LOGIC_VECTOR(31 downto 0);
+    WB_Data_Data: out STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus WB_RegisterWrite signals
     WB_RegisterWrite_address: out STD_LOGIC_VECTOR(31 downto 0);
@@ -82,19 +85,19 @@ entity SingleCycleRISCV_export is
     WB_WriteControl_Enable: out STD_LOGIC;
 
     -- Top-level bus Reg1_To_ALU signals
-    Reg1_To_ALU_Data: out STD_LOGIC_VECTOR(31 downto 0);
+    Reg1_To_ALU_Data: out STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus Reg2_To_Mux signals
-    Reg2_To_Mux_Data: out STD_LOGIC_VECTOR(31 downto 0);
+    Reg2_To_Mux_Data: out STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus Reg_Mux_Output signals
-    Reg_Mux_Output_Data: out STD_LOGIC_VECTOR(31 downto 0);
+    Reg_Mux_Output_Data: out STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus ALU_Output signals
-    ALU_Output_Value: out STD_LOGIC_VECTOR(31 downto 0);
+    ALU_Output_Value: out STD_LOGIC_VECTOR(63 downto 0);
 
     -- Top-level bus Write_Data signals
-    Write_Data_Data: in STD_LOGIC_VECTOR(31 downto 0);
+    Write_Data_Data: in STD_LOGIC_VECTOR(63 downto 0);
 
 
     -- User defined signals here
@@ -124,21 +127,23 @@ architecture RTL of SingleCycleRISCV_export is
   -- #### USER-DATA-SIGNALS-END
 
   -- Intermediate conversion signal to convert internal types to external ones
-  signal tmp_ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT32;
-  signal tmp_Incrementer_Output_Address : T_SYSTEM_UINT32;
+  signal tmp_ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT64;
+  signal tmp_Incrementer_Output_Address : T_SYSTEM_UINT64;
+  signal tmp_BranchUnit_Output_Address : T_SYSTEM_UINT64;
   signal tmp_Instruction_current : T_SYSTEM_UINT32;
-  signal tmp_WB_Data_Data : T_SYSTEM_INT32;
+  signal tmp_WB_Data_Data : T_SYSTEM_INT64;
   signal tmp_WB_RegisterWrite_address : T_SYSTEM_UINT32;
-  signal tmp_Reg1_To_ALU_Data : T_SYSTEM_INT32;
-  signal tmp_Reg2_To_Mux_Data : T_SYSTEM_INT32;
-  signal tmp_Reg_Mux_Output_Data : T_SYSTEM_INT32;
-  signal tmp_ALU_Output_Value : T_SYSTEM_INT32;
+  signal tmp_Reg1_To_ALU_Data : T_SYSTEM_INT64;
+  signal tmp_Reg2_To_Mux_Data : T_SYSTEM_INT64;
+  signal tmp_Reg_Mux_Output_Data : T_SYSTEM_INT64;
+  signal tmp_ALU_Output_Value : T_SYSTEM_INT64;
 
 begin
 
     -- Carry converted signals from entity to wrapped outputs
   ProgramCounter_To_InstructionMemory_Address <= std_logic_vector(tmp_ProgramCounter_To_InstructionMemory_Address);
   Incrementer_Output_Address <= std_logic_vector(tmp_Incrementer_Output_Address);
+  BranchUnit_Output_Address <= std_logic_vector(tmp_BranchUnit_Output_Address);
   Instruction_current <= std_logic_vector(tmp_Instruction_current);
   WB_Data_Data <= std_logic_vector(tmp_WB_Data_Data);
   WB_RegisterWrite_address <= std_logic_vector(tmp_WB_RegisterWrite_address);
@@ -164,6 +169,9 @@ begin
 
         -- Output bus Branch
         Branch_Enable => Branch_Enable,
+
+        -- Output bus BranchUnit_Output
+        BranchUnit_Output_Address => tmp_BranchUnit_Output_Address,
 
         -- Input bus Read_Register_1
         Read_Register_1_address => unsigned(Read_Register_1_address),

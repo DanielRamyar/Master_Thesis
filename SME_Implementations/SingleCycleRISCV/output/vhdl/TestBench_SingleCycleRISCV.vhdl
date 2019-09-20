@@ -27,11 +27,12 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal RESET : Std_logic;
   signal ENABLE : Std_logic;
 
-  signal PC_Input_Address : T_SYSTEM_UINT32;
-  signal ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT32;
-  signal Incrementer_Output_Address : T_SYSTEM_UINT32;
+  signal PC_Input_Address : T_SYSTEM_UINT64;
+  signal ProgramCounter_To_InstructionMemory_Address : T_SYSTEM_UINT64;
+  signal Incrementer_Output_Address : T_SYSTEM_UINT64;
   signal Zero_out_Value : T_SYSTEM_BOOL;
   signal Branch_Enable : T_SYSTEM_BOOL;
+  signal BranchUnit_Output_Address : T_SYSTEM_UINT64;
   signal Read_Register_1_address : T_SYSTEM_UINT32;
   signal Read_Register_2_address : T_SYSTEM_UINT32;
   signal Write_Register_address : T_SYSTEM_UINT32;
@@ -46,14 +47,14 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal ALU1_Enable : T_SYSTEM_BOOL;
   signal ALU0_Enable : T_SYSTEM_BOOL;
   signal OperationCode_Value : T_SYSTEM_UINT8;
-  signal WB_Data_Data : T_SYSTEM_INT32;
+  signal WB_Data_Data : T_SYSTEM_INT64;
   signal WB_RegisterWrite_address : T_SYSTEM_UINT32;
   signal WB_WriteControl_Enable : T_SYSTEM_BOOL;
-  signal Reg1_To_ALU_Data : T_SYSTEM_INT32;
-  signal Reg2_To_Mux_Data : T_SYSTEM_INT32;
-  signal Reg_Mux_Output_Data : T_SYSTEM_INT32;
-  signal ALU_Output_Value : T_SYSTEM_INT32;
-  signal Write_Data_Data : T_SYSTEM_INT32;
+  signal Reg1_To_ALU_Data : T_SYSTEM_INT64;
+  signal Reg2_To_Mux_Data : T_SYSTEM_INT64;
+  signal Reg_Mux_Output_Data : T_SYSTEM_INT64;
+  signal ALU_Output_Value : T_SYSTEM_INT64;
+  signal Write_Data_Data : T_SYSTEM_INT64;
 
 begin
 
@@ -65,6 +66,7 @@ begin
     Incrementer_Output_Address => Incrementer_Output_Address,
     Zero_out_Value => Zero_out_Value,
     Branch_Enable => Branch_Enable,
+    BranchUnit_Output_Address => BranchUnit_Output_Address,
     Read_Register_1_address => Read_Register_1_address,
     Read_Register_2_address => Read_Register_2_address,
     Write_Register_address => Write_Register_address,
@@ -170,6 +172,9 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Branch.Enable") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Branch.Enable" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "BranchUnit_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected BranchUnit_Output.Address" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Incrementer_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Incrementer_Output.Address" severity Failure;
@@ -341,6 +346,15 @@ begin
             	if not are_strings_equal(str(Branch_Enable), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for Branch_Enable in cycle " & integer'image(clockcycle) & " was: " & str(Branch_Enable) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(BranchUnit_Output_Address), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for BranchUnit_Output_Address in cycle " & integer'image(clockcycle) & " was: " & str(BranchUnit_Output_Address) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

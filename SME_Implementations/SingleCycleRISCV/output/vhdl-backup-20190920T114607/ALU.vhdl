@@ -19,12 +19,12 @@ entity ALU is
         -- Input bus m_OperationCode signals
         m_OperationCode_Value: in T_SYSTEM_UINT8;
         -- Input bus m_ALU_In_1 signals
-        m_ALU_In_1_Data: in T_SYSTEM_INT64;
+        m_ALU_In_1_Data: in T_SYSTEM_INT32;
         -- Input bus m_ALU_In_2 signals
-        m_ALU_In_2_Data: in T_SYSTEM_INT64;
+        m_ALU_In_2_Data: in T_SYSTEM_INT32;
 
         -- Output bus output signals
-        output_Value: out T_SYSTEM_INT64;
+        output_Value: out T_SYSTEM_INT32;
         -- Output bus zero_out signals
         zero_out_Value: out T_SYSTEM_BOOL;
 
@@ -72,10 +72,10 @@ begin
         RST
     )
     -- Internal variables
-    variable num : T_SYSTEM_INT64;
-    variable num2 : T_SYSTEM_INT64;
-    variable num3 : T_SYSTEM_INT64;
-    variable num4 : T_SYSTEM_INT64;
+    variable num : T_SYSTEM_INT32;
+    variable num2 : T_SYSTEM_INT32;
+    variable num3 : T_SYSTEM_INT32;
+    variable num4 : T_SYSTEM_INT32;
     variable local_var_0 : INTEGER;
 
     variable reentry_guard: std_logic;
@@ -88,12 +88,12 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            output_Value <= TO_SIGNED(0, 64);
+            output_Value <= TO_SIGNED(0, 32);
             zero_out_Value <= '0';
-            num := TO_SIGNED(0, 64);
-            num2 := TO_SIGNED(0, 64);
-            num3 := TO_SIGNED(0, 64);
-            num4 := TO_SIGNED(0, 64);
+            num := TO_SIGNED(0, 32);
+            num2 := TO_SIGNED(0, 32);
+            num3 := TO_SIGNED(0, 32);
+            num4 := TO_SIGNED(0, 32);
             local_var_0 := 0;
 
                                     
@@ -118,7 +118,7 @@ begin
                 when 0 =>
                     num := m_ALU_In_1_Data and m_ALU_In_2_Data;
                     output_Value <= num;
-                    if num = TO_SIGNED(0, 64) then
+                    if num = TO_SIGNED(0, 32) then
                         zero_out_Value <= '1';
                     else
                         zero_out_Value <= '0';
@@ -126,7 +126,7 @@ begin
                 when 1 =>
                     num2 := m_ALU_In_1_Data or m_ALU_In_2_Data;
                     output_Value <= num2;
-                    if num2 = TO_SIGNED(0, 64) then
+                    if num2 = TO_SIGNED(0, 32) then
                         zero_out_Value <= '1';
                     else
                         zero_out_Value <= '0';
@@ -134,7 +134,7 @@ begin
                 when 2 =>
                     num3 := m_ALU_In_1_Data + m_ALU_In_2_Data;
                     output_Value <= num3;
-                    if num3 = TO_SIGNED(0, 64) then
+                    if num3 = TO_SIGNED(0, 32) then
                         zero_out_Value <= '1';
                     else
                         zero_out_Value <= '0';
@@ -142,7 +142,7 @@ begin
                 when 6 =>
                     num4 := m_ALU_In_1_Data - m_ALU_In_2_Data;
                     output_Value <= num4;
-                    if num4 = TO_SIGNED(0, 64) then
+                    if num4 = TO_SIGNED(0, 32) then
                         zero_out_Value <= '1';
                     else
                         zero_out_Value <= '0';
