@@ -30,6 +30,17 @@ namespace SingleCycleRISCV {
 
                 output.Immediate = temp0;
             }
+            // Checks if opcode is a S-type instruction
+            if (opcode == 35) { 
+                temp1 = m_instruction.current >> 7   & (uint)31;   // Extracts bit 7-11 from instruction
+                temp2 = m_instruction.current >> 25  & (uint)127;  // Extracts bit 25-31 from instruction
+
+                // Creates signextended immediate field for S-type instruction
+                temp0 = (long)0 | (long)temp2 << 5
+                                | (long)temp1;
+
+                output.Immediate = temp0;
+            }
 
 
         }
