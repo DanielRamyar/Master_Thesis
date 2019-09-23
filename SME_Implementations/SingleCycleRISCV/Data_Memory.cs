@@ -24,6 +24,7 @@ namespace SingleCycleRISCV {
             else if (m_MemWrite.Enable) {
                 Data_Memory[m_Address.Value] = m_Data_input.Data;
             }
+            Console.WriteLine(string.Join(", ", Data_Memory)); // Using this to print whole register
         }
     }
 
