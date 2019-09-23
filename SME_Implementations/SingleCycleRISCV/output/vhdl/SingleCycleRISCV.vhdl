@@ -240,7 +240,7 @@ begin
     -- Entity  IM signals
     IM: entity work.IM
     generic map(
-        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), TO_UNSIGNED(51, 8), TO_UNSIGNED(0, 8), TO_UNSIGNED(248, 8), TO_UNSIGNED(10, 8), others => TO_UNSIGNED(51, 8))
+        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), TO_UNSIGNED(51, 8), TO_UNSIGNED(255, 8), TO_UNSIGNED(222, 8), TO_UNSIGNED(14, 8), TO_UNSIGNED(227, 8), TO_UNSIGNED(0, 8), TO_UNSIGNED(248, 8), TO_UNSIGNED(10, 8), others => TO_UNSIGNED(51, 8))
     )
     port map (
         -- Input bus ProgramCounter_To_InstructionMemory
