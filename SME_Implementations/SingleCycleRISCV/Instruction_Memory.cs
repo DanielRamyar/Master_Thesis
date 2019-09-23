@@ -17,8 +17,9 @@ namespace SingleCycleRISCV {
         [InputBus]
         private readonly ProgramCounter_To_InstructionMemory m_input = Scope.CreateOrLoadBus<ProgramCounter_To_InstructionMemory>();
 
-        private readonly byte[] Instruction_Memory = {1, 8, 137, 51,     // add x18, x16, x17 
-                                                      255, 222, 14, 227, // beq x28, x29, -2 
+        private readonly byte[] Instruction_Memory = {1, 8, 137, 51,      // add x18, x16, x17
+                                                      1, 39, 176, 35,     // sd x18, x15, 0 
+                                                      255, 222, 14, 227,  // beq x28, x29, -2 
                                                       0, 248, 10, 51};
 
         protected override void OnTick() {
