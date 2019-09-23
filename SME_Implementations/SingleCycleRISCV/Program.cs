@@ -16,6 +16,7 @@ namespace SingleCycleRISCV {
                 var ALUCon = new ALU_Control();
                 var Reg = new Register();
                 var mALU = new ALU();
+                var mDM = new DM();
                 var regmux = new Reg_mux();
                 var memmux = new Mem_mux();
                 var WB = new WriteBuffer();
