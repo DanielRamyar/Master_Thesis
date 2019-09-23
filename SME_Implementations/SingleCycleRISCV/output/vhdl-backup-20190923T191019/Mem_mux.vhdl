@@ -20,8 +20,6 @@ entity Mem_mux is
         m_ALU_in_Value: in T_SYSTEM_INT64;
         -- Input bus m_MemtoReg signals
         m_MemtoReg_Enable: in T_SYSTEM_BOOL;
-        -- Input bus m_DataMemory_in signals
-        m_DataMemory_in_Data: in T_SYSTEM_INT64;
 
         -- Output bus Mux_out signals
         Mux_out_Data: out T_SYSTEM_INT64;
@@ -101,8 +99,6 @@ begin
             case m_MemtoReg_Enable is
                 when '0' =>
                     Mux_out_Data <= m_ALU_in_Value;
-                when '1' =>
-                    Mux_out_Data <= m_DataMemory_in_Data;
                 when others =>
             end case;
 

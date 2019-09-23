@@ -14,17 +14,26 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mem_mux is
+entity vhdl_Register is
+    generic(
+        reset_m_register: in vhdl_Register_m_register_type
+    );
     port(
-        -- Input bus m_ALU_in signals
-        m_ALU_in_Value: in T_SYSTEM_INT64;
-        -- Input bus m_MemtoReg signals
-        m_MemtoReg_Enable: in T_SYSTEM_BOOL;
-        -- Input bus m_DataMemory_in signals
-        m_DataMemory_in_Data: in T_SYSTEM_INT64;
+        -- Input bus m_read_1 signals
+        m_read_1_address: in T_SYSTEM_UINT32;
+        -- Input bus m_read_2 signals
+        m_read_2_address: in T_SYSTEM_UINT32;
+        -- Input bus m_write_data signals
+        m_write_data_Data: in T_SYSTEM_INT64;
+        -- Input bus m_write signals
+        m_write_address: in T_SYSTEM_UINT32;
+        -- Input bus m_write_control signals
+        m_write_control_Enable: in T_SYSTEM_BOOL;
 
-        -- Output bus Mux_out signals
-        Mux_out_Data: out T_SYSTEM_INT64;
+        -- Output bus output_1 signals
+        output_1_Data: out T_SYSTEM_INT64;
+        -- Output bus output_2 signals
+        output_2_Data: out T_SYSTEM_INT64;
 
 
         -- Clock signal
@@ -42,9 +51,9 @@ entity Mem_mux is
         -- Reset signal
         RST : in Std_logic
     );
-end Mem_mux;
+end vhdl_Register;
 
-architecture RTL of Mem_mux is
+architecture RTL of vhdl_Register is
 
 
 
@@ -69,6 +78,8 @@ begin
         RDY,
         RST
     )
+    -- Internal variables
+    variable m_register : vhdl_Register_m_register_type := reset_m_register;
 
     variable reentry_guard: std_logic;
 
@@ -80,7 +91,9 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_out_Data <= TO_SIGNED(0, 64);
+            output_1_Data <= TO_SIGNED(0, 64);
+            output_2_Data <= TO_SIGNED(0, 64);
+            m_register := reset_m_register;
 
                                     
             reentry_guard := '0';
@@ -98,13 +111,15 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_MemtoReg_Enable is
-                when '0' =>
-                    Mux_out_Data <= m_ALU_in_Value;
-                when '1' =>
-                    Mux_out_Data <= m_DataMemory_in_Data;
-                when others =>
-            end case;
+            if ((m_write_control_Enable = '1') and (m_write_address /= TO_UNSIGNED(0, 32))) and (m_write_address <= TO_UNSIGNED(32, 32)) then
+                m_register(TO_INTEGER(m_write_address)) := m_write_data_Data;
+            end if;
+            if (m_read_1_address >= TO_UNSIGNED(0, 32)) and (m_read_1_address <= TO_UNSIGNED(32, 32)) then
+                output_1_Data <= m_register(TO_INTEGER(m_read_1_address));
+            end if;
+            if (m_read_2_address >= TO_UNSIGNED(0, 32)) and (m_read_2_address <= TO_UNSIGNED(32, 32)) then
+                output_2_Data <= m_register(TO_INTEGER(m_read_2_address));
+            end if;
 
 
 

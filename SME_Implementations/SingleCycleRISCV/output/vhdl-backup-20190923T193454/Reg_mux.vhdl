@@ -14,14 +14,14 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mem_mux is
+entity Reg_mux is
     port(
-        -- Input bus m_ALU_in signals
-        m_ALU_in_Value: in T_SYSTEM_INT64;
-        -- Input bus m_MemtoReg signals
-        m_MemtoReg_Enable: in T_SYSTEM_BOOL;
-        -- Input bus m_DataMemory_in signals
-        m_DataMemory_in_Data: in T_SYSTEM_INT64;
+        -- Input bus m_Reg_in signals
+        m_Reg_in_Data: in T_SYSTEM_INT64;
+        -- Input bus m_ALUSrc signals
+        m_ALUSrc_Enable: in T_SYSTEM_BOOL;
+        -- Input bus m_ImmGen_in signals
+        m_ImmGen_in_Immediate: in T_SYSTEM_INT64;
 
         -- Output bus Mux_out signals
         Mux_out_Data: out T_SYSTEM_INT64;
@@ -42,9 +42,9 @@ entity Mem_mux is
         -- Reset signal
         RST : in Std_logic
     );
-end Mem_mux;
+end Reg_mux;
 
-architecture RTL of Mem_mux is
+architecture RTL of Reg_mux is
 
 
 
@@ -98,11 +98,11 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_MemtoReg_Enable is
+            case m_ALUSrc_Enable is
                 when '0' =>
-                    Mux_out_Data <= m_ALU_in_Value;
+                    Mux_out_Data <= m_Reg_in_Data;
                 when '1' =>
-                    Mux_out_Data <= m_DataMemory_in_Data;
+                    Mux_out_Data <= m_ImmGen_in_Immediate;
                 when others =>
             end case;
 

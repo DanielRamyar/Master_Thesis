@@ -133,6 +133,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PPRDIR/DM.vhdl">
+        <FileInfo>
+          <Attr Name="Library" Val="xil_defaultlib"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/Reg_mux.vhdl">
         <FileInfo>
           <Attr Name="Library" Val="xil_defaultlib"/>
@@ -199,7 +206,7 @@
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SrcSet" Val="sources_1"/>
-        <Option Name="xsim.simulate.runtime" Val="70ns"/>
+        <Option Name="xsim.simulate.runtime" Val="60ns"/>
       </Config>
     </FileSet>
   </FileSets>

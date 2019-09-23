@@ -96,6 +96,9 @@ entity SingleCycleRISCV_export is
     -- Top-level bus ALU_Output signals
     ALU_Output_Value: out STD_LOGIC_VECTOR(63 downto 0);
 
+    -- Top-level bus DM_Output signals
+    DM_Output_Data: out STD_LOGIC_VECTOR(63 downto 0);
+
     -- Top-level bus Write_Data signals
     Write_Data_Data: in STD_LOGIC_VECTOR(63 downto 0);
 
@@ -137,6 +140,7 @@ architecture RTL of SingleCycleRISCV_export is
   signal tmp_Reg2_To_Mux_Data : T_SYSTEM_INT64;
   signal tmp_Reg_Mux_Output_Data : T_SYSTEM_INT64;
   signal tmp_ALU_Output_Value : T_SYSTEM_INT64;
+  signal tmp_DM_Output_Data : T_SYSTEM_INT64;
 
 begin
 
@@ -151,6 +155,7 @@ begin
   Reg2_To_Mux_Data <= std_logic_vector(tmp_Reg2_To_Mux_Data);
   Reg_Mux_Output_Data <= std_logic_vector(tmp_Reg_Mux_Output_Data);
   ALU_Output_Value <= std_logic_vector(tmp_ALU_Output_Value);
+  DM_Output_Data <= std_logic_vector(tmp_DM_Output_Data);
 
     -- Entity SingleCycleRISCV signals
     SingleCycleRISCV: entity work.SingleCycleRISCV
@@ -235,6 +240,9 @@ begin
 
         -- Output bus ALU_Output
         ALU_Output_Value => tmp_ALU_Output_Value,
+
+        -- Output bus DM_Output
+        DM_Output_Data => tmp_DM_Output_Data,
 
         -- Input bus Write_Data
         Write_Data_Data => signed(Write_Data_Data),

@@ -48,6 +48,8 @@ $(WORKDIR)/vhdl_Register.o: vhdl_Register.vhdl $(WORKDIR)/system_types.o $(WORKD
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) vhdl_Register.vhdl
 $(WORKDIR)/ALU.o: ALU.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) ALU.vhdl
+$(WORKDIR)/DM.o: DM.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) DM.vhdl
 $(WORKDIR)/Reg_mux.o: Reg_mux.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Reg_mux.vhdl
 $(WORKDIR)/Mem_mux.o: Mem_mux.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
@@ -59,7 +61,7 @@ $(WORKDIR)/csv_util.o: csv_util.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_
 
 
 
-$(WORKDIR)/SingleCycleRISCV.o: SingleCycleRISCV.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)/PC.o $(WORKDIR)/Incrementer.o $(WORKDIR)/Inc_mux.o $(WORKDIR)/IM.o $(WORKDIR)/ImmGen.o $(WORKDIR)/Control.o $(WORKDIR)/ALU_Control.o $(WORKDIR)/vhdl_Register.o $(WORKDIR)/ALU.o $(WORKDIR)/Reg_mux.o $(WORKDIR)/Mem_mux.o $(WORKDIR)/WriteBuffer.o $(WORKDIR)/csv_util.o 
+$(WORKDIR)/SingleCycleRISCV.o: SingleCycleRISCV.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)/PC.o $(WORKDIR)/Incrementer.o $(WORKDIR)/Inc_mux.o $(WORKDIR)/IM.o $(WORKDIR)/ImmGen.o $(WORKDIR)/Control.o $(WORKDIR)/ALU_Control.o $(WORKDIR)/vhdl_Register.o $(WORKDIR)/ALU.o $(WORKDIR)/DM.o $(WORKDIR)/Reg_mux.o $(WORKDIR)/Mem_mux.o $(WORKDIR)/WriteBuffer.o $(WORKDIR)/csv_util.o 
 
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) SingleCycleRISCV.vhdl
 

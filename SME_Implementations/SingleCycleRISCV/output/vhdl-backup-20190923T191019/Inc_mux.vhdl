@@ -14,17 +14,19 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mem_mux is
+entity Inc_mux is
     port(
-        -- Input bus m_ALU_in signals
-        m_ALU_in_Value: in T_SYSTEM_INT64;
-        -- Input bus m_MemtoReg signals
-        m_MemtoReg_Enable: in T_SYSTEM_BOOL;
-        -- Input bus m_DataMemory_in signals
-        m_DataMemory_in_Data: in T_SYSTEM_INT64;
+        -- Input bus m_input signals
+        m_input_Address: in T_SYSTEM_UINT64;
+        -- Input bus m_zero_out signals
+        m_zero_out_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_Branch signals
+        m_Branch_Enable: in T_SYSTEM_BOOL;
+        -- Input bus m_BranchUnit_Output signals
+        m_BranchUnit_Output_Address: in T_SYSTEM_UINT64;
 
         -- Output bus Mux_out signals
-        Mux_out_Data: out T_SYSTEM_INT64;
+        Mux_out_Address: out T_SYSTEM_UINT64;
 
 
         -- Clock signal
@@ -42,9 +44,9 @@ entity Mem_mux is
         -- Reset signal
         RST : in Std_logic
     );
-end Mem_mux;
+end Inc_mux;
 
-architecture RTL of Mem_mux is
+architecture RTL of Inc_mux is
 
 
 
@@ -66,11 +68,12 @@ begin
         -- Custom sensitivity signals here
         -- #### USER-DATA-SENSITIVITY-START
         -- #### USER-DATA-SENSITIVITY-END
-        RDY,
+        CLK,
         RST
     )
+    -- Internal variables
+    variable local_var_0 : T_SYSTEM_BOOL;
 
-    variable reentry_guard: std_logic;
 
     -- #### USER-DATA-NONCLOCKEDVARIABLES-START
     -- #### USER-DATA-NONCLOCKEDVARIABLES-END
@@ -80,35 +83,39 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_out_Data <= TO_SIGNED(0, 64);
+            Mux_out_Address <= TO_UNSIGNED(0, 64);
+            local_var_0 := '0';
 
                                     
-            reentry_guard := '0';
             FIN <= '0';
 
             -- Initialize code here
             -- #### USER-DATA-NONCLOCKEDRESETCODE-START
             -- #### USER-DATA-NONCLOCKEDRESETCODE-END
 
-        elsif reentry_guard /= RDY then
-            reentry_guard := RDY;
+        elsif rising_edge(CLK) then
 
             -- Initialize code here
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-START
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_MemtoReg_Enable is
+            if (m_zero_out_Value = '1') and (m_Branch_Enable = '1') then
+                local_var_0 := '1';
+            else
+                local_var_0 := '0';
+            end if;
+            case local_var_0 is
                 when '0' =>
-                    Mux_out_Data <= m_ALU_in_Value;
+                    Mux_out_Address <= m_input_Address;
                 when '1' =>
-                    Mux_out_Data <= m_DataMemory_in_Data;
+                    Mux_out_Address <= m_BranchUnit_Output_Address;
                 when others =>
             end case;
 
 
 
-            FIN <= RDY;
+            FIN <= CLK;
 
         end if;
 

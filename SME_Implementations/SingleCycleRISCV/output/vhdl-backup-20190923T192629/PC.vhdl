@@ -14,17 +14,16 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mem_mux is
+entity PC is
+    generic(
+        reset_address_hold: in T_SYSTEM_UINT64
+    );
     port(
-        -- Input bus m_ALU_in signals
-        m_ALU_in_Value: in T_SYSTEM_INT64;
-        -- Input bus m_MemtoReg signals
-        m_MemtoReg_Enable: in T_SYSTEM_BOOL;
-        -- Input bus m_DataMemory_in signals
-        m_DataMemory_in_Data: in T_SYSTEM_INT64;
+        -- Input bus m_input signals
+        m_input_Address: in T_SYSTEM_UINT64;
 
-        -- Output bus Mux_out signals
-        Mux_out_Data: out T_SYSTEM_INT64;
+        -- Output bus output signals
+        output_Address: out T_SYSTEM_UINT64;
 
 
         -- Clock signal
@@ -42,9 +41,9 @@ entity Mem_mux is
         -- Reset signal
         RST : in Std_logic
     );
-end Mem_mux;
+end PC;
 
-architecture RTL of Mem_mux is
+architecture RTL of PC is
 
 
 
@@ -69,6 +68,8 @@ begin
         RDY,
         RST
     )
+    -- Internal variables
+    variable address_hold : T_SYSTEM_UINT64 := reset_address_hold;
 
     variable reentry_guard: std_logic;
 
@@ -80,7 +81,8 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_out_Data <= TO_SIGNED(0, 64);
+            output_Address <= TO_UNSIGNED(0, 64);
+            address_hold := reset_address_hold;
 
                                     
             reentry_guard := '0';
@@ -98,13 +100,8 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_MemtoReg_Enable is
-                when '0' =>
-                    Mux_out_Data <= m_ALU_in_Value;
-                when '1' =>
-                    Mux_out_Data <= m_DataMemory_in_Data;
-                when others =>
-            end case;
+            address_hold := m_input_Address;
+            output_Address <= address_hold;
 
 
 

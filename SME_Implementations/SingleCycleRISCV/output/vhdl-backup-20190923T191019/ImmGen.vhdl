@@ -14,17 +14,20 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mem_mux is
+entity ImmGen is
+    generic(
+        reset_temp0: in T_SYSTEM_INT64;
+        reset_temp1: in T_SYSTEM_UINT32;
+        reset_temp2: in T_SYSTEM_UINT32;
+        reset_temp3: in T_SYSTEM_UINT32;
+        reset_temp4: in T_SYSTEM_UINT32
+    );
     port(
-        -- Input bus m_ALU_in signals
-        m_ALU_in_Value: in T_SYSTEM_INT64;
-        -- Input bus m_MemtoReg signals
-        m_MemtoReg_Enable: in T_SYSTEM_BOOL;
-        -- Input bus m_DataMemory_in signals
-        m_DataMemory_in_Data: in T_SYSTEM_INT64;
+        -- Input bus m_instruction signals
+        m_instruction_current: in T_SYSTEM_UINT32;
 
-        -- Output bus Mux_out signals
-        Mux_out_Data: out T_SYSTEM_INT64;
+        -- Output bus output signals
+        output_Immediate: out T_SYSTEM_INT64;
 
 
         -- Clock signal
@@ -42,9 +45,9 @@ entity Mem_mux is
         -- Reset signal
         RST : in Std_logic
     );
-end Mem_mux;
+end ImmGen;
 
-architecture RTL of Mem_mux is
+architecture RTL of ImmGen is
 
 
 
@@ -69,6 +72,13 @@ begin
         RDY,
         RST
     )
+    -- Internal variables
+    variable num : T_SYSTEM_UINT32;
+    variable temp0 : T_SYSTEM_INT64 := reset_temp0;
+    variable temp1 : T_SYSTEM_UINT32 := reset_temp1;
+    variable temp2 : T_SYSTEM_UINT32 := reset_temp2;
+    variable temp3 : T_SYSTEM_UINT32 := reset_temp3;
+    variable temp4 : T_SYSTEM_UINT32 := reset_temp4;
 
     variable reentry_guard: std_logic;
 
@@ -80,7 +90,13 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_out_Data <= TO_SIGNED(0, 64);
+            output_Immediate <= TO_SIGNED(0, 64);
+            num := TO_UNSIGNED(0, 32);
+            temp0 := reset_temp0;
+            temp1 := reset_temp1;
+            temp2 := reset_temp2;
+            temp3 := reset_temp3;
+            temp4 := reset_temp4;
 
                                     
             reentry_guard := '0';
@@ -98,13 +114,15 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_MemtoReg_Enable is
-                when '0' =>
-                    Mux_out_Data <= m_ALU_in_Value;
-                when '1' =>
-                    Mux_out_Data <= m_DataMemory_in_Data;
-                when others =>
-            end case;
+            num := m_instruction_current and TO_UNSIGNED(127, 32);
+            if num = TO_UNSIGNED(99, 32) then
+                temp1 := (shift_right(m_instruction_current, 8)) and TO_UNSIGNED(15, 32);
+                temp2 := (shift_right(m_instruction_current, 25)) and TO_UNSIGNED(63, 32);
+                temp3 := (shift_right(m_instruction_current, 7)) and TO_UNSIGNED(1, 32);
+                temp4 := (shift_right(m_instruction_current, 31)) and TO_UNSIGNED(1, 32);
+                temp0 := SIGNED(((((TO_UNSIGNED(0, 64) or (shift_left(resize(temp4, T_SYSTEM_UINT64'length), 11))) or (shift_left(resize(temp3, T_SYSTEM_UINT64'length), 10))) or (shift_left(resize(temp2, T_SYSTEM_UINT64'length), 4))) or resize(temp1, T_SYSTEM_UINT64'length)));
+                output_Immediate <= temp0;
+            end if;
 
 
 

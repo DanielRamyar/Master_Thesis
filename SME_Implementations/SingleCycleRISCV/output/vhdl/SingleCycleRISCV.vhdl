@@ -97,6 +97,9 @@ entity SingleCycleRISCV is
     -- Top-level bus ALU_Output signals
     ALU_Output_Value: out T_SYSTEM_INT64;
 
+    -- Top-level bus DM_Output signals
+    DM_Output_Data: out T_SYSTEM_INT64;
+
     -- Top-level bus Write_Data signals
     Write_Data_Data: in T_SYSTEM_INT64;
 
@@ -145,6 +148,8 @@ architecture RTL of SingleCycleRISCV is
     signal FIN_Register, RDY_Register : std_logic;
 
     signal FIN_ALU, RDY_ALU : std_logic;
+
+    signal FIN_DM, RDY_DM : std_logic;
 
     signal FIN_Reg_mux, RDY_Reg_mux : std_logic;
 
@@ -240,7 +245,7 @@ begin
     -- Entity  IM signals
     IM: entity work.IM
     generic map(
-        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), TO_UNSIGNED(51, 8), TO_UNSIGNED(255, 8), TO_UNSIGNED(222, 8), TO_UNSIGNED(14, 8), TO_UNSIGNED(227, 8), TO_UNSIGNED(0, 8), TO_UNSIGNED(248, 8), TO_UNSIGNED(10, 8), others => TO_UNSIGNED(51, 8))
+        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), TO_UNSIGNED(51, 8), TO_UNSIGNED(1, 8), TO_UNSIGNED(39, 8), TO_UNSIGNED(176, 8), TO_UNSIGNED(35, 8), TO_UNSIGNED(255, 8), TO_UNSIGNED(222, 8), TO_UNSIGNED(14, 8), TO_UNSIGNED(227, 8), TO_UNSIGNED(0, 8), TO_UNSIGNED(248, 8), TO_UNSIGNED(10, 8), others => TO_UNSIGNED(51, 8))
     )
     port map (
         -- Input bus ProgramCounter_To_InstructionMemory
@@ -490,6 +495,41 @@ begin
     );
 
 
+    -- Entity  DM signals
+    DM: entity work.DM
+    generic map(
+        reset_Data_Memory => (others => TO_SIGNED(0, 64))
+    )
+    port map (
+        -- Input bus ALU_Output
+        m_Address_Value => ALU_Output_Value,
+
+
+        -- Input bus Reg2_To_Mux
+        m_Data_input_Data => Reg2_To_Mux_Data,
+
+
+        -- Input bus MemRead
+        m_MemRead_Enable => MemRead_Enable,
+
+
+        -- Input bus MemWrite
+        m_MemWrite_Enable => MemWrite_Enable,
+
+
+        -- Output bus DM_Output
+        output_Data => DM_Output_Data,
+
+
+
+        CLK => CLK,
+        RDY => RDY_DM,
+        FIN => FIN_DM,
+        ENB => ENB,
+        RST => RST
+    );
+
+
     -- Entity  Reg_mux signals
     Reg_mux: entity work.Reg_mux
     port map (
@@ -527,6 +567,10 @@ begin
 
         -- Input bus MemtoReg
         m_MemtoReg_Enable => MemtoReg_Enable,
+
+
+        -- Input bus DM_Output
+        m_DataMemory_in_Data => DM_Output_Data,
 
 
         -- Output bus Write_Data
@@ -620,6 +664,17 @@ begin
         RDY_ALU <= FIN_ALU_Control;
       end if;
     end process;
+    -- Setup the RDY signal for DM
+    process(
+      FIN_ALU, 
+      FIN_Register, 
+      FIN_Control
+    )
+    begin
+      if FIN_ALU = FIN_Register AND FIN_ALU = FIN_Control then
+        RDY_DM <= FIN_ALU;
+      end if;
+    end process;
     -- Setup the RDY signal for Reg_mux
     process(
       FIN_Register, 
@@ -634,10 +689,11 @@ begin
     -- Setup the RDY signal for Mem_mux
     process(
       FIN_ALU, 
-      FIN_Control
+      FIN_Control, 
+      FIN_DM
     )
     begin
-      if FIN_ALU = FIN_Control then
+      if FIN_ALU = FIN_Control AND FIN_ALU = FIN_DM then
         RDY_Mem_mux <= FIN_ALU;
       end if;
     end process;
@@ -653,12 +709,13 @@ begin
       FIN_ALU_Control, 
       FIN_Register, 
       FIN_ALU, 
+      FIN_DM, 
       FIN_Reg_mux, 
       FIN_Mem_mux, 
       FIN_WriteBuffer
     )
     begin
-      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_ImmGen AND FIN_PC = FIN_Control AND FIN_PC = FIN_ALU_Control AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
+      if FIN_PC = FIN_Incrementer AND FIN_PC = FIN_Inc_mux AND FIN_PC = FIN_IM AND FIN_PC = FIN_ImmGen AND FIN_PC = FIN_Control AND FIN_PC = FIN_ALU_Control AND FIN_PC = FIN_Register AND FIN_PC = FIN_ALU AND FIN_PC = FIN_DM AND FIN_PC = FIN_Reg_mux AND FIN_PC = FIN_Mem_mux AND FIN_PC = FIN_WriteBuffer then
         FIN <= FIN_PC;
       end if;
     end process;

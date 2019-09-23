@@ -54,6 +54,7 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal Reg2_To_Mux_Data : T_SYSTEM_INT64;
   signal Reg_Mux_Output_Data : T_SYSTEM_INT64;
   signal ALU_Output_Value : T_SYSTEM_INT64;
+  signal DM_Output_Data : T_SYSTEM_INT64;
   signal Write_Data_Data : T_SYSTEM_INT64;
 
 begin
@@ -88,6 +89,7 @@ begin
     Reg2_To_Mux_Data => Reg2_To_Mux_Data,
     Reg_Mux_Output_Data => Reg_Mux_Output_Data,
     ALU_Output_Value => ALU_Output_Value,
+    DM_Output_Data => DM_Output_Data,
     Write_Data_Data => Write_Data_Data,
 
     ENB => ENABLE,
@@ -175,6 +177,9 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "BranchUnit_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected BranchUnit_Output.Address" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "DM_Output.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected DM_Output.Data" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "Incrementer_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Incrementer_Output.Address" severity Failure;
@@ -355,6 +360,15 @@ begin
             	if not are_strings_equal(str(BranchUnit_Output_Address), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for BranchUnit_Output_Address in cycle " & integer'image(clockcycle) & " was: " & str(BranchUnit_Output_Address) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(DM_Output_Data), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for DM_Output_Data in cycle " & integer'image(clockcycle) & " was: " & str(DM_Output_Data) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;
