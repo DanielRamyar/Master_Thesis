@@ -15,7 +15,7 @@ namespace SingleCycleRISCV {
         [OutputBus]
 		public readonly DM_Output output = Scope.CreateOrLoadBus<DM_Output>();
 
-        long[] Data_Memory = new long[100];
+        long[] Data_Memory = new long[10];
 
         protected override void OnTick() {
             if (m_MemRead.Enable) {
