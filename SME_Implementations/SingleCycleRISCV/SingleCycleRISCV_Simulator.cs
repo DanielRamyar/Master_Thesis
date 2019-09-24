@@ -40,24 +40,33 @@ namespace SingleCycleRISCV {
         [InputBus]
         public readonly Mem_Mux_Output Mux_out = Scope.CreateOrLoadBus<Mem_Mux_Output>();
 
+        // Is cpu running
+        [InputBus]
+        public readonly CPU m_CPU = Scope.CreateOrLoadBus<CPU>();
+
         public async override System.Threading.Tasks.Task Run() {
 
             Console.WriteLine("Starting test!\n");
-            await ClockAsync();
+            Console.WriteLine($"Is cpu running: {m_CPU.Running}");
+            while (m_CPU.Running) {
+                await ClockAsync();
+                Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
+                Console.WriteLine($"Program counter output: {PC_output.Address}");
+                Console.WriteLine($"Incrementer output: {incrementer_output.Address}");
+                Console.WriteLine($"Instruction memory input: {PC_output.Address}");
+                Console.WriteLine($"Register input 1: {m_read_1.address}");
+                Console.WriteLine($"Register input 2: {m_read_2.address}");
+                Console.WriteLine($"Register Address: {m_write.address}");
+                Console.WriteLine($"Register Write Data: {m_write_data.Data}");
+                Console.WriteLine($"Register Control: {m_write_control.Enable}");
+                Console.WriteLine($"Register Output 1: {Register_output_1.Data}");
+                Console.WriteLine($"Register Output 2: {Register_output_2.Data}");
+                Console.WriteLine($"ALU Output: {ALU_output.Value} \n");
+            }
+            // await ClockAsync();
 
-            await ClockAsync();
-            Console.WriteLine($"Program counter PC_input: {PC_input.Address}");
-            Console.WriteLine($"Program counter output: {PC_output.Address}");
-            Console.WriteLine($"Incrementer output: {incrementer_output.Address}");
-            Console.WriteLine($"Instruction memory input: {PC_output.Address}");
-            Console.WriteLine($"Register input 1: {m_read_1.address}");
-            Console.WriteLine($"Register input 2: {m_read_2.address}");
-            Console.WriteLine($"Register Address: {m_write.address}");
-            Console.WriteLine($"Register Write Data: {m_write_data.Data}");
-            Console.WriteLine($"Register Control: {m_write_control.Enable}");
-            Console.WriteLine($"Register Output 1: {Register_output_1.Data}");
-            Console.WriteLine($"Register Output 2: {Register_output_2.Data}");
-            Console.WriteLine($"ALU Output: {ALU_output.Value} \n");
+            // await ClockAsync();
+            
 
 
             Console.WriteLine("Done testing!");

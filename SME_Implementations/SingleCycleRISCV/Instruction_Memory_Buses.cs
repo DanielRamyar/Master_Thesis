@@ -8,4 +8,10 @@ namespace SingleCycleRISCV {
         uint current {get; set;}
     }
 
+    [TopLevelOutputBus]
+    public interface CPU : IBus {
+        [InitialValue(true)]
+        bool Running {get; set;}
+    }
+
 }
