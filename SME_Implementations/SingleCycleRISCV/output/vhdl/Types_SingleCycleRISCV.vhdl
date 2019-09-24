@@ -16,9 +16,9 @@ package CUSTOM_TYPES is
 -- #### USER-DATA-CORETYPES-START
 -- #### USER-DATA-CORETYPES-END
 
-    subtype IM_Instruction_Memory_type is T_SYSTEM_UINT8_ARRAY(0 to 15);
+    subtype IM_Instruction_Memory_type is T_SYSTEM_UINT8_ARRAY(0 to 11);
     subtype vhdl_Register_m_register_type is T_SYSTEM_INT64_ARRAY(0 to 31);
-    subtype DM_Data_Memory_type is T_SYSTEM_INT64_ARRAY(0 to 99);
+    subtype DM_Data_Memory_type is T_SYSTEM_INT64_ARRAY(0 to 9);
 
 
 

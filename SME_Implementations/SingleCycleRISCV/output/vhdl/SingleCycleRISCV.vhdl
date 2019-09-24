@@ -49,6 +49,9 @@ entity SingleCycleRISCV is
     -- Top-level bus Instruction signals
     Instruction_current: out T_SYSTEM_UINT32;
 
+    -- Top-level bus CPU signals
+    CPU_Running: out T_SYSTEM_BOOL;
+
     -- Top-level bus ImmGen_Out signals
     ImmGen_Out_Immediate: in T_SYSTEM_INT64;
 
@@ -245,7 +248,7 @@ begin
     -- Entity  IM signals
     IM: entity work.IM
     generic map(
-        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), TO_UNSIGNED(51, 8), TO_UNSIGNED(1, 8), TO_UNSIGNED(39, 8), TO_UNSIGNED(176, 8), TO_UNSIGNED(35, 8), TO_UNSIGNED(255, 8), TO_UNSIGNED(222, 8), TO_UNSIGNED(14, 8), TO_UNSIGNED(227, 8), TO_UNSIGNED(0, 8), TO_UNSIGNED(248, 8), TO_UNSIGNED(10, 8), others => TO_UNSIGNED(51, 8))
+        reset_Instruction_Memory => (TO_UNSIGNED(1, 8), TO_UNSIGNED(8, 8), TO_UNSIGNED(137, 8), TO_UNSIGNED(51, 8), TO_UNSIGNED(1, 8), TO_UNSIGNED(39, 8), TO_UNSIGNED(176, 8), TO_UNSIGNED(35, 8), TO_UNSIGNED(0, 8), TO_UNSIGNED(248, 8), TO_UNSIGNED(10, 8), others => TO_UNSIGNED(51, 8))
     )
     port map (
         -- Input bus ProgramCounter_To_InstructionMemory
@@ -270,6 +273,10 @@ begin
 
         -- Output bus Instruction
         m_Instruction_current => Instruction_current,
+
+
+        -- Output bus CPU
+        m_CPU_Running => CPU_Running,
 
 
 

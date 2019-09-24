@@ -38,6 +38,7 @@ architecture TestBench of SingleCycleRISCV_tb is
   signal Write_Register_address : T_SYSTEM_UINT32;
   signal Control_Input_Opcode : T_SYSTEM_UINT32;
   signal Instruction_current : T_SYSTEM_UINT32;
+  signal CPU_Running : T_SYSTEM_BOOL;
   signal ImmGen_Out_Immediate : T_SYSTEM_INT64;
   signal ALUSrc_Enable : T_SYSTEM_BOOL;
   signal MemtoReg_Enable : T_SYSTEM_BOOL;
@@ -73,6 +74,7 @@ begin
     Write_Register_address => Write_Register_address,
     Control_Input_Opcode => Control_Input_Opcode,
     Instruction_current => Instruction_current,
+    CPU_Running => CPU_Running,
     ImmGen_Out_Immediate => ImmGen_Out_Immediate,
     ALUSrc_Enable => ALUSrc_Enable,
     MemtoReg_Enable => MemtoReg_Enable,
@@ -177,6 +179,9 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "BranchUnit_Output.Address") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected BranchUnit_Output.Address" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "CPU.Running") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected CPU.Running" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "DM_Output.Data") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected DM_Output.Data" severity Failure;
@@ -360,6 +365,15 @@ begin
             	if not are_strings_equal(str(BranchUnit_Output_Address), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for BranchUnit_Output_Address in cycle " & integer'image(clockcycle) & " was: " & str(BranchUnit_Output_Address) & " but should have been: " & truncate(tmp) severity Error;
+                end if;
+            end if;
+            fieldno := fieldno + 1;
+
+	        read_csv_field(L, tmp);
+	        if not are_strings_equal(tmp, "U") then
+            	if not are_strings_equal(str(CPU_Running), tmp) then
+                    newfailures := newfailures + 1;
+                    report "Value for CPU_Running in cycle " & integer'image(clockcycle) & " was: " & str(CPU_Running) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

@@ -23,6 +23,7 @@ digraph SingleCycleRISCV {
 "DM_Output" [shape=oval];
 "Incrementer_Output" [shape=oval];
 "Write_Register" [shape=oval];
+"CPU" [shape=oval];
 "RegWrite" [shape=oval];
 "Branch" [shape=oval];
 "Zero_out" [shape=oval];
@@ -77,6 +78,7 @@ digraph SingleCycleRISCV {
 "IM" -> "Write_Register";
 "IM" -> "Control_Input";
 "IM" -> "Instruction";
+"IM" -> "CPU";
 "ImmGen" -> "ImmGen_Out";
 "Control" -> "ALUSrc";
 "Control" -> "MemtoReg";
@@ -113,6 +115,7 @@ digraph SingleCycleRISCV {
 "Reg2_To_Mux" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "ALU_Output" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "Mem_Mux_Output" -> "SingleCycleRISCV_Simulator" [style=dotted];
+"CPU" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "Zero_out" -> "Inc_mux" [style=dotted];
 "Branch" -> "Inc_mux" [style=dotted];
 "BranchUnit_Output" -> "Inc_mux" [style=dotted];

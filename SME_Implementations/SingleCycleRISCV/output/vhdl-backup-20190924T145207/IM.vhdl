@@ -99,7 +99,7 @@ begin
             m_write_address <= TO_UNSIGNED(0, 32);
             m_control_input_Opcode <= TO_UNSIGNED(0, 32);
             m_Instruction_current <= TO_UNSIGNED(0, 32);
-            m_CPU_Running <= '1';
+            m_CPU_Running <= '0';
             address := TO_UNSIGNED(0, 64);
             num := TO_UNSIGNED(0, 32);
             num2 := TO_UNSIGNED(0, 32);

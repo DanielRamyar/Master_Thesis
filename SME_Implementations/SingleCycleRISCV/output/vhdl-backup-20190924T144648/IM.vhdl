@@ -32,8 +32,6 @@ entity IM is
         m_control_input_Opcode: out T_SYSTEM_UINT32;
         -- Output bus m_Instruction signals
         m_Instruction_current: out T_SYSTEM_UINT32;
-        -- Output bus m_CPU signals
-        m_CPU_Running: out T_SYSTEM_BOOL;
 
 
         -- Clock signal
@@ -81,7 +79,6 @@ begin
     -- Internal variables
     variable address : T_SYSTEM_UINT64;
     variable num : T_SYSTEM_UINT32;
-    variable num2 : T_SYSTEM_UINT32;
     variable Instruction_Memory : IM_Instruction_Memory_type := reset_Instruction_Memory;
 
     variable reentry_guard: std_logic;
@@ -99,10 +96,8 @@ begin
             m_write_address <= TO_UNSIGNED(0, 32);
             m_control_input_Opcode <= TO_UNSIGNED(0, 32);
             m_Instruction_current <= TO_UNSIGNED(0, 32);
-            m_CPU_Running <= '1';
             address := TO_UNSIGNED(0, 64);
             num := TO_UNSIGNED(0, 32);
-            num2 := TO_UNSIGNED(0, 32);
             Instruction_Memory := reset_Instruction_Memory;
 
                                     
@@ -122,23 +117,12 @@ begin
 
 
             address := m_input_Address;
-            if (address >= TO_UNSIGNED(0, 64)) and (address < resize(TO_UNSIGNED(IM_Instruction_Memory_type'LENGTH, 32), T_SYSTEM_UINT64'length)) then
-                num := UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 64)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 64)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 64)))), T_SYSTEM_INT32'length))));
-                m_Instruction_current <= num;
-                m_read_1_address <= (shift_right(num, 15)) and TO_UNSIGNED(31, 32);
-                m_read_2_address <= (shift_right(num, 20)) and TO_UNSIGNED(31, 32);
-                m_write_address <= (shift_right(num, 7)) and TO_UNSIGNED(31, 32);
-                m_control_input_Opcode <= num and TO_UNSIGNED(127, 32);
-                m_CPU_Running <= '1';
-            else
-                num2 := TO_UNSIGNED(0, 32);
-                m_Instruction_current <= num2;
-                m_read_1_address <= (shift_right(num2, 15)) and TO_UNSIGNED(31, 32);
-                m_read_2_address <= (shift_right(num2, 20)) and TO_UNSIGNED(31, 32);
-                m_write_address <= (shift_right(num2, 7)) and TO_UNSIGNED(31, 32);
-                m_control_input_Opcode <= num2 and TO_UNSIGNED(127, 32);
-                m_CPU_Running <= '0';
-            end if;
+            num := UNSIGNED(((((TO_SIGNED(0, 32) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER(address)), 32)), 24))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(1, 64)))), 32)), 16))) or (shift_left(SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(2, 64)))), 32)), 8))) or SIGNED(resize(Instruction_Memory(TO_INTEGER((address + TO_UNSIGNED(3, 64)))), T_SYSTEM_INT32'length))));
+            m_Instruction_current <= num;
+            m_read_1_address <= (shift_right(num, 15)) and TO_UNSIGNED(31, 32);
+            m_read_2_address <= (shift_right(num, 20)) and TO_UNSIGNED(31, 32);
+            m_write_address <= (shift_right(num, 7)) and TO_UNSIGNED(31, 32);
+            m_control_input_Opcode <= num and TO_UNSIGNED(127, 32);
 
 
 
