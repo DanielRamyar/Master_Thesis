@@ -63,10 +63,6 @@ namespace SingleCycleRISCV {
                 Console.WriteLine($"Register Output 2: {Register_output_2.Data}");
                 Console.WriteLine($"ALU Output: {ALU_output.Value} \n");
             }
-            // await ClockAsync();
-
-            // await ClockAsync();
-            
 
 
             Console.WriteLine("Done testing!");
