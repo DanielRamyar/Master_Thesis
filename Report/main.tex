@@ -1,0 +1,28 @@
+\documentclass[10pt]{report}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[subpreambles=true]{standalone}
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage{hyperref}
+
+
+\numberwithin{equation}{chapter}
+
+%\includeonly{chapters/chapter_1}
+ \includeonly{chapters/RiscVReferenceCard}
+
+\begin{document}
+    
+    \include{frontpage}
+    \include{chapters/chapter_1}
+    \include{chapters/RiscVReferenceCard}
+
+    
+    \bibliographystyle{abbrvnat}
+    \bibliography{bibliography} 
+\end{document}

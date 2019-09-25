@@ -1,0 +1,78 @@
+\section*{Risc V Reference Card}
+
+\subsection*{Core Instruction Formats}
+
+    \begin{tabular} %In the table specs i create 32 even size colums and 1 coloum for text
+    	{p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}
+        p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}
+        p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}
+        p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}l}
+        %Here we create the row for the bit numbers (only relevant ones are filled for space)
+        \multicolumn{1}{c}{31}&&&&&&
+        \multicolumn{1}{c}{25}&
+        \multicolumn{1}{c}{24}&&&&
+        \multicolumn{1}{c}{20}&
+        \multicolumn{1}{c}{19}&&&&
+        \multicolumn{1}{c}{15}&
+        \multicolumn{1}{c}{14}&&&
+        \multicolumn{1}{c}{11}&&&&
+        \multicolumn{1}{c}{7}&
+        \multicolumn{1}{c}{6}&&&&&&
+        \multicolumn{1}{c}{0}&
+        \\
+        %Here we create the R-type row
+        \cline{0-31} 
+        \multicolumn{7}{|c|}{funct7} &
+        \multicolumn{5}{c|}{rs2}&
+        \multicolumn{5}{c|}{rs1}&
+        \multicolumn{3}{c|}{funct3}&
+        \multicolumn{5}{c|}{rd}&
+        \multicolumn{7}{c|}{opcode}&
+        R-type
+        \\
+        %Here we create the I-type row
+        \cline{0-31} 
+        \multicolumn{12}{|c|}{imm[11:0]} &
+        \multicolumn{5}{c|}{rs1}&
+        \multicolumn{3}{c|}{funct3}&
+        \multicolumn{5}{c|}{rd}&
+        \multicolumn{7}{c|}{opcode}&
+        I-type
+        \\
+        %Here we create the S-type row
+        \cline{0-31} 
+        \multicolumn{7}{|c|}{imm[11:5]} &
+        \multicolumn{5}{c|}{rs2}&
+        \multicolumn{5}{c|}{rs1}&
+        \multicolumn{3}{c|}{imm[4:0]}&
+        \multicolumn{5}{c|}{rd}&
+        \multicolumn{7}{c|}{opcode}&
+        S-type
+        \\
+        %Here we create the B-type row
+        \cline{0-31} 
+        \multicolumn{7}{|c|}{imm[12$|$10:5]} &
+        \multicolumn{5}{c|}{rs2}&
+        \multicolumn{5}{c|}{rs1}&
+        \multicolumn{3}{c|}{imm[4:1$|$11]}&
+        \multicolumn{5}{c|}{rd}&
+        \multicolumn{7}{c|}{opcode}&
+        B-type
+        \\
+        %Here we create the U-type row
+        \cline{0-31} 
+        \multicolumn{20}{|c|}{imm[31:12]} &
+        \multicolumn{5}{c|}{rd}&
+        \multicolumn{7}{c|}{opcode}&
+        U-type
+        \\
+        %Here we create the J-type row
+        \cline{0-31} 
+        \multicolumn{20}{|c|}{imm[20$|$10:1$|$11$|$19:12]} &
+        \multicolumn{5}{c|}{rd}&
+        \multicolumn{7}{c|}{opcode}&
+        J-type
+        \\
+        \cline{0-31} 
+    \end{tabular}
+

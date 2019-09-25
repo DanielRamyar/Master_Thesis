@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\definecolor{mycolor}{RGB}{0, 153, 255}
+\tikzstyle{process} = [rectangle, rounded corners,
+                       minimum width=2cm, minimum height=1cm,
+                       text centered, draw=black, fill=mycolor,
+                       text=white, line width=0.3mm]
+
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{document}
+    \begin{tikzpicture}[node distance=2cm]
+    
+        \node (Process1) [process] {Process 1};
+        
+        \node (Process2) [process, right of = Process1, xshift=1cm, yshift=1cm] {Process 2};
+        
+        \node (Process3) [process, right of = Process1, xshift=3cm, yshift=-1cm] {Process 3};
+        
+        \node (Process4) [process, right of = Process1, xshift=4cm, yshift=1cm] {Process 4};
+        
+        \draw [arrow] (3,0) -- (3, 0.5);
+        \draw [arrow] (5,0) -- (5, -0.5);
+        \draw [arrow] (6,0) -- (6, 0.5);
+        
+        \draw [->, line width=0.5mm] (1, 0) -- node[anchor=south] {Channel} (8, 0);
+    
+    \end{tikzpicture}
+\end{document}
