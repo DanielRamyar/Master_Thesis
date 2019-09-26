@@ -1,6 +1,6 @@
 \section*{Risc V Reference Card}
 
-\subsection*{Core Instruction Formats}
+\subsection*{Instruction Formats}
 
     \begin{tabular} %In the table specs i create 32 even size colums and 1 coloum for text
     	{p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}
@@ -76,3 +76,23 @@
         \cline{0-31} 
     \end{tabular}
 
+\subsection*{RV32I Base Instructions}
+
+    \begin{tabular}{|l|l|l|l|l|l|l|p{2.2cm}|}
+    	\hline
+        Name & Fmt & Opcode & Funct3 & Funct7 & Assembly &Description & Note \\
+        \hline
+        Add                                & R & 0110011 & 000 & 0000000 & add rd, rs1, rs2   &$rd = rs1 + rs2$             &                                            \\
+        Subtract                         & R & 0110011 & 000 & 0100000 & sub rd, rs1, rs2   & $rd = rs1 - rs2 $            &                                            \\
+        AND                                & R & 0110011 & 111  & 0000000 & and rd, rs1, rs2   & $rd = rs1 \land rs2$      &                                             \\
+        OR                                  & R & 0110011 & 110  & 0000000 & or rd, rs1, rs2     & $rd = rs1 \lor rs2$         &                                             \\
+        XOR                                & R & 0110011 & 100  & 0000000 & xor rd, rs1, rs2   & $rd = rs1 \oplus rs2$    &                                              \\
+        Shift Left Logical             & R & 0110011 & 001  & 0000000 & sll rd, rs1, rs2    & $rd = rs1 \ll rs2$            &                                              \\
+        Set Less Than                 & R & 0110011 & 010  & 0000000 & slt rd, rs1, rs2    & $rd = (rs1 < rs2)?1:0$   &                                              \\
+        Set Less Than (U)           & R & 0110011 & 011  & 0000000 & sltu rd, rs1, rs2   & $rd = (rs1 < rs2)?1:0$   & zero extends \footnotemark  \\
+        Shift Right Logical           & R & 0110011 & 101  & 0000000 & srl rd, rs1, rs2     & $rd = rs1 \gg rs2$        &                                               \\
+        Shift Right Arithmetic      & R & 0110011 & 101  & 0100000 & srl rd, rs1, rs2     & $rd = rs1 \gg rs2$         & msb extends \footnotemark   \\
+        \hline
+    \end{tabular}
+    \footnotetext{Assumes values are unsigned integers}
+    \footnotetext{Fills in with sign bit during right shift}
