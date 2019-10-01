@@ -1,0 +1,269 @@
+\documentclass{beamer}
+\usepackage[danish,english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{beamerthemesplit}
+\usepackage{graphics,epsfig, subfigure}
+\usepackage{url}
+\usepackage{physics}
+\usepackage{lmodern,textcomp}
+
+\addtobeamertemplate{footline}
+{%
+	\usebeamercolor[fg]{author in sidebar}
+	\vskip-1cm\hskip10pt
+	%\insertpagenumber\,/\,\insertpresentationendpage\kern1em\vskip2pt%
+	\insertframenumber\,/\,\inserttotalframenumber\kern1em\vskip2pt%
+}
+
+
+
+\definecolor{kugreen}{RGB}{50,93,61}
+\definecolor{kugreenlys}{RGB}{132,158,139}
+\definecolor{kugreenlyslys}{RGB}{173,190,177}
+\definecolor{kugreenlyslyslys}{RGB}{214,223,216}
+\setbeamercovered{transparent}
+\mode<presentation>
+{  \usetheme{PaloAlto}
+  \usecolortheme[named=kugreen]{structure}
+  \useinnertheme{circles}
+  \usefonttheme[onlymath]{serif}
+  \setbeamercovered{transparent}
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+  
+}
+
+\makeatletter
+\setbeamertemplate{sidebar \beamer@sidebarside}%{sidebar theme}
+{
+	\beamer@tempdim=\beamer@sidebarwidth%
+	\advance\beamer@tempdim by -6pt%
+	\insertverticalnavigation{\beamer@sidebarwidth}%
+	\vfill
+	\ifx\beamer@sidebarside\beamer@lefttext%
+	\else%
+	\usebeamercolor{normal text}%
+	\llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+	\vskip2pt%
+	\fi%
+}%
+\makeatother
+%\setbeamertemplate{background}{\includegraphics[width=1\textwidth]{natfak_baggrund.pdf}}
+\logo{\includegraphics[width=1.5cm]{SCIENCE_CMYK.pdf}}
+
+\title{Implementing RISC-V\\ in Synchronous Message Exchange}
+\author{Daniel Ramyar}
+\institute{Niels Bohr Institute \\ University of Copenhagen}
+\date{eScience lunch talk \\ October 2, 2019}
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+		\vspace{-0.5cm}	
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Overview}
+
+		\small{\tableofcontents}%[pausesections]
+	\end{frame}
+	
+	\section{Introduction}
+
+	\begin{frame}
+		\subsection{Motivation}
+		\frametitle{Motivation}
+        \begin{itemize}
+            \item Most measurement instruments are based on Intel x86 CPU
+            \item Limits the bandwidth at which data collection is possible
+            \item Limits the possibility for custom solutions 
+        \end{itemize}
+
+	\end{frame}
+
+    \begin{frame}
+        \frametitle{Motivation}
+        \begin{itemize}
+            \item RISC-V especially well suited embedding in scientific instruments
+            \item Fully customizable = faster and more power efficient  
+            \item Could be implemented in a FPGA 
+            \item But FPGA programming is complicated
+        \end{itemize}
+        
+        \centering
+        \vspace{1cm}
+        \includegraphics[scale=0.35]{"Pictures and plots/tradeoffs_own"}
+        
+    \end{frame}
+
+	\begin{frame}
+        \subsection{Synchronous Message Exchange}
+		\frametitle{Synchronous Message Exchange}
+        
+		\begin{itemize}
+            \item Write FPGA applications within .Net framework\footnote{\tiny Building Hardware from C$\#$ models, Kenneth Skovhede and Brian Vinter}
+            \item Enjoy productivity features of modern language
+            \item Automatic VHDL conversion
+            \item Based on Communicating Sequential Processes (CSP)\footnote{\vspace{0.5cm}\tiny Communicating sequential processes, Charles Antony Richard Hoare}
+        \end{itemize}
+
+	\end{frame}
+
+    \begin{frame}
+        \frametitle{Synchronous Message Exchange}
+        
+        \begin{itemize}
+            \item Processes are isolated no memory sharing
+            \item Communicates with each other through channels
+            \item Globally synchronous
+            \item Perfect for implementing RISC-V!
+        \end{itemize}
+    
+        \begin{columns}[T] 
+            \begin{column}[T]{5cm}
+                \centering
+                \begin{figure}
+                    \includegraphics[scale=0.6]{"Pictures and plots/one_to_one"}
+                    \caption{One to one}
+                \end{figure} 
+            \end{column}
+            \begin{column}[T]{5cm} 
+                \begin{figure}
+                    \includegraphics[scale=0.5]{"Pictures and plots/one_to_many"}
+                    \caption{One to many}
+                \end{figure} 
+            \end{column}
+        \end{columns}
+        
+    \end{frame}
+
+    \section{Implementing RISC-V in SME}
+
+    \begin{frame}
+        \subsection{Single Cycle RISC-V}
+        \frametitle{Single Cycle RISC-V}
+        \centering
+        \vspace{-0.5cm}
+        Full datapath for single cycle RISC-V
+        \includegraphics[scale=0.35]{"Pictures and plots/FullDatapath"} \\
+        \scriptsize{Taken from \textit{Computer organization and design RISC V}}
+        
+    \end{frame}
+    
+    \begin{frame}
+        \subsection{Fetching instruction and increment}
+        \frametitle{Fetching instruction and increment}
+        \centering
+        \vspace{-0.5cm}
+        We need memory for instructions and a way to remember current instruction
+
+        \includegraphics[scale=0.4]{"Pictures and plots/IFINC"} \\
+        \scriptsize{Taken from \textit{Computer organization and design RISC V}}
+        
+    \end{frame}
+
+    \begin{frame}
+        \subsection{Instruction decode and execution}
+        \frametitle{Instruction decode and execution}
+        \centering
+        \vspace{-0.5cm}
+        Storage for data we currently work with and unit for execution for instructions
+        
+        \includegraphics[scale=0.4]{"Pictures and plots/RegALU"} \\
+        \scriptsize{Taken from \textit{Computer organization and design RISC V}}
+        
+    \end{frame}
+
+    \begin{frame}
+        \subsection{Instruction decode and execution}
+        \frametitle{Instruction decode and execution}
+        \centering
+        \vspace{-0.5cm}
+        Conventions according to RISC-V spec sheet
+        
+        \includegraphics[scale=0.5]{"Pictures and plots/registercon"} \\
+        \scriptsize{Taken from \textit{The RISC-V Instruction Set Manual - Volume I: User-Level ISA}}
+        
+    \end{frame}
+
+    \begin{frame}
+        \subsection{Memory access}
+        \frametitle{Memory access}
+        \centering
+        \vspace{-0.5cm}
+        We need memory unit for storing data and immediate generation unit for calculating memory address
+        
+        \includegraphics[scale=0.4]{"Pictures and plots/MEMACC"} \\
+        \scriptsize{Taken from \textit{Computer organization and design RISC V}}
+        
+    \end{frame}
+
+    \begin{frame}
+        \subsection{Branching}
+        \frametitle{Branching}
+        \centering
+        \vspace{-0.5cm}
+        Additional unit needed for branching instructions
+        
+        \includegraphics[scale=0.33]{"Pictures and plots/BRANCH"} \\
+        \scriptsize{Taken from \textit{Computer organization and design RISC V}}
+        
+    \end{frame}
+
+    \begin{frame}
+        \subsection{Simple datapath}
+        \frametitle{Simple datapath}
+        \centering
+        \vspace{-0.5cm}
+        Wiring it up we have our simple datapath
+        
+        \includegraphics[scale=0.33]{"Pictures and plots/simpledatapath"} \\
+        \scriptsize{Taken from \textit{Computer organization and design RISC V}}
+        
+    \end{frame}
+
+    \begin{frame}
+        \subsection{Instructions}
+        \frametitle{Instructions}
+        \centering
+        \vspace{-0.5cm}
+        \includegraphics[scale=0.28]{"Pictures and plots/instructions"} \\     
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Simple datapath}
+        \centering
+        \vspace{-0.5cm}
+        The R-Type instruction datapath would look like
+        
+        \includegraphics[scale=0.33]{"Pictures and plots/rformatpath"} \\
+        \scriptsize{Taken from \textit{Computer organization and design RISC V}}
+        
+    \end{frame}
+
+    \begin{frame}
+        \subsection{Control}
+        \frametitle{Control}
+        \centering
+        \vspace{-0.5cm}
+        We need control unit to determine path for instructions.\\ 
+        Main Control and ALU control are separated to simplify complexity of system. 
+        
+        \includegraphics[scale=0.3]{"Pictures and plots/control"} \\
+        \scriptsize{Taken from \textit{Computer organization and design RISC V}}
+        
+    \end{frame}
+
+    
+    \section{Further work}
+    
+    \begin{frame}
+        \frametitle{Further work}
+        \begin{itemize}
+            \item Implement rest of base instructions
+            \item Pipeline the datapath
+            \item Test on a FPGA
+        \end{itemize}   
+    \end{frame}
+	
+
+\end{document}
