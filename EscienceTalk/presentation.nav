@@ -32,31 +32,29 @@
 \headcommand {\beamer@subsectionentry {0}{2}{3}{9}{Instruction decode and execution}}
 \headcommand {\slideentry {2}{3}{0}{9/9}{}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\beamer@subsectionpages {7}{9}}
-\headcommand {\beamer@subsectionentry {0}{2}{4}{10}{Instruction decode and execution}}
-\headcommand {\slideentry {2}{4}{0}{10/10}{}{0}}
+\headcommand {\slideentry {2}{3}{1}{10/10}{}{0}}
 \headcommand {\beamer@framepages {10}{10}}
 \headcommand {\beamer@subsectionpages {7}{10}}
-\headcommand {\beamer@subsectionentry {0}{2}{5}{11}{Memory access}}
-\headcommand {\slideentry {2}{5}{0}{11/11}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{4}{11}{Memory access}}
+\headcommand {\slideentry {2}{4}{0}{11/11}{}{0}}
 \headcommand {\beamer@framepages {11}{11}}
 \headcommand {\beamer@subsectionpages {7}{11}}
-\headcommand {\beamer@subsectionentry {0}{2}{6}{12}{Branching}}
-\headcommand {\slideentry {2}{6}{0}{12/12}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{5}{12}{Branching}}
+\headcommand {\slideentry {2}{5}{0}{12/12}{}{0}}
 \headcommand {\beamer@framepages {12}{12}}
 \headcommand {\beamer@subsectionpages {7}{12}}
-\headcommand {\beamer@subsectionentry {0}{2}{7}{13}{Simple datapath}}
-\headcommand {\slideentry {2}{7}{0}{13/13}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{6}{13}{Simple datapath}}
+\headcommand {\slideentry {2}{6}{0}{13/13}{}{0}}
 \headcommand {\beamer@framepages {13}{13}}
 \headcommand {\beamer@subsectionpages {7}{13}}
-\headcommand {\beamer@subsectionentry {0}{2}{8}{14}{Instructions}}
-\headcommand {\slideentry {2}{8}{0}{14/14}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{7}{14}{Instructions}}
+\headcommand {\slideentry {2}{7}{0}{14/14}{}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\slideentry {2}{8}{1}{15/15}{}{0}}
+\headcommand {\slideentry {2}{7}{1}{15/15}{}{0}}
 \headcommand {\beamer@framepages {15}{15}}
 \headcommand {\beamer@subsectionpages {7}{15}}
-\headcommand {\beamer@subsectionentry {0}{2}{9}{16}{Control}}
-\headcommand {\slideentry {2}{9}{0}{16/16}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{8}{16}{Control}}
+\headcommand {\slideentry {2}{8}{0}{16/16}{}{0}}
 \headcommand {\beamer@framepages {16}{16}}
 \headcommand {\beamer@sectionpages {7}{16}}
 \headcommand {\beamer@subsectionpages {7}{16}}
