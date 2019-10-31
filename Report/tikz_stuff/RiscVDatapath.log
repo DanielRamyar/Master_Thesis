@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.25)  8 OCT 2019 18:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.25)  25 OCT 2019 17:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -392,22 +392,31 @@ File: tikzlibraryarrows.code.tex 2019/04/04 v3.1.2 (3.1.2)
 code.tex
 File: pgflibraryarrows.code.tex 2019/04/04 v3.1.2 (3.1.2)
 \arrowsize=\dimen151
-)) (./RiscVDatapath.aux)
+))
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryshapes.gates.logic.US.code.tex
+File: tikzlibraryshapes.gates.logic.US.code.tex 2019/04/04 v3.1.2 (3.1.2)
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/shapes/circuits/p
+gflibraryshapes.gates.logic.US.code.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/shapes/circuits/p
+gflibraryshapes.gates.logic.code.tex))) (./RiscVDatapath.aux)
 \openout1 = `RiscVDatapath.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
- ABD: EveryShipout initializing macros
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+
+ABD: EveryShipout initializing macros
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count112
@@ -469,20 +478,22 @@ e
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (./RiscVDatapath.aux) ) 
 Here is how much of TeX's memory you used:
- 13081 strings out of 492616
- 274151 string characters out of 6129481
- 312027 words of memory out of 5000000
- 16771 multiletter control sequences out of 15000+600000
- 3948 words of font info for 15 fonts, out of 8000000 for 9000
+ 13557 strings out of 492616
+ 286820 string characters out of 6129481
+ 371923 words of memory out of 5000000
+ 17235 multiletter control sequences out of 15000+600000
+ 4556 words of font info for 17 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,9n,56p,415b,871s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,9n,60p,415b,793s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr10.pfb>
-Output written on RiscVDatapath.pdf (1 page, 24077 bytes).
+sfonts/cm/cmbx8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr7.pfb>
+Output written on RiscVDatapath.pdf (1 page, 57559 bytes).
 PDF statistics:
- 19 PDF objects out of 1000 (max. 8388607)
- 13 compressed objects within 1 object stream
+ 27 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

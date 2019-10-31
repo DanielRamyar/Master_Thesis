@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.25)  29 SEP 2019 21:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.25)  24 OCT 2019 14:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -683,12 +683,12 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 7.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (51.79279pt too wide) in paragraph at lines 7--91
+Overfull \hbox (51.25166pt too wide) in paragraph at lines 7--92
 [][] 
  []
 
 
-Overfull \hbox (24.2317pt too wide) in paragraph at lines 100--165
+Overfull \hbox (24.2317pt too wide) in paragraph at lines 101--166
 [][] 
  []
 
@@ -732,7 +732,7 @@ live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texli
 ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2
 019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (3 pages, 134264 bytes).
+Output written on main.pdf (3 pages, 134266 bytes).
 PDF statistics:
  78 PDF objects out of 1000 (max. 8388607)
  61 compressed objects within 1 object stream
