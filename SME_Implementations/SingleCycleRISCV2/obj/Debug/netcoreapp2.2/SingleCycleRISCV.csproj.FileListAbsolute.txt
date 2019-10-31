@@ -1,0 +1,11 @@
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/bin/Debug/netcoreapp2.2/SingleCycleRISCV.deps.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/bin/Debug/netcoreapp2.2/SingleCycleRISCV.runtimeconfig.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/bin/Debug/netcoreapp2.2/SingleCycleRISCV.runtimeconfig.dev.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/bin/Debug/netcoreapp2.2/SingleCycleRISCV.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/bin/Debug/netcoreapp2.2/SingleCycleRISCV.pdb
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/obj/Debug/netcoreapp2.2/SingleCycleRISCV.csprojAssemblyReference.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/obj/Debug/netcoreapp2.2/SingleCycleRISCV.csproj.CoreCompileInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/obj/Debug/netcoreapp2.2/SingleCycleRISCV.AssemblyInfoInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/obj/Debug/netcoreapp2.2/SingleCycleRISCV.AssemblyInfo.cs
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/obj/Debug/netcoreapp2.2/SingleCycleRISCV.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/obj/Debug/netcoreapp2.2/SingleCycleRISCV.pdb
