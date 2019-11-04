@@ -44,9 +44,8 @@
             \\
             %Here we create the special case I-type row
             \cline{0-31} 
-            \multicolumn{6}{|c|}{imm[11:5]} &
-            \multicolumn{1}{|c|}{imm[5]} &
-            \multicolumn{5}{c|}{imm[4:0]}&
+            \multicolumn{7}{|c|}{funct7} &
+            \multicolumn{5}{c|}{Shamt}&
             \multicolumn{5}{c|}{rs1}&
             \multicolumn{3}{c|}{funct3}&
             \multicolumn{5}{c|}{rd}&
@@ -89,7 +88,7 @@
             \\
             \cline{0-31} 
         \end{tabular}
-        \caption*{\small\textsuperscript{*} This is a special case of the RV64I I-type format used by slli, srli and srai instructions where the lower 6 bits (imm[5] and imm[4:0]) are used to determine the shift amount (shamt). If slliw, srliw and sraiw are used it should generate an error if imm[5] $\neq 0$}
+        \caption*{\small\textsuperscript{*} This is a special case of the RV64I I-type format used by slli, srli and srai instructions where the lower 5 bits in the immediate are used to determine the shift amount (shamt). If slliw, srliw and sraiw are used it should generate an error if imm[5] $\neq 0$}
     \end{table}
 \vspace*{-0.5cm}
 \subsection*{RV64I Base Instructions}
