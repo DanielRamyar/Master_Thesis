@@ -43,6 +43,7 @@ namespace SingleCycleRISCV {
             while (CPU.Running) {
                 await ClockAsync();
 
+                Console.WriteLine($"Instruction Fetch Buses \n");
                 Console.WriteLine($"ANDGate Output: {ANDGate.Value}");
                 Console.WriteLine($"Mux1 Output: {Mux1.Address}");
                 Console.WriteLine($"Program Counter Output: {PC.Address}");
