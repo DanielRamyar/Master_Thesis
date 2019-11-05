@@ -23,10 +23,10 @@ namespace SingleCycleRISCV {
                 temp4 = m_instruction.current >> 31  & (uint)1;   // Extracts bit 11
 
                 // Creates signextended immediate field for B-type instruction
-                temp0 = (long)0 | (long)temp4 << 11
-                                | (long)temp3 << 10
-                                | (long)temp2 << 4
-                                | (long)temp1;
+                temp0 = (long)0 | (long)temp4 << 12
+                                | (long)temp3 << 11
+                                | (long)temp2 << 5
+                                | (long)temp1 << 1;
 
                 output.Immediate = temp0;
             }
