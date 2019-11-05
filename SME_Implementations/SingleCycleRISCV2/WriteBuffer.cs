@@ -20,7 +20,7 @@ namespace SingleCycleRISCV {
         [InputBus]
         private readonly Write_Data m_write_data = Scope.CreateOrLoadBus<Write_Data>();
         [InputBus]
-        private readonly Write_Register m_write = Scope.CreateOrLoadBus<Write_Register>();
+        private readonly Write_Register m_write_register = Scope.CreateOrLoadBus<Write_Register>();
         [InputBus]
         private readonly RegWrite m_write_control = Scope.CreateOrLoadBus<RegWrite>();
 
@@ -37,7 +37,7 @@ namespace SingleCycleRISCV {
 
         protected override void OnTick() {
             WB_Data_Hold = m_write_data.Data;
-            WB_RegisterWrite_Hold = m_write.Address;
+            WB_RegisterWrite_Hold = m_write_register.Address;
             WB_WriteControl_Hold = m_write_control.Enable;
 
             m_WB_Data.Data = WB_Data_Hold;
