@@ -7,12 +7,12 @@ namespace SingleCycleRISCV {
         long Data {get; set;}
     }
 
-    public interface Reg1_To_ALU : IBus {
+    public interface RS1 : IBus {
         [InitialValue]
         long Data {get; set;}
     }
 
-    public interface Reg2_To_Mux : IBus {
+    public interface RS2 : IBus {
         [InitialValue]
         long Data {get; set;}
     }
@@ -30,9 +30,9 @@ namespace SingleCycleRISCV {
         private readonly WB_WriteControl m_write_control = Scope.CreateOrLoadBus<WB_WriteControl>();
 
         [OutputBus]
-		public readonly Reg1_To_ALU output_1 = Scope.CreateOrLoadBus<Reg1_To_ALU>();
+		public readonly RS1 output_1 = Scope.CreateOrLoadBus<RS1>();
         [OutputBus]
-		public readonly Reg2_To_Mux output_2 = Scope.CreateOrLoadBus<Reg2_To_Mux>();
+		public readonly RS2 output_2 = Scope.CreateOrLoadBus<RS2>();
 
 
         
