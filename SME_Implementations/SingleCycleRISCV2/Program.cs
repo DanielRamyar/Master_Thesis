@@ -14,6 +14,20 @@ namespace SingleCycleRISCV {
                 var PC = new PC();
                 var Next = new Next();
                 var IM = new IM();
+                // Instruction Decode and Register read
+                var Reg = new Register();
+                var ImmGen = new ImmGen();
+                var Control = new Control();
+                var WB = new WriteBuffer();
+                // Instruction Execute
+                var Mux2 = new Mux2();
+                var Mux3 = new Mux3();
+                var ALU = new ALU();
+                var GoTo = new GoTo();
+                // Memory access
+                var DM = new DM();
+                // Write back
+                var Mux4 = new Mux4();
 
                 sim
                     .BuildCSVFile()
