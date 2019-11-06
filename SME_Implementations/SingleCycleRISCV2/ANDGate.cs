@@ -9,7 +9,7 @@ namespace SingleCycleRISCV {
 
     public class ANDGate : SimpleProcess {
         [InputBus]
-        private readonly GoTo m_Input_1 = Scope.CreateOrLoadBus<GoTo>();
+        private readonly GoTo_Output m_Input_1 = Scope.CreateOrLoadBus<GoTo_Output>();
         [InputBus]
         private readonly PCSel m_Input_2 = Scope.CreateOrLoadBus<PCSel>();
         [OutputBus]
