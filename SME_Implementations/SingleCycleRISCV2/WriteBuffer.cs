@@ -18,7 +18,7 @@ namespace SingleCycleRISCV {
     [ClockedProcess]
     public class WriteBuffer : SimpleProcess {
         [InputBus]
-        private readonly Write_Data m_write_data = Scope.CreateOrLoadBus<Write_Data>();
+        private readonly Mux4_Output m_write_data = Scope.CreateOrLoadBus<Mux4_Output>();
         [InputBus]
         private readonly Write_Register m_write_register = Scope.CreateOrLoadBus<Write_Register>();
         [InputBus]
