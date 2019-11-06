@@ -24,7 +24,7 @@ namespace SingleCycleRISCV {
                     Mux_output.Address = m_Next.Address; 
                     break;
                 case true:
-                    Mux_output.Address = m_ALU.Address; 
+                    Mux_output.Address = (ulong)m_ALU.Value; 
                     break;
 
             }
