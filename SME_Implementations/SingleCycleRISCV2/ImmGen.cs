@@ -95,6 +95,10 @@ namespace SingleCycleRISCV {
                                           | (long)temp1 << 1;                  
                 output.Immediate = temp0;
             }
+            // Immediate not used
+            else {
+                output.Immediate = 0;
+            }
         }
     }
 }
