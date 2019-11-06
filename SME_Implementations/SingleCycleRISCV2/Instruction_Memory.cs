@@ -38,7 +38,7 @@ namespace SingleCycleRISCV {
         [OutputBus]
         private readonly CPU m_CPU = Scope.CreateOrLoadBus<CPU>();
 
-        private readonly byte[] Instruction_Memory = {1, 8, 137, 51      // add x18, x16, x17
+        private readonly byte[] Instruction_Memory = {1, 8, 137, 51      // add x18, x17, x16
                                                     //   1, 39, 176, 35,     // sd x18, x15, 0 
                                                     //   255, 222, 14, 227,  // beq x28, x29, -2 
                                                     //   0, 248, 10, 51      // add x20, x16, x15
