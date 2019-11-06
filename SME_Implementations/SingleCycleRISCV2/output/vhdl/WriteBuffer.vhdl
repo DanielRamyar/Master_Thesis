@@ -14,17 +14,26 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mux1 is
+entity WriteBuffer is
+    generic(
+        reset_WB_Data_Hold: in T_SYSTEM_INT64;
+        reset_WB_RegisterWrite_Hold: in T_SYSTEM_UINT32;
+        reset_WB_WriteControl_Hold: in T_SYSTEM_BOOL
+    );
     port(
-        -- Input bus m_Next signals
-        m_Next_Address: in T_SYSTEM_UINT64;
-        -- Input bus m_ALU signals
-        m_ALU_Value: in T_SYSTEM_INT64;
-        -- Input bus m_ANDGate signals
-        m_ANDGate_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_write_data signals
+        m_write_data_Data: in T_SYSTEM_INT64;
+        -- Input bus m_write_register signals
+        m_write_register_Address: in T_SYSTEM_UINT32;
+        -- Input bus m_write_control signals
+        m_write_control_Enable: in T_SYSTEM_BOOL;
 
-        -- Output bus Mux_output signals
-        Mux_output_Address: out T_SYSTEM_UINT64;
+        -- Output bus m_WB_Data signals
+        m_WB_Data_Data: out T_SYSTEM_INT64;
+        -- Output bus m_WB_WriteRegister signals
+        m_WB_WriteRegister_Address: out T_SYSTEM_UINT32;
+        -- Output bus m_WB_WriteControl signals
+        m_WB_WriteControl_Enable: out T_SYSTEM_BOOL;
 
 
         -- Clock signal
@@ -42,9 +51,9 @@ entity Mux1 is
         -- Reset signal
         RST : in Std_logic
     );
-end Mux1;
+end WriteBuffer;
 
-architecture RTL of Mux1 is
+architecture RTL of WriteBuffer is
 
 
 
@@ -66,11 +75,14 @@ begin
         -- Custom sensitivity signals here
         -- #### USER-DATA-SENSITIVITY-START
         -- #### USER-DATA-SENSITIVITY-END
-        RDY,
+        CLK,
         RST
     )
+    -- Internal variables
+    variable WB_Data_Hold : T_SYSTEM_INT64 := reset_WB_Data_Hold;
+    variable WB_RegisterWrite_Hold : T_SYSTEM_UINT32 := reset_WB_RegisterWrite_Hold;
+    variable WB_WriteControl_Hold : T_SYSTEM_BOOL := reset_WB_WriteControl_Hold;
 
-    variable reentry_guard: std_logic;
 
     -- #### USER-DATA-NONCLOCKEDVARIABLES-START
     -- #### USER-DATA-NONCLOCKEDVARIABLES-END
@@ -80,35 +92,37 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_output_Address <= TO_UNSIGNED(0, 64);
+            m_WB_Data_Data <= TO_SIGNED(0, 64);
+            m_WB_WriteRegister_Address <= TO_UNSIGNED(0, 32);
+            m_WB_WriteControl_Enable <= '0';
+            WB_Data_Hold := reset_WB_Data_Hold;
+            WB_RegisterWrite_Hold := reset_WB_RegisterWrite_Hold;
+            WB_WriteControl_Hold := reset_WB_WriteControl_Hold;
 
                                     
-            reentry_guard := '0';
             FIN <= '0';
 
             -- Initialize code here
             -- #### USER-DATA-NONCLOCKEDRESETCODE-START
             -- #### USER-DATA-NONCLOCKEDRESETCODE-END
 
-        elsif reentry_guard /= RDY then
-            reentry_guard := RDY;
+        elsif rising_edge(CLK) then
 
             -- Initialize code here
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-START
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_ANDGate_Value is
-                when '0' =>
-                    Mux_output_Address <= m_Next_Address;
-                when '1' =>
-                    Mux_output_Address <= UNSIGNED(m_ALU_Value);
-                when others =>
-            end case;
+            WB_Data_Hold := m_write_data_Data;
+            WB_RegisterWrite_Hold := m_write_register_Address;
+            WB_WriteControl_Hold := m_write_control_Enable;
+            m_WB_Data_Data <= WB_Data_Hold;
+            m_WB_WriteRegister_Address <= WB_RegisterWrite_Hold;
+            m_WB_WriteControl_Enable <= WB_WriteControl_Hold;
 
 
 
-            FIN <= RDY;
+            FIN <= CLK;
 
         end if;
 

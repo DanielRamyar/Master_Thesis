@@ -14,17 +14,19 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mux1 is
+entity Mux4 is
     port(
-        -- Input bus m_Next signals
-        m_Next_Address: in T_SYSTEM_UINT64;
-        -- Input bus m_ALU signals
-        m_ALU_Value: in T_SYSTEM_INT64;
-        -- Input bus m_ANDGate signals
-        m_ANDGate_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_ALU_Output signals
+        m_ALU_Output_Value: in T_SYSTEM_INT64;
+        -- Input bus m_DM_Output signals
+        m_DM_Output_Data: in T_SYSTEM_INT64;
+        -- Input bus m_Next_Output signals
+        m_Next_Output_Address: in T_SYSTEM_UINT64;
+        -- Input bus m_WBSel signals
+        m_WBSel_Value: in T_SYSTEM_UINT8;
 
         -- Output bus Mux_output signals
-        Mux_output_Address: out T_SYSTEM_UINT64;
+        Mux_output_Data: out T_SYSTEM_INT64;
 
 
         -- Clock signal
@@ -42,9 +44,9 @@ entity Mux1 is
         -- Reset signal
         RST : in Std_logic
     );
-end Mux1;
+end Mux4;
 
-architecture RTL of Mux1 is
+architecture RTL of Mux4 is
 
 
 
@@ -69,6 +71,8 @@ begin
         RDY,
         RST
     )
+    -- Internal variables
+    variable local_var_0 : INTEGER;
 
     variable reentry_guard: std_logic;
 
@@ -80,7 +84,8 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_output_Address <= TO_UNSIGNED(0, 64);
+            Mux_output_Data <= TO_SIGNED(0, 64);
+            local_var_0 := 0;
 
                                     
             reentry_guard := '0';
@@ -98,11 +103,14 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_ANDGate_Value is
-                when '0' =>
-                    Mux_output_Address <= m_Next_Address;
-                when '1' =>
-                    Mux_output_Address <= UNSIGNED(m_ALU_Value);
+            local_var_0 := TO_INTEGER(m_WBSel_Value);
+            case local_var_0 is
+                when 0 =>
+                    Mux_output_Data <= m_ALU_Output_Value;
+                when 1 =>
+                    Mux_output_Data <= m_DM_Output_Data;
+                when 2 =>
+                    Mux_output_Data <= SIGNED(m_Next_Output_Address);
                 when others =>
             end case;
 

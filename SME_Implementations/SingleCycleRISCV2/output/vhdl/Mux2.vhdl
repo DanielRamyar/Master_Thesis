@@ -14,17 +14,17 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mux1 is
+entity Mux2 is
     port(
-        -- Input bus m_Next signals
-        m_Next_Address: in T_SYSTEM_UINT64;
-        -- Input bus m_ALU signals
-        m_ALU_Value: in T_SYSTEM_INT64;
-        -- Input bus m_ANDGate signals
-        m_ANDGate_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_RS1 signals
+        m_RS1_Data: in T_SYSTEM_INT64;
+        -- Input bus m_PC_Output signals
+        m_PC_Output_Address: in T_SYSTEM_UINT64;
+        -- Input bus m_ALUSrc1 signals
+        m_ALUSrc1_Enable: in T_SYSTEM_BOOL;
 
         -- Output bus Mux_output signals
-        Mux_output_Address: out T_SYSTEM_UINT64;
+        Mux_output_Data: out T_SYSTEM_INT64;
 
 
         -- Clock signal
@@ -42,9 +42,9 @@ entity Mux1 is
         -- Reset signal
         RST : in Std_logic
     );
-end Mux1;
+end Mux2;
 
-architecture RTL of Mux1 is
+architecture RTL of Mux2 is
 
 
 
@@ -80,7 +80,7 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_output_Address <= TO_UNSIGNED(0, 64);
+            Mux_output_Data <= TO_SIGNED(0, 64);
 
                                     
             reentry_guard := '0';
@@ -98,11 +98,11 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_ANDGate_Value is
+            case m_ALUSrc1_Enable is
                 when '0' =>
-                    Mux_output_Address <= m_Next_Address;
+                    Mux_output_Data <= m_RS1_Data;
                 when '1' =>
-                    Mux_output_Address <= UNSIGNED(m_ALU_Value);
+                    Mux_output_Data <= SIGNED(m_PC_Output_Address);
                 when others =>
             end case;
 

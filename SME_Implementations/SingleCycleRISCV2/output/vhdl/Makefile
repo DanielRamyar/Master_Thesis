@@ -40,12 +40,32 @@ $(WORKDIR)/Next.o: Next.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCy
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Next.vhdl
 $(WORKDIR)/IM.o: IM.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) IM.vhdl
+$(WORKDIR)/vhdl_Register.o: vhdl_Register.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) vhdl_Register.vhdl
+$(WORKDIR)/ImmGen.o: ImmGen.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) ImmGen.vhdl
+$(WORKDIR)/Control.o: Control.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Control.vhdl
+$(WORKDIR)/WriteBuffer.o: WriteBuffer.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) WriteBuffer.vhdl
+$(WORKDIR)/Mux2.o: Mux2.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Mux2.vhdl
+$(WORKDIR)/Mux3.o: Mux3.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Mux3.vhdl
+$(WORKDIR)/ALU.o: ALU.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) ALU.vhdl
+$(WORKDIR)/GoTo.o: GoTo.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) GoTo.vhdl
+$(WORKDIR)/DM.o: DM.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) DM.vhdl
+$(WORKDIR)/Mux4.o: Mux4.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
+	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) Mux4.vhdl
 $(WORKDIR)/csv_util.o: csv_util.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) csv_util.vhdl
 
 
 
-$(WORKDIR)/SingleCycleRISCV.o: SingleCycleRISCV.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)/ANDGate.o $(WORKDIR)/Mux1.o $(WORKDIR)/PC.o $(WORKDIR)/Next.o $(WORKDIR)/IM.o $(WORKDIR)/csv_util.o 
+$(WORKDIR)/SingleCycleRISCV.o: SingleCycleRISCV.vhdl $(WORKDIR)/system_types.o $(WORKDIR)/Types_SingleCycleRISCV.o $(WORKDIR)/ANDGate.o $(WORKDIR)/Mux1.o $(WORKDIR)/PC.o $(WORKDIR)/Next.o $(WORKDIR)/IM.o $(WORKDIR)/vhdl_Register.o $(WORKDIR)/ImmGen.o $(WORKDIR)/Control.o $(WORKDIR)/WriteBuffer.o $(WORKDIR)/Mux2.o $(WORKDIR)/Mux3.o $(WORKDIR)/ALU.o $(WORKDIR)/GoTo.o $(WORKDIR)/DM.o $(WORKDIR)/Mux4.o $(WORKDIR)/csv_util.o 
 
 	ghdl -a --std=$(STD) --ieee=$(IEEE) --workdir=$(WORKDIR) SingleCycleRISCV.vhdl
 

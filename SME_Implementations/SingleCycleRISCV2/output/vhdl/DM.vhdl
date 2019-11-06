@@ -14,17 +14,24 @@ use work.CUSTOM_TYPES.ALL;
 -- #### USER-DATA-IMPORTS-END
 
 
-entity Mux1 is
+entity DM is
+    generic(
+        reset_Data_Memory: in DM_Data_Memory_type
+    );
     port(
-        -- Input bus m_Next signals
-        m_Next_Address: in T_SYSTEM_UINT64;
-        -- Input bus m_ALU signals
-        m_ALU_Value: in T_SYSTEM_INT64;
-        -- Input bus m_ANDGate signals
-        m_ANDGate_Value: in T_SYSTEM_BOOL;
+        -- Input bus m_Address signals
+        m_Address_Value: in T_SYSTEM_INT64;
+        -- Input bus m_Data_input signals
+        m_Data_input_Data: in T_SYSTEM_INT64;
+        -- Input bus m_MemRead signals
+        m_MemRead_Enable: in T_SYSTEM_BOOL;
+        -- Input bus m_MemWrite signals
+        m_MemWrite_Enable: in T_SYSTEM_BOOL;
+        -- Input bus m_SizeAndSign signals
+        m_SizeAndSign_Value: in T_SYSTEM_UINT8;
 
-        -- Output bus Mux_output signals
-        Mux_output_Address: out T_SYSTEM_UINT64;
+        -- Output bus output signals
+        output_Data: out T_SYSTEM_INT64;
 
 
         -- Clock signal
@@ -42,9 +49,9 @@ entity Mux1 is
         -- Reset signal
         RST : in Std_logic
     );
-end Mux1;
+end DM;
 
-architecture RTL of Mux1 is
+architecture RTL of DM is
 
 
 
@@ -69,6 +76,8 @@ begin
         RDY,
         RST
     )
+    -- Internal variables
+    variable Data_Memory : DM_Data_Memory_type := reset_Data_Memory;
 
     variable reentry_guard: std_logic;
 
@@ -80,7 +89,8 @@ begin
         -- #### USER-DATA-NONCLOCKEDSHAREDINITIALIZECODE-END
 
         if RST = '1' then
-            Mux_output_Address <= TO_UNSIGNED(0, 64);
+            output_Data <= TO_SIGNED(0, 64);
+            Data_Memory := reset_Data_Memory;
 
                                     
             reentry_guard := '0';
@@ -98,13 +108,13 @@ begin
             -- #### USER-DATA-NONCLOCKEDINITIALIZECODE-END
 
 
-            case m_ANDGate_Value is
-                when '0' =>
-                    Mux_output_Address <= m_Next_Address;
-                when '1' =>
-                    Mux_output_Address <= UNSIGNED(m_ALU_Value);
-                when others =>
-            end case;
+            if m_MemRead_Enable = '1' then
+                output_Data <= Data_Memory(TO_INTEGER(m_Address_Value));
+            else
+                if m_MemWrite_Enable = '1' then
+                    Data_Memory(TO_INTEGER(m_Address_Value)) := m_Data_input_Data;
+                end if;
+            end if;
 
 
 
