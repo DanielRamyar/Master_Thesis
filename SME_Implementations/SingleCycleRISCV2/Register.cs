@@ -55,7 +55,7 @@ namespace SingleCycleRISCV {
             }
             
 
-            Console.WriteLine(string.Join(", ", m_register)); // Using this to print whole register
+            Console.WriteLine($"Register: {string.Join(", ", m_register)}"); // Using this to print whole register
 
         }
     }
