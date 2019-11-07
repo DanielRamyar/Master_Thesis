@@ -120,7 +120,7 @@ begin
                 temp2 := (shift_right(m_instruction_current, 25)) and TO_UNSIGNED(63, 32);
                 temp3 := (shift_right(m_instruction_current, 7)) and TO_UNSIGNED(1, 32);
                 temp4 := (shift_right(m_instruction_current, 31)) and TO_UNSIGNED(1, 32);
-                temp0 := SIGNED(((((TO_UNSIGNED(0, 64) or (shift_left(resize(temp4, T_SYSTEM_UINT64'length), 11))) or (shift_left(resize(temp3, T_SYSTEM_UINT64'length), 10))) or (shift_left(resize(temp2, T_SYSTEM_UINT64'length), 4))) or resize(temp1, T_SYSTEM_UINT64'length)));
+                temp0 := SIGNED(((((TO_UNSIGNED(0, 64) or (shift_left(resize(temp4, T_SYSTEM_UINT64'length), 12))) or (shift_left(resize(temp3, T_SYSTEM_UINT64'length), 11))) or (shift_left(resize(temp2, T_SYSTEM_UINT64'length), 5))) or (shift_left(resize(temp1, T_SYSTEM_UINT64'length), 1))));
                 output_Immediate <= temp0;
             end if;
             if num = TO_UNSIGNED(35, 32) then

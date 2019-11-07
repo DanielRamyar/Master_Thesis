@@ -87,19 +87,20 @@ begin
     variable num : T_SYSTEM_UINT32;
     variable num2 : T_SYSTEM_UINT32;
     variable num3 : T_SYSTEM_UINT32;
-    variable num5 : T_SYSTEM_INT32;
-    variable num6 : T_SYSTEM_INT32;
-    variable num4 : T_SYSTEM_INT32;
-    variable local_var_0 : T_SYSTEM_INT32;
+    variable local_var_0 : INTEGER;
     variable local_var_1 : INTEGER;
-    variable local_var_2 : T_SYSTEM_INT32;
+    variable local_var_2 : INTEGER;
     variable local_var_3 : INTEGER;
-    variable local_var_4 : T_SYSTEM_INT32;
+    variable local_var_4 : INTEGER;
     variable local_var_5 : INTEGER;
     variable local_var_6 : INTEGER;
     variable local_var_7 : INTEGER;
     variable local_var_8 : INTEGER;
     variable local_var_9 : INTEGER;
+    variable local_var_10 : INTEGER;
+    variable local_var_11 : INTEGER;
+    variable local_var_12 : INTEGER;
+    variable local_var_13 : INTEGER;
 
     variable reentry_guard: std_logic;
 
@@ -124,19 +125,20 @@ begin
             num := TO_UNSIGNED(0, 32);
             num2 := TO_UNSIGNED(0, 32);
             num3 := TO_UNSIGNED(0, 32);
-            num5 := TO_SIGNED(0, 32);
-            num6 := TO_SIGNED(0, 32);
-            num4 := TO_SIGNED(0, 32);
-            local_var_0 := TO_SIGNED(0, 32);
+            local_var_0 := 0;
             local_var_1 := 0;
-            local_var_2 := TO_SIGNED(0, 32);
+            local_var_2 := 0;
             local_var_3 := 0;
-            local_var_4 := TO_SIGNED(0, 32);
+            local_var_4 := 0;
             local_var_5 := 0;
             local_var_6 := 0;
             local_var_7 := 0;
             local_var_8 := 0;
             local_var_9 := 0;
+            local_var_10 := 0;
+            local_var_11 := 0;
+            local_var_12 := 0;
+            local_var_13 := 0;
 
                                     
             reentry_guard := '0';
@@ -157,8 +159,8 @@ begin
             num := m_instruction_Current and TO_UNSIGNED(127, 32);
             num2 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(7, 32);
             num3 := (shift_right(m_instruction_Current, 25)) and TO_UNSIGNED(127, 32);
-            local_var_9 := TO_INTEGER(num);
-            case local_var_9 is
+            local_var_13 := TO_INTEGER(num);
+            case local_var_13 is
                 when 0 =>
                     PCSel_Value <= '0';
                     RegWrite_Enable <= '0';
@@ -180,45 +182,40 @@ begin
                     MemWrite_Enable <= '0';
                     MemRead_Enable <= '0';
                     WBSel_Value <= TO_UNSIGNED(0, 8);
-                    if (num2 = TO_UNSIGNED(0, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                        ALUOP_Value <= TO_UNSIGNED(0, 8);
-                    else
-                        if (num2 = TO_UNSIGNED(0, 32)) and (num3 = TO_UNSIGNED(32, 32)) then
-                            ALUOP_Value <= TO_UNSIGNED(1, 8);
-                        else
-                            if (num2 = TO_UNSIGNED(7, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                                ALUOP_Value <= TO_UNSIGNED(2, 8);
-                            else
-                                if (num2 = TO_UNSIGNED(6, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                                    ALUOP_Value <= TO_UNSIGNED(3, 8);
-                                else
-                                    if (num2 = TO_UNSIGNED(4, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                                        ALUOP_Value <= TO_UNSIGNED(4, 8);
-                                    else
-                                        if (num2 = TO_UNSIGNED(1, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                                            ALUOP_Value <= TO_UNSIGNED(5, 8);
-                                        else
-                                            if (num2 = TO_UNSIGNED(2, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                                                ALUOP_Value <= TO_UNSIGNED(6, 8);
-                                            else
-                                                if (num2 = TO_UNSIGNED(3, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                                                    ALUOP_Value <= TO_UNSIGNED(7, 8);
-                                                else
-                                                    if (num2 = TO_UNSIGNED(5, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                                                        ALUOP_Value <= TO_UNSIGNED(8, 8);
-                                                    else
-                                                        if (num2 = TO_UNSIGNED(5, 32)) and (num3 = TO_UNSIGNED(32, 32)) then
-                                                            ALUOP_Value <= TO_UNSIGNED(9, 8);
-                                                        end if;
-                                                    end if;
-                                                end if;
-                                            end if;
-                                        end if;
-                                    end if;
-                                end if;
-                            end if;
-                        end if;
-                    end if;
+                    local_var_2 := TO_INTEGER(num2);
+                    case local_var_2 is
+                        when 0 =>
+                            local_var_0 := TO_INTEGER(num3);
+                            case local_var_0 is
+                                when 0 =>
+                                    ALUOP_Value <= TO_UNSIGNED(0, 8);
+                                when 32 =>
+                                    ALUOP_Value <= TO_UNSIGNED(1, 8);
+                                when others =>
+                            end case;
+                        when 7 =>
+                            ALUOP_Value <= TO_UNSIGNED(2, 8);
+                        when 6 =>
+                            ALUOP_Value <= TO_UNSIGNED(3, 8);
+                        when 4 =>
+                            ALUOP_Value <= TO_UNSIGNED(4, 8);
+                        when 1 =>
+                            ALUOP_Value <= TO_UNSIGNED(5, 8);
+                        when 2 =>
+                            ALUOP_Value <= TO_UNSIGNED(6, 8);
+                        when 3 =>
+                            ALUOP_Value <= TO_UNSIGNED(7, 8);
+                        when 5 =>
+                            local_var_1 := TO_INTEGER(num3);
+                            case local_var_1 is
+                                when 0 =>
+                                    ALUOP_Value <= TO_UNSIGNED(8, 8);
+                                when 32 =>
+                                    ALUOP_Value <= TO_UNSIGNED(9, 8);
+                                when others =>
+                            end case;
+                        when others =>
+                    end case;
                 when 59 =>
                     PCSel_Value <= '0';
                     RegWrite_Enable <= '1';
@@ -229,25 +226,30 @@ begin
                     MemWrite_Enable <= '0';
                     MemRead_Enable <= '0';
                     WBSel_Value <= TO_UNSIGNED(0, 8);
-                    if (num2 = TO_UNSIGNED(0, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                        ALUOP_Value <= TO_UNSIGNED(10, 8);
-                    else
-                        if (num2 = TO_UNSIGNED(0, 32)) and (num3 = TO_UNSIGNED(32, 32)) then
-                            ALUOP_Value <= TO_UNSIGNED(11, 8);
-                        else
-                            if (num2 = TO_UNSIGNED(1, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                                ALUOP_Value <= TO_UNSIGNED(12, 8);
-                            else
-                                if (num2 = TO_UNSIGNED(5, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
+                    local_var_5 := TO_INTEGER(num2);
+                    case local_var_5 is
+                        when 0 =>
+                            local_var_3 := TO_INTEGER(num3);
+                            case local_var_3 is
+                                when 0 =>
+                                    ALUOP_Value <= TO_UNSIGNED(10, 8);
+                                when 32 =>
+                                    ALUOP_Value <= TO_UNSIGNED(11, 8);
+                                when others =>
+                            end case;
+                        when 1 =>
+                            ALUOP_Value <= TO_UNSIGNED(12, 8);
+                        when 5 =>
+                            local_var_4 := TO_INTEGER(num3);
+                            case local_var_4 is
+                                when 0 =>
                                     ALUOP_Value <= TO_UNSIGNED(13, 8);
-                                else
-                                    if (num2 = TO_UNSIGNED(5, 32)) and (num3 = TO_UNSIGNED(32, 32)) then
-                                        ALUOP_Value <= TO_UNSIGNED(14, 8);
-                                    end if;
-                                end if;
-                            end if;
-                        end if;
-                    end if;
+                                when 32 =>
+                                    ALUOP_Value <= TO_UNSIGNED(14, 8);
+                                when others =>
+                            end case;
+                        when others =>
+                    end case;
                 when 19 =>
                     PCSel_Value <= '0';
                     RegWrite_Enable <= '1';
@@ -258,59 +260,33 @@ begin
                     MemWrite_Enable <= '0';
                     MemRead_Enable <= '0';
                     WBSel_Value <= TO_UNSIGNED(0, 8);
-                    local_var_1 := TO_INTEGER(num2);
-                    case local_var_1 is
+                    local_var_7 := TO_INTEGER(num2);
+                    case local_var_7 is
                         when 0 =>
                             ALUOP_Value <= TO_UNSIGNED(0, 8);
-                            return ;
                         when 7 =>
                             ALUOP_Value <= TO_UNSIGNED(2, 8);
-                            return ;
                         when 6 =>
                             ALUOP_Value <= TO_UNSIGNED(3, 8);
-                            return ;
                         when 4 =>
                             ALUOP_Value <= TO_UNSIGNED(4, 8);
-                            return ;
                         when 1 =>
-                            if num3 = TO_UNSIGNED(0, 32) then
-                                local_var_0 := TO_SIGNED(1, 32);
-                            else
-                                local_var_0 := TO_SIGNED(0, 32);
-                            end if;
-                            num5 := local_var_0;
+                            ALUOP_Value <= TO_UNSIGNED(5, 8);
+                        when 2 =>
+                            ALUOP_Value <= TO_UNSIGNED(6, 8);
+                        when 3 =>
+                            ALUOP_Value <= TO_UNSIGNED(7, 8);
+                        when 5 =>
+                            local_var_6 := TO_INTEGER(num3);
+                            case local_var_6 is
+                                when 0 =>
+                                    ALUOP_Value <= TO_UNSIGNED(8, 8);
+                                when 32 =>
+                                    ALUOP_Value <= TO_UNSIGNED(9, 8);
+                                when others =>
+                            end case;
                         when others =>
-                            num5 := TO_SIGNED(0, 32);
                     end case;
-                    if num5 /= TO_SIGNED(0, 32) then
-                        ALUOP_Value <= TO_UNSIGNED(5, 8);
-                    else
-                        local_var_3 := TO_INTEGER(num2);
-                        case local_var_3 is
-                            when 2 =>
-                                ALUOP_Value <= TO_UNSIGNED(6, 8);
-                                return ;
-                            when 3 =>
-                                ALUOP_Value <= TO_UNSIGNED(7, 8);
-                                return ;
-                            when 5 =>
-                                if num3 = TO_UNSIGNED(0, 32) then
-                                    local_var_2 := TO_SIGNED(1, 32);
-                                else
-                                    local_var_2 := TO_SIGNED(0, 32);
-                                end if;
-                                num6 := local_var_2;
-                            when others =>
-                                num6 := TO_SIGNED(0, 32);
-                        end case;
-                        if num6 /= TO_SIGNED(0, 32) then
-                            ALUOP_Value <= TO_UNSIGNED(8, 8);
-                        else
-                            if (num2 = TO_UNSIGNED(5, 32)) and (num3 = TO_UNSIGNED(32, 32)) then
-                                ALUOP_Value <= TO_UNSIGNED(9, 8);
-                            end if;
-                        end if;
-                    end if;
                 when 27 =>
                     PCSel_Value <= '0';
                     RegWrite_Enable <= '1';
@@ -321,32 +297,23 @@ begin
                     MemWrite_Enable <= '0';
                     MemRead_Enable <= '0';
                     WBSel_Value <= TO_UNSIGNED(0, 8);
-                    local_var_5 := TO_INTEGER(num2);
-                    case local_var_5 is
+                    local_var_9 := TO_INTEGER(num2);
+                    case local_var_9 is
                         when 0 =>
                             ALUOP_Value <= TO_UNSIGNED(10, 8);
-                            return ;
                         when 1 =>
-                            if num3 = TO_UNSIGNED(0, 32) then
-                                local_var_4 := TO_SIGNED(1, 32);
-                            else
-                                local_var_4 := TO_SIGNED(0, 32);
-                            end if;
-                            num4 := local_var_4;
+                            ALUOP_Value <= TO_UNSIGNED(12, 8);
+                        when 5 =>
+                            local_var_8 := TO_INTEGER(num3);
+                            case local_var_8 is
+                                when 0 =>
+                                    ALUOP_Value <= TO_UNSIGNED(13, 8);
+                                when 32 =>
+                                    ALUOP_Value <= TO_UNSIGNED(14, 8);
+                                when others =>
+                            end case;
                         when others =>
-                            num4 := TO_SIGNED(0, 32);
                     end case;
-                    if num4 /= TO_SIGNED(0, 32) then
-                        ALUOP_Value <= TO_UNSIGNED(12, 8);
-                    else
-                        if (num2 = TO_UNSIGNED(5, 32)) and (num3 = TO_UNSIGNED(0, 32)) then
-                            ALUOP_Value <= TO_UNSIGNED(13, 8);
-                        else
-                            if (num2 = TO_UNSIGNED(5, 32)) and (num3 = TO_UNSIGNED(32, 32)) then
-                                ALUOP_Value <= TO_UNSIGNED(14, 8);
-                            end if;
-                        end if;
-                    end if;
                 when 3 =>
                     PCSel_Value <= '0';
                     RegWrite_Enable <= '1';
@@ -357,8 +324,8 @@ begin
                     MemWrite_Enable <= '0';
                     MemRead_Enable <= '1';
                     WBSel_Value <= TO_UNSIGNED(1, 8);
-                    local_var_6 := TO_INTEGER(num2);
-                    case local_var_6 is
+                    local_var_10 := TO_INTEGER(num2);
+                    case local_var_10 is
                         when 0 =>
                             SizeAndSign_Value <= TO_UNSIGNED(3, 8);
                         when 1 =>
@@ -396,8 +363,8 @@ begin
                     MemWrite_Enable <= '1';
                     MemRead_Enable <= '0';
                     WBSel_Value <= TO_UNSIGNED(0, 8);
-                    local_var_7 := TO_INTEGER(num2);
-                    case local_var_7 is
+                    local_var_11 := TO_INTEGER(num2);
+                    case local_var_11 is
                         when 0 =>
                             SizeAndSign_Value <= TO_UNSIGNED(3, 8);
                         when 1 =>
@@ -418,8 +385,9 @@ begin
                     MemWrite_Enable <= '0';
                     MemRead_Enable <= '0';
                     WBSel_Value <= TO_UNSIGNED(0, 8);
-                    local_var_8 := TO_INTEGER(num2);
-                    case local_var_8 is
+                    local_var_12 := TO_INTEGER(num2);
+                    case local_var_12 is
+                        when 2 | 3 =>
                         when 0 =>
                             BJSIGN_Value <= TO_UNSIGNED(0, 8);
                         when 1 =>

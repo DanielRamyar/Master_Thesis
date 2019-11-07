@@ -76,6 +76,8 @@ begin
     variable num : T_SYSTEM_UINT32;
     variable num2 : T_SYSTEM_UINT32;
     variable local_var_0 : INTEGER;
+    variable local_var_1 : INTEGER;
+    variable local_var_2 : INTEGER;
     variable temp0 : T_SYSTEM_INT64 := reset_temp0;
     variable temp1 : T_SYSTEM_UINT32 := reset_temp1;
     variable temp2 : T_SYSTEM_UINT32 := reset_temp2;
@@ -96,6 +98,8 @@ begin
             num := TO_UNSIGNED(0, 32);
             num2 := TO_UNSIGNED(0, 32);
             local_var_0 := 0;
+            local_var_1 := 0;
+            local_var_2 := 0;
             temp0 := reset_temp0;
             temp1 := reset_temp1;
             temp2 := reset_temp2;
@@ -120,8 +124,8 @@ begin
 
             num := m_instruction_Current and TO_UNSIGNED(127, 32);
             num2 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(7, 32);
-            local_var_0 := TO_INTEGER(num);
-            case local_var_0 is
+            local_var_2 := TO_INTEGER(num);
+            case local_var_2 is
                 when 0 =>
                     output_Immediate <= TO_SIGNED(0, 64);
                 when 51 =>
@@ -129,28 +133,43 @@ begin
                 when 59 =>
                     output_Immediate <= TO_SIGNED(0, 64);
                 when 19 =>
-                    if (num2 = TO_UNSIGNED(1, 32)) or (num2 = TO_UNSIGNED(5, 32)) then
-                        temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(63, 32);
-                        temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
-                        output_Immediate <= temp0;
-                    else
-                        temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
-                        temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
-                        output_Immediate <= temp0;
-                    end if;
+                    local_var_0 := TO_INTEGER(num2);
+                    case local_var_0 is
+                        when 1 =>
+                            temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(63, 32);
+                            temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                            output_Immediate <= temp0;
+                        when 5 =>
+                            temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(63, 32);
+                            temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                            output_Immediate <= temp0;
+                        when others =>
+                            temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
+                            temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                            output_Immediate <= temp0;
+                    end case;
                 when 27 =>
-                    if (num2 = TO_UNSIGNED(1, 32)) or (num2 = TO_UNSIGNED(5, 32)) then
-                        temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(31, 32);
-                        temp2 := (shift_right(m_instruction_Current, 25)) and TO_UNSIGNED(127, 32);
-                        if temp2 /= TO_UNSIGNED(0, 32) then
-                        end if;
-                        temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
-                        output_Immediate <= temp0;
-                    else
-                        temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
-                        temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
-                        output_Immediate <= temp0;
-                    end if;
+                    local_var_1 := TO_INTEGER(num2);
+                    case local_var_1 is
+                        when 1 =>
+                            temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(31, 32);
+                            temp2 := (shift_right(m_instruction_Current, 25)) and TO_UNSIGNED(127, 32);
+                            if temp2 /= TO_UNSIGNED(0, 32) then
+                            end if;
+                            temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                            output_Immediate <= temp0;
+                        when 5 =>
+                            temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(31, 32);
+                            temp2 := (shift_right(m_instruction_Current, 25)) and TO_UNSIGNED(127, 32);
+                            if temp2 /= TO_UNSIGNED(0, 32) then
+                            end if;
+                            temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                            output_Immediate <= temp0;
+                        when others =>
+                            temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
+                            temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                            output_Immediate <= temp0;
+                    end case;
                 when 3 =>
                     temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
                     temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
