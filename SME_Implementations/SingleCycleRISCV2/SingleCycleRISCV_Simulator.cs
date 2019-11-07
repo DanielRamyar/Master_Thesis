@@ -64,8 +64,7 @@ namespace SingleCycleRISCV {
 
         // Clockcycle counter
         private readonly clock clock = Scope.CreateOrLoadBus<clock>();
-          
-
+        
         public async override System.Threading.Tasks.Task Run() {
 
             Console.WriteLine("Starting test!\n");
