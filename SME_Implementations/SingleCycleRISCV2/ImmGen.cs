@@ -32,31 +32,49 @@ namespace SingleCycleRISCV {
                     output.Immediate = 0;
                     break;
                 case 19:                                        // I-format
-                    if (funct3 == 1 || funct3 == 5) {                        // Check it is a shamt instruction
-                        temp1 = m_instruction.Current >> 20 & (uint)0x3F;    // Extracts bit 20-25 from instruction
-                        temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
-                        output.Immediate = temp0;
-                    }
-                    else {
-                        temp1 = m_instruction.Current >> 20 & (uint)0xFFF;   // Extracts bit 20-31 from instruction
-                        temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
-                        output.Immediate = temp0;
+                    switch (funct3) {
+                        case 1:                                                  // Check it is a shamt instruction
+                            temp1 = m_instruction.Current >> 20 & (uint)0x3F;    // Extracts bit 20-25 from instruction
+                            temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
+                            output.Immediate = temp0;
+                            break;
+                        case 5:                                                  // Check it is a shamt instruction
+                            temp1 = m_instruction.Current >> 20 & (uint)0x3F;    // Extracts bit 20-25 from instruction
+                            temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
+                            output.Immediate = temp0;
+                            break;
+                        default:
+                            temp1 = m_instruction.Current >> 20 & (uint)0xFFF;   // Extracts bit 20-31 from instruction
+                            temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
+                            output.Immediate = temp0;
+                            break;
                     }
                     break;
                 case 27:                                        // I-format Word
-                    if (funct3 == 1 || funct3 == 5) {                        // Check it is a shamt instruction
-                        temp1 = m_instruction.Current >> 20 & (uint)0x1F;    // Extracts bit 20-24 from instruction [0:4]
-                        temp2 = m_instruction.Current >> 25 & (uint)0x7F;    // Extracts bit 25-31 from instruction [11:5]
-                        if (temp2 != 0) {
-                            Console.WriteLine($"The shamt exceded the 5 bit limit error");
-                        }
-                        temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format word instruction
-                        output.Immediate = temp0;
-                    }
-                    else {
-                        temp1 = m_instruction.Current >> 20 & (uint)0xFFF;   // Extracts bit 20-31 from instruction
-                        temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
-                        output.Immediate = temp0;
+                    switch (funct3) {
+                        case 1:                                                  // Check it is a shamt instruction
+                            temp1 = m_instruction.Current >> 20 & (uint)0x1F;    // Extracts bit 20-24 from instruction [0:4]
+                            temp2 = m_instruction.Current >> 25 & (uint)0x7F;    // Extracts bit 25-31 from instruction [11:5]
+                            if (temp2 != 0) {
+                                Console.WriteLine($"The shamt exceded the 5 bit limit error");
+                            }
+                            temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format word instruction
+                            output.Immediate = temp0;
+                            break;
+                        case 5:                                                  // Check it is a shamt instruction
+                            temp1 = m_instruction.Current >> 20 & (uint)0x1F;    // Extracts bit 20-24 from instruction [0:4]
+                            temp2 = m_instruction.Current >> 25 & (uint)0x7F;    // Extracts bit 25-31 from instruction [11:5]
+                            if (temp2 != 0) {
+                                Console.WriteLine($"The shamt exceded the 5 bit limit error");
+                            }
+                            temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format word instruction
+                            output.Immediate = temp0;
+                            break;
+                        default:
+                            temp1 = m_instruction.Current >> 20 & (uint)0xFFF;   // Extracts bit 20-31 from instruction
+                            temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
+                            output.Immediate = temp0;
+                            break;
                     }
                     break;
                 case 3:                                         // LOAD
