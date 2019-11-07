@@ -159,6 +159,17 @@ begin
             num3 := (shift_right(m_instruction_Current, 25)) and TO_UNSIGNED(127, 32);
             local_var_9 := TO_INTEGER(num);
             case local_var_9 is
+                when 0 =>
+                    PCSel_Value <= '0';
+                    RegWrite_Enable <= '0';
+                    ALUSrc1_Enable <= '0';
+                    ALUSrc2_Enable <= '0';
+                    ALUOP_Value <= TO_UNSIGNED(0, 8);
+                    BJSIGN_Value <= TO_UNSIGNED(0, 8);
+                    SizeAndSign_Value <= TO_UNSIGNED(0, 8);
+                    MemWrite_Enable <= '0';
+                    MemRead_Enable <= '0';
+                    WBSel_Value <= TO_UNSIGNED(0, 8);
                 when 51 =>
                     PCSel_Value <= '0';
                     RegWrite_Enable <= '1';

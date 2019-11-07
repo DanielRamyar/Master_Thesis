@@ -25,6 +25,7 @@ digraph SingleCycleRISCV {
 "SizeAndSign" [shape=oval];
 "DM_Output" [shape=oval];
 "WBSel" [shape=oval];
+"clock" [shape=oval];
 "Mux1_Output" [shape=oval];
 "Write_Register" [shape=oval];
 "CPU" [shape=oval];
@@ -43,9 +44,9 @@ digraph SingleCycleRISCV {
 "GoTo" [shape=box];
 "Mux3" [shape=box];
 "ALU" [shape=box];
+"SingleCycleRISCV_Simulator" [shape=box];
 "PC" [shape=box];
 "WriteBuffer" [shape=box];
-"SingleCycleRISCV_Simulator" [shape=box];
 "GoTo_Output" -> "ANDGate";
 "PCSel" -> "ANDGate";
 "Next_Output" -> "Mux1";
@@ -81,6 +82,7 @@ digraph SingleCycleRISCV {
 "SizeAndSign" -> "DM";
 "DM_Output" -> "Mux4";
 "WBSel" -> "Mux4";
+"SingleCycleRISCV_Simulator" -> "clock";
 "ANDGate" -> "ANDGate_Output";
 "Mux1" -> "Mux1_Output";
 "PC" -> "PC_Output";
@@ -136,5 +138,6 @@ digraph SingleCycleRISCV {
 "Mux4_Output" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "Mux4_Output" -> "WriteBuffer" [style=dotted];
 "CPU" -> "SingleCycleRISCV_Simulator" [style=dotted];
+"clock" -> "SingleCycleRISCV_Simulator" [style=dotted];
 "RegWrite" -> "WriteBuffer" [style=dotted];
 }

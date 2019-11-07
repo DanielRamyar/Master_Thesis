@@ -113,6 +113,8 @@ begin
             else
                 if m_MemWrite_Enable = '1' then
                     Data_Memory(TO_INTEGER(m_Address_Value)) := m_Data_input_Data;
+                else
+                    output_Data <= TO_SIGNED(0, 64);
                 end if;
             end if;
 

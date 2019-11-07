@@ -75,9 +75,7 @@ begin
     -- Internal variables
     variable num : T_SYSTEM_UINT32;
     variable num2 : T_SYSTEM_UINT32;
-    variable num3 : T_SYSTEM_INT32;
-    variable local_var_0 : T_SYSTEM_INT32;
-    variable local_var_1 : INTEGER;
+    variable local_var_0 : INTEGER;
     variable temp0 : T_SYSTEM_INT64 := reset_temp0;
     variable temp1 : T_SYSTEM_UINT32 := reset_temp1;
     variable temp2 : T_SYSTEM_UINT32 := reset_temp2;
@@ -97,9 +95,7 @@ begin
             output_Immediate <= TO_SIGNED(0, 64);
             num := TO_UNSIGNED(0, 32);
             num2 := TO_UNSIGNED(0, 32);
-            num3 := TO_SIGNED(0, 32);
-            local_var_0 := TO_SIGNED(0, 32);
-            local_var_1 := 0;
+            local_var_0 := 0;
             temp0 := reset_temp0;
             temp1 := reset_temp1;
             temp2 := reset_temp2;
@@ -124,8 +120,14 @@ begin
 
             num := m_instruction_Current and TO_UNSIGNED(127, 32);
             num2 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(7, 32);
-            local_var_1 := TO_INTEGER(num);
-            case local_var_1 is
+            local_var_0 := TO_INTEGER(num);
+            case local_var_0 is
+                when 0 =>
+                    output_Immediate <= TO_SIGNED(0, 64);
+                when 51 =>
+                    output_Immediate <= TO_SIGNED(0, 64);
+                when 59 =>
+                    output_Immediate <= TO_SIGNED(0, 64);
                 when 19 =>
                     if (num2 = TO_UNSIGNED(1, 32)) or (num2 = TO_UNSIGNED(5, 32)) then
                         temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(63, 32);
@@ -136,7 +138,6 @@ begin
                         temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
                         output_Immediate <= temp0;
                     end if;
-                    return ;
                 when 27 =>
                     if (num2 = TO_UNSIGNED(1, 32)) or (num2 = TO_UNSIGNED(5, 32)) then
                         temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(31, 32);
@@ -150,18 +151,19 @@ begin
                         temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
                         output_Immediate <= temp0;
                     end if;
-                    return ;
                 when 3 =>
                     temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
                     temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
                     output_Immediate <= temp0;
-                    return ;
+                when 103 =>
+                    temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
+                    temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                    output_Immediate <= temp0;
                 when 35 =>
                     temp1 := (shift_right(m_instruction_Current, 7)) and TO_UNSIGNED(31, 32);
                     temp2 := (shift_right(m_instruction_Current, 25)) and TO_UNSIGNED(127, 32);
                     temp0 := SIGNED(((shift_left(resize(temp2, T_SYSTEM_UINT64'length), 5)) or resize(temp1, T_SYSTEM_UINT64'length)));
                     output_Immediate <= temp0;
-                    return ;
                 when 99 =>
                     temp1 := (shift_right(m_instruction_Current, 8)) and TO_UNSIGNED(15, 32);
                     temp2 := (shift_right(m_instruction_Current, 25)) and TO_UNSIGNED(63, 32);
@@ -169,33 +171,23 @@ begin
                     temp4 := (shift_right(m_instruction_Current, 31)) and TO_UNSIGNED(1, 32);
                     temp0 := SIGNED(((((shift_left(resize(temp4, T_SYSTEM_UINT64'length), 12)) or (shift_left(resize(temp3, T_SYSTEM_UINT64'length), 11))) or (shift_left(resize(temp2, T_SYSTEM_UINT64'length), 5))) or (shift_left(resize(temp1, T_SYSTEM_UINT64'length), 1))));
                     output_Immediate <= temp0;
-                    return ;
+                when 23 =>
+                    temp1 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(1048575, 32);
+                    temp0 := SIGNED((shift_left(resize(temp1, T_SYSTEM_UINT64'length), 12)));
+                    output_Immediate <= temp0;
                 when 55 =>
-                    num3 := TO_SIGNED(1, 32);
-                when others =>
-                    if num = TO_UNSIGNED(23, 32) then
-                        local_var_0 := TO_SIGNED(1, 32);
-                    else
-                        local_var_0 := TO_SIGNED(0, 32);
-                    end if;
-                    num3 := local_var_0;
-            end case;
-            if num3 /= TO_SIGNED(0, 32) then
-                temp1 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(1048575, 32);
-                temp0 := SIGNED((shift_left(resize(temp1, T_SYSTEM_UINT64'length), 12)));
-                output_Immediate <= temp0;
-            else
-                if num = TO_UNSIGNED(111, 32) then
+                    temp1 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(1048575, 32);
+                    temp0 := SIGNED((shift_left(resize(temp1, T_SYSTEM_UINT64'length), 12)));
+                    output_Immediate <= temp0;
+                when 111 =>
                     temp1 := (shift_right(m_instruction_Current, 21)) and TO_UNSIGNED(1023, 32);
                     temp2 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(1, 32);
                     temp3 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(255, 32);
                     temp4 := (shift_right(m_instruction_Current, 31)) and TO_UNSIGNED(1, 32);
                     temp0 := SIGNED(((((shift_left(resize(temp4, T_SYSTEM_UINT64'length), 20)) or (shift_left(resize(temp3, T_SYSTEM_UINT64'length), 12))) or (shift_left(resize(temp2, T_SYSTEM_UINT64'length), 11))) or (shift_left(resize(temp1, T_SYSTEM_UINT64'length), 1))));
                     output_Immediate <= temp0;
-                else
-                    output_Immediate <= TO_SIGNED(0, 64);
-                end if;
-            end if;
+                when others =>
+            end case;
 
 
 
