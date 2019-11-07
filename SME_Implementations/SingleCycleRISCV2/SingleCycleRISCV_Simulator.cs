@@ -2,6 +2,10 @@ using System;
 using SME;
 
 namespace SingleCycleRISCV {
+    [InternalBus, InitializedBus]
+    public interface clock : IBus {
+        int cycle {get; set;}
+    }
     public class SingleCycleRISCV_Simulator : SimulationProcess {
 
         // Instruction Fetch
@@ -57,6 +61,9 @@ namespace SingleCycleRISCV {
         // Is cpu running
         [InputBus]
         public readonly CPU CPU = Scope.CreateOrLoadBus<CPU>();
+
+        // Clockcycle counter
+        private readonly clock clock = Scope.CreateOrLoadBus<clock>();
           
 
         public async override System.Threading.Tasks.Task Run() {
@@ -66,7 +73,8 @@ namespace SingleCycleRISCV {
 
             while (CPU.Running) {
                 await ClockAsync();
-
+                clock.cycle += 1;
+                Console.WriteLine($"------------------------ {clock.cycle} ------------------------\n");
                 Console.WriteLine($"Instruction Fetch Buses \n");
                 Console.WriteLine($"ANDGate Output: {ANDGate.Value}");
                 Console.WriteLine($"Mux1 Output: {Mux1.Address}");
