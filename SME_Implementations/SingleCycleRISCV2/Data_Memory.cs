@@ -34,7 +34,7 @@ namespace SingleCycleRISCV {
             else {
                 output.Data = 0;
             }
-            Console.WriteLine($"Data Memory: {string.Join(", ", Data_Memory)}"); // Using this to print whole memory
+            Console.WriteLine($"Data Memory: [{string.Join(", ", Data_Memory)}]"); // Using this to print whole memory
         }
     }
 
