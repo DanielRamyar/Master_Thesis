@@ -38,11 +38,10 @@ namespace SingleCycleRISCV {
         [OutputBus]
         private readonly CPU m_CPU = Scope.CreateOrLoadBus<CPU>();
 
-        private readonly byte[] Instruction_Memory = {1, 8, 137, 51      // add x18, x17, x16
-                                                    //   1, 39, 176, 35,     // sd x18, x15, 0 
-                                                    //   255, 222, 14, 227,  // beq x28, x29, -2 
-                                                    //   0, 248, 10, 51      // add x20, x16, x15
-                                                      };    
+        private readonly byte[] Instruction_Memory = System.IO.File.ReadAllBytes("/Users/danielramyar/Desktop/Thesis/SME_Implementations/SingleCycleRISCV2/Rformattest.dat");      
+        // private readonly byte[] Instruction_Memory = {0x00, 0x80, 0x08, 0x13,       // addi x16, x0, 8
+        //                                               0x00, 0x70, 0x08, 0x93,       // addi x17, x0, 7
+        //                                               0x01, 0x08, 0x89, 0x33};      // add x18, x17, x16      
 
         protected override void OnTick() {
             ulong temp_address = m_input.Address;
