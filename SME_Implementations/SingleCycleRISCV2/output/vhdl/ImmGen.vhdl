@@ -75,6 +75,7 @@ begin
     -- Internal variables
     variable num : T_SYSTEM_UINT32;
     variable num2 : T_SYSTEM_UINT32;
+    variable num3 : T_SYSTEM_INT16;
     variable local_var_0 : INTEGER;
     variable local_var_1 : INTEGER;
     variable local_var_2 : INTEGER;
@@ -97,6 +98,7 @@ begin
             output_Immediate <= TO_SIGNED(0, 64);
             num := TO_UNSIGNED(0, 32);
             num2 := TO_UNSIGNED(0, 32);
+            num3 := TO_SIGNED(0, 16);
             local_var_0 := 0;
             local_var_1 := 0;
             local_var_2 := 0;
@@ -145,8 +147,9 @@ begin
                             output_Immediate <= temp0;
                         when others =>
                             temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
-                            temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
-                            output_Immediate <= temp0;
+                            num3 := resize((shift_right(SIGNED(resize(UNSIGNED(SIGNED(resize((shift_left(temp1, 4)), T_SYSTEM_INT16'length))), 32)), 4)), T_SYSTEM_INT16'length);
+                            temp0 := resize(num3, T_SYSTEM_INT64'length);
+                            output_Immediate <= resize(num3, T_SYSTEM_INT64'length);
                     end case;
                 when 27 =>
                     local_var_1 := TO_INTEGER(num2);
