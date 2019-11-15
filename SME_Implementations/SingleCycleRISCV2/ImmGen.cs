@@ -33,26 +33,27 @@ namespace SingleCycleRISCV {
                     break;
                 case 19:                                        // I-format
                     switch (funct3) {
-                        case 1:                                                  // Check it is a shamt instruction
+                        case 1:                                                  // Check if it is a shamt instruction
                             temp1 = m_instruction.Current >> 20 & (uint)0x3F;    // Extracts bit 20-25 from instruction
                             temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
                             output.Immediate = temp0;
                             break;
-                        case 5:                                                  // Check it is a shamt instruction
+                        case 5:                                                  // Check if it is a shamt instruction
                             temp1 = m_instruction.Current >> 20 & (uint)0x3F;    // Extracts bit 20-25 from instruction
                             temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
                             output.Immediate = temp0;
                             break;
                         default:
                             temp1 = m_instruction.Current >> 20 & (uint)0xFFF;   // Extracts bit 20-31 from instruction
-                            temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
-                            output.Immediate = temp0;
+                            short temp5 = (short)((short)(temp1 << 4) >> 4);     // Little hack to retain sign bit of a 12 bit number 
+                            temp0 = (long)temp5;                                 // Creates signextended immediate field for I-format instruction
+                            output.Immediate = temp5;
                             break;
                     }
                     break;
                 case 27:                                        // I-format Word
                     switch (funct3) {
-                        case 1:                                                  // Check it is a shamt instruction
+                        case 1:                                                  // Check if it is a shamt instruction
                             temp1 = m_instruction.Current >> 20 & (uint)0x1F;    // Extracts bit 20-24 from instruction [0:4]
                             temp2 = m_instruction.Current >> 25 & (uint)0x7F;    // Extracts bit 25-31 from instruction [11:5]
                             if (temp2 != 0) {
@@ -61,7 +62,7 @@ namespace SingleCycleRISCV {
                             temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format word instruction
                             output.Immediate = temp0;
                             break;
-                        case 5:                                                  // Check it is a shamt instruction
+                        case 5:                                                  // Check if it is a shamt instruction
                             temp1 = m_instruction.Current >> 20 & (uint)0x1F;    // Extracts bit 20-24 from instruction [0:4]
                             temp2 = m_instruction.Current >> 25 & (uint)0x7F;    // Extracts bit 25-31 from instruction [11:5]
                             if (temp2 != 0) {
@@ -72,7 +73,8 @@ namespace SingleCycleRISCV {
                             break;
                         default:
                             temp1 = m_instruction.Current >> 20 & (uint)0xFFF;   // Extracts bit 20-31 from instruction
-                            temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
+                            short temp5 = (short)((short)(temp1 << 4) >> 4);     // Little hack to retain sign bit of a 12 bit number 
+                            temp0 = (long)temp5;                                 // Creates signextended immediate field for I-format instruction
                             output.Immediate = temp0;
                             break;
                     }
@@ -101,8 +103,8 @@ namespace SingleCycleRISCV {
                     temp4 = m_instruction.Current >> 31 & (uint)0x1;         // Extracts bit 31 from instruction [12]
 
                     temp0 = (long)temp4 << 12 | (long)temp3 << 11            // Creates signextended immediate field for B-format instruction
-                                            | (long)temp2 << 5 
-                                            | (long)temp1 << 1;                  
+                                              | (long)temp2 << 5 
+                                              | (long)temp1 << 1;                  
                     output.Immediate = temp0;
                     break;
                 case 23:                                        // AUIPC
