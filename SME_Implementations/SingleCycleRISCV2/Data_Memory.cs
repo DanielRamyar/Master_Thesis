@@ -29,7 +29,20 @@ namespace SingleCycleRISCV {
                 output.Data = Data_Memory[m_Address.Value];
             }
             else if (m_MemWrite.Enable) {
-                Data_Memory[m_Address.Value] = m_Data_input.Data;
+                switch (m_SizeAndSign.Value) {
+                    case 0:
+                        Data_Memory[m_Address.Value] = m_Data_input.Data;
+                        break;
+                    case 1:
+                        Data_Memory[m_Address.Value] = m_Data_input.Data & 0xFFFFFFFF;
+                        break;
+                    case 2:
+                        Data_Memory[m_Address.Value] = m_Data_input.Data & 0xFFFF;
+                        break;
+                    case 3:
+                        Data_Memory[m_Address.Value] = m_Data_input.Data & 0xFF;
+                        break;
+                }
             }
             else {
                 output.Data = 0;
