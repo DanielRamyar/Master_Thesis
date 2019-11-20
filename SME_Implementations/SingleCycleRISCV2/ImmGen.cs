@@ -92,8 +92,9 @@ namespace SingleCycleRISCV {
                 case 35:                                        // S-format
                     temp1 = m_instruction.Current >> 7 & (uint)0x1F;         // Extracts bit 7-11 from instruction
                     temp2 = m_instruction.Current >> 25 & (uint)0x7F;        // Extracts bit 25-31 from instruction
-
+       
                     temp0 = (long)temp2 << 5 | (long)temp1;                  // Creates signextended immediate field for S-format instruction
+                    temp0 = (temp0 << 52) >> 52;                             // Little hack to retain sign bit of a 12 bit number 
                     output.Immediate = temp0;
                     break;
                 case 99:                                        // B-format
