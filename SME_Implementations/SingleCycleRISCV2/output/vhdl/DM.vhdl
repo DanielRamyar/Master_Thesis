@@ -77,6 +77,7 @@ begin
         RST
     )
     -- Internal variables
+    variable local_var_0 : INTEGER;
     variable Data_Memory : DM_Data_Memory_type := reset_Data_Memory;
 
     variable reentry_guard: std_logic;
@@ -90,6 +91,7 @@ begin
 
         if RST = '1' then
             output_Data <= TO_SIGNED(0, 64);
+            local_var_0 := 0;
             Data_Memory := reset_Data_Memory;
 
                                     
@@ -112,7 +114,18 @@ begin
                 output_Data <= Data_Memory(TO_INTEGER(m_Address_Value));
             else
                 if m_MemWrite_Enable = '1' then
-                    Data_Memory(TO_INTEGER(m_Address_Value)) := m_Data_input_Data;
+                    local_var_0 := TO_INTEGER(m_SizeAndSign_Value);
+                    case local_var_0 is
+                        when 0 =>
+                            Data_Memory(TO_INTEGER(m_Address_Value)) := m_Data_input_Data;
+                        when 1 =>
+                            Data_Memory(TO_INTEGER(m_Address_Value)) := m_Data_input_Data and SIGNED(STD_LOGIC_VECTOR'("0000000000000000000000000000000011111111111111111111111111111111"));
+                        when 2 =>
+                            Data_Memory(TO_INTEGER(m_Address_Value)) := m_Data_input_Data and TO_SIGNED(65535, 64);
+                        when 3 =>
+                            Data_Memory(TO_INTEGER(m_Address_Value)) := m_Data_input_Data and TO_SIGNED(255, 64);
+                        when others =>
+                    end case;
                 else
                     output_Data <= TO_SIGNED(0, 64);
                 end if;
