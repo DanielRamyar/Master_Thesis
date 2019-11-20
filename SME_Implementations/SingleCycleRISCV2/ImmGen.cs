@@ -82,11 +82,13 @@ namespace SingleCycleRISCV {
                 case 3:                                         // LOAD
                     temp1 = m_instruction.Current >> 20 & (uint)0xFFF;       // Extracts bit 20-31 from instruction
                     temp0 = (long)temp1;                                     // Creates signextended immediate field for I-format instruction
+                    temp0 = (temp0 << 52) >> 52;                             // Little hack to retain sign bit of a 12 bit number
                     output.Immediate = temp0;
                     break;
                 case 103:                                       // JALR
                     temp1 = m_instruction.Current >> 20 & (uint)0xFFF;   // Extracts bit 20-31 from instruction
                     temp0 = (long)temp1;                                 // Creates signextended immediate field for I-format instruction
+                    temp0 = (temp0 << 52) >> 52;                             // Little hack to retain sign bit of a 12 bit number
                     output.Immediate = temp0;
                     break;
                 case 35:                                        // S-format
@@ -105,7 +107,8 @@ namespace SingleCycleRISCV {
 
                     temp0 = (long)temp4 << 12 | (long)temp3 << 11            // Creates signextended immediate field for B-format instruction
                                               | (long)temp2 << 5 
-                                              | (long)temp1 << 1;                  
+                                              | (long)temp1 << 1;
+                    temp0 = (temp0 << 51) >> 51;                             // Little hack to retain sign bit of a 12 bit number                  
                     output.Immediate = temp0;
                     break;
                 case 23:                                        // AUIPC
