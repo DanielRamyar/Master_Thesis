@@ -34,13 +34,16 @@ namespace SingleCycleRISCV {
                         Data_Memory[m_Address.Value] = m_Data_input.Data;
                         break;
                     case 1:
-                        Data_Memory[m_Address.Value] = m_Data_input.Data & 0xFFFFFFFF;
+                        long temp0 = m_Data_input.Data & (long)0xFFFFFFFF;
+                        Data_Memory[m_Address.Value] = (m_Data_input.Data << 32) >> 32; // Hack to keep sign bit
                         break;
                     case 2:
-                        Data_Memory[m_Address.Value] = m_Data_input.Data & 0xFFFF;
+                        long temp1 = m_Data_input.Data & (long)0xFFFF;
+                        Data_Memory[m_Address.Value] = (m_Data_input.Data << 48) >> 48; // Hack to keep sign bit
                         break;
                     case 3:
-                        Data_Memory[m_Address.Value] = m_Data_input.Data & 0xFF;
+                        long temp2 = m_Data_input.Data & (long)0xFF;
+                        Data_Memory[m_Address.Value] = (m_Data_input.Data << 56) >> 56; // Hack to keep sign bit
                         break;
                 }
             }
