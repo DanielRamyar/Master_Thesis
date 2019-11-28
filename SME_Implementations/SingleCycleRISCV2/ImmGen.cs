@@ -47,7 +47,7 @@ namespace SingleCycleRISCV {
                             temp1 = m_instruction.Current >> 20 & (uint)0xFFF;   // Extracts bit 20-31 from instruction
                             short temp5 = (short)((short)(temp1 << 4) >> 4);     // Little hack to retain sign bit of a 12 bit number 
                             temp0 = (long)temp5;                                 // Creates signextended immediate field for I-format instruction
-                            output.Immediate = temp5;
+                            output.Immediate = temp0;
                             break;
                     }
                     break;
