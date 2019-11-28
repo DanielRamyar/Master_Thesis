@@ -151,7 +151,7 @@ begin
                             temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
                             num4 := resize((shift_right(SIGNED(resize(UNSIGNED(SIGNED(resize((shift_left(temp1, 4)), T_SYSTEM_INT16'length))), 32)), 4)), T_SYSTEM_INT16'length);
                             temp0 := resize(num4, T_SYSTEM_INT64'length);
-                            output_Immediate <= resize(num4, T_SYSTEM_INT64'length);
+                            output_Immediate <= temp0;
                     end case;
                 when 27 =>
                     local_var_1 := TO_INTEGER(num2);
@@ -179,10 +179,12 @@ begin
                 when 3 =>
                     temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
                     temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                    temp0 := shift_right((shift_left(temp0, 52)), 52);
                     output_Immediate <= temp0;
                 when 103 =>
                     temp1 := (shift_right(m_instruction_Current, 20)) and TO_UNSIGNED(4095, 32);
                     temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
+                    temp0 := shift_right((shift_left(temp0, 52)), 52);
                     output_Immediate <= temp0;
                 when 35 =>
                     temp1 := (shift_right(m_instruction_Current, 7)) and TO_UNSIGNED(31, 32);
@@ -196,6 +198,7 @@ begin
                     temp3 := (shift_right(m_instruction_Current, 7)) and TO_UNSIGNED(1, 32);
                     temp4 := (shift_right(m_instruction_Current, 31)) and TO_UNSIGNED(1, 32);
                     temp0 := SIGNED(((((shift_left(resize(temp4, T_SYSTEM_UINT64'length), 12)) or (shift_left(resize(temp3, T_SYSTEM_UINT64'length), 11))) or (shift_left(resize(temp2, T_SYSTEM_UINT64'length), 5))) or (shift_left(resize(temp1, T_SYSTEM_UINT64'length), 1))));
+                    temp0 := shift_right((shift_left(temp0, 51)), 51);
                     output_Immediate <= temp0;
                 when 23 =>
                     temp1 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(1048575, 32);
