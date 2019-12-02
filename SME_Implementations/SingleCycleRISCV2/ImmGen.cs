@@ -117,8 +117,8 @@ namespace SingleCycleRISCV {
                     output.Immediate = temp0;
                     break;
                 case 55:                                        // LUI
-                    temp1 = m_instruction.Current >> 12 & (uint)0xFFFFF;     // Extracts bit 12-31 from instruction [12-31]
-                    temp0 = (long)temp1 << 12;                               // Creates signextended immediate field for U-format instruction                
+                    temp1 = (m_instruction.Current >> 12 & (uint)0xFFFFF) << 12;     // Extracts bit 12-31 from instruction [12-31]
+                    temp0 = (long)temp1;                                             // Creates signextended immediate field for U-format instruction                
                     output.Immediate = temp0;
                     break;
                 case 111:                                       // JAL
