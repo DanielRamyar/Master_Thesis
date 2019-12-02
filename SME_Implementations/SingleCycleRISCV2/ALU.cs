@@ -66,6 +66,9 @@ namespace SingleCycleRISCV {
                 case 14:
                     output.Value = (int)m_ALU_In_1.Data >> (int)m_ALU_In_2.Data;                // SRA
                     break;
+                case 15:
+                    output.Value = m_ALU_In_2.Data;                                             // LUI
+                    break;
             }
         }
     }
