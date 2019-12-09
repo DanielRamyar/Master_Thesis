@@ -37,11 +37,15 @@ namespace SingleCycleRISCV {
 
         
 
-        private readonly long[] m_register = new long[32];
+        // private readonly long[] m_register = new long[32];
         // private readonly long[] m_register = {0, 0, 0, 0, 0, 0, 0, 0,
         //                                      0, 0, 0, 0, 0, 0, 0, 2,
         //                                      8, 7, 0, 0, 0, 0, 0, 0,
         //                                      0, 0, 0, 0, 0, 0, 0, 0,};
+        private readonly long[] m_register = {0, 0, 2000, 0, 0, 0, 0, 0,
+                                             0, 0, 0, 0, 0, 0, 0, 0,
+                                             0, 0, 0, 0, 0, 0, 0, 0,
+                                             0, 0, 0, 0, 0, 0, 0, 0,};
 
         protected override void OnTick() {
             if (m_write_control.Enable == true && m_write.Address > 0 && m_write.Address <= 32) { // Check if written register is between 1-32 and control is asserted

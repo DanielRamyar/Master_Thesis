@@ -22,7 +22,7 @@ namespace SingleCycleRISCV {
         [OutputBus]
 		public readonly DM_Output output = Scope.CreateOrLoadBus<DM_Output>();
 
-        byte[] Data_Memory = new byte[80];
+        byte[] Data_Memory = new byte[2000];
 
         protected override void OnTick() {
             if (m_MemRead.Enable) {
@@ -39,7 +39,7 @@ namespace SingleCycleRISCV {
                                                                  | Data_Memory[m_Address.Value + 6] << 16
                                                                  | Data_Memory[m_Address.Value + 7] << 24;
 
-                        temp0 = temp1 | (long)temp2 << 32;
+                        temp0 = (long)((ulong)temp1 | (ulong)temp2 << 32);
                         break;
                     case 1: // load word
                         temp0 = Data_Memory[m_Address.Value] | Data_Memory[m_Address.Value + 1] << 8
