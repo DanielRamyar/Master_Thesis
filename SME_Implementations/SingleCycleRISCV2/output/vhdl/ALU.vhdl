@@ -147,6 +147,8 @@ begin
                     output_Value <= SIGNED(resize(shift_right(resize(UNSIGNED(m_ALU_In_1_Data), T_SYSTEM_UINT32'length), TO_INTEGER(m_ALU_In_2_Data)), T_SYSTEM_INT64'length));
                 when 14 =>
                     output_Value <= resize(shift_right(resize(m_ALU_In_1_Data, T_SYSTEM_INT32'length), TO_INTEGER(m_ALU_In_2_Data)), T_SYSTEM_INT64'length);
+                when 15 =>
+                    output_Value <= m_ALU_In_2_Data;
                 when others =>
             end case;
 

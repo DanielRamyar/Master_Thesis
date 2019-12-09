@@ -205,8 +205,8 @@ begin
                     temp0 := SIGNED((shift_left(resize(temp1, T_SYSTEM_UINT64'length), 12)));
                     output_Immediate <= temp0;
                 when 55 =>
-                    temp1 := (shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(1048575, 32);
-                    temp0 := SIGNED((shift_left(resize(temp1, T_SYSTEM_UINT64'length), 12)));
+                    temp1 := shift_left(((shift_right(m_instruction_Current, 12)) and TO_UNSIGNED(1048575, 32)), 12);
+                    temp0 := SIGNED(resize(temp1, T_SYSTEM_INT64'length));
                     output_Immediate <= temp0;
                 when 111 =>
                     temp1 := (shift_right(m_instruction_Current, 21)) and TO_UNSIGNED(1023, 32);
