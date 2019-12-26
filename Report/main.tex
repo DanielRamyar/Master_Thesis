@@ -1,5 +1,6 @@
 \documentclass[10pt]{report}
 \usepackage[margin=1in]{geometry} 
+%\usepackage[margin=1.875in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb,amsfonts}
 \usepackage{physics}
 \usepackage{graphicx}
@@ -10,16 +11,49 @@
 \usepackage[square,sort,comma,numbers]{natbib}
 \usepackage{hyperref}
 
+\hypersetup{ %using this to remove ugly red square boxes around links
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
+% 
+\usepackage[colorinlistoftodos,prependcaption,textsize=normalsize]{todonotes}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{setspace} % used for linespacing 
+
 
 \numberwithin{equation}{chapter}
 
-%\includeonly{chapters/chapter1}
+%\includeonly{chapters/chapter3}
 %\includeonly{chapters/RiscVReferenceCard}
+
 
 \begin{document}
     
+    
+    \listoftodos[Notes]
+    \newpage
     \include{frontpage}
+    \tableofcontents
+    \begin{onehalfspacing}
+    \large
     \include{chapters/chapter1}
+    \include{chapters/chapter2}
+    \include{chapters/chapter3}
+    \include{chapters/chapter4}
+    \end{onehalfspacing}
+
     \include{chapters/RiscVReferenceCard}
 
     

@@ -3,47 +3,56 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 A level-1 auxiliary file: frontpage.aux
 A level-1 auxiliary file: chapters/chapter1.aux
+A level-1 auxiliary file: chapters/chapter2.aux
+A level-1 auxiliary file: chapters/chapter3.aux
+Already encountered file chapters/chapter3.aux
+---line 36 of file main.aux
+ : \@input{chapters/chapter3.aux
+ :                              }
+I'm skipping whatever remains of this command
 A level-1 auxiliary file: chapters/RiscVReferenceCard.aux
 The style file: abbrvnat.bst
 Database file #1: bibliography.bib
-You've used 1 entry,
+Warning--empty journal in vinter2015bus
+You've used 4 entries,
             2773 wiz_defined-function locations,
-            606 strings with 4753 characters,
-and the built_in function-call counts, 437 in all, are:
-= -- 41
-> -- 10
-< -- 1
-+ -- 4
-- -- 3
-* -- 32
-:= -- 72
-add.period$ -- 4
-call.type$ -- 1
-change.case$ -- 4
-chr.to.int$ -- 1
-cite$ -- 2
-duplicate$ -- 20
-empty$ -- 41
-format.name$ -- 4
-if$ -- 86
+            624 strings with 5194 characters,
+and the built_in function-call counts, 1716 in all, are:
+= -- 159
+> -- 73
+< -- 5
++ -- 25
+- -- 21
+* -- 113
+:= -- 263
+add.period$ -- 14
+call.type$ -- 4
+change.case$ -- 18
+chr.to.int$ -- 4
+cite$ -- 9
+duplicate$ -- 88
+empty$ -- 148
+format.name$ -- 31
+if$ -- 364
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 14
-num.names$ -- 4
-pop$ -- 6
+missing$ -- 5
+newline$ -- 30
+num.names$ -- 16
+pop$ -- 40
 preamble$ -- 1
-purify$ -- 3
+purify$ -- 15
 quote$ -- 0
-skip$ -- 14
+skip$ -- 73
 stack$ -- 0
-substring$ -- 27
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 65
+swap$ -- 12
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 11
-warning$ -- 0
-while$ -- 5
+type$ -- 39
+warning$ -- 1
+while$ -- 17
 width$ -- 0
-write$ -- 22
+write$ -- 60
+(There was 1 error message)

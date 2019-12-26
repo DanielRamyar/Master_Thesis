@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{4}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -11,5 +11,22 @@ C.~A.~R. Hoare.
 \newblock \emph{Communications of the ACM}, 21\penalty0 (8):\penalty0 666--677,
   1978.
 \newblock ISSN 1557-7317.
+
+\bibitem[Patterson and Hennessy(2017)]{riscVbook}
+D.~A. Patterson and J.~L. Hennessy.
+\newblock \emph{Computer Organization and Design RISC-V Edition: The Hardware
+  Software/Interface}.
+\newblock Morgan Kaufmann, 2017.
+\newblock ISBN 9780128122754.
+
+\bibitem[Vinter and Skovhede(2014)]{vinter2014synchronous}
+B.~Vinter and K.~Skovhede.
+\newblock Synchronous message exchange for hardware designs.
+\newblock \emph{Communicating Process Architectures}, pages 201--212, 2014.
+
+\bibitem[Vinter and Skovhede(2015)]{vinter2015bus}
+B.~Vinter and K.~Skovhede.
+\newblock Bus centric synchronous message exchange for hardware designs.
+\newblock 2015.
 
 \end{thebibliography}

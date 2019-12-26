@@ -1,3 +1,46 @@
 \BOOKMARK [0][-]{chapter.1}{Placeholder}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Communicating Sequential Processes}{chapter.1}% 2
 \BOOKMARK [1][-]{section.1.2}{Synchronous Message Exchange}{chapter.1}% 3
+\BOOKMARK [0][-]{chapter.2}{Logic Design}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Boolean algebra}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.1.1}{Logic equations}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.2}{Truth tables}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.3}{Gates}{section.2.1}% 8
+\BOOKMARK [1][-]{section.2.2}{Combinational logic}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.1}{Decoder}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.2}{Multiplexor}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.3}{Two-level logic}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.4}{Programmable logic array}{section.2.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Introduction to RISC-V instructions}{}% 14
+\BOOKMARK [1][-]{section.3.1}{RISC-V Assembly}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{Operands}{chapter.3}% 16
+\BOOKMARK [2][-]{subsection.3.2.1}{Register}{section.3.2}% 17
+\BOOKMARK [2][-]{subsection.3.2.2}{Memory Format}{section.3.2}% 18
+\BOOKMARK [2][-]{subsection.3.2.3}{Const vs imm }{section.3.2}% 19
+\BOOKMARK [1][-]{section.3.3}{Numeral system of a computer}{chapter.3}% 20
+\BOOKMARK [2][-]{subsection.3.3.1}{base 2}{section.3.3}% 21
+\BOOKMARK [2][-]{subsection.3.3.2}{signed unsigned}{section.3.3}% 22
+\BOOKMARK [1][-]{section.3.4}{Instruction representation in binary}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.5}{Operators}{chapter.3}% 24
+\BOOKMARK [0][-]{chapter.4}{The RISC-V processor}{}% 25
+\BOOKMARK [1][-]{section.4.1}{Single Cycle RISC-V Units}{chapter.4}% 26
+\BOOKMARK [2][-]{subsection.4.1.1}{Program Counter}{section.4.1}% 27
+\BOOKMARK [2][-]{subsection.4.1.2}{Instruction Memory}{section.4.1}% 28
+\BOOKMARK [2][-]{subsection.4.1.3}{incrementor?}{section.4.1}% 29
+\BOOKMARK [2][-]{subsection.4.1.4}{Register}{section.4.1}% 30
+\BOOKMARK [2][-]{subsection.4.1.5}{Arithmetic Logic Unit \(ALU\)}{section.4.1}% 31
+\BOOKMARK [2][-]{subsection.4.1.6}{Immediate generator}{section.4.1}% 32
+\BOOKMARK [2][-]{subsection.4.1.7}{Data Memory}{section.4.1}% 33
+\BOOKMARK [1][-]{section.4.2}{Designing the Control}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.3}{Single Cycle RISC-V datapath}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.4}{Improving the datapath}{chapter.4}% 36
+\BOOKMARK [2][-]{subsection.4.4.1}{RV64I Base Instructions Support}{section.4.4}% 37
+\BOOKMARK [2][-]{subsection.4.4.2}{Supporting R-Format}{section.4.4}% 38
+\BOOKMARK [2][-]{subsection.4.4.3}{Supporting I-Format}{section.4.4}% 39
+\BOOKMARK [2][-]{subsection.4.4.4}{Supporting S-Format}{section.4.4}% 40
+\BOOKMARK [2][-]{subsection.4.4.5}{Supporting B-Format}{section.4.4}% 41
+\BOOKMARK [2][-]{subsection.4.4.6}{Supporting U-Format}{section.4.4}% 42
+\BOOKMARK [2][-]{subsection.4.4.7}{Supporting J-Format}{section.4.4}% 43
+\BOOKMARK [1][-]{section.4.5}{Debugging the instructions}{chapter.4}% 44
+\BOOKMARK [2][-]{subsection.4.5.1}{Writing assembly to test instructions}{section.4.5}% 45
+\BOOKMARK [2][-]{subsection.4.5.2}{Writing simple C code to run on RISC-V}{section.4.5}% 46
