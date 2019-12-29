@@ -5,18 +5,14 @@ A level-1 auxiliary file: frontpage.aux
 A level-1 auxiliary file: chapters/chapter1.aux
 A level-1 auxiliary file: chapters/chapter2.aux
 A level-1 auxiliary file: chapters/chapter3.aux
-Already encountered file chapters/chapter3.aux
----line 36 of file main.aux
- : \@input{chapters/chapter3.aux
- :                              }
-I'm skipping whatever remains of this command
+A level-1 auxiliary file: chapters/chapter4.aux
 A level-1 auxiliary file: chapters/RiscVReferenceCard.aux
 The style file: abbrvnat.bst
 Database file #1: bibliography.bib
 Warning--empty journal in vinter2015bus
 You've used 4 entries,
             2773 wiz_defined-function locations,
-            624 strings with 5194 characters,
+            625 strings with 5215 characters,
 and the built_in function-call counts, 1716 in all, are:
 = -- 159
 > -- 73
@@ -55,4 +51,4 @@ warning$ -- 1
 while$ -- 17
 width$ -- 0
 write$ -- 60
-(There was 1 error message)
+(There was 1 warning)

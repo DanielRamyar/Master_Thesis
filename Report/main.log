@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  26 DEC 2019 19:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  29 DEC 2019 22:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1060,7 +1060,13 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 1.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
+)
+Overfull \hbox (0.37907pt too wide) in paragraph at lines 4--4
+ [][] [][][][][] \OT1/cmr/m/n/10 make op-er-a-tors more dis-tinct so it is eas-
+ier to find for the reader also in-tro-duce com-puter/engineering 
+ []
+
+)
 \tf@tdo=\write6
 \openout6 = `main.tdo'.
 
@@ -1070,8 +1076,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 \openout2 = `frontpage.aux'.
 
- (./frontpage.tex)pdfTeX warning (ext4): destination with the same identifier (
-name{page.1}) has been already used, duplicate ignored
+
+(./frontpage.tex)pdfTeX warning (ext4): destination with the same identifier (n
+ame{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.47     \include{frontpage}
@@ -1081,7 +1088,7 @@ l.47     \include{frontpage}
 page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.42 ...}Supporting U-Format}{8}{subsection.4.4.6}
+l.42 ...}Supporting U-Format}{9}{subsection.4.4.6}
                                                   % [1
 
 
@@ -1097,6 +1104,9 @@ l.42 ...}Supporting U-Format}{8}{subsection.4.4.6}
 Chapter 1.
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
 ine 1.
+
+LaTeX Warning: Marginpar on page 3 moved.
+
 [3
 
 
@@ -1107,16 +1117,26 @@ ine 1.
 
 (./chapters/chapter2.tex
 Chapter 2.
+
+Overfull \hbox (28.81688pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 puter/engineering 
+ []
+
+
+Overfull \hbox (28.81688pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 puter/engineering 
+ []
+
 ) [5
 
 
 
-]
+] [6]
 \openout2 = `chapters/chapter3.aux'.
 
  (./chapters/chapter3.tex
 Chapter 3.
-) [6
+) [7
 
 
 
@@ -1126,13 +1146,13 @@ Chapter 3.
  (./chapters/chapter4.tex
 Chapter 4.
 
-LaTeX Warning: Marginpar on page 7 moved.
+LaTeX Warning: Marginpar on page 8 moved.
 
-) [7
+) [8
 
 
 
-] [8]
+] [9]
 \openout2 = `chapters/RiscVReferenceCard.aux'.
 
  (./chapters/RiscVReferenceCard.tex
@@ -1178,11 +1198,11 @@ Overfull \hbox (24.23172pt too wide) in paragraph at lines 102--167
 [][] 
  []
 
-[9
+[10
 
 
 
-] [10]) (./main.bbl) [11
+] [11]) (./main.bbl) [12
 
 
 
@@ -1199,13 +1219,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 32783 strings out of 492163
- 625174 string characters out of 6125305
- 735962 words of memory out of 5000000
- 36500 multiletter control sequences out of 15000+600000
- 543304 words of font info for 66 fonts, out of 8000000 for 9000
+ 32790 strings out of 492163
+ 625213 string characters out of 6125305
+ 739913 words of memory out of 5000000
+ 36504 multiletter control sequences out of 15000+600000
+ 543651 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,14n,83p,542b,1063s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,14n,83p,542b,1069s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
@@ -1216,14 +1236,16 @@ cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local
 /texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
 xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
 ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (13 pages, 209042 bytes).
+2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (14 pages, 228029 bytes).
 PDF statistics:
- 442 PDF objects out of 1000 (max. 8388607)
- 393 compressed objects within 4 object streams
- 85 named destinations out of 1000 (max. 500000)
+ 460 PDF objects out of 1000 (max. 8388607)
+ 407 compressed objects within 5 object streams
+ 87 named destinations out of 1000 (max. 500000)
  477 words of extra memory for PDF output out of 10000 (max. 10000000)
 

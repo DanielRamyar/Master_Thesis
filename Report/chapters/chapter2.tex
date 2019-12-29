@@ -1,9 +1,22 @@
 \chapter{Logic Design}
 \unsure{Chapter sections are subject to change in name and order}
-This chapter aims to introduce the reader to the basics of logic design. Based on Appendix A in \cite{riscVbook}
 
-\section{Boolean algebra}
-lorem ipsum
+This chapter aims to introduce the reader to the basics of logic design, which will be imperative to the understanding the subsequent chapters. The general structure of this chapter will be based on Appendix A in \cite{riscVbook}. 
+
+We will begin in section \ref{section:Boolean_algebra} by introducing the fundamental algebra and the physical building blocks, used to implement the algebra, such as the OR gate. 
+
+Using these building blocks we will then continue to design and create the core components used in the RISC-V architecture such as the decoder and multiplexer in section \ref{section:Combinational_logic}. 
+
+\section{Boolean algebra}\label{section:Boolean_algebra}
+
+    The fundamental tool used in logic design is a branch of mathematical logic called Boolean algebra. Compared to elementary algebra, where we deal with variables which represents some real or complex number, in Boolean algebra the variables represents a quantity which is either \textit{true} or \textit{false}.
+    
+    In addition to the variables in elementary algebra we also had a means of manipulating them. These manipulations are called operations which consists of addition ($+$), subtraction($-$), multiplication ($\cdot$) and division ($ \divisionsymbol $).
+    
+    The equivalent basic operators in Boolean algebra consists of the logical conjunction operator (AND, $\wedge$), the logical disjunction operator (OR, $\vee$) and negation operator (NOT, $\neg$) \improvement{make operators more distinct so it is easier to find for the reader also introduce computer/engineering symbols for operators}
+    
+    
+    
     
     \subsection{Logic equations}
     
@@ -11,7 +24,7 @@ lorem ipsum
     
     \subsection{Gates}
     
-\section{Combinational logic}
+\section{Combinational logic}\label{section:Combinational_logic}
     
     \subsection{Decoder}
     
