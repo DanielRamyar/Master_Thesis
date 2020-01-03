@@ -1,6 +1,6 @@
 \chapter{Placeholder}\change{Figure out a title for this chapter}
 
-\section{Communicating Sequential Processes} \change{Rewrite this section}
+\section{Communicating Sequential Processes} \change{Rewrite this section} \improvement{add examples of a process and channels}
     The problem with multiprocessor workloads is the sharing of memory. This creates a whole slew of problems. There are many different processes going on at once all having access to the same memory. Unless you got superpowers it is very hard to determine where in the program something goes wrong. It all boils down to the non-determinism. 
     
     For example if you are going to print multiple strings using multiple threads you don't know which string i going to be printed first it's gonna depend on the operating system not on anything in your code. That can create race conditions (meaning the behaviour in your code is dependent on the timing of different threads) which can cause unpredictable behaviour and therefore bugs which is undesirable.

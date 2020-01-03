@@ -5,22 +5,96 @@ This chapter aims to introduce the reader to the basics of logic design, which w
 
 We will begin in section \ref{section:Boolean_algebra} by introducing the fundamental algebra and the physical building blocks, used to implement the algebra, such as the OR gate. 
 
-Using these building blocks we will then continue to design and create the core components used in the RISC-V architecture such as the decoder and multiplexer in section \ref{section:Combinational_logic}. 
+Hereafter we will be using these building blocks to design and create the core components used in the RISC-V architecture such as the decoder and multiplexer in section \ref{section:Combinational_logic}. 
 
 \section{Boolean algebra}\label{section:Boolean_algebra}
 
-    The fundamental tool used in logic design is a branch of mathematical logic called Boolean algebra. Compared to elementary algebra, where we deal with variables which represents some real or complex number, in Boolean algebra the variables represents a quantity which is either \textit{true} or \textit{false}.
+    The fundamental tool used in logic design is a branch of mathematical logic called Boolean algebra. Compared to elementary algebra, where we deal with variables which represents some real or complex number, in Boolean algebra the variables are viewed as statements or propositions which is either \textit{true} or \textit{false}.
     
-    In addition to the variables in elementary algebra we also had a means of manipulating them. These manipulations are called operations which consists of addition ($+$), subtraction($-$), multiplication ($\cdot$) and division ($ \divisionsymbol $).
+    In addition to the variables in elementary algebra we also had a means of manipulating them. These manipulations are called operations which operates on the variables (operands) where the basic operators of algebra consists of 
     
-    The equivalent basic operators in Boolean algebra consists of the logical conjunction operator (AND, $\wedge$), the logical disjunction operator (OR, $\vee$) and negation operator (NOT, $\neg$) \improvement{make operators more distinct so it is easier to find for the reader also introduce computer/engineering symbols for operators}
+    \begin{itemize}
+        \item The addition ($+$) operator which finds the total amount between two given operands.
+        \item The subtraction ($-$) operator which finds the difference between two given operands.
+        \item The multiplication ($\cdot$) operator which repeats the addition operation a given number of times.
+              For example $3 \cdot 4 = 12$ would then be 3 times the addition operation with 4 as the variable $4+4+4 = 12$.
+        \item The division ($ \divisionsymbol $) operator which can be viewed as the inverse of the multiplication operation. For example as before we had $3 \cdot 4 = 12$ and to inverse it we would divide the right hand side like so $3 = 12 \divisionsymbol 4$.    
+    \end{itemize}
     
+    In Boolean algebra we have a distinction between operators which work on one operand compared to two operands. These are called unary and binary operators respectively.
     
+    \subsection{Unary operators}
+    
+    For our first basic Boolean operator we have the logical complement operator, which is represented by NOT, !, $\neg$ or $\bar{x}$ in various literature and commonly referred to as the negation operator. 
+    
+    The negation operator inverts an operand such that $\overline{true} = false$ and $\overline{false} = true$.
+    Using a table we can neatly represent the complete function of the negation operator and is called an logic table.
+    
+    A logic table has been created for the negation operator as can be seen in table \ref{LogicTable:Negation}.  The first column represents our proposition and all its possible arguments $true$ and $false$ in this case. The second column is then the negated proposition.
+    
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|c|}
+        	\hline
+        	  $P$   & $\neg{P}$ \\ \hline
+        	$true$  &    $false$     \\ \hline
+        	$false$ &     $true$     \\ \hline
+        \end{tabular}
+        \caption{Logic table of the negation operator where P is our proposition which is either true or false and $\overline{P}$ is our negated proposition}
+        \label{LogicTable:Negation}
+    \end{table}
+
+    \subsection{Binary operators}
+    
+    The logical conjunction operator, which is represented by $\wedge$ in mathematics; AND, \&, \&\& in computer science and a $\cdot$ in electronic engineering and commonly referred to as the AND operator or the logical product. The AND operator only results in a true value if both of the operands are true.
+    
+    A Logic table has been created for the AND operator and can be found in table \ref{LogicTable:AND}. Here we have the two propositions $P$ and $Q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the AND operation between $P$ and $Q$. 
+    
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|c|c|}
+        	\hline
+        	  $P$   &   $Q$   & $P \wedge Q$ \\ \hline
+        	$true$  & $true$  &    $true$    \\ \hline
+        	$true$  & $false$ &   $false$    \\ \hline
+        	$false$ & $true$  &   $false$    \\ \hline
+        	$false$ & $false$ &   $false$    \\ \hline
+        \end{tabular}
+        \caption{Logic table of the AND operator where $P$ is the first proposition and $Q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the AND operation between $P$ and $Q$.}
+        \label{LogicTable:AND}
+    \end{table}
+    
+    \begin{itemize}
+        \item 
+        \item The logical disjunction operator (OR, |, $\vee$) which results in a true value if one or more of the operands are true. For example $true \vee false = true$
+        \item 
+    \end{itemize}
+
+    \improvement{figure out a way to end this section}
+    
+    \subsection{Truth tables}
+    
+    To describe the complete function of for example the AND operator we would use a truth table
+    
+    \begin{tabular}{|c|c|c|}
+        \hline 
+        $P$     & $Q$     & $P \wedge Q$   \\
+        \hline 
+        $true$  & $true$  & $true$         \\
+        \hline 
+        $true$  & $false$ & $false$        \\ 
+        \hline 
+        $false$ & $true$  & $false$        \\ 
+        \hline 
+        $false$ & $false$ & $false$        \\ 
+        \hline 
+    \end{tabular} 
+    
+        
     
     
     \subsection{Logic equations}
     
-    \subsection{Truth tables}
     
     \subsection{Gates}
     
