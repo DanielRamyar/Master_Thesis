@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  3 JAN 2020 18:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  7 JAN 2020 21:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1081,7 +1081,7 @@ l.47     \include{frontpage}
 page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.42 ...Supporting S-Format}{10}{subsection.4.4.4}
+l.56 ...Supporting S-Format}{18}{subsection.4.4.4}
                                                   % [1
 
 
@@ -1124,13 +1124,21 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 
 
 
-] [6]) [7]
+] [6] [7]
+[8] [9]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[10] [11] [12]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[13]) [14] [15]
 \openout2 = `chapters/chapter3.aux'.
 
-
-(./chapters/chapter3.tex
+ (./chapters/chapter3.tex
 Chapter 3.
-) [8
+) [16
 
 
 
@@ -1140,13 +1148,13 @@ Chapter 3.
  (./chapters/chapter4.tex
 Chapter 4.
 
-LaTeX Warning: Marginpar on page 9 moved.
+LaTeX Warning: Marginpar on page 17 moved.
 
-) [9
+) [17
 
 
 
-] [10]
+] [18]
 \openout2 = `chapters/RiscVReferenceCard.aux'.
 
  (./chapters/RiscVReferenceCard.tex
@@ -1192,11 +1200,11 @@ Overfull \hbox (24.23172pt too wide) in paragraph at lines 102--167
 [][] 
  []
 
-[11
+[19
 
 
 
-] [12]) (./main.bbl) [13
+] [20]) (./main.bbl) [21
 
 
 
@@ -1209,17 +1217,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 84026F4DCB66EB5C4B204F495B7D53A7;3312.
+(rerunfilecheck)             Checksum: B7DA025B99202D5AF68502E555BB7058;3355.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 32826 strings out of 492163
- 625864 string characters out of 6125305
- 742160 words of memory out of 5000000
- 36531 multiletter control sequences out of 15000+600000
+ 32910 strings out of 492163
+ 627118 string characters out of 6125305
+ 750153 words of memory out of 5000000
+ 36561 multiletter control sequences out of 15000+600000
  543651 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,14n,83p,542b,1071s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,14n,83p,542b,1078s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -1235,13 +1243,15 @@ ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
 19/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
 9/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf
--dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (15 pages, 253026 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on main.pdf (23 pages, 298061 bytes).
 PDF statistics:
- 488 PDF objects out of 1000 (max. 8388607)
- 432 compressed objects within 5 object streams
- 93 named destinations out of 1000 (max. 500000)
+ 613 PDF objects out of 1000 (max. 8388607)
+ 546 compressed objects within 6 object streams
+ 147 named destinations out of 1000 (max. 500000)
  493 words of extra memory for PDF output out of 10000 (max. 10000000)
 

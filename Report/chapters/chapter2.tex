@@ -1,109 +1,455 @@
 \chapter{Logic Design}
-\unsure{Chapter sections are subject to change in name and order}
+    \unsure{Chapter sections are subject to change in name and order}
+    
+    This chapter aims to introduce the reader to the basics of logic design, which will be imperative to the understanding the subsequent chapters. The general structure of this chapter will be based on Appendix A in \cite{riscVbook}. 
+    
+    We will begin in section \ref{section:Boolean_algebra} by introducing the fundamental algebra and the physical building blocks, used to implement the algebra, such as the OR gate. 
+    
+    Hereafter we will be using these building blocks to design and create the core components used in the RISC-V architecture such as the decoder and multiplexer in section \ref{section:Combinational_logic}. 
 
-This chapter aims to introduce the reader to the basics of logic design, which will be imperative to the understanding the subsequent chapters. The general structure of this chapter will be based on Appendix A in \cite{riscVbook}. 
-
-We will begin in section \ref{section:Boolean_algebra} by introducing the fundamental algebra and the physical building blocks, used to implement the algebra, such as the OR gate. 
-
-Hereafter we will be using these building blocks to design and create the core components used in the RISC-V architecture such as the decoder and multiplexer in section \ref{section:Combinational_logic}. 
-
-\section{Boolean algebra}\label{section:Boolean_algebra}
-
-    The fundamental tool used in logic design is a branch of mathematical logic called Boolean algebra. Compared to elementary algebra, where we deal with variables which represents some real or complex number, in Boolean algebra the variables are viewed as statements or propositions which is either \textit{true} or \textit{false}.
+    \section{Boolean algebra}\label{section:Boolean_algebra}
     
-    In addition to the variables in elementary algebra we also had a means of manipulating them. These manipulations are called operations which operates on the variables (operands) where the basic operators of algebra consists of 
-    
-    \begin{itemize}
-        \item The addition ($+$) operator which finds the total amount between two given operands.
-        \item The subtraction ($-$) operator which finds the difference between two given operands.
-        \item The multiplication ($\cdot$) operator which repeats the addition operation a given number of times.
-              For example $3 \cdot 4 = 12$ would then be 3 times the addition operation with 4 as the variable $4+4+4 = 12$.
-        \item The division ($ \divisionsymbol $) operator which can be viewed as the inverse of the multiplication operation. For example as before we had $3 \cdot 4 = 12$ and to inverse it we would divide the right hand side like so $3 = 12 \divisionsymbol 4$.    
-    \end{itemize}
-    
-    In Boolean algebra we have a distinction between operators which work on one operand compared to two operands. These are called unary and binary operators respectively.
-    
-    \subsection{Unary operators}
-    
-    For our first basic Boolean operator we have the logical complement operator, which is represented by NOT, !, $\neg$ or $\bar{x}$ in various literature and commonly referred to as the negation operator. 
-    
-    The negation operator inverts an operand such that $\overline{true} = false$ and $\overline{false} = true$.
-    Using a table we can neatly represent the complete function of the negation operator and is called an logic table.
-    
-    A logic table has been created for the negation operator as can be seen in table \ref{LogicTable:Negation}.  The first column represents our proposition and all its possible arguments $true$ and $false$ in this case. The second column is then the negated proposition.
-    
-    \begin{table}[h!]
-        \centering
-        \begin{tabular}{|c|c|}
-        	\hline
-        	  $P$   & $\neg{P}$ \\ \hline
-        	$true$  &    $false$     \\ \hline
-        	$false$ &     $true$     \\ \hline
-        \end{tabular}
-        \caption{Logic table of the negation operator where P is our proposition which is either true or false and $\overline{P}$ is our negated proposition}
-        \label{LogicTable:Negation}
-    \end{table}
-
-    \subsection{Binary operators}
-    
-    The logical conjunction operator, which is represented by $\wedge$ in mathematics; AND, \&, \&\& in computer science and a $\cdot$ in electronic engineering and commonly referred to as the AND operator or the logical product. The AND operator only results in a true value if both of the operands are true.
-    
-    A Logic table has been created for the AND operator and can be found in table \ref{LogicTable:AND}. Here we have the two propositions $P$ and $Q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the AND operation between $P$ and $Q$. 
-    
-    \begin{table}[h!]
-        \centering
-        \begin{tabular}{|c|c|c|}
-        	\hline
-        	  $P$   &   $Q$   & $P \wedge Q$ \\ \hline
-        	$true$  & $true$  &    $true$    \\ \hline
-        	$true$  & $false$ &   $false$    \\ \hline
-        	$false$ & $true$  &   $false$    \\ \hline
-        	$false$ & $false$ &   $false$    \\ \hline
-        \end{tabular}
-        \caption{Logic table of the AND operator where $P$ is the first proposition and $Q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the AND operation between $P$ and $Q$.}
-        \label{LogicTable:AND}
-    \end{table}
-    
-    \begin{itemize}
-        \item 
-        \item The logical disjunction operator (OR, |, $\vee$) which results in a true value if one or more of the operands are true. For example $true \vee false = true$
-        \item 
-    \end{itemize}
-
-    \improvement{figure out a way to end this section}
-    
-    \subsection{Truth tables}
-    
-    To describe the complete function of for example the AND operator we would use a truth table
-    
-    \begin{tabular}{|c|c|c|}
-        \hline 
-        $P$     & $Q$     & $P \wedge Q$   \\
-        \hline 
-        $true$  & $true$  & $true$         \\
-        \hline 
-        $true$  & $false$ & $false$        \\ 
-        \hline 
-        $false$ & $true$  & $false$        \\ 
-        \hline 
-        $false$ & $false$ & $false$        \\ 
-        \hline 
-    \end{tabular} 
-    
+        The fundamental tool used in logic design is a branch of mathematical logic called Boolean algebra. Compared to elementary algebra, where we deal with variables which represents some real or complex number, in Boolean algebra the variables are viewed as statements or propositions which is either \textit{true} or \textit{false}.
         
+        In addition to the variables in elementary algebra we also had a means of manipulating them. These manipulations are called operations which operates on the variables (operands) where the basic operators of algebra consists of 
+        
+        \begin{itemize}
+            \item The addition ($+$) operator which finds the total amount between two given operands.
+            \item The subtraction ($-$) operator which finds the difference between two given operands.
+            \item The multiplication ($\cdot$) operator which repeats the addition operation a given number of times.
+                  For example $3 \cdot 4 = 12$ would then be 3 times the addition operation with 4 as the variable $4+4+4 = 12$.
+            \item The division ($ \divisionsymbol $) operator which can be viewed as the inverse of the multiplication operation. For example as before we had $3 \cdot 4 = 12$ and to inverse it we would divide the right hand side like so $3 = 12 \divisionsymbol 4$.    
+        \end{itemize}
+        
+        In Boolean algebra we have a distinction between operators which work on one operand compared to two operands. These are called unary and binary operators respectively. We would go through a description of these in the following section. 
+        
+        \subsection{Unary operators}\improvement{make ven diagrams to show the operator function}
+        
+            \subsubsection{Logical complement}
+            
+                For our first basic Boolean operator we have the logical complement operator, which is represented by NOT, !, $\neg$ or $\bar{x}$ in various literature and commonly referred to as the negation operator. 
+                
+                The negation operator inverts an operand such that $\overline{true} = false$ and $\overline{false} = true$.
+                Using a table we can neatly represent the complete function of the negation operator. These tables are called logic tables.
+                
+                A logic table has been created for the negation operator as can be seen in table \ref{LogicTable:Negation}.  The first column represents our proposition and all its possible arguments $true$ and $false$. The second column is then the negated proposition.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|}
+                    	\hline
+                    	  $p$   & $\neg{p}$ \\ \hline
+                    	$true$  &  $false$  \\ \hline
+                    	$false$ &  $true$   \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the negation operator where the proposition p, which is either true or false, can be found in the first column. In the second column we find $\neg p$, which is read as NOT $p$, and its return values.}
+                    \label{LogicTable:Negation}
+                \end{table}
     
+            \subsubsection{Logical identity}
+        
+                Hereafter we have the logical identity operator which we will represent as the function $I(x)$. The logical identity operator takes an argument and returns it as is. 
+                
+                A logic table for the identity operator has been created and can be found in table \ref{LogicTable:Identity}. In the first column we find our preposition $p$ and its arguments. In the second column we find the return values of the identity operator with the prepositions as the argument $I(p)$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|}
+                    	\hline
+                    	  $p$   & $I(p)$  \\ \hline
+                    	$true$  & $true$  \\ \hline
+                    	$false$ & $false$ \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the identity operator where the proposition p, which is either true or false, can be found in the first column. In the second column we find $I(p)$, which is the identity operator with $p$ as its argument, and its return values.}
+                    \label{LogicTable:Identity}
+                \end{table}
+        
+            \subsubsection{Logical true}
+        
+                Next we have logical true which we will represent as the function $T(x)$. Logical true takes an argument and always returns true.
+                
+                A logic table for the true operator has been created and can be found in table \ref{LogicTable:True}. In the first column we find our preposition $p$ and its arguments. In the second column we find the return values of the true operator with the prepositions as the argument $T(p)$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|}
+                    	\hline
+                    	  $p$   & $T(p)$ \\ \hline
+                    	$true$  & $true$ \\ \hline
+                    	$false$ & $true$ \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the true operator where the proposition p, which is either true or false, can be found in the first column. In the second column we find $T(p)$, which is the true operator with $p$ as its argument, and its return values.}
+                    \label{LogicTable:True}
+                \end{table}
+        
+            \subsubsection{Logical false}
+        
+                Lastly we have logical false which we will represent as the function $F(x)$. Logical false takes an argument and always return false.
+                
+                A logic table for the false operator has been created and can be found in table \ref{LogicTable:False}. In the first column we find our preposition $p$ and its arguments. In the second column we find the return values of the false operator with the prepositions as the argument $F(p)$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|}
+                    	\hline
+                    	  $p$   & $F(p)$  \\ \hline
+                    	$true$  & $false$ \\ \hline
+                    	$false$ & $false$ \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the false operator where the proposition p, which is either true or false, can be found in the first column. In the second column we find $F(p)$, which is the false operator with $p$ as its argument, and its return values.}
+                    \label{LogicTable:False}
+                \end{table} 
     
-    \subsection{Logic equations}
-    
-    
-    \subsection{Gates}
-    
-\section{Combinational logic}\label{section:Combinational_logic}
-    
-    \subsection{Decoder}
-    
-    \subsection{Multiplexor}
-    
-    \subsection{Two-level logic}
-    
-    \subsection{Programmable logic array}
+        \subsection{Binary operators and disjunctive normal form}
+        
+            With two binary operands, $p$ and $q$, there exist four possible combinations between their respectable values namely $(true, true)$, $(true, false)$, $(false, true)$, $(false, false)$.
+            
+            Since we have 4 possible input values to our yet undefined operator $X(p, q)$, there exist 16 unique set of outputs therefore 16 unique operators. An example of a set of outputs could be 
+            \begin{equation}
+                X(p, q) =\{true, false, false, false\}
+            \end{equation}
+            where $(p, q) = \{(true, true), (true, false), (false, true), (false, false)\}$ is the set of possible inputs. 
+            
+            All output sets are summarized in table \ref{LogicTable:PossibleOperators} where each unlabeled column represents an undefined operator. 
+            
+            We will in this section start by defining the basic operators from which we will derive the rest. This choice is arbitrary but I have chosen the operators for which is the easiest to derive all other operators, since there exists a method to convert any truth table into a Boolean expression using these which we will get into later. 
+            
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+                	\hline
+                	$p$ & $q$ &     &     &     &     &     &     &     &     &     &     &     &     &     &     &     &     \\ \hline
+                	$t$ & $t$ & $t$ & $t$ & $t$ & $t$ & $f$ & $t$ & $f$ & $f$ & $t$ & $t$ & $f$ & $t$ & $f$ & $f$ & $f$ & $f$ \\ \hline
+                	$t$ & $f$ & $t$ & $t$ & $t$ & $f$ & $t$ & $t$ & $t$ & $f$ & $f$ & $f$ & $t$ & $f$ & $t$ & $f$ & $f$ & $f$ \\ \hline
+                	$f$ & $t$ & $t$ & $t$ & $f$ & $t$ & $t$ & $f$ & $t$ & $t$ & $f$ & $t$ & $f$ & $f$ & $f$ & $t$ & $f$ & $f$ \\ \hline
+                	$f$ & $f$ & $t$ & $f$ & $t$ & $t$ & $t$ & $f$ & $f$ & $t$ & $t$ & $f$ & $t$ & $f$ & $f$ & $f$ & $t$ & $f$ \\ \hline
+                \end{tabular} 
+                \caption{Logic table of possible binary operators where $t=true$ and $f=false$}. Each unlabeled column represents an undefined operator.
+                \label{LogicTable:PossibleOperators}
+            \end{table}
+        
+            \subsubsection{Logical conjunction}
+        
+                The logical conjunction operator is represented by $\wedge$ in mathematics; AND, \&, \&\& in computer science and a $\cdot$ in electronic engineering and commonly referred to as the AND operator or the logical product\improvement{remember to tell why this is later}. The AND operator only results in a true value if both of the operands are true.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 14 counting from the left and is summarized in table \ref{LogicTable:AND}. 
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the AND operation between $p$ and $q$. 
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                    	\hline
+                    	  $p$   &   $q$   & $p \wedge q$ \\ \hline
+                    	$true$  & $true$  &    $true$    \\ \hline
+                    	$true$  & $false$ &   $false$    \\ \hline
+                    	$false$ & $true$  &   $false$    \\ \hline
+                    	$false$ & $false$ &   $false$    \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the AND operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the AND operation between $p$ and $q$.}
+                    \label{LogicTable:AND}
+                \end{table}
+            
+            \subsubsection{Logical disjunction}
+            
+                The logical disjunction operator is represented by $\vee$ in mathematics; OR, $\vert$, $\vert \vert$  in computer science and a $+$ in electronic engineering and commonly referred to as the OR operator or the logical sum\improvement{remember to tell why this is later}. The OR operator results in a true value if one or more of the operands are true.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 4 counting from the left and is summarized in table \ref{LogicTable:OR}. 
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the OR operation between $p$ and $q$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                    	\hline
+                    	  $p$   &   $q$   & $p \vee q$ \\ \hline
+                    	$true$  & $true$  &   $true$   \\ \hline
+                    	$true$  & $false$ &   $true$   \\ \hline
+                    	$false$ & $true$  &   $true$   \\ \hline
+                    	$false$ & $false$ &  $false$   \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the OR operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the OR operation between $p$ and $q$.}
+                    \label{LogicTable:OR}
+                \end{table}
+            
+                We choose AND, OR and NOT to form our basic or primitive operators from which we will derive all remaining operators.
+                
+            \subsubsection{Exclusive disjunction and disjunctive normal form}
+                
+                The exclusive disjunction is represented by $\veebar$ in mathematics or XOR, \textsuperscript{$\wedge$} in computer science and commonly referred to as the XOR or exclusive OR operator. The XOR operator results in a true value only if the operands differ.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 9 counting from the left and is summarized in table \ref{LogicTable:XOR}.
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the XOR operation between $p$ and $q$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                    	\hline
+                    	  $p$   &   $q$   & $p \veebar q$ \\ \hline
+                    	$true$  & $true$  &    $false$    \\ \hline
+                    	$true$  & $false$ &    $true$     \\ \hline
+                    	$false$ & $true$  &    $true$     \\ \hline
+                    	$false$ & $false$ &    $false$    \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the XOR operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the XOR operation between $p$ and $q$.}
+                    \label{LogicTable:XOR}
+                \end{table}
+            
+                We can define this operator in disjunctive normal form using our basic operators AND, OR and NOT. 
+                
+                To do this we first identify all true output in \ref{LogicTable:XOR} namely row 3 and 4. We then take a look at the corresponding input values
+                \begin{equation}
+                (p,q) = (true, false) \quad \text{and} \quad (p,q) = (false, true)
+                \end{equation}
+                and applying the NOT operator on all the false values. We now have the two tuples
+                \begin{equation}
+                (p,\neg q) = (true, \neg false) \quad \text{and} \quad (\neg p, q) = (\neg false, true).
+                \end{equation}
+                
+                Hereafter we apply the AND operator between the values in each tuple of input such that
+                \begin{equation}
+                p \wedge \neg q = true \wedge \neg false \quad \text{and} \quad \neg p \wedge q = false \wedge \neg true.
+                \end{equation}
+                Lastly we apply the OR operators between each tuple and we have the final expression for XOR in terms of the basic operators
+                \begin{equation}
+                p \veebar q = (p \wedge \neg q) \vee (\neg p \wedge q).
+                \end{equation}
+                
+                The procedure is summarized as follows
+                \begin{enumerate}
+                    \item Find all output values which is true.
+                    \item Negate all false input for corresponding true output value.
+                    \item Apply AND operator between each value in each input tuple.
+                    \item Lastly apply OR operator between each input tuple.
+                \end{enumerate}
+                Using this procedure any logic table can be expressed as a Boolean expression and will be used extensively throughout this thesis.
+                
+            \subsubsection{Joint denial}
+                Joint denial is represented by $\downarrow$ in mathematics or NOR in computer science and commonly referred to as the NOR operator. The NOR operator results in a true value only if both operands are false.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 17 counting from the left and is summarized in table \ref{LogicTable:NOR}.
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the NOR operation between $p$ and $q$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                    	\hline
+                    	  $p$   &   $q$   & $p \downarrow q$ \\ \hline
+                    	$true$  & $true$  &     $false$      \\ \hline
+                    	$true$  & $false$ &     $false$      \\ \hline
+                    	$false$ & $true$  &     $false$      \\ \hline
+                    	$false$ & $false$ &      $true$      \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the NOR operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the NOR operation between $p$ and $q$.}
+                    \label{LogicTable:NOR}
+                \end{table}
+            
+                In disjunctive normal form the NOR operator can be expressed in the following form
+                \begin{equation}
+                p \downarrow q = (\neg p \wedge \neg q)
+                \end{equation}
+                using the procedure previously mentioned.
+                
+            \subsubsection{Alternative denial}
+                Alternative denial is represented by $\uparrow$ in mathematics or NAND in computer science and commonly referred to as the NAND operator. The NAND operator results in a true value only if one or more of the operands are false.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 7 counting from the left and is summarized in table \ref{LogicTable:NAND}.
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the NAND operation between $p$ and $q$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                    	\hline
+                    	  $p$   &   $q$   & $p \uparrow q$ \\ \hline
+                    	$true$  & $true$  &    $false$     \\ \hline
+                    	$true$  & $false$ &     $true$     \\ \hline
+                    	$false$ & $true$  &     $true$     \\ \hline
+                    	$false$ & $false$ &     $true$     \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the NAND operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the NAND operation between $p$ and $q$.}
+                    \label{LogicTable:NAND}
+                \end{table}
+            
+                In disjunctive normal form the NAND operator can be expressed in the following form
+                \begin{equation}
+                p \uparrow q = (p \wedge \neg q) \vee (\neg p \wedge q) \vee (\neg p \wedge \neg q)
+                \end{equation}
+                using the procedure previously mentioned.
+                
+            \subsubsection{Logical biconditional}
+               The logical biconditional is represented by $\leftrightarrow$ in mathematics or XNOR in computer science and commonly referred to as the exclusive NOR operator. The XNOR operator results in a true value only if both operands are either true or false.
+               
+               Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 11 counting from the left and is summarized in table \ref{LogicTable:XNOR}.
+               
+               Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the XNOR operation between $p$ and $q$.
+               
+               \begin{table}[h!]
+                   \centering
+                   \begin{tabular}{|c|c|c|}
+                   	\hline
+                   	  $p$   &   $q$   & $p \leftrightarrow q$ \\ \hline
+                   	$true$  & $true$  &        $true$         \\ \hline
+                   	$true$  & $false$ &        $false$        \\ \hline
+                   	$false$ & $true$  &        $false$        \\ \hline
+                   	$false$ & $false$ &        $true$         \\ \hline
+                   \end{tabular}
+                   \caption{Logic table of the XNOR operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the XNOR operation between $p$ and $q$.}
+                   \label{LogicTable:XNOR}
+               \end{table}
+           
+                In disjunctive normal form the XNOR operator can be expressed in the following form
+                \begin{equation}
+                p \leftrightarrow q = (p \wedge  q) \vee (\neg p \wedge \neg q)
+                \end{equation}
+                using the procedure previously mentioned.
+                
+            \subsubsection{Material implication}
+                Material implication is represented by $\rightarrow$ in mathematics. The material implication operator results in a false value only if the second operand q is false.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 6 counting from the left and is summarized in table \ref{LogicTable:MI}.
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the material implication operation between $p$ and $q$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                    	\hline
+                    	  $p$   &   $q$   & $p \rightarrow q$ \\ \hline
+                    	$true$  & $true$  &      $true$       \\ \hline
+                    	$true$  & $false$ &      $false$      \\ \hline
+                    	$false$ & $true$  &      $true$       \\ \hline
+                    	$false$ & $false$ &      $true$       \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the material implication operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the material implication operation between $p$ and $q$.}
+                    \label{LogicTable:MI}
+                \end{table}
+            
+                In disjunctive normal form the material implication operator can be expressed in the following form
+                \begin{equation}
+                p \rightarrow q = (p \wedge  q) \vee (\neg p \wedge q) \vee (\neg p \wedge \neg q)
+                \end{equation}
+                using the procedure previously mentioned.
+            
+            
+            \subsubsection{Converse implication}
+                Converse implication is represented by $\leftarrow$ in mathematics. The converse implication operator results in a false value only if the first operand p is false.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 5 counting from the left and is summarized in table \ref{LogicTable:CI}.
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the converse implication operation between $p$ and $q$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        $p$   &   $q$   & $p \leftarrow q$ \\ \hline
+                        $true$  & $true$  &      $true$       \\ \hline
+                        $true$  & $false$ &      $false$      \\ \hline
+                        $false$ & $true$  &      $true$       \\ \hline
+                        $false$ & $false$ &      $true$       \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the converse implication operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the converse implication operation between $p$ and $q$.}
+                    \label{LogicTable:CI}
+                \end{table}
+            
+                In disjunctive normal form the converse implication operator can be expressed in the following form
+                \begin{equation}
+                p \leftarrow q = (p \wedge  q) \vee (p \wedge \neg q) \vee (\neg p \wedge \neg q)
+                \end{equation}
+                using the procedure previously mentioned.
+                
+            \subsubsection{Material nonimplication}
+                Material nonimplication is represented by $\not\rightarrow$ in mathematics. The material nonimplication operator results in a true value only if the second operand q is false.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 15 counting from the left and is summarized in table \ref{LogicTable:MNI}.
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the material nonimplication operation between $p$ and $q$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                    	\hline
+                    	  $p$   &   $q$   & $p \not\rightarrow q$ \\ \hline
+                    	$true$  & $true$  &        $false$        \\ \hline
+                    	$true$  & $false$ &        $true$         \\ \hline
+                    	$false$ & $true$  &        $false$        \\ \hline
+                    	$false$ & $false$ &        $false$        \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the material nonimplication operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the material nonimplication operation between $p$ and $q$.}
+                    \label{LogicTable:MNI}
+                \end{table}
+                
+                In disjunctive normal form the material nonimplication operator can be expressed in the following form
+                \begin{equation}
+                p \rightarrow q = p \wedge \neg q 
+                \end{equation}
+                using the procedure previously mentioned.
+                
+            \subsubsection{Converse nonimplication}
+                Converse nonimplication is represented by $\not\leftarrow$ in mathematics. The converse nonimplication operator results in a true value only if the first operand p is false.
+                
+                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 16 counting from the left and is summarized in table \ref{LogicTable:CNI}.
+                
+                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the converse nonimplication operation between $p$ and $q$.
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c|c|}
+                    	\hline
+                    	  $p$   &   $q$   & $p \not\leftarrow q$ \\ \hline
+                    	$true$  & $true$  &       $false$        \\ \hline
+                    	$true$  & $false$ &       $false$        \\ \hline
+                    	$false$ & $true$  &        $true$        \\ \hline
+                    	$false$ & $false$ &       $false$        \\ \hline
+                    \end{tabular}
+                    \caption{Logic table of the converse nonimplication operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the converse nonimplication operation between $p$ and $q$.}
+                    \label{LogicTable:CNI}
+                \end{table}
+                
+                In disjunctive normal form the converse nonimplication operator can be expressed in the following form
+                \begin{equation}
+                p \leftarrow q =\neg p \wedge q
+                \end{equation}
+                using the procedure previously mentioned.
+                
+                
+                
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|c|c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+                    	\hline
+                    	$p$ & $q$ &     & $\vee$ & $\leftarrow$ & $\rightarrow$ & $\uparrow$ &     & $\veebar$ &     & $\leftrightarrow$ &     &     & $\wedge$ & $\not\rightarrow$ & $\not\leftarrow$ & $\downarrow$ &     \\ \hline
+                    	$t$ & $t$ & $t$ &  $t$   &     $t$      &      $t$      &    $f$     & $t$ &    $f$    & $f$ &        $t$        & $t$ & $f$ &   $t$    &        $f$        &       $f$        &     $f$      & $f$ \\ \hline
+                    	$t$ & $f$ & $t$ &  $t$   &     $t$      &      $f$      &    $t$     & $t$ &    $t$    & $f$ &        $f$        & $f$ & $t$ &   $f$    &        $t$        &       $f$        &     $f$      & $f$ \\ \hline
+                    	$f$ & $t$ & $t$ &  $t$   &     $f$      &      $t$      &    $t$     & $f$ &    $t$    & $t$ &        $f$        & $t$ & $f$ &   $f$    &        $f$        &       $t$        &     $f$      & $f$ \\ \hline
+                    	$f$ & $f$ & $t$ &  $f$   &     $t$      &      $t$      &    $t$     & $f$ &    $f$    & $t$ &        $t$        & $f$ & $t$ &   $f$    &        $f$        &       $f$        &     $t$      & $f$ \\ \hline
+                    \end{tabular} 
+                    \caption{Logic table of binary operators where $t=true$ and $f=false$}. 
+                    \label{LogicTable:BinaryOperators}
+                \end{table}
+            
+            
+                
+                
+        \subsection{Derivative binary operators}
+            
+            
+        
+        
+        \subsection{Logic equations}
+        
+        
+        \subsection{Gates}
+        
+    \section{Combinational logic}\label{section:Combinational_logic}
+        
+        \subsection{Decoder}
+        
+        \subsection{Multiplexor}
+        
+        \subsection{Two-level logic}
+        
+        \subsection{Programmable logic array}

@@ -4,8 +4,8 @@
 \BOOKMARK [0][-]{chapter.2}{Logic Design}{}% 4
 \BOOKMARK [1][-]{section.2.1}{Boolean algebra}{chapter.2}% 5
 \BOOKMARK [2][-]{subsection.2.1.1}{Unary operators}{section.2.1}% 6
-\BOOKMARK [2][-]{subsection.2.1.2}{Binary operators}{section.2.1}% 7
-\BOOKMARK [2][-]{subsection.2.1.3}{Truth tables}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.2}{Binary operators and disjunctive normal form}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.3}{Derivative binary operators}{section.2.1}% 8
 \BOOKMARK [2][-]{subsection.2.1.4}{Logic equations}{section.2.1}% 9
 \BOOKMARK [2][-]{subsection.2.1.5}{Gates}{section.2.1}% 10
 \BOOKMARK [1][-]{section.2.2}{Combinational logic}{chapter.2}% 11
