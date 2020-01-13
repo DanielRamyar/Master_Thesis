@@ -11,20 +11,12 @@
     
         The fundamental tool used in logic design is a branch of mathematical logic called Boolean algebra. Compared to elementary algebra, where we deal with variables which represents some real or complex number, in Boolean algebra the variables are viewed as statements or propositions which is either \textit{true} or \textit{false}.
         
-        In addition to the variables in elementary algebra we also had a means of manipulating them. These manipulations are called operations which operates on the variables (operands) where the basic operators of algebra consists of 
-        
-        \begin{itemize}
-            \item The addition ($+$) operator which finds the total amount between two given operands.
-            \item The subtraction ($-$) operator which finds the difference between two given operands.
-            \item The multiplication ($\cdot$) operator which repeats the addition operation a given number of times.
-                  For example $3 \cdot 4 = 12$ would then be 3 times the addition operation with 4 as the variable $4+4+4 = 12$.
-            \item The division ($ \divisionsymbol $) operator which can be viewed as the inverse of the multiplication operation. For example as before we had $3 \cdot 4 = 12$ and to inverse it we would divide the right hand side like so $3 = 12 \divisionsymbol 4$.    
-        \end{itemize}
+        In addition to the variables in elementary algebra we also had a means of manipulating them. These manipulations are called operations which operates on the variables (operands) where the basic operators of algebra consists of $+$, $-$, $\cross$ and $\divisionsymbol$.
         
         In Boolean algebra we have a distinction between operators which work on one operand and the ones that work on to two operands. These are called unary and binary operators respectively. We would go through a description of these in the following section. 
         
         \subsection{Unary operators}\improvement{make ven diagrams to show the operator function}
-            With a single binary operand p we have 2 possible input $true$ and $false$. All output combinations are summarized in table \ref{LogicTable:unary}. Each numbered column here represents an undefined operator. We will go ahead and define these in the following.
+            With a single binary operand p we have 2 possible input $true$ and $false$. All output combinations are summarized in table \ref{LogicTable:unary}. Each numbered column here represents an unnamed operator. We will go ahead and describe one of these in the following. The rest can referred to in appendix \ref{appendix:Unary_Operators}. 
             
             \begin{table}[h!]
                 \centering
@@ -58,64 +50,10 @@
                     \caption{Logic table of the negation operator where the proposition p, which is either true or false, can be found in the first column. In the second column we find $\neg p$, which is read as NOT $p$, and its return values.}
                     \label{LogicTable:Negation}
                 \end{table}
-    
-            \subsubsection{Logical identity}
-        
-                Hereafter we have the logical identity operator which we will represent as the function $I(x)$. The logical identity operator takes an argument and returns it as is. 
-                
-                A logic table for the identity operator has been created and can be found in table \ref{LogicTable:Identity}. In the first column we find our preposition $p$ and its arguments. In the second column we find the return values of the identity operator with the prepositions as the argument $I(p)$.
-                
-                \begin{table}[h!]
-                    \centering
-                    \begin{tabular}{|c|c|}
-                    	\hline
-                    	  $p$   & $I(p)$  \\ \hline
-                    	$true$  & $true$  \\ \hline
-                    	$false$ & $false$ \\ \hline
-                    \end{tabular}
-                    \caption{Logic table of the identity operator where the proposition p, which is either true or false, can be found in the first column. In the second column we find $I(p)$, which is the identity operator with $p$ as its argument, and its return values.}
-                    \label{LogicTable:Identity}
-                \end{table}
-        
-            \subsubsection{Logical true}
-        
-                Next we have logical true which we will represent as the function $T(x)$. Logical true takes an argument and always returns true.
-                
-                A logic table for the true operator has been created and can be found in table \ref{LogicTable:True}. In the first column we find our preposition $p$ and its arguments. In the second column we find the return values of the true operator with the prepositions as the argument $T(p)$.
-                
-                \begin{table}[h!]
-                    \centering
-                    \begin{tabular}{|c|c|}
-                    	\hline
-                    	  $p$   & $T(p)$ \\ \hline
-                    	$true$  & $true$ \\ \hline
-                    	$false$ & $true$ \\ \hline
-                    \end{tabular}
-                    \caption{Logic table of the true operator where the proposition p, which is either true or false, can be found in the first column. In the second column we find $T(p)$, which is the true operator with $p$ as its argument, and its return values.}
-                    \label{LogicTable:True}
-                \end{table}
-        
-            \subsubsection{Logical false}
-        
-                Lastly we have logical false which we will represent as the function $F(x)$. Logical false takes an argument and always return false.
-                
-                A logic table for the false operator has been created and can be found in table \ref{LogicTable:False}. In the first column we find our preposition $p$ and its arguments. In the second column we find the return values of the false operator with the prepositions as the argument $F(p)$.
-                
-                \begin{table}[h!]
-                    \centering
-                    \begin{tabular}{|c|c|}
-                    	\hline
-                    	  $p$   & $F(p)$  \\ \hline
-                    	$true$  & $false$ \\ \hline
-                    	$false$ & $false$ \\ \hline
-                    \end{tabular}
-                    \caption{Logic table of the false operator where the proposition p, which is either true or false, can be found in the first column. In the second column we find $F(p)$, which is the false operator with $p$ as its argument, and its return values.}
-                    \label{LogicTable:False}
-                \end{table}
             
             \subsubsection{Summary}
                 
-                We can now go ahead and fill the numbered columns table \ref{LogicTable:unary} with the corresponding operators which we have defined throughout this section. The filled table can be found in table \ref{LogicTable:unaryfilled}. \improvement{rewrite this section.}
+                We can now go ahead and fill the numbered columns table \ref{LogicTable:unary} with the corresponding operators which we have defined throughout this section and appendix \ref{appendix:Unary_Operators}. The filled table can be found in table \ref{LogicTable:unaryfilled}. \improvement{rewrite this section.}
                 
                 \begin{table}[h!]
                     \centering
@@ -125,23 +63,23 @@
                     	$true$  & $true$ & $true$  & $false$  & $false$ \\ \hline
                     	$false$ & $true$ & $false$ &  $true$  & $false$ \\ \hline
                     \end{tabular}
-                    \caption{Logic table of possible unary operators. Each numbered column represents an undefined operator.}
+                    \caption{Logic table of possible unary operators where $p$ is our proposition. Column 2-5 shows the output of the corresponding operator.}
                     \label{LogicTable:unaryfilled}
                 \end{table} 
                 
                  
-    
+\newpage        
         \subsection{Binary operators and disjunctive normal form}
         
             With two binary operands, $p$ and $q$, there exist four possible combinations between their respectable values namely $(true, true)$, $(true, false)$, $(false, true)$, $(false, false)$.
             
-            Compared to the previous section we now have 4 possible input values to our yet undefined operators $X(p, q)$. There exist 16 unique sets of outputs and therefore 16 possible operators. An example of a set of outputs could be 
+            Compared to the previous section we now have 4 possible input values for our yet unnamed operators $X(p, q)$. There exist 16 unique sets of outputs and therefore 16 possible operators. An example of a set of outputs could be 
             \begin{equation}
                 X(p, q) =\{true, false, false, false\}
             \end{equation}
             where $(p, q) = \{(true, true), (true, false), (false, true), (false, false)\}$ is the set of possible inputs. 
             
-            All output sets are summarized in table \ref{LogicTable:PossibleOperators} where each numbered column represents an undefined operator. 
+            All output sets are summarized in table \ref{LogicTable:PossibleOperators} where each numbered column represents an unnamed operator. 
             
             We will in this section start by defining the basic operators from which we will derive the rest. For brevity we will only go through the 6 most commonly used operators, the rest can be referred to in appendix \ref{appendix:Binaray_Operators}.  
             
@@ -158,7 +96,7 @@
                 	$f$ & $t$ & $t$ & $t$ & $f$ & $t$ & $t$ & $f$ & $t$ & $t$ & $f$ & $t$ & $f$ & $f$ & $f$ & $t$ & $f$ & $f$ \\ \hline
                 	$f$ & $f$ & $t$ & $f$ & $t$ & $t$ & $t$ & $f$ & $f$ & $t$ & $t$ & $f$ & $t$ & $f$ & $f$ & $f$ & $t$ & $f$ \\ \hline
                 \end{tabular} 
-                \caption{Logic table of possible binary operators where $t=true$ and $f=false$. Each numbered column represents an undefined operator.}
+                \caption{Logic table of possible binary operators where $t=true$ and $f=false$. Each numbered column represents an unnamed operator.}
                 \label{LogicTable:PossibleOperators}
             \end{table}
         
@@ -252,7 +190,7 @@
                 
                 The procedure is summarized as follows
                 \begin{enumerate}
-                    \item Find all output values which is true.
+                    \item Find all output values, which are true.
                     \item Negate all false input for corresponding true output value.
                     \item Apply AND operator between each value in each input tuple.
                     \item Lastly apply OR operator between each input tuple.
@@ -355,14 +293,115 @@
                     	$f$ & $t$ &  $t$   &  $t$   &     $f$      &      $t$      &    $t$     &   $f$    &    $t$    &      $t$      &        $f$        &    $t$    &      $f$      &   $f$    &        $f$        &       $t$        &     $f$      &  $f$   \\ \hline
                     	$f$ & $f$ &  $t$   &  $f$   &     $t$      &      $t$      &    $t$     &   $f$    &    $f$    &      $t$      &        $t$        &    $f$    &      $t$      &   $f$    &        $f$        &       $f$        &     $t$      &  $f$   \\ \hline
                     \end{tabular} 
-                    \caption{Logic table of binary operators where $t=true$ and $f=false$}. 
+                    \caption{Logic table of binary operators where $t=true$ and $f=false$.} 
                     \label{LogicTable:BinaryOperators}
                 \end{table}
         
-        \subsection{Logic equations}
+        \subsection{Boolean equations}
+            In the last section we saw that it was possible to describe any logic table in terms of the AND, OR and Negation operators. An example of this could be the following
+            
+            \begin{equation}
+                \label{booleanexample}
+                p \veebar q = (p \wedge \neg q) \vee (\neg p \wedge q)
+            \end{equation}
+            where $p$ and $q$ was our propositions. Expression \ref{booleanexample} is an example of a \textit{Boolean equation}. 
+            
+            Like ordinary algebra, Boolean equations satisfy many of the same basic laws of algebra as summarized in table \ref{Table:Algebralaws}. Here we see that the laws are exactly equivalent to the version we see with ordinary addition and multiplication, hence the names logical sum $\vee$ and logical product $\wedge$.
+            
+            Using these laws we can drastically simplify complex expressions which we will use later to greatly reduce the complexity of logic units. 
+            
+            Say we have 
+            
+            \begin{equation}
+               \label{simplify}
+                C = A \cdot \bar{B} \cdot \bar{S} + A \cdot B \cdot \bar{S} + \bar{A} \cdot B \cdot S
+                  + A \cdot B \cdot S
+            \end{equation}
+            where A, B, C and S are Boolean variables. Notice that $\cdot = \wedge$ and $+ = \vee$, we use this notation since it is much easier to discern the individual terms. Now we can use the distributivity law we found in table \ref{Table:Algebralaws} to pull $A\cdot \bar{S}$ and $B \cdot S$ outside the parentheses
+            
+            \begin{equation}
+                C = (\bar{B} + B) \cdot A\cdot \bar{S} + (\bar{A} + A)\cdot B\cdot S.
+            \end{equation}
+            
+            Lastly we use the complement law in table \ref{Table:Booleanlaws} ($\bar{B} + B = 1$ and $\bar{A} + A = 1$) and the identity law in table \ref{Table:Algebralaws} ($1 \cdot A\cdot \bar{S} = A\cdot \bar{S}$ and $1 \cdot B\cdot S = B\cdot S$) to simplify such that we have
+            
+            \begin{equation}
+                \label{simplify2}
+                C = A\cdot \bar{S} + B\cdot S.
+            \end{equation}
+            
+            Notice that we went from using $11$ operations in (\ref{simplify}) to $3$ in (\ref{simplify2}) by using the Boolean laws to manipulate the equations. Incidentally (\ref{simplify}) is an example of a multiplexer which we will get into later.
+              
+            
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|c|}
+                	\hline
+                	     Law       &                     Law of $\vee$                      &                 law of $\wedge$                 \\ \hline
+                	Commutativity  &                 $p \vee q = q \vee p$                  &            $p \wedge q = q \wedge p$            \\ \hline
+                	Associativity  &        $p \vee (q \vee r) = (p \vee q) \vee r$         & $p \wedge (q \wedge r) = (p \wedge q) \wedge r$ \\ \hline
+                	Distributivity & $p \wedge (q \vee r) = (p \wedge q) \vee (p \wedge r)$ &                                                 \\ \hline
+                	   Identity    &                     $p \vee 0 = p$                     &                $p \wedge 1 = p$                 \\ \hline
+                	   Zero law    &                                                        &                $p \wedge 0 = 0$                 \\ \hline
+                \end{tabular}
+                \caption{Basic Boolean laws. These laws satisfy both Boolean and ordinary algebra.}
+                \label{Table:Algebralaws}
+            \end{table}
         
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|c|}
+                	\hline
+                	      Law       &               Law of $\vee$               &                   law of $\wedge$                    \\ \hline
+                	Distributivity  &                                           & $p \vee (q \wedge r) = (p \vee q) \wedge (p \vee r)$ \\ \hline
+                	    One law     &              $p \vee 1 = 1$               &                                                      \\ \hline
+                	Idempotence law &              $p \vee p = p$               &                   $p \wedge p = p$                   \\ \hline
+                	Absorption law  &         $x \vee (x \wedge y) = x$         &              $x \wedge (x \vee y) = x$               \\ \hline
+                	Complement law &            $p \vee \neg p = 1$            &                $p \wedge \neg p = 0$                 \\ \hline
+                	De Morgan Laws  & $\neg p \vee  \neg q = \neg (p \wedge q)$ &      $\neg p \wedge  \neg q = \neg (p \vee q)$       \\ \hline
+                \end{tabular}
+                \caption{Basic Boolean laws. These laws do not have an equivalent in ordinary algebra.}
+                \label{Table:Booleanlaws}
+            \end{table}
         
         \subsection{Gates}
+            
+            In this and following sections the physical abstractions to the propositions $true$ and $false$ will be represented by a voltage either being high or low. When the voltage is high we say that the signal is \textit{asserted} and represented by $1$ and when low is \textit{deasserted} and represented by $0$. 
+            
+            We will use 3 fundamental physical components, gates, to implement logic tables or Boolean equations and each of these is represented by a symbol which we will go through in the following.
+            
+            It should be noted that multiple input are possible with the AND and OR gates since they are both commutative and associative. There will though always be 1 output which is the result of all the subsequent input.
+            
+            \subsubsection{AND Gate}
+                The AND gate is the physical implementation of logic table \ref{LogicTable:AND} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:ANDGate}. 
+                
+                \begin{figure}[h!]
+                    \centering
+                    \subimport{tikz_stuff/}{ANDGate}
+                    \caption{Illustration of the AND gate where $A$ and $B$ are the input and $A\cdot B$ is the output.}
+                    \label{fig:ANDGate}
+                \end{figure}
+            
+            \subsubsection{OR Gate}
+                The OR gate is the physical implementation of logic table \ref{LogicTable:OR} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:ORGate}. 
+                
+                \begin{figure}[h!]
+                    \centering
+                    \subimport{tikz_stuff/}{ORGate}
+                    \caption{Illustration of the OR gate where $A$ and $B$ are the input and $A+B$ is the output.}
+                    \label{fig:ORGate}
+                \end{figure} 
+            
+            \subsubsection{NOT Gate}
+                The NOT gate or inverter is the physical implementation of logic table \ref{LogicTable:Negation} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:NOTGate}. 
+                
+                \begin{figure}[h!]
+                    \centering
+                    \subimport{tikz_stuff/}{NOTGate}
+                    \caption{Illustration of the NOT gate where $A$ and $B$ are the input and $A+B$ is the output.}
+                    \label{fig:NOTGate}
+                \end{figure}   
+            
         
     \section{Combinational logic}\label{section:Combinational_logic}
         
