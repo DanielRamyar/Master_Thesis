@@ -368,7 +368,7 @@
             
             In this and following sections the physical abstractions to the propositions $true$ and $false$ will be represented by a voltage either being high or low. When the voltage is high we say that the signal is \textit{asserted} and represented by $1$ and when low is \textit{deasserted} and represented by $0$. 
             
-            We will use 3 fundamental physical components, gates, to implement logic tables or Boolean equations and each of these is represented by a symbol which we will go through in the following.
+            We will use 3 fundamental physical components, \textit{gates}, to implement logic tables or Boolean equations and each of these is represented by a symbol which we will go through in the following.
             
             It should be noted that multiple input are possible with the AND and OR gates since they are both commutative and associative. There will though always be 1 output which is the result of all the subsequent input.
             
@@ -393,19 +393,56 @@
                 \end{figure} 
             
             \subsubsection{NOT Gate}
-                The NOT gate or inverter is the physical implementation of logic table \ref{LogicTable:Negation} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:NOTGate}. 
+                The NOT gate or inverter is the physical implementation of logic table \ref{LogicTable:Negation} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:NOTGate}. Usually the inverter is not drawn explicitly, but rather a "bubble" is drawn at the input or output of the respective gate, as shown in figure \ref{fig:NOTGateBubble}. 
                 
                 \begin{figure}[h!]
                     \centering
                     \subimport{tikz_stuff/}{NOTGate}
                     \caption{Illustration of the NOT gate where $A$ and $B$ are the input and $A+B$ is the output.}
                     \label{fig:NOTGate}
-                \end{figure}   
+                \end{figure}
             
-        
+                \begin{figure}[h!]
+                    \centering
+                    \begin{subfigure}[b]{0.5\textwidth}
+                        \centering
+                        \subimport{tikz_stuff/}{ANDGateInput1NOT}
+                        \caption{ }
+                    \end{subfigure}%
+                    \begin{subfigure}[b]{0.5\textwidth}
+                        \centering
+                        \subimport{tikz_stuff/}{ANDGateInput1NOTBubble}
+                        \caption{ }
+                    \end{subfigure}%
+                    \caption{(a) illustrates the inverter explicitly drawn before the input to the AND gate. (b) shows the inverter illustrated as a bubble before the input to the AND gate.}
+                    \label{fig:NOTGateBubble}
+                \end{figure}
+            
+        \improvement{maybe talk about that nor and nand gates are universal}
     \section{Combinational logic}\label{section:Combinational_logic}
+        When we design logic units which contain no memory i.e always return the same output given same input, we deal with \textit{combinatinal logic}. We will in this section go through \improvement{finish this section} 
         
         \subsection{Decoder}
+            The first logic unit we will take a look at will be the \textit{decoder}. Its function is to select one of multiple output to assert. This selection is determined by the input. Say that we have 3 input i.e 3 bits of information. There is 8 possible configurations of these 3 bits ($2^{3}=8$), which means that for each configuration we can assign one output to be asserted. In table \ref{LogicTable:Decoder} we have for each configuration asserted one output. Notice that we have used the binary representation of a decimal number to determine which output should be asserted for which input configuration. For example the the binary representation of the decimal number $5$ is $101$, so when the input is $In2=1$, $In1=0$ and $In0=1$ output 5 is asserted.
+            
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|c||c|c|c|c|c|c|c|c|}
+                    \hline
+                    \multicolumn{3}{|c||}{\textbf{Input}}& \multicolumn{8}{c|}{\textbf{Output}}                  \\ \hline
+                    In2        & In1        & In0        & Out7 & Out6 & Out5 & Out4 & Out3 & Out2 & Out1 & Out0 \\ \hline
+                    0          & 0          & 0          & 0    & 0    & 0    & 0    & 0    & 0    & 0    & 1    \\ \hline
+                    0          & 0          & 1          & 0    & 0    & 0    & 0    & 0    & 0    & 1    & 0    \\ \hline
+                    0          & 1          & 0          & 0    & 0    & 0    & 0    & 0    & 1    & 0    & 0    \\ \hline
+                    0          & 1          & 1          & 0    & 0    & 0    & 0    & 1    & 0    & 0    & 0    \\ \hline
+                    1          & 0          & 0          & 0    & 0    & 0    & 1    & 0    & 0    & 0    & 0    \\ \hline
+                    1          & 0          & 1          & 0    & 0    & 1    & 0    & 0    & 0    & 0    & 0    \\ \hline
+                    1          & 1          & 0          & 0    & 1    & 0    & 0    & 0    & 0    & 0    & 0    \\ \hline
+                    1          & 1          & 1          & 1    & 0    & 0    & 0    & 0    & 0    & 0    & 0    \\ \hline
+                \end{tabular}
+                \caption{Logic Table of a decoder.}
+                \label{LogicTable:Decoder}
+            \end{table}
         
         \subsection{Multiplexor}
         
