@@ -20,4 +20,10 @@
 \subpreamble{tikz_stuff/NOTGate.tex}
 \usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows, shapes.gates.logic.US, calc}\tikzstyle {arrow} = [thick,->,>=stealth]
 \endsubpreamble
+\subpreamble{tikz_stuff/ANDGateInput1NOT.tex}
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows, shapes.gates.logic.US, calc}\tikzstyle {arrow} = [thick,->,>=stealth]
+\endsubpreamble
+\subpreamble{tikz_stuff/ANDGateInput1NOTBubble.tex}
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows, shapes.gates.logic.US, calc}\tikzstyle {arrow} = [thick,->,>=stealth]
+\endsubpreamble
 \endstandalonepreambles

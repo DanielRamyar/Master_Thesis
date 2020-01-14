@@ -20,55 +20,55 @@
 \contentsline {subsubsection}{OR Gate}{14}{section*.40}%
 \contentsline {subsubsection}{NOT Gate}{14}{section*.42}%
 \contentsline {section}{\numberline {2.2}Combinational logic}{14}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Decoder}{14}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Multiplexor}{14}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Two-level logic}{14}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Programmable logic array}{14}{subsection.2.2.4}%
-\contentsline {chapter}{\numberline {3}Introduction to RISC-V instructions}{15}{chapter.3}%
-\contentsline {section}{\numberline {3.1}RISC-V Assembly}{15}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Operands}{15}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Register}{15}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Memory Format}{15}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Const vs imm }{15}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Numeral system of a computer}{15}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}base 2}{15}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}signed unsigned}{15}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}Instruction representation in binary}{15}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Operators}{15}{section.3.5}%
-\contentsline {chapter}{\numberline {4}The RISC-V processor}{16}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Single Cycle RISC-V Units}{16}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Program Counter}{16}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Instruction Memory}{16}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}incrementor?}{16}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Register}{16}{subsection.4.1.4}%
-\contentsline {subsection}{\numberline {4.1.5}Arithmetic Logic Unit (ALU)}{16}{subsection.4.1.5}%
-\contentsline {subsection}{\numberline {4.1.6}Immediate generator}{16}{subsection.4.1.6}%
-\contentsline {subsection}{\numberline {4.1.7}Data Memory}{16}{subsection.4.1.7}%
-\contentsline {section}{\numberline {4.2}Designing the Control}{16}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Single Cycle RISC-V datapath}{16}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Improving the datapath}{16}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}RV64I Base Instructions Support}{17}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Supporting R-Format}{17}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Supporting I-Format}{17}{subsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.4.4}Supporting S-Format}{17}{subsection.4.4.4}%
-\contentsline {subsection}{\numberline {4.4.5}Supporting B-Format}{17}{subsection.4.4.5}%
-\contentsline {subsection}{\numberline {4.4.6}Supporting U-Format}{17}{subsection.4.4.6}%
-\contentsline {subsection}{\numberline {4.4.7}Supporting J-Format}{17}{subsection.4.4.7}%
-\contentsline {section}{\numberline {4.5}Debugging the instructions}{17}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Writing assembly to test instructions}{17}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Writing simple C code to run on RISC-V}{17}{subsection.4.5.2}%
-\contentsline {chapter}{\numberline {A}Unary Operators}{18}{appendix.A}%
-\contentsline {subsubsection}{Logical identity}{18}{section*.50}%
-\contentsline {subsubsection}{Logical true}{18}{section*.52}%
-\contentsline {subsubsection}{Logical false}{19}{section*.54}%
-\contentsline {chapter}{\numberline {B}Binary Operators}{20}{appendix.B}%
-\contentsline {subsubsection}{Tautology}{20}{section*.56}%
-\contentsline {subsubsection}{Contradiction}{20}{section*.58}%
-\contentsline {subsubsection}{Proposition P}{21}{section*.60}%
-\contentsline {subsubsection}{Proposition Q}{22}{section*.62}%
-\contentsline {subsubsection}{Negated P}{22}{section*.64}%
-\contentsline {subsubsection}{Negated Q}{23}{section*.66}%
-\contentsline {subsubsection}{Material implication}{23}{section*.68}%
-\contentsline {subsubsection}{Converse implication}{24}{section*.70}%
-\contentsline {subsubsection}{Material nonimplication}{25}{section*.72}%
-\contentsline {subsubsection}{Converse nonimplication}{25}{section*.74}%
+\contentsline {subsection}{\numberline {2.2.1}Decoder}{15}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Multiplexor}{15}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Two-level logic}{15}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Programmable logic array}{15}{subsection.2.2.4}%
+\contentsline {chapter}{\numberline {3}Introduction to RISC-V instructions}{16}{chapter.3}%
+\contentsline {section}{\numberline {3.1}RISC-V Assembly}{16}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Operands}{16}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Register}{16}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Memory Format}{16}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Const vs imm }{16}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Numeral system of a computer}{16}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}base 2}{16}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}signed unsigned}{16}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Instruction representation in binary}{16}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Operators}{16}{section.3.5}%
+\contentsline {chapter}{\numberline {4}The RISC-V processor}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Single Cycle RISC-V Units}{17}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Program Counter}{17}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Instruction Memory}{17}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}incrementor?}{17}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Register}{17}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Arithmetic Logic Unit (ALU)}{17}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.1.6}Immediate generator}{17}{subsection.4.1.6}%
+\contentsline {subsection}{\numberline {4.1.7}Data Memory}{17}{subsection.4.1.7}%
+\contentsline {section}{\numberline {4.2}Designing the Control}{17}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Single Cycle RISC-V datapath}{17}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Improving the datapath}{17}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}RV64I Base Instructions Support}{18}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Supporting R-Format}{18}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Supporting I-Format}{18}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Supporting S-Format}{18}{subsection.4.4.4}%
+\contentsline {subsection}{\numberline {4.4.5}Supporting B-Format}{18}{subsection.4.4.5}%
+\contentsline {subsection}{\numberline {4.4.6}Supporting U-Format}{18}{subsection.4.4.6}%
+\contentsline {subsection}{\numberline {4.4.7}Supporting J-Format}{18}{subsection.4.4.7}%
+\contentsline {section}{\numberline {4.5}Debugging the instructions}{18}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Writing assembly to test instructions}{18}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Writing simple C code to run on RISC-V}{18}{subsection.4.5.2}%
+\contentsline {chapter}{\numberline {A}Unary Operators}{19}{appendix.A}%
+\contentsline {subsubsection}{Logical identity}{19}{section*.54}%
+\contentsline {subsubsection}{Logical true}{19}{section*.56}%
+\contentsline {subsubsection}{Logical false}{20}{section*.58}%
+\contentsline {chapter}{\numberline {B}Binary Operators}{21}{appendix.B}%
+\contentsline {subsubsection}{Tautology}{21}{section*.60}%
+\contentsline {subsubsection}{Contradiction}{21}{section*.62}%
+\contentsline {subsubsection}{Proposition P}{22}{section*.64}%
+\contentsline {subsubsection}{Proposition Q}{23}{section*.66}%
+\contentsline {subsubsection}{Negated P}{23}{section*.68}%
+\contentsline {subsubsection}{Negated Q}{24}{section*.70}%
+\contentsline {subsubsection}{Material implication}{24}{section*.72}%
+\contentsline {subsubsection}{Converse implication}{25}{section*.74}%
+\contentsline {subsubsection}{Material nonimplication}{26}{section*.76}%
+\contentsline {subsubsection}{Converse nonimplication}{26}{section*.78}%
