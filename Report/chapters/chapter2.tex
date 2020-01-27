@@ -16,6 +16,7 @@
         In Boolean algebra we have a distinction between operators which work on one operand and the ones that work on to two operands. These are called unary and binary operators respectively. We would go through a description of these in the following section. 
         
         \subsection{Unary operators}\improvement{make ven diagrams to show the operator function}
+        
             With a single binary operand p we have 2 possible input $true$ and $false$. All output combinations are summarized in table \ref{LogicTable:unary}. Each numbered column here represents an unnamed operator. We will go ahead and describe one of these in the following. The rest can referred to in appendix \ref{appendix:Unary_Operators}. 
             
             \begin{table}[h!]
@@ -69,7 +70,7 @@
                 
                  
 \newpage        
-        \subsection{Binary operators and disjunctive normal form}
+        \subsection{Binary operators and disjunctive normal form}\label{DNF}
         
             With two binary operands, $p$ and $q$, there exist four possible combinations between their respectable values namely $(true, true)$, $(true, false)$, $(false, true)$, $(false, false)$.
             
@@ -199,6 +200,7 @@
                 
                 
             \subsubsection{Summary}
+            
                 We can now go ahead and fill the numbered columns table \ref{LogicTable:PossibleOperators} with the corresponding operators which we have defined throughout this section. The filled table can be found in table \ref{LogicTable:BinaryOperators}. \improvement{rewrite this section.}
                 
                 \begin{table}[h!]
@@ -215,7 +217,8 @@
                     \label{LogicTable:BinaryOperators}
                 \end{table}
         
-        \subsection{Boolean equations}
+        \subsection{Boolean equations}\label{Section:BooleanEquation}
+        
             In the last section we saw that it was possible to describe any logic table in terms of the AND, OR and Negation operators. An example of this could be the following
             
             \begin{equation}
@@ -301,6 +304,7 @@
                 \end{figure}
             
             \subsubsection{OR Gate}
+            
                 The OR gate is the physical implementation of logic table \ref{LogicTable:OR} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:ORGate}. 
                 
                 \begin{figure}[h!]
@@ -311,6 +315,7 @@
                 \end{figure} 
             
             \subsubsection{NOT Gate}
+            
                 The NOT gate or inverter is the physical implementation of logic table \ref{LogicTable:Negation} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:NOTGate}. Usually the inverter is not drawn explicitly, but rather a "bubble" is drawn at the input or output of the respective gate, as shown in figure \ref{fig:NOTGateBubble}. 
                 
                 \begin{figure}[h!]
@@ -338,9 +343,11 @@
             
         \improvement{maybe talk about that nor and nand gates are universal}
     \section{Combinational logic}\label{section:Combinational_logic}
+    
         When we design logic units which contain no memory i.e always return the same output given same input, we deal with \textit{combinational logic}. In this section we will go through the essential combinational logic units that will be used throughout this thesis.  \improvement{finish this section} 
         
         \subsection{Decoder}
+        
             The first combinational logic unit we will take a look at will be the \textit{decoder}. Its function is to select one of multiple outputs to assert. This selection is determined by the inputs. 
             
             Say that we have 3 inputs i.e 3 bits of information. There are 8 possible configurations of these 3 bits ($2^{3}=8$) and for each configuration we can assign one output to be asserted. 
@@ -371,7 +378,7 @@
             \end{table}
         
         \subsection{Multiplexer}
-                  
+        
             When we will later deal with larger systems consisting of multiple logic units, we will need a way to select from which unit we want the output to go further up the chain. This select unit is known as a \textit{multiplexer} or \textit{mux}. Its function is to select one of multiple input to output unchanged.
             
             In table \ref{LogicTable:Multiplexer} we have constructed a multiplexer with three input one of which is the control signal $S$. If the control signal is asserted $S=1$ the output will have the value of $B$ and if deasserted $S=0$ it will output the value of $A$. 
@@ -402,8 +409,21 @@
             
             In this and next section we will see an example how one would implement various logic units, such as the multiplexer, going from logic table to the sum of products logic equation and lastly generating a gate-level implementation.
             
-              
+            Going ahead we will implement the two input multiplexer starting by writing the logic table found in \ref{LogicTable:Multiplexer} in sum of products form. Using the approach mentioned in \ref{DNF} we end up with the logic equation for the multiplexer 
             
+            \begin{equation}
+                C = A \cdot \bar{B} \cdot \bar{S} + A \cdot B \cdot \bar{S} + \bar{A} \cdot B \cdot S
+                    + A \cdot B \cdot S.
+            \end{equation}
+             
+            We already saw how one could drastically simplify this expression in section \ref{Section:BooleanEquation}, such that we end up with
             
+            \begin{equation}
+                C = A\cdot \bar{S} + B\cdot S.
+            \end{equation}
+            
+            Now we have the simplified two-level representation for the two input multiplexer, in next section we will se how this is used to generate the gate-level implementation.
         
         \subsection{Programmable logic array}
+        
+        
