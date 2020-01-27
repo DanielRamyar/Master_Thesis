@@ -168,7 +168,7 @@
                     \label{LogicTable:XOR}
                 \end{table}
             
-                We can define this operator in disjunctive normal form using our basic operators AND, OR and NOT. 
+                We can define this operator in disjunctive normal \improvement{give a definition of disjunctive normal form} form using our basic operators AND, OR and NOT. 
                 
                 To do this we first identify all true output in \ref{LogicTable:XOR} namely row 3 and 4. We then take a look at the corresponding input values
                 \begin{equation}
@@ -197,88 +197,6 @@
                 \end{enumerate}
                 Using this procedure any logic table can be expressed as a Boolean expression and will be used extensively throughout this thesis.
                 
-            \subsubsection{Joint denial}
-                Joint denial is represented by $\downarrow$ in mathematics or NOR in computer science and commonly referred to as the NOR operator. The NOR operator results in a true value only if both operands are false.
-                
-                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 15 and is summarized in table \ref{LogicTable:NOR}.
-                
-                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the NOR operation between $p$ and $q$.
-                
-                \begin{table}[h!]
-                    \centering
-                    \begin{tabular}{|c|c|c|}
-                    	\hline
-                    	  $p$   &   $q$   & $p \downarrow q$ \\ \hline
-                    	$true$  & $true$  &     $false$      \\ \hline
-                    	$true$  & $false$ &     $false$      \\ \hline
-                    	$false$ & $true$  &     $false$      \\ \hline
-                    	$false$ & $false$ &      $true$      \\ \hline
-                    \end{tabular}
-                    \caption{Logic table of the NOR operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the NOR operation between $p$ and $q$.}
-                    \label{LogicTable:NOR}
-                \end{table}
-            
-                In disjunctive normal form the NOR operator can be expressed in the following form
-                \begin{equation}
-                    p \downarrow q = (\neg p \wedge \neg q)
-                \end{equation}
-                using the procedure previously mentioned.
-                
-            \subsubsection{Alternative denial}
-                Alternative denial is represented by $\uparrow$ in mathematics or NAND in computer science and commonly referred to as the NAND operator. The NAND operator results in a true value only if one or more of the operands are false.
-                
-                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 5 and is summarized in table \ref{LogicTable:NAND}.
-                
-                Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the NAND operation between $p$ and $q$.
-                
-                \begin{table}[h!]
-                    \centering
-                    \begin{tabular}{|c|c|c|}
-                    	\hline
-                    	  $p$   &   $q$   & $p \uparrow q$ \\ \hline
-                    	$true$  & $true$  &    $false$     \\ \hline
-                    	$true$  & $false$ &     $true$     \\ \hline
-                    	$false$ & $true$  &     $true$     \\ \hline
-                    	$false$ & $false$ &     $true$     \\ \hline
-                    \end{tabular}
-                    \caption{Logic table of the NAND operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the NAND operation between $p$ and $q$.}
-                    \label{LogicTable:NAND}
-                \end{table}
-            
-                In disjunctive normal form the NAND operator can be expressed in the following form
-                \begin{equation}
-                    p \uparrow q = (p \wedge \neg q) \vee (\neg p \wedge q) \vee (\neg p \wedge \neg q)
-                \end{equation}
-                using the procedure previously mentioned.
-                
-            \subsubsection{Logical biconditional}
-               The logical biconditional is represented by $\leftrightarrow$ in mathematics or XNOR in computer science and commonly referred to as the exclusive NOR operator. The XNOR operator results in a true value only if both operands are either true or false.
-               
-               Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 9 and is summarized in table \ref{LogicTable:XNOR}.
-               
-               Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the XNOR operation between $p$ and $q$.
-               
-               \begin{table}[h!]
-                   \centering
-                   \begin{tabular}{|c|c|c|}
-                   	\hline
-                   	  $p$   &   $q$   & $p \leftrightarrow q$ \\ \hline
-                   	$true$  & $true$  &        $true$         \\ \hline
-                   	$true$  & $false$ &        $false$        \\ \hline
-                   	$false$ & $true$  &        $false$        \\ \hline
-                   	$false$ & $false$ &        $true$         \\ \hline
-                   \end{tabular}
-                   \caption{Logic table of the XNOR operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the XNOR operation between $p$ and $q$.}
-                   \label{LogicTable:XNOR}
-               \end{table}
-           
-                In disjunctive normal form the XNOR operator can be expressed in the following form
-                \begin{equation}
-                    p \leftrightarrow q = (p \wedge  q) \vee (\neg p \wedge \neg q)
-                \end{equation}
-                using the procedure previously mentioned.
-                
-            
                 
             \subsubsection{Summary}
                 We can now go ahead and fill the numbered columns table \ref{LogicTable:PossibleOperators} with the corresponding operators which we have defined throughout this section. The filled table can be found in table \ref{LogicTable:BinaryOperators}. \improvement{rewrite this section.}
@@ -420,10 +338,18 @@
             
         \improvement{maybe talk about that nor and nand gates are universal}
     \section{Combinational logic}\label{section:Combinational_logic}
-        When we design logic units which contain no memory i.e always return the same output given same input, we deal with \textit{combinatinal logic}. We will in this section go through \improvement{finish this section} 
+        When we design logic units which contain no memory i.e always return the same output given same input, we deal with \textit{combinational logic}. In this section we will go through the essential combinational logic units that will be used throughout this thesis.  \improvement{finish this section} 
         
         \subsection{Decoder}
-            The first logic unit we will take a look at will be the \textit{decoder}. Its function is to select one of multiple output to assert. This selection is determined by the input. Say that we have 3 input i.e 3 bits of information. There is 8 possible configurations of these 3 bits ($2^{3}=8$), which means that for each configuration we can assign one output to be asserted. In table \ref{LogicTable:Decoder} we have for each configuration asserted one output. Notice that we have used the binary representation of a decimal number to determine which output should be asserted for which input configuration. For example the the binary representation of the decimal number $5$ is $101$, so when the input is $In2=1$, $In1=0$ and $In0=1$ output 5 is asserted.
+            The first combinational logic unit we will take a look at will be the \textit{decoder}. Its function is to select one of multiple outputs to assert. This selection is determined by the inputs. 
+            
+            Say that we have 3 inputs i.e 3 bits of information. There are 8 possible configurations of these 3 bits ($2^{3}=8$) and for each configuration we can assign one output to be asserted. 
+            
+            In table \ref{LogicTable:Decoder} we have for each configuration asserted one output. Notice that we have used the binary representation of a decimal number to determine which output should be asserted for given input configuration. For example the binary representation for the decimal number $5$ is $101$, so when the input is $In2=1$, $In1=0$ and $In0=1$ output 5 is asserted. 
+            
+            It should be noted that the choice of which output that should get asserted for given input is arbitrary and up to the logic designer to decide, though each input configuration must only assert one unique output.
+            
+            We had 3 input in the previous example, but we can generalize the decoder such that for $n$ input, where $n > 0$,  we have $2^{n}$ output. Only one output is asserted per input configuration. 
             
             \begin{table}[h!]
                 \centering
@@ -440,12 +366,44 @@
                     1          & 1          & 0          & 0    & 1    & 0    & 0    & 0    & 0    & 0    & 0    \\ \hline
                     1          & 1          & 1          & 1    & 0    & 0    & 0    & 0    & 0    & 0    & 0    \\ \hline
                 \end{tabular}
-                \caption{Logic Table of a decoder.}
+                \caption{Logic Table of a 3 input decoder where the binary representation of the input determines which output gets asserted. For example when In2=1, In1=0, In0=1 output 5 will get asserted as the binary representation for 5 is 101.}
                 \label{LogicTable:Decoder}
             \end{table}
         
-        \subsection{Multiplexor}
+        \subsection{Multiplexer}
+                  
+            When we will later deal with larger systems consisting of multiple logic units, we will need a way to select from which unit we want the output to go further up the chain. This select unit is known as a \textit{multiplexer} or \textit{mux}. Its function is to select one of multiple input to output unchanged.
+            
+            In table \ref{LogicTable:Multiplexer} we have constructed a multiplexer with three input one of which is the control signal $S$. If the control signal is asserted $S=1$ the output will have the value of $B$ and if deasserted $S=0$ it will output the value of $A$. 
+            
+            In this example we only have two input, but the multiplexer can be made such that it can select between arbitrary many input though this requires an increase in control signals. For $n$ control signals we are able to select between $2^{n}$ input, where $n > 0$.
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|c||c|}
+                	\hline
+                	\textbf{A} & \textbf{B} & \textbf{S} & \textbf{C} \\ \hline
+                	    0      &     0      &     0      &     0      \\ \hline
+                	    0      &     1      &     0      &     0      \\ \hline
+                	    1      &     0      &     0      &     1      \\ \hline
+                	    1      &     1      &     0      &     1      \\ \hline
+                	    0      &     0      &     1      &     0      \\ \hline
+                	    0      &     1      &     1      &     1      \\ \hline
+                	    1      &     0      &     1      &     0      \\ \hline
+                	    1      &     1      &     1      &     1      \\ \hline
+                \end{tabular}
+                \caption{Logic Table of a multiplexer.}
+                \label{LogicTable:Multiplexer}
+            \end{table}
         
         \subsection{Two-level logic}
+        
+            We saw in a previous section that it was possible to express any logic table into a logic equation expressed as a sum of one or more products, also known as \textit{disjunctive normal form} or \textit{Sum of Products}.
+            As we will see shortly this type of logic expression can be implemented using only two levels of logic, one layer consisting only of AND gates and one only of OR Gates, where negations are only applied to individual variables.
+            
+            In this and next section we will see an example how one would implement various logic units, such as the multiplexer, going from logic table to the sum of products logic equation and lastly generating a gate-level implementation.
+            
+              
+            
+            
         
         \subsection{Programmable logic array}

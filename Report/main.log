@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  14 JAN 2020 16:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  27 JAN 2020 16:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -931,7 +931,8 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (./main.aux (./frontpage.aux) (./chapters/chapter1.aux)
 (./chapters/chapter2.aux) (./chapters/chapter3.aux) (./chapters/chapter4.aux)
-(./chapters/appendix.aux) (./chapters/RiscVReferenceCard.aux))
+(./chapters/chapter5.aux) (./chapters/appendix.aux)
+(./chapters/RiscVReferenceCard.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -1094,7 +1095,7 @@ l.47     \include{frontpage}
 page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.54 ...Supporting B-Format}{18}{subsection.4.4.5}
+l.50 ...Supporting I-Format}{18}{subsection.5.4.3}
                                                   % [1
 
 
@@ -1108,70 +1109,61 @@ l.54 ...Supporting B-Format}{18}{subsection.4.4.5}
 
 (./chapters/chapter1.tex
 Chapter 1.
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 1.
-
-LaTeX Warning: Marginpar on page 3 moved.
+) [3
 
 
-LaTeX Warning: Marginpar on page 3 moved.
-
-[3
-
-
-] (./tikz_stuff/one_to_one.tex) (./tikz_stuff/one_to_many.tex)
-(./tikz_stuff/many_to_one.tex) (./tikz_stuff/many_to_many.tex)) [4]
+]
 \openout2 = `chapters/chapter2.aux'.
 
-
-(./chapters/chapter2.tex
+ (./chapters/chapter2.tex
 Chapter 2.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 2.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[5
+[4
 
 
 
-] [6]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[7] [8] [9]
+] [5]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[10]
+[6] [7] [8] [9] (./tikz_stuff/ANDGate.tex)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[11]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[12] (./tikz_stuff/ANDGate.tex) (./tikz_stuff/ORGate.tex) [13]
-(./tikz_stuff/NOTGate.tex) (./tikz_stuff/ANDGateInput1NOT.tex)
-(./tikz_stuff/ANDGateInput1NOTBubble.tex)
-
-LaTeX Warning: Marginpar on page 14 moved.
-
-[14]) [15]
+(./tikz_stuff/ORGate.tex) [10] (./tikz_stuff/NOTGate.tex)
+(./tikz_stuff/ANDGateInput1NOT.tex) (./tikz_stuff/ANDGateInput1NOTBubble.tex)
+[11] [12]) [13]
 \openout2 = `chapters/chapter3.aux'.
 
  (./chapters/chapter3.tex
 Chapter 3.
+
+LaTeX Warning: Marginpar on page 14 moved.
+
+(./tikz_stuff/one_to_one.tex) [14
+
+
+
+] (./tikz_stuff/one_to_many.tex)
+(./tikz_stuff/many_to_one.tex) (./tikz_stuff/many_to_many.tex)) [15]
+\openout2 = `chapters/chapter4.aux'.
+
+
+(./chapters/chapter4.tex
+Chapter 4.
 ) [16
 
 
 
 ]
-\openout2 = `chapters/chapter4.aux'.
+\openout2 = `chapters/chapter5.aux'.
 
- (./chapters/chapter4.tex
-Chapter 4.
+ (./chapters/chapter5.tex
+Chapter 5.
 
 LaTeX Warning: Marginpar on page 17 moved.
 
@@ -1200,7 +1192,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [26] [27]
+[26] [27]) [28] [29]
 \openout2 = `chapters/RiscVReferenceCard.aux'.
 
  (./chapters/RiscVReferenceCard.tex
@@ -1246,61 +1238,62 @@ Overfull \hbox (24.23172pt too wide) in paragraph at lines 102--167
 [][] 
  []
 
-[28
+[30
 
 
 
-] [29]) (./main.bbl) [30
+] [31]) (./main.bbl) [32
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 63.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 63.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 64.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 64.
  (./main.aux (./frontpage.aux)
 (./chapters/chapter1.aux) (./chapters/chapter2.aux) (./chapters/chapter3.aux)
-(./chapters/chapter4.aux) (./chapters/appendix.aux)
+(./chapters/chapter4.aux) (./chapters/chapter5.aux) (./chapters/appendix.aux)
 (./chapters/RiscVReferenceCard.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 63.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 63.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 64.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 64.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E2F5BF347FB937CA7A832510AD058C81;3381.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 63.
+(rerunfilecheck)             Checksum: 3FFBEEAFB54922AA8D57F55497BB3027;3446.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 64.
  ) 
 Here is how much of TeX's memory you used:
- 33502 strings out of 492163
- 642575 string characters out of 6125305
- 770709 words of memory out of 5000000
- 37064 multiletter control sequences out of 15000+600000
+ 33516 strings out of 492163
+ 642732 string characters out of 6125305
+ 772294 words of memory out of 5000000
+ 37067 multiletter control sequences out of 15000+600000
  546113 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,14n,83p,832b,1121s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,14n,83p,510b,1121s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
 usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
-cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2019/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/
-fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (32 pages, 346909 bytes).
+r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
+texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/tex
+live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/fo
+nts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on main.pdf (34 pages, 359552 bytes).
 PDF statistics:
- 763 PDF objects out of 1000 (max. 8388607)
- 684 compressed objects within 7 object streams
- 197 named destinations out of 1000 (max. 500000)
- 501 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 787 PDF objects out of 1000 (max. 8388607)
+ 704 compressed objects within 8 object streams
+ 201 named destinations out of 1000 (max. 500000)
+ 509 words of extra memory for PDF output out of 10000 (max. 10000000)
 

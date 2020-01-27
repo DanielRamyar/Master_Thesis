@@ -1,16 +1,4 @@
 \standalonepreambles
-\subpreamble{tikz_stuff/one_to_one.tex}
-\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
-\endsubpreamble
-\subpreamble{tikz_stuff/one_to_many.tex}
-\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
-\endsubpreamble
-\subpreamble{tikz_stuff/many_to_one.tex}
-\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
-\endsubpreamble
-\subpreamble{tikz_stuff/many_to_many.tex}
-\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
-\endsubpreamble
 \subpreamble{tikz_stuff/ANDGate.tex}
 \usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows, shapes.gates.logic.US, calc}\tikzstyle {arrow} = [thick,->,>=stealth]
 \endsubpreamble
@@ -25,5 +13,17 @@
 \endsubpreamble
 \subpreamble{tikz_stuff/ANDGateInput1NOTBubble.tex}
 \usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows, shapes.gates.logic.US, calc}\tikzstyle {arrow} = [thick,->,>=stealth]
+\endsubpreamble
+\subpreamble{tikz_stuff/one_to_one.tex}
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
+\endsubpreamble
+\subpreamble{tikz_stuff/one_to_many.tex}
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
+\endsubpreamble
+\subpreamble{tikz_stuff/many_to_one.tex}
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
+\endsubpreamble
+\subpreamble{tikz_stuff/many_to_many.tex}
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
 \endsubpreamble
 \endstandalonepreambles

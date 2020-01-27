@@ -61,6 +61,88 @@
 
 \chapter{Binary Operators}
 \label{appendix:Binaray_Operators}
+    \subsubsection{Joint denial}
+        Joint denial is represented by $\downarrow$ in mathematics or NOR in computer science and commonly referred to as the NOR operator. The NOR operator results in a true value only if both operands are false.
+        
+        Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 15 and is summarized in table \ref{LogicTable:NOR}.
+        
+        Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the NOR operation between $p$ and $q$.
+        
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            	\hline
+            	  $p$   &   $q$   & $p \downarrow q$ \\ \hline
+            	$true$  & $true$  &     $false$      \\ \hline
+            	$true$  & $false$ &     $false$      \\ \hline
+            	$false$ & $true$  &     $false$      \\ \hline
+            	$false$ & $false$ &      $true$      \\ \hline
+            \end{tabular}
+            \caption{Logic table of the NOR operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the NOR operation between $p$ and $q$.}
+            \label{LogicTable:NOR}
+        \end{table}
+        
+        In disjunctive normal form the NOR operator can be expressed in the following form
+        \begin{equation}
+            p \downarrow q = (\neg p \wedge \neg q)
+        \end{equation}
+        using the procedure mentioned in chapter \ref{section:Boolean_algebra}.
+    
+    \subsubsection{Alternative denial}
+        Alternative denial is represented by $\uparrow$ in mathematics or NAND in computer science and commonly referred to as the NAND operator. The NAND operator results in a true value only if one or more of the operands are false.
+        
+        Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 5 and is summarized in table \ref{LogicTable:NAND}.
+        
+        Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the NAND operation between $p$ and $q$.
+        
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            	\hline
+            	  $p$   &   $q$   & $p \uparrow q$ \\ \hline
+            	$true$  & $true$  &    $false$     \\ \hline
+            	$true$  & $false$ &     $true$     \\ \hline
+            	$false$ & $true$  &     $true$     \\ \hline
+            	$false$ & $false$ &     $true$     \\ \hline
+            \end{tabular}
+            \caption{Logic table of the NAND operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the NAND operation between $p$ and $q$.}
+            \label{LogicTable:NAND}
+        \end{table}
+        
+        In disjunctive normal form the NAND operator can be expressed in the following form
+        \begin{equation}
+            p \uparrow q = (p \wedge \neg q) \vee (\neg p \wedge q) \vee (\neg p \wedge \neg q)
+        \end{equation}
+        using the procedure mentioned in chapter \ref{section:Boolean_algebra}.
+    
+    \subsubsection{Logical biconditional}
+        The logical biconditional is represented by $\leftrightarrow$ in mathematics or XNOR in computer science and commonly referred to as the exclusive NOR operator. The XNOR operator results in a true value only if both operands are either true or false.
+        
+        Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 9 and is summarized in table \ref{LogicTable:XNOR}.
+        
+        Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the XNOR operation between $p$ and $q$.
+        
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            	\hline
+            	  $p$   &   $q$   & $p \leftrightarrow q$ \\ \hline
+            	$true$  & $true$  &        $true$         \\ \hline
+            	$true$  & $false$ &        $false$        \\ \hline
+            	$false$ & $true$  &        $false$        \\ \hline
+            	$false$ & $false$ &        $true$         \\ \hline
+            \end{tabular}
+            \caption{Logic table of the XNOR operator where $p$ is the first proposition and $q$ is the second. All possible permutations are then specified in each row for each proposition. The third column then shows the resulting value of the XNOR operation between $p$ and $q$.}
+            \label{LogicTable:XNOR}
+        \end{table}
+        
+        In disjunctive normal form the XNOR operator can be expressed in the following form
+        \begin{equation}
+            p \leftrightarrow q = (p \wedge  q) \vee (\neg p \wedge \neg q)
+        \end{equation}
+        using the procedure mentioned in chapter \ref{section:Boolean_algebra}.
+
+
     \subsubsection{Tautology}
         The tautology operator is represented by $\top$ in mathematics which always returns a true value.
         
