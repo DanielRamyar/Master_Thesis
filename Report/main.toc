@@ -56,20 +56,20 @@
 \contentsline {subsection}{\numberline {5.5.1}Writing assembly to test instructions}{19}{subsection.5.5.1}%
 \contentsline {subsection}{\numberline {5.5.2}Writing simple C code to run on RISC-V}{19}{subsection.5.5.2}%
 \contentsline {chapter}{\numberline {A}Unary Operators}{20}{appendix.A}%
-\contentsline {subsubsection}{Logical identity}{20}{section*.49}%
-\contentsline {subsubsection}{Logical true}{20}{section*.51}%
-\contentsline {subsubsection}{Logical false}{21}{section*.53}%
+\contentsline {subsubsection}{Logical identity}{20}{section*.50}%
+\contentsline {subsubsection}{Logical true}{20}{section*.52}%
+\contentsline {subsubsection}{Logical false}{21}{section*.54}%
 \contentsline {chapter}{\numberline {B}Binary Operators}{22}{appendix.B}%
-\contentsline {subsubsection}{Joint denial}{22}{section*.55}%
-\contentsline {subsubsection}{Alternative denial}{22}{section*.57}%
-\contentsline {subsubsection}{Logical biconditional}{23}{section*.59}%
-\contentsline {subsubsection}{Tautology}{24}{section*.61}%
-\contentsline {subsubsection}{Contradiction}{24}{section*.63}%
-\contentsline {subsubsection}{Proposition P}{25}{section*.65}%
-\contentsline {subsubsection}{Proposition Q}{25}{section*.67}%
-\contentsline {subsubsection}{Negated P}{26}{section*.69}%
-\contentsline {subsubsection}{Negated Q}{27}{section*.71}%
-\contentsline {subsubsection}{Material implication}{27}{section*.73}%
-\contentsline {subsubsection}{Converse implication}{28}{section*.75}%
-\contentsline {subsubsection}{Material nonimplication}{28}{section*.77}%
-\contentsline {subsubsection}{Converse nonimplication}{29}{section*.79}%
+\contentsline {subsubsection}{Joint denial}{22}{section*.56}%
+\contentsline {subsubsection}{Alternative denial}{22}{section*.58}%
+\contentsline {subsubsection}{Logical biconditional}{23}{section*.60}%
+\contentsline {subsubsection}{Tautology}{24}{section*.62}%
+\contentsline {subsubsection}{Contradiction}{24}{section*.64}%
+\contentsline {subsubsection}{Proposition P}{25}{section*.66}%
+\contentsline {subsubsection}{Proposition Q}{25}{section*.68}%
+\contentsline {subsubsection}{Negated P}{26}{section*.70}%
+\contentsline {subsubsection}{Negated Q}{27}{section*.72}%
+\contentsline {subsubsection}{Material implication}{27}{section*.74}%
+\contentsline {subsubsection}{Converse implication}{28}{section*.76}%
+\contentsline {subsubsection}{Material nonimplication}{28}{section*.78}%
+\contentsline {subsubsection}{Converse nonimplication}{29}{section*.80}%

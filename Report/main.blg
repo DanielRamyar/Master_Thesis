@@ -6,6 +6,7 @@ A level-1 auxiliary file: chapters/chapter1.aux
 A level-1 auxiliary file: chapters/chapter2.aux
 A level-1 auxiliary file: chapters/chapter3.aux
 A level-1 auxiliary file: chapters/chapter4.aux
+A level-1 auxiliary file: chapters/chapter5.aux
 A level-1 auxiliary file: chapters/appendix.aux
 A level-1 auxiliary file: chapters/RiscVReferenceCard.aux
 The style file: abbrvnat.bst
@@ -13,7 +14,7 @@ Database file #1: bibliography.bib
 Warning--empty journal in vinter2015bus
 You've used 4 entries,
             2773 wiz_defined-function locations,
-            626 strings with 5236 characters,
+            627 strings with 5257 characters,
 and the built_in function-call counts, 1716 in all, are:
 = -- 159
 > -- 73
