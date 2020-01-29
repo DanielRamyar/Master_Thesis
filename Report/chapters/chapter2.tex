@@ -350,7 +350,7 @@
         
             The first combinational logic unit we will take a look at will be the \textit{decoder}. Its function is to select one of multiple outputs to assert. This selection is determined by the inputs. 
             
-            Say that we have 3 inputs i.e 3 bits of information. There are 8 possible configurations of these 3 bits ($2^{3}=8$) and for each configuration we can assign one output to be asserted. 
+            Say that we have 3 inputs i.e 3 bits of information. There are 8 possible configurations of these 3 bits ($2^{3}=8$) and for each configuration we assign one output to be asserted. 
             
             In table \ref{LogicTable:Decoder} we have for each configuration asserted one output. Notice that we have used the binary representation of a decimal number to determine which output should be asserted for given input configuration. For example the binary representation for the decimal number $5$ is $101$, so when the input is $In2=1$, $In1=0$ and $In0=1$ output 5 is asserted. 
             
@@ -419,11 +419,35 @@
             We already saw how one could drastically simplify this expression in section \ref{Section:BooleanEquation}, such that we end up with
             
             \begin{equation}
+                \label{multiplexer_equation}
                 C = A\cdot \bar{S} + B\cdot S.
             \end{equation}
             
             Now we have the simplified two-level representation for the two input multiplexer, in next section we will se how this is used to generate the gate-level implementation.
         
         \subsection{Programmable logic array}
+        
+            A common two-level logic device used to implement logic equations is the \textit{programmable logic array} or PLA for short. The PLA consists of two lines of input, one unaltered and one complemented (negated input), which are then connected to a plane of AND gates. The connections between the inputs and AND plane of course depends on the to be implemented logic equation. Hereafter the outputs of the AND plane connects to the OR plane and again the connections depends on the logic equation.
+            
+            Using this logic we can go ahead and implement \ref{multiplexer_equation}. Looking at the equation we see that we need to perform two AND operations and one OR operation. We therefore need two AND gates and one OR gate. Since the PLA has lines for both input and inverted input we only need to connect the correct lines to the corresponding gates. This is done in figure \ref{fig:MultiplexerSimpleA} where the black dots shows which lines are connected to which gate. When designing larger logic circuits it is more common to omit drawing all gates explicitly, which is illustrated in \ref{fig:MultiplexerSimpleB}. 
+        
+            \begin{figure}[h!]
+                \hspace*{-1cm}
+                \begin{subfigure}[t]{0.5\textwidth}
+                    \vskip 0pt
+                    \centering
+                    \subimport{tikz_stuff/}{multiplexersimple}
+                    \caption{ }
+                    \label{fig:MultiplexerSimpleA}
+                \end{subfigure}%
+                \begin{subfigure}[t]{0.5\textwidth}
+                    \vskip 0pt
+                    \subimport{tikz_stuff/}{multiplexersimplenogates}
+                    \caption{ }
+                    \label{fig:MultiplexerSimpleB}
+                \end{subfigure}%
+                \caption{Both of these circuits shows the PLA implementation of the logic equation we saw in \ref{multiplexer_equation}. (a) Illustrates the multiplexer with explicitly drawn gates where the black dots indicates a connection. (b) Illustrates the multiplexer with implicitly drawn gates where each vertical line in the AND plane represents a connection to an AND gate and each horizontal line in the OR plane represents a connection to an OR gate. As before the black dots shows which lines are connected.}
+                
+            \end{figure}
         
         
