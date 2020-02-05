@@ -1,52 +1,173 @@
 \chapter{Synchronous Message Exchange}
 
+In the previous chapter we went through the theory behind logic design, all the way from the introduction of Boolean algebra to gate-level implementation of logic units. We will in this chapter use those ideas to implement logic units in synchronous message exchange (SME). This will serve as a means to introduce SME to the reader and further cement former logic design ideas.
+
+Starting out we will go through a short introduction behind the inspiration for SME, Communicating Sequential Processes. Hereafter we will go through the theory and syntax of SME with an emphasis on real examples, as i believe this is the most efficient manner of introducing SME to the reader.  
+
 \section{Communicating Sequential Processes} \change{Rewrite this section} \improvement{add examples of a process and channels}
-    The problem with multiprocessor workloads is the sharing of memory. This creates a whole slew of problems. There are many different processes going on at once all having access to the same memory. Unless you got superpowers it is very hard to determine where in the program something goes wrong. It all boils down to the non-determinism. 
     
-    For example if you are going to print multiple strings using multiple threads you don't know which string i going to be printed first it's gonna depend on the operating system not on anything in your code. That can create race conditions (meaning the behaviour in your code is dependent on the timing of different threads) which can cause unpredictable behaviour and therefore bugs which is undesirable.
+    When working with multiprocessor workloads one will quickly realize the inconvenience of memory sharing. The non-determinism of having multiple processes reading and writing the same memory often results in unexpected behavior.
     
-    This has been tried to been solved with mutexes or locks but this also have its downside inform of deadlocks where multiple processes are waiting for each other and because these processes are non-deterministic it is very hard to reproduce errors in your code which in turn makes it hard to debug and therefore hard to make reliable software.
+    A classic example of non-determinism would be the act of printing out the numbers one through ten, to your console using more than one thread. If the aforementioned code is executed multiple times, you will notice that the order of numbers would vary between the runs. This is due to the scheduler of the operating system, which one does not have control over. That can create race conditions (meaning the behavior in your code is dependent on the timing of different threads) which can cause unpredictable behavior and therefore bugs which is undesirable.
     
-    This is where Communicating Sequential Processes (CSP) comes in. CSP was an algebra first proposed by \citet{HoareC1978Csp}.
-    CSP is build on two very basic primitives one is the process (which should not be confused with operating system processes) which could be an ordered sequence of operations. These processes do not share any memory so one process cannot access a specific value in another process (which solves a lot the problems we had with shared memory).
+    Various attempts has been made to solve this problem, such as the introduction of mutexes or locks. Though it does not solve our problem completely as these "solutions" introduces deadlocks, which is a state, where multiple processes are waiting for each other and the program stalls indefinitely. These deadlocks might not happen every run and thus introduces another layer of difficulty, as error reproducibility is essential for code debugging and therefore makes it hard to make reliable software.
     
-    The other primitive is channels which is the way the processes communicate which each other. You can pass whatever you want through these channels and once you pass a value you loose access to it.
+    Communicating Sequential Processes (CSP) is an algebra first proposed by \citet{HoareC1978Csp} to solve exactly these issues.
+    CSP is build on two very basic primitives one is the process (which should not be confused with operating system processes). A process could be an ordered sequence of operations. These processes do not share any memory, therefore one process cannot access a specific value in another process (which solves the problems we had with shared memory).
     
-    There is a lot of ways the processes and channels can be arranged the most simple one can be found in figure \ref{fig:one_to_one} which illustrates process 1 which passes a value onto a channel which process 2 takes as input. Some different configuations can be found in figures \ref{fig:one_to_many}-\ref{fig:many_to_many}
+    The other primitive is channels, which is the way the processes communicate with each other. You can pass whatever you want through these channels, but once you pass the value, the process lose access to it. There are a lot of ways the processes and channels can be arranged. The most simple one can be found in figure \ref{fig:one_to_one}, which illustrates process 1 passing a value onto a channel which process 2 takes as input. Some different configurations can be found in figures  \ref{fig:one_to_many}-\ref{fig:many_to_many}. 
     
+    Using these primitives as ones programming paradigm one can design multiprocess workloads without the shared memory problems mentioned earlier. The asynchronous nature of CSP will though be a problem for hardware models, as we will see shortly and is the fundamental inspiration behind synchronous message exchange. 
+
     \begin{figure}[h!]
-        \centering
-        \subimport{tikz_stuff/}{one_to_one}
-        \caption{CSP one to one}
-        \label{fig:one_to_one}
-    \end{figure}
-    
-    \begin{figure}[h!]
-        \centering
-        \subimport{tikz_stuff/}{one_to_many}
-        \caption{CSP one to many}
-        \label{fig:one_to_many}
-    \end{figure}
-    
-    \begin{figure}[h!]
-        \centering
-        \subimport{tikz_stuff/}{many_to_one}
-        \caption{CSP many to one}
-        \label{fig:many_to_one}
-    \end{figure}
-    
-    \begin{figure}[h!]
-        \centering
-        \subimport{tikz_stuff/}{many_to_many}
-        \caption{CSP many to many}
-        \label{fig:many_to_many}
+        \hspace*{-1.25cm}
+        \begin{subfigure}[t]{0.5\textwidth}
+            \centering
+            \subimport{tikz_stuff/}{one_to_one}
+            \caption{CSP one to one}
+            \label{fig:one_to_one}
+        \end{subfigure}%
+        \hspace*{1cm}
+        \begin{subfigure}[t]{0.5\textwidth}
+            \centering
+            \subimport{tikz_stuff/}{one_to_many}
+            \caption{CSP one to many}
+            \label{fig:one_to_many}
+        \end{subfigure}
+        \vspace*{2cm}
+        
+        \hspace*{-1cm}
+        \begin{subfigure}[b]{0.5\textwidth}
+            \centering
+            \subimport{tikz_stuff/}{many_to_one}
+            \caption{CSP many to one}
+            \label{fig:many_to_one}
+        \end{subfigure}%
+        \hspace*{1cm}
+        \begin{subfigure}[b]{0.5\textwidth}
+            \centering
+            \subimport{tikz_stuff/}{many_to_many}
+            \caption{CSP many to many}
+            \label{fig:many_to_many}
+        \end{subfigure}%
     \end{figure}
     
 \section{Synchronous Message Exchange}
-    \citet{vinter2014synchronous}
-    \citet{vinter2015bus}
-
-
+    The idea of using CSP for hardware modeling was first introduced in \citet{BPUSimulator2013} and later further developed in \cite{PyCSPFPGA}, where two students successfully implemented a vector processor using PyCSP (a CSP library for python).\improvement{ask where the idea to use csp for hardware came from}  They however found a number of shortcomings of using PyCSP for hardware modeling. The need for global synchronicity, when simulating hardware models using CSP, meant that additional channels were needed to simulate clock progress and emulation of latches among others. This caused an inflation of required channels and an unnecessary increase in complexity.
     
+    They did however find that building isolated processes and then connecting them via channels proved to be a powerful approach for building larger hardware models. As in the unit testing method one can develop and test individual processes to then connecting them together and form larger hardware models.
+    
+    With this in mind a more suitable message-passing framework for hardware modeling was developed, with the following requirements
+    
+    \begin{itemize}
+        \item Globally synchronous
+        \item Broadcasting channels
+        \item Shared nothing
+        \item Implicit latches
+    \end{itemize} 
+    
+    all these observations laid the foundation behind synchronous message exchange (SME),  \citet{vinter2014synchronous}. 
+    Since then the SME framework has been implemented in the .Net framework, \citet{skovhede2016building}, which is the version of SME that will be used throughout this thesis. 
+    
+    We will not dwell further into the theory behind SME in this thesis. Instead we will be developing actual units in SME, that will be needed when we later implement the RISC-V architecture. The SME syntax will be introduced as we go through the examples and is intended to be a from-scratch introduction for the uninitiated reader. 
+
+    \subsection{SME setup and structure}
+        We will in this section go through the code structure I have decided to use for the development of all logic units. Much thought has been given to this and from previous experience doing code projects I would say it is good practice to think about the general structure of ones project for ease of development and future extensions.
+        
+        A modular design is essential as many logic units is going to be needed when implementing the RISC-V architecture. This also allows for easy debugging and testing, as individual units can be addressed before integrating them into a larger system. Each logic unit will also be separated into two files. One which contains all the buses and one which contains the function of the unit. The thought behind this is to help compartmentalize bus declarations from unit function and hopefully ease development.  
+        
+        In the following it is a prerequisite that .Net Core SDK\footnote{The SDK can be found here \url{https://dotnet.microsoft.com/download}} is installed on their respective systems to be able to run the code. All following code examples can be found by clicking \href{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations}{here} or if reading printed version the full link can be found in this footnote\footnote{\url{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations}}.
+        
+        \subsubsection{Project example}
+        We are going to build an AND gate for this example, where the project is placed in a folder called .../ANDgate/.
+        For any project to be able to import the SME library we are gonna need the .csproj file and is shown in Listing \ref{csproj}. An important remark here is the RootNamespace tag has to be filled according to the namespace for the project. Since we are building an AND gate, we named the namespace ANDGate. The .csproj file is placed in the project folder like so .../ANDgate/ANDGate.csproj.
+        
+        \begin{lstlisting}[language={[Sharp]C}, caption={The .csproj file needed for code       execution},captionpos=b, label = csproj]
+<Project Sdk="Microsoft.NET.Sdk">
+ <ItemGroup>
+  <PackageReference Include="SME" Version="0.4.0-beta" />
+  <PackageReference Include="SME.Tracer" Version="0.4.0-beta" />
+  <PackageReference Include="SME.VHDL" Version="0.4.0-beta" />
+  <PackageReference Include="SME.GraphViz" Version="0.4.0-beta" />
+        
+  <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+        
+  <!-- Remove these packages as required by the OS you are using -->
+  <PackageReference Include="runtime.osx.10.10-x64.CoreCompat.System.Drawing" Version="5.6.20" />
+  <PackageReference Include="runtime.linux-x64.CoreCompat.System.Drawing" Version="1.0.0-beta002" />
+ </ItemGroup>
+
+ <PropertyGroup>
+  <OutputType>Exe</OutputType>
+  <TargetFramework>netcoreapp2.2</TargetFramework>
+  <RootNamespace>ANDGate</RootNamespace>
+ </PropertyGroup>
+
+</Project>
+        \end{lstlisting}
+\newpage
+        Next we are gonna need a main file as shown in Listing \ref{projectfile}, which contains the Main() method of the project and is the entry point of any C\scalerel*{\#}{X} program. We import the SME library in the second line. Within the Main() method the first function we meet is the using function, this is just to ensure the resources is properly cleaned up after the simulation.
+        
+        Hereafter we see the simulation object, which as the name implies, is responsible for the simulation of the logic unit. We then pass the simulated input to the ANDgate object, which will then perform the AND operation (it is not necessary to pass the simulation object itself to the ANDGate, but is shown here to not cause confusion about how the simulation passes input values to the AND process). We will see how these objects are defined shortly. 
+        
+        Lastly we can configure the simulator object, which uses fluent syntax. In this case we configured it to build a CSV file, which shows what each bus contained at every clock cycle. We build a graph, which outputs a .dot file that shows how all the processes are connected and we transpile the code to VHDL. It should be noted that Run() should always be the last method called.
+        
+        The file which contains the Main() will ways be named project.cs in this thesis, but the naming is irrelevant.
+         
+\begin{lstlisting}[language={[Sharp]C}, caption={The project file which contains the Main() method for the project.},captionpos=b, label = projectfile]
+using System;
+using SME;
+
+namespace ANDGate {
+    class Program {
+        static void Main(string[] args) {
+            using(var sim = new Simulation()) {
+            
+                var simulator = new ANDGateSimulator();
+                var ANDcalculator = new ANDGate(simulator.input);
+                
+                sim
+                .BuildCSVFile()
+                .BuildGraph()
+                .BuildVHDL()
+                .Run();
+            }
+        }
+    }
+}
+\end{lstlisting}
+\newpage
+        We are going to need a way to test our AND gate, this is what the simulation file is for and is shown in Listing \ref{simulatorfile}. Remember to name your namespace the same as in the project file. The first two definitions inside the simulation process creates or loads the two buses for the test. Notice that the gate output is labeled as an input bus and vice versa for the gate input. This is due to the simulation is a process in and of itself is a process and therefore needs to output the test values to a bus, which the ANDGate process takes in as input.
+        
+        Now everything within the Run() method is what is going to be simulated and each time we want a new clock cycle to occur, we use the line \textit{await ClockAsync()}. In a simulation process any .Net library is allowed and is not going to get transpiled to a VHDL file. Therefore we can print the output of the AND gate to console to see whether or not it works correctly. We do this by transmitting data via the input bus, which contains two signals, in1 and in2. We then set the two signals to false wait a clock cycle and print the output. Since this is a fairly small system we can test for all input combinations and look at the outputs to see if the gate is behaving correctly.   
+
+\begin{lstlisting}[language={[Sharp]C}, caption={The simulator file, which specifies how the simulation is run.},captionpos=b, label = simulatorfile]
+using System;
+using SME;
+
+namespace ANDGate {
+    public class ANDGateSimulator : SimulationProcess {
+        [InputBus]
+        public readonly GateOutput output = Scope.CreateOrLoadBus<GateOutput>();
+        
+        [OutputBus]
+        public readonly GateInputs input = Scope.CreateOrLoadBus<GateInputs>();
+        
+        public async override System.Threading.Tasks.Task Run() {
+            Console.WriteLine("Starting test!\n");
+            await ClockAsync();
+            
+            input.in_1 = false;
+            input.in_2 = false;
+            
+            await ClockAsync();
+            Console.WriteLine($"Gate input: {input.in_1} (Input 1) - {input.in_2} (Input 2)\n");
+            Console.WriteLine($"AND gate output: {output.out_AND}");
+            ...
+            Console.WriteLine("Done testing!");
+        }
+    }
+}
+\end{lstlisting}
     
     

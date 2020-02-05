@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  29 JAN 2020 17:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  5 FEB 2020 21:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -577,13 +577,78 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip57
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/scalerel/scalerel.sty
+Package: scalerel 2016/12/29 v1.8 Routines for constrained scaling and stretchi
+ng of objects, relative to a reference object or in absolute terms
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count281
+\calc@Bcount=\count282
+\calc@Adimen=\dimen179
+\calc@Bdimen=\dimen180
+\calc@Askip=\skip58
+\calc@Bskip=\skip59
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count283
+\calc@Cskip=\skip60
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 19.
- (/usr/local/texlive/2019/texmf-dist/tex/latex/xargs/xargs.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count284
+)
+\thesrwidth=\skip61
+\thesrheight=\skip62
+\srblobheight=\skip63
+\srblobdepth=\skip64
+\mnxsrwidth=\skip65
+\LMex=\skip66
+\LMpt=\skip67
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 20.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count285
+\lst@gtempboxa=\box51
+\lst@token=\toks29
+\lst@length=\count286
+\lst@currlwidth=\dimen181
+\lst@column=\count287
+\lst@pos=\count288
+\lst@lostspace=\dimen182
+\lst@width=\dimen183
+\lst@newlines=\count289
+\lst@lineno=\count290
+\lst@maxwidth=\dimen184
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+\c@lstnumber=\count291
+\lst@skipnumbers=\count292
+\lst@framebox=\box52
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2019/09/10 1.8c listings configuration
+))
+Package: listings 2019/09/10 1.8c (Carsten Heinz)
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/xargs/xargs.sty
 Package: xargs 2008/03/22 v1.1  extended macro definitions  (mpg)
-\xargs@max=\count281
-\xargs@toksa=\toks29
-\xargs@toksb=\toks30
+\xargs@max=\count293
+\xargs@toksa=\toks30
+\xargs@toksb=\toks31
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
@@ -592,6 +657,7 @@ Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 709.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
@@ -617,14 +683,14 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
-\pgfutil@everybye=\toks31
-\pgfutil@tempdima=\dimen179
-\pgfutil@tempdimb=\dimen180
+\pgfutil@everybye=\toks32
+\pgfutil@tempdima=\dimen185
+\pgfutil@tempdimb=\dimen186
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
 sts.tex))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box51
+\pgfutil@abb=\box53
 (/usr/local/texlive/2019/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
@@ -639,33 +705,33 @@ Package: pgf 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks32
-\pgfkeys@temptoks=\toks33
+\pgfkeys@pathtoks=\toks33
+\pgfkeys@temptoks=\toks34
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
 ode.tex
-\pgfkeys@tmptoks=\toks34
+\pgfkeys@tmptoks=\toks35
 ))
-\pgf@x=\dimen181
-\pgf@y=\dimen182
-\pgf@xa=\dimen183
-\pgf@ya=\dimen184
-\pgf@xb=\dimen185
-\pgf@yb=\dimen186
-\pgf@xc=\dimen187
-\pgf@yc=\dimen188
-\pgf@xd=\dimen189
-\pgf@yd=\dimen190
+\pgf@x=\dimen187
+\pgf@y=\dimen188
+\pgf@xa=\dimen189
+\pgf@ya=\dimen190
+\pgf@xb=\dimen191
+\pgf@yb=\dimen192
+\pgf@xc=\dimen193
+\pgf@yc=\dimen194
+\pgf@xd=\dimen195
+\pgf@yd=\dimen196
 \w@pgf@writea=\write4
 \r@pgf@reada=\read2
-\c@pgf@counta=\count282
-\c@pgf@countb=\count283
-\c@pgf@countc=\count284
-\c@pgf@countd=\count285
-\t@pgf@toka=\toks35
-\t@pgf@tokb=\toks36
-\t@pgf@tokc=\toks37
-\pgf@sys@id@count=\count286
+\c@pgf@counta=\count294
+\c@pgf@countb=\count295
+\c@pgf@countc=\count296
+\c@pgf@countd=\count297
+\t@pgf@toka=\toks36
+\t@pgf@tokb=\toks37
+\t@pgf@tokc=\toks38
+\pgf@sys@id@count=\count298
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2019/12/21 v3.1.5a (3.1.5a)
@@ -683,8 +749,8 @@ File: pgfsys-common-pdf.def 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
 File: pgfsyssoftpath.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgfsyssoftpath@smallbuffer@items=\count287
-\pgfsyssoftpath@bigbuffer@items=\count288
+\pgfsyssoftpath@smallbuffer@items=\count299
+\pgfsyssoftpath@bigbuffer@items=\count300
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
@@ -696,12 +762,12 @@ Package: pgfcore 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen191
-\pgfmath@count=\count289
-\pgfmath@box=\box52
-\pgfmath@toks=\toks38
-\pgfmath@stack@operand=\toks39
-\pgfmath@stack@operation=\toks40
+\pgfmath@dimen=\dimen197
+\pgfmath@count=\count301
+\pgfmath@box=\box54
+\pgfmath@toks=\toks39
+\pgfmath@stack@operand=\toks40
+\pgfmath@stack@operation=\toks41
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex
@@ -722,57 +788,57 @@ code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
 erarithmetics.code.tex)))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count290
+\c@pgfmathroundto@lastzeros=\count302
 )) (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgf@picminx=\dimen192
-\pgf@picmaxx=\dimen193
-\pgf@picminy=\dimen194
-\pgf@picmaxy=\dimen195
-\pgf@pathminx=\dimen196
-\pgf@pathmaxx=\dimen197
-\pgf@pathminy=\dimen198
-\pgf@pathmaxy=\dimen199
-\pgf@xx=\dimen256
-\pgf@xy=\dimen257
-\pgf@yx=\dimen258
-\pgf@yy=\dimen259
-\pgf@zx=\dimen260
-\pgf@zy=\dimen261
+\pgf@picminx=\dimen198
+\pgf@picmaxx=\dimen199
+\pgf@picminy=\dimen256
+\pgf@picmaxy=\dimen257
+\pgf@pathminx=\dimen258
+\pgf@pathmaxx=\dimen259
+\pgf@pathminy=\dimen260
+\pgf@pathmaxy=\dimen261
+\pgf@xx=\dimen262
+\pgf@xy=\dimen263
+\pgf@yx=\dimen264
+\pgf@yy=\dimen265
+\pgf@zx=\dimen266
+\pgf@zy=\dimen267
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgf@path@lastx=\dimen262
-\pgf@path@lasty=\dimen263
+\pgf@path@lastx=\dimen268
+\pgf@path@lasty=\dimen269
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgf@shorten@end@additional=\dimen264
-\pgf@shorten@start@additional=\dimen265
+\pgf@shorten@end@additional=\dimen270
+\pgf@shorten@start@additional=\dimen271
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
 File: pgfcorescopes.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgfpic=\box53
-\pgf@hbox=\box54
-\pgf@layerbox@main=\box55
-\pgf@picture@serial@count=\count291
+\pgfpic=\box55
+\pgf@hbox=\box56
+\pgf@layerbox@main=\box57
+\pgf@picture@serial@count=\count303
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgflinewidth=\dimen266
+\pgflinewidth=\dimen272
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgf@pt@x=\dimen267
-\pgf@pt@y=\dimen268
-\pgf@pt@temp=\dimen269
+\pgf@pt@x=\dimen273
+\pgf@pt@y=\dimen274
+\pgf@pt@temp=\dimen275
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -789,14 +855,14 @@ File: pgfcorepathprocessing.code.tex 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
 de.tex
 File: pgfcorearrows.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgfarrowsep=\dimen270
+\pgfarrowsep=\dimen276
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgf@max=\dimen271
-\pgf@sys@shading@range@num=\count292
-\pgf@shadingcount=\count293
+\pgf@max=\dimen277
+\pgf@sys@shading@range@num=\count304
+\pgf@shadingcount=\count305
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
@@ -805,7 +871,7 @@ File: pgfcoreimage.code.tex 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
 File: pgfcoreexternal.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgfexternal@startupbox=\box56
+\pgfexternal@startupbox=\box58
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
@@ -826,7 +892,7 @@ File: pgfcorerdf.code.tex 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
 File: pgfmoduleshapes.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgfnodeparttextbox=\box57
+\pgfnodeparttextbox=\box59
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
@@ -835,8 +901,8 @@ File: pgfmoduleplot.code.tex 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2019/12/21 v3.1.5a (3.1.5a)
-\pgf@nodesepstart=\dimen272
-\pgf@nodesepend=\dimen273
+\pgf@nodesepstart=\dimen278
+\pgf@nodesepend=\dimen279
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -851,10 +917,10 @@ Package: pgfcomp-version-1-18 2019/12/21 v3.1.5a (3.1.5a)
 Package: pgffor 2019/12/21 v3.1.5a (3.1.5a)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen274
-\pgffor@skip=\dimen275
-\pgffor@stack=\toks41
-\pgffor@toks=\toks42
+\pgffor@iter=\dimen280
+\pgffor@skip=\dimen281
+\pgffor@stack=\toks42
+\pgffor@toks=\toks43
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
@@ -863,34 +929,34 @@ Package: tikz 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgf@plot@mark@count=\count294
-\pgfplotmarksize=\dimen276
+\pgf@plot@mark@count=\count306
+\pgfplotmarksize=\dimen282
 )
-\tikz@lastx=\dimen277
-\tikz@lasty=\dimen278
-\tikz@lastxsaved=\dimen279
-\tikz@lastysaved=\dimen280
-\tikz@lastmovetox=\dimen281
-\tikz@lastmovetoy=\dimen282
-\tikzleveldistance=\dimen283
-\tikzsiblingdistance=\dimen284
-\tikz@figbox=\box58
-\tikz@figbox@bg=\box59
-\tikz@tempbox=\box60
-\tikz@tempbox@bg=\box61
-\tikztreelevel=\count295
-\tikznumberofchildren=\count296
-\tikznumberofcurrentchild=\count297
-\tikz@fig@count=\count298
+\tikz@lastx=\dimen283
+\tikz@lasty=\dimen284
+\tikz@lastxsaved=\dimen285
+\tikz@lastysaved=\dimen286
+\tikz@lastmovetox=\dimen287
+\tikz@lastmovetoy=\dimen288
+\tikzleveldistance=\dimen289
+\tikzsiblingdistance=\dimen290
+\tikz@figbox=\box60
+\tikz@figbox@bg=\box61
+\tikz@tempbox=\box62
+\tikz@tempbox@bg=\box63
+\tikztreelevel=\count307
+\tikznumberofchildren=\count308
+\tikznumberofcurrentchild=\count309
+\tikz@fig@count=\count310
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\pgfmatrixcurrentrow=\count299
-\pgfmatrixcurrentcolumn=\count300
-\pgf@matrix@numberofcolumns=\count301
+\pgfmatrixcurrentrow=\count311
+\pgfmatrixcurrentcolumn=\count312
+\pgf@matrix@numberofcolumns=\count313
 )
-\tikz@expandcount=\count302
+\tikz@expandcount=\count314
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
@@ -911,44 +977,32 @@ File: tikzlibraryfadings.code.tex 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings
 .code.tex
 File: pgflibraryfadings.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-))) (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count303
-\calc@Bcount=\count304
-\calc@Adimen=\dimen285
-\calc@Bdimen=\dimen286
-\calc@Askip=\skip58
-\calc@Bskip=\skip59
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count305
-\calc@Cskip=\skip60
-)
-\c@@todonotes@numberoftodonotes=\count306
+)))
+\c@@todonotes@numberoftodonotes=\count315
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (./main.aux (./frontpage.aux) (./chapters/chapter1.aux)
 (./chapters/chapter2.aux) (./chapters/chapter3.aux) (./chapters/chapter4.aux)
-(./chapters/chapter5.aux) (./chapters/appendix.aux)
+(./chapters/chapter5.aux) (./chapters/chapter6.aux) (./chapters/appendix.aux)
 (./chapters/RiscVReferenceCard.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -986,17 +1040,17 @@ LaTeX Font Info:    ... okay on input line 42.
 
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count307
-\scratchdimen=\dimen287
-\scratchbox=\box62
-\nofMPsegments=\count308
-\nofMParguments=\count309
-\everyMPshowfont=\toks43
-\MPscratchCnt=\count310
-\MPscratchDim=\dimen288
-\MPnumerator=\count311
-\makeMPintoPDFobject=\count312
-\everyMPtoPDFconversion=\toks44
+\scratchcounter=\count316
+\scratchdimen=\dimen291
+\scratchbox=\box64
+\nofMPsegments=\count317
+\nofMParguments=\count318
+\everyMPshowfont=\toks44
+\MPscratchCnt=\count319
+\MPscratchDim=\dimen292
+\MPnumerator=\count320
+\makeMPintoPDFobject=\count321
+\everyMPtoPDFconversion=\toks45
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2019-12-09 v2.10 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1008,6 +1062,7 @@ e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 (./main.sta
@@ -1026,7 +1081,7 @@ File: tikzlibraryarrows.code.tex 2019/12/21 v3.1.5a (3.1.5a)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
 code.tex
 File: pgflibraryarrows.code.tex 2019/12/21 v3.1.5a (3.1.5a)
-\arrowsize=\dimen289
+\arrowsize=\dimen293
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryshapes.gates.logic.US.code.tex
@@ -1042,8 +1097,8 @@ File: tikzlibrarycalc.code.tex 2019/12/21 v3.1.5a (3.1.5a)
 ))
 \openout3 = `main.sta'.
 
-\AtBeginShipoutBox=\box63
-Package hyperref Info: Link coloring ON on input line 42.
+\AtBeginShipoutBox=\box65
+Package hyperref Info: Link coloring ON on input line 67.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1055,15 +1110,16 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count313
+\c@section@level=\count322
 )
-LaTeX Info: Redefining \ref on input line 42.
-LaTeX Info: Redefining \pageref on input line 42.
-LaTeX Info: Redefining \nameref on input line 42.
+LaTeX Info: Redefining \ref on input line 67.
+LaTeX Info: Redefining \pageref on input line 67.
+LaTeX Info: Redefining \nameref on input line 67.
  (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
+\c@lstlisting=\count323
  ABD: EveryShipout initializing macros
 (./main.tdo
 LaTeX Font Info:    Trying to load font information for U+msa on input line 1.
@@ -1085,17 +1141,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout2 = `frontpage.aux'.
 
  (./frontpage.tex)pdfTeX warning (ext4): destination with the same identifier (
-name{page.1}) has been already used, duplicate ignored
+name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.47     \include{frontpage}
+l.72     \include{frontpage}
                              [1
 
 ] (./main.tocpdfTeX warning (ext4): destination with the same identifier (name{
-page.1}) has been already used, duplicate ignored
+page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.50 ...Supporting I-Format}{19}{subsection.5.4.3}
+l.51 ...Supporting R-Format}{21}{subsection.5.4.2}
                                                   % [1
 
 
@@ -1109,7 +1165,13 @@ l.50 ...Supporting I-Format}{19}{subsection.5.4.3}
 
 (./chapters/chapter1.tex
 Chapter 1.
-) [3
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 2.
+
+LaTeX Warning: Marginpar on page 1 moved.
+
+) [1
+
 
 
 ]
@@ -1117,55 +1179,589 @@ Chapter 1.
 
  (./chapters/chapter2.tex
 Chapter 2.
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 2.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4
+[2
 
 
 
-] [5]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6] [7] [8] [9] (./tikz_stuff/ANDGate.tex)
+] [3]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(./tikz_stuff/ORGate.tex) [10] (./tikz_stuff/NOTGate.tex)
-(./tikz_stuff/ANDGateInput1NOT.tex) (./tikz_stuff/ANDGateInput1NOTBubble.tex)
-[11] [12] [13] (./tikz_stuff/multiplexersimple.tex)
-Overfull \hbox (87.12057pt too wide) in paragraph at lines 71--440
+[4] [5] [6] [7] (./tikz_stuff/ANDGate.tex) [8] (./tikz_stuff/ORGate.tex)
+(./tikz_stuff/NOTGate.tex) (./tikz_stuff/ANDGateInput1NOT.tex)
+(./tikz_stuff/ANDGateInput1NOTBubble.tex)
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[9] [10] [11] (./tikz_stuff/multiplexersimple.tex)
+Overfull \hbox (87.12057pt too wide) in paragraph at lines 71--439
  [][] 
  []
 
 (./tikz_stuff/multiplexersimplenogates.tex)
-Overfull \hbox (65.78104pt too wide) in paragraph at lines 60--446
+Overfull \hbox (65.78104pt too wide) in paragraph at lines 60--445
 [][] 
  []
 
-) [14]
+) [12]
 \openout2 = `chapters/chapter3.aux'.
 
  (./chapters/chapter3.tex
 Chapter 3.
 
-LaTeX Warning: Marginpar on page 15 moved.
+LaTeX Warning: Marginpar on page 13 moved.
 
-(./tikz_stuff/one_to_one.tex) [15
+[13
 
 
 
-] (./tikz_stuff/one_to_many.tex)
-(./tikz_stuff/many_to_one.tex) (./tikz_stuff/many_to_many.tex)) [16]
+] (./tikz_stuff/one_to_one.tex) (./tikz_stuff/one_to_many.tex)
+Overfull \hbox (22.33528pt too wide) in paragraph at lines 30--34
+ [][] 
+ []
+
+(./tikz_stuff/many_to_one.tex) (./tikz_stuff/many_to_many.tex)
+Overfull \hbox (16.93018pt too wide) in paragraph at lines 44--50
+ [][] 
+ []
+
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 39--53
+[]|  []|  [] 
+ []
+
+[14]
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 6
+3.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
+ [15]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 85.
+
+
+Package xcolor Warning: Incompatible color definition on input line 86.
+
+
+Package xcolor Warning: Incompatible color definition on input line 86.
+
+
+Package xcolor Warning: Incompatible color definition on input line 86.
+
+
+Package xcolor Warning: Incompatible color definition on input line 86.
+
+
+Package xcolor Warning: Incompatible color definition on input line 86.
+
+
+Package xcolor Warning: Incompatible color definition on input line 86.
+
+
+Package xcolor Warning: Incompatible color definition on input line 86.
+
+
+Package xcolor Warning: Incompatible color definition on input line 88.
+
+
+Package xcolor Warning: Incompatible color definition on input line 88.
+
+
+Package xcolor Warning: Incompatible color definition on input line 88.
+
+
+Package xcolor Warning: Incompatible color definition on input line 88.
+
+
+Package xcolor Warning: Incompatible color definition on input line 88.
+
+
+Package xcolor Warning: Incompatible color definition on input line 88.
+
+
+Package xcolor Warning: Incompatible color definition on input line 88.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 89.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 90.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 91.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 93.
+
+
+Package xcolor Warning: Incompatible color definition on input line 95.
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 95.
+
+Package xcolor Warning: Incompatible color definition on input line 95.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 96.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+
+Package xcolor Warning: Incompatible color definition on input line 97.
+
+[16]
+
+Package xcolor Warning: Incompatible color definition on input line 118.
+
+
+Package xcolor Warning: Incompatible color definition on input line 119.
+
+
+Package xcolor Warning: Incompatible color definition on input line 121.
+
+
+Package xcolor Warning: Incompatible color definition on input line 122.
+
+
+Package xcolor Warning: Incompatible color definition on input line 123.
+
+
+Package xcolor Warning: Incompatible color definition on input line 123.
+
+
+Package xcolor Warning: Incompatible color definition on input line 123.
+
+
+Package xcolor Warning: Incompatible color definition on input line 124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 126.
+
+
+Package xcolor Warning: Incompatible color definition on input line 127.
+
+[17]
+
+Package xcolor Warning: Incompatible color definition on input line 145.
+
+
+Package xcolor Warning: Incompatible color definition on input line 146.
+
+
+Package xcolor Warning: Incompatible color definition on input line 148.
+
+
+Package xcolor Warning: Incompatible color definition on input line 149.
+
+
+Package xcolor Warning: Incompatible color definition on input line 149.
+
+
+Package xcolor Warning: Incompatible color definition on input line 151.
+
+
+Package xcolor Warning: Incompatible color definition on input line 151.
+
+
+Package xcolor Warning: Incompatible color definition on input line 154.
+
+
+Package xcolor Warning: Incompatible color definition on input line 154.
+
+
+Package xcolor Warning: Incompatible color definition on input line 156.
+
+
+Package xcolor Warning: Incompatible color definition on input line 156.
+
+
+Package xcolor Warning: Incompatible color definition on input line 157.
+
+
+Package xcolor Warning: Incompatible color definition on input line 157.
+
+
+Package xcolor Warning: Incompatible color definition on input line 157.
+
+
+Package xcolor Warning: Incompatible color definition on input line 157.
+
+
+Package xcolor Warning: Incompatible color definition on input line 157.
+
+
+Package xcolor Warning: Incompatible color definition on input line 157.
+
+
+Package xcolor Warning: Incompatible color definition on input line 157.
+
+
+Package xcolor Warning: Incompatible color definition on input line 160.
+
+
+Package xcolor Warning: Incompatible color definition on input line 161.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 164.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 165.
+
+
+Package xcolor Warning: Incompatible color definition on input line 167.
+
+
+Package xcolor Warning: Incompatible color definition on input line 167.
+
+
+Package xcolor Warning: Incompatible color definition on input line 167.
+
+
+Package xcolor Warning: Incompatible color definition on input line 167.
+
+
+Package xcolor Warning: Incompatible color definition on input line 167.
+
+
+Package xcolor Warning: Incompatible color definition on input line 167.
+
+) [18]
 \openout2 = `chapters/chapter4.aux'.
 
-
-(./chapters/chapter4.tex
+ (./chapters/chapter4.tex
 Chapter 4.
-) [17
+) [19
 
 
 
@@ -1175,34 +1771,43 @@ Chapter 4.
  (./chapters/chapter5.tex
 Chapter 5.
 
-LaTeX Warning: Marginpar on page 18 moved.
+LaTeX Warning: Marginpar on page 20 moved.
 
-) [18
-
-
-
-] [19]
-\openout2 = `chapters/appendix.aux'.
-
- (./chapters/appendix.tex
-Appendix A.
-[20
+) [20
 
 
 
 ] [21]
+\openout2 = `chapters/chapter6.aux'.
+
+ (./chapters/chapter6.tex
+Chapter 6.
+) [22
+
+
+
+]
+\openout2 = `chapters/appendix.aux'.
+
+ (./chapters/appendix.tex
+Appendix A.
+[23
+
+
+
+] [24]
 Appendix B.
-[22
+[25
 
-] [23]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[24] [25] [26]
+] [26]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[27] [28]) [29] [30]
+[27] [28] [29]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[30] [31]) [32] [33]
 \openout2 = `chapters/RiscVReferenceCard.aux'.
 
  (./chapters/RiscVReferenceCard.tex
@@ -1248,62 +1853,69 @@ Overfull \hbox (24.23172pt too wide) in paragraph at lines 102--167
 [][] 
  []
 
-[31
+[34
 
 
 
-] [32]) (./main.bbl) [33
+] [35]) (./main.bbl) [36
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 64.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 64.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 92.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 92.
  (./main.aux (./frontpage.aux)
 (./chapters/chapter1.aux) (./chapters/chapter2.aux) (./chapters/chapter3.aux)
-(./chapters/chapter4.aux) (./chapters/chapter5.aux) (./chapters/appendix.aux)
-(./chapters/RiscVReferenceCard.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 64.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 64.
+(./chapters/chapter4.aux) (./chapters/chapter5.aux) (./chapters/chapter6.aux)
+(./chapters/appendix.aux) (./chapters/RiscVReferenceCard.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 92.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 92.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3FFBEEAFB54922AA8D57F55497BB3027;3446.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 64.
+(rerunfilecheck)             Checksum: 3A6A6976A62D480F290AE45935272C49;3585.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 92.
  ) 
 Here is how much of TeX's memory you used:
- 33593 strings out of 492163
- 644171 string characters out of 6125305
- 774138 words of memory out of 5000000
- 37134 multiletter control sequences out of 15000+600000
- 546113 words of font info for 75 fonts, out of 8000000 for 9000
+ 35829 strings out of 492163
+ 673453 string characters out of 6125305
+ 808102 words of memory out of 5000000
+ 39252 multiletter control sequences out of 15000+600000
+ 546449 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,14n,83p,698b,1128s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
-b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
-cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
-texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/tex
-live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/fo
-nts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (35 pages, 367283 bytes).
+ 75i,14n,83p,914b,1408s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb>
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
+sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></us
+r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
+texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/te
+xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texli
+ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2019/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2019/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msam10.pfb>
+Output written on main.pdf (40 pages, 406548 bytes).
 PDF statistics:
- 803 PDF objects out of 1000 (max. 8388607)
- 718 compressed objects within 8 object streams
- 205 named destinations out of 1000 (max. 500000)
- 509 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 938 PDF objects out of 1000 (max. 8388607)
+ 846 compressed objects within 9 object streams
+ 283 named destinations out of 1000 (max. 500000)
+ 525 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -7,50 +7,49 @@ A level-1 auxiliary file: chapters/chapter2.aux
 A level-1 auxiliary file: chapters/chapter3.aux
 A level-1 auxiliary file: chapters/chapter4.aux
 A level-1 auxiliary file: chapters/chapter5.aux
+A level-1 auxiliary file: chapters/chapter6.aux
 A level-1 auxiliary file: chapters/appendix.aux
 A level-1 auxiliary file: chapters/RiscVReferenceCard.aux
 The style file: abbrvnat.bst
 Database file #1: bibliography.bib
-Warning--empty journal in vinter2015bus
-You've used 4 entries,
+You've used 7 entries,
             2773 wiz_defined-function locations,
-            627 strings with 5257 characters,
-and the built_in function-call counts, 1716 in all, are:
-= -- 159
-> -- 73
-< -- 5
-+ -- 25
-- -- 21
-* -- 113
-:= -- 263
-add.period$ -- 14
-call.type$ -- 4
-change.case$ -- 18
-chr.to.int$ -- 4
-cite$ -- 9
-duplicate$ -- 88
-empty$ -- 148
-format.name$ -- 31
-if$ -- 364
+            646 strings with 5716 characters,
+and the built_in function-call counts, 3163 in all, are:
+= -- 302
+> -- 145
+< -- 9
++ -- 49
+- -- 42
+* -- 212
+:= -- 477
+add.period$ -- 24
+call.type$ -- 7
+change.case$ -- 34
+chr.to.int$ -- 7
+cite$ -- 14
+duplicate$ -- 161
+empty$ -- 263
+format.name$ -- 59
+if$ -- 684
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 5
-newline$ -- 30
-num.names$ -- 16
-pop$ -- 40
+missing$ -- 7
+newline$ -- 45
+num.names$ -- 28
+pop$ -- 70
 preamble$ -- 1
-purify$ -- 15
+purify$ -- 28
 quote$ -- 0
-skip$ -- 73
+skip$ -- 136
 stack$ -- 0
-substring$ -- 65
-swap$ -- 12
-text.length$ -- 1
+substring$ -- 119
+swap$ -- 30
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 39
-warning$ -- 1
-while$ -- 17
+type$ -- 72
+warning$ -- 0
+while$ -- 32
 width$ -- 0
-write$ -- 60
-(There was 1 warning)
+write$ -- 101

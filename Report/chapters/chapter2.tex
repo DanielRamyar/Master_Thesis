@@ -1,5 +1,4 @@
 \chapter{Logic Design}
-    \unsure{Chapter sections are subject to change in name and order}
     
     This chapter aims to introduce the reader to the basics of logic design, which will be imperative to the understanding the subsequent chapters. The general structure of this chapter will be based on Appendix A in \cite{riscVbook}. 
     
@@ -27,7 +26,7 @@
                 	$true$  & $true$ & $true$  & $false$ & $false$ \\ \hline
                 	$false$ & $true$ & $false$ & $true$  & $false$ \\ \hline
                 \end{tabular}
-                \caption{Logic table of possible unary operators. Each numbered column represents an undefined operator.}
+                \caption{Logic table of possible unary operators. Each numbered column represents an unnamed operator.}
                 \label{LogicTable:unary}
             \end{table} 
         
@@ -82,7 +81,7 @@
             
             All output sets are summarized in table \ref{LogicTable:PossibleOperators} where each numbered column represents an unnamed operator. 
             
-            We will in this section start by defining the basic operators from which we will derive the rest. For brevity we will only go through the 6 most commonly used operators, the rest can be referred to in appendix \ref{appendix:Binaray_Operators}.  
+            We will in this section start by defining the basic operators from which we will derive the rest. For brevity we will only go through the 3 most commonly used operators, the rest can be referred to in appendix \ref{appendix:Binaray_Operators}.  
             
             The choice of basic operators is arbitrary but I have chosen the operators for which it is the easiest to derive all other operators, since there exists a method to convert any truth table into a Boolean expression using these which we will get into later.
              
@@ -103,7 +102,7 @@
         
             \subsubsection{Logical conjunction}
         
-                The logical conjunction operator is represented by $\wedge$ in mathematics; AND, \&, \&\& in computer science and a $\cdot$ in electronic engineering and commonly referred to as the AND operator or the logical product\improvement{remember to tell why this is later}. The AND operator only results in a true value if both of the operands are true.
+                The logical conjunction operator is represented by $\wedge$ in mathematics; AND, \&, \&\& in computer science and a $\cdot$ in electronic engineering and commonly referred to as the AND operator or the logical product. The AND operator only results in a true value if both of the operands are true.
                 
                 Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 12 and is summarized in table \ref{LogicTable:AND}. 
                 
@@ -125,7 +124,7 @@
             
             \subsubsection{Logical disjunction}
             
-                The logical disjunction operator is represented by $\vee$ in mathematics; OR, $\vert$, $\vert \vert$  in computer science and a $+$ in electronic engineering and commonly referred to as the OR operator or the logical sum\improvement{remember to tell why this is later}. The OR operator results in a true value if one or more of the operands are true.
+                The logical disjunction operator is represented by $\vee$ in mathematics; OR, $\vert$, $\vert \vert$  in computer science and a $+$ in electronic engineering and commonly referred to as the OR operator or the logical sum. The OR operator results in a true value if one or more of the operands are true.
                 
                 Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 2 and is summarized in table \ref{LogicTable:OR}. 
                 
@@ -169,9 +168,9 @@
                     \label{LogicTable:XOR}
                 \end{table}
             
-                We can define this operator in disjunctive normal \improvement{give a definition of disjunctive normal form} form using our basic operators AND, OR and NOT. 
+                We can define this operator in disjunctive normal form, DNF for short, using our basic operators AND, OR and NOT. A logic equation (see section \ref{Section:BooleanEquation}) is said to be in DNF, when it consists of disjunctions between one or more conjunctions, where each of the propositions can be complemented.
                 
-                To do this we first identify all true output in \ref{LogicTable:XOR} namely row 3 and 4. We then take a look at the corresponding input values
+                To do write our operator in DNF, we first identify all true output in \ref{LogicTable:XOR} namely row 3 and 4. We then take a look at the corresponding input values
                 \begin{equation}
                     (p,q) = (true, false) \quad \text{and} \quad (p,q) = (false, true)
                 \end{equation}
@@ -251,7 +250,7 @@
                 C = A\cdot \bar{S} + B\cdot S.
             \end{equation}
             
-            Notice that we went from using $11$ operations in (\ref{simplify}) to $3$ in (\ref{simplify2}) by using the Boolean laws to manipulate the equations. Incidentally (\ref{simplify}) is an example of a multiplexer which we will get into later.
+            Notice that we went from using $11$ operations in (\ref{simplify}) to $3$ in (\ref{simplify2}) by using the Boolean laws to manipulate the equations, this reduces the complexity of an eventual implementation of the logic equation. Incidentally (\ref{simplify}) is an example of a multiplexer which we will get into later.
               
             
             \begin{table}[h!]
@@ -344,7 +343,7 @@
         \improvement{maybe talk about that nor and nand gates are universal}
     \section{Combinational logic}\label{section:Combinational_logic}
     
-        When we design logic units which contain no memory i.e always return the same output given same input, we deal with \textit{combinational logic}. In this section we will go through the essential combinational logic units that will be used throughout this thesis.  \improvement{finish this section} 
+        When we design logic units which contain no memory i.e always return the same output given same input, we deal with \textit{combinational logic}. In this section we will go through the essential combinational logic units that will be used throughout this thesis.  
         
         \subsection{Decoder}
         

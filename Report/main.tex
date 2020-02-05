@@ -10,6 +10,7 @@
 \usepackage[subpreambles=true]{standalone}
 \usepackage[square,sort,comma,numbers]{natbib}
 \usepackage{hyperref}
+\usepackage{scalerel}
 
 \hypersetup{ %using this to remove ugly red square boxes around links
     colorlinks,
@@ -17,6 +18,30 @@
     citecolor={blue!50!black},
     urlcolor={blue!80!black}
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% used for code listings
+
+\usepackage{color}
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+
+\usepackage{listings}
+\lstset{language=[Sharp]C,
+    showspaces=false,
+    showtabs=false,
+    breaklines=true,
+    showstringspaces=false,
+    breakatwhitespace=true,
+    escapeinside={(*@}{@*)},
+    commentstyle=\color{greencomments},
+    keywordstyle=\color{bluekeywords}\bfseries,
+    stringstyle=\color{redstrings},
+    basicstyle=\footnotesize \ttfamily,
+    numbers=left,
+    frame=tb
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
@@ -41,11 +66,13 @@
 
 \begin{document}
     
-    
+    \pagenumbering{roman}
     \listoftodos[Notes]
     \newpage
     \include{frontpage}
     \tableofcontents
+    \clearpage
+    \pagenumbering{arabic}
     \begin{onehalfspacing}
         \large
         \include{chapters/chapter1}
@@ -53,6 +80,7 @@
         \include{chapters/chapter3}
         \include{chapters/chapter4}
         \include{chapters/chapter5}
+        \include{chapters/chapter6}
         \include{chapters/appendix}
     \end{onehalfspacing}
 
