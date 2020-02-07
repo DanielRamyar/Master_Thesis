@@ -1,0 +1,10 @@
+digraph ANDGate {
+"GateInputs" [shape=oval];
+"GateOutput" [shape=oval];
+"ANDGate" [shape=box];
+"ANDGateSimulator" [shape=box];
+"GateInputs" -> "ANDGate";
+"ANDGateSimulator" -> "GateInputs";
+"ANDGate" -> "GateOutput";
+"GateOutput" -> "ANDGateSimulator" [style=dotted];
+}

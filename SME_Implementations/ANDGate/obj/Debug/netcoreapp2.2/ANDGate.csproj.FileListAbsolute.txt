@@ -1,0 +1,11 @@
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/bin/Debug/netcoreapp2.2/ANDGate.deps.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/bin/Debug/netcoreapp2.2/ANDGate.runtimeconfig.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/bin/Debug/netcoreapp2.2/ANDGate.runtimeconfig.dev.json
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/bin/Debug/netcoreapp2.2/ANDGate.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/bin/Debug/netcoreapp2.2/ANDGate.pdb
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/obj/Debug/netcoreapp2.2/ANDGate.csprojAssemblyReference.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/obj/Debug/netcoreapp2.2/ANDGate.csproj.CoreCompileInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/obj/Debug/netcoreapp2.2/ANDGate.AssemblyInfoInputs.cache
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/obj/Debug/netcoreapp2.2/ANDGate.AssemblyInfo.cs
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/obj/Debug/netcoreapp2.2/ANDGate.dll
+/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/obj/Debug/netcoreapp2.2/ANDGate.pdb
