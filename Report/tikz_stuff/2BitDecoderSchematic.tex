@@ -1,0 +1,68 @@
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, shapes.gates.logic.US, calc}
+
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{document}
+    \begin{tikzpicture}[node distance=2cm, scale=1.5, every node/.style={scale=2}]
+
+        % Inputs
+        \node at (0,0.5) [left] (A) {\scriptsize Inputs};
+        
+        % In0 input with not gate
+        \node at (0,0) [left] (A) {\scriptsize In0};
+        \draw (0, 0) -- (4,0);
+        \node at (0.5,-0.3) [not gate US,draw](not) {};
+        \draw (0.18, 0) |- (not.input);
+        \draw (not.output) -- (4,-0.3);
+        
+        % In1 input with not gate
+        \node at (0,-1) [left] (B) {\scriptsize In1};
+        \draw (0, -1) -- (4,-1);
+        \node at (0.5,-1.3) [not gate US,draw](not) {};
+        \draw (0.18, -1) |- (not.input);
+        \draw (not.output) -- (4,-1.3);
+        
+        % AND plane
+        \draw [dashed] (0, -2) -- (5, -2);
+        
+        % AND Connections
+        % Not(In0) AND NOT(In1)
+        \draw (1.67, 0) -- (1.67, -4);
+        \filldraw[black] (1.67, -0.3) circle (1pt);
+        \filldraw[black] (1.67, -1.3) circle (1pt);
+        
+        % In0 AND NOT(In1)
+        \draw (2.17, 0) |- (2.17,-4);
+        \filldraw[black] (2.17, 0) circle (1pt);
+        \filldraw[black] (2.17, -1.3) circle (1pt);
+        
+        % NOT(In0) AND IN1
+        \draw (2.67, 0) |- (2.67,-4);
+        \filldraw[black] (2.67, -0.3) circle (1pt);
+        \filldraw[black] (2.67, -1) circle (1pt);
+        
+        % In0 AND IN1
+        \draw (3.17, 0) |- (3.17,-4);
+        \filldraw[black] (3.17, 0) circle (1pt);
+        \filldraw[black] (3.17, -1) circle (1pt);
+        
+        % OR Connections
+        \node at (4,-4.5) [right] (A) {\scriptsize Outputs};
+        \node at (4,-2.5) [right] (B) {\scriptsize Out0};
+        \node at (4,-3) [right] (B) {\scriptsize Out1};
+        \node at (4,-3.5) [right] (B) {\scriptsize Out2};
+        \node at (4,-4) [right] (B) {\scriptsize Out3};
+        \draw (0.91,-2.5) |- (4,-2.5);
+        \draw (0.91,-3) |- (4,-3);
+        \draw (0.91,-3.5) |- (4,-3.5);
+        \draw (0.91,-4) |- (4,-4);
+        \filldraw[black] (1.67, -2.5) circle (1pt);
+        \filldraw[black] (2.17, -3) circle (1pt);
+        \filldraw[black] (2.67, -3.5) circle (1pt);
+        \filldraw[black] (3.17, -4) circle (1pt);
+            
+        
+    \end{tikzpicture}
+\end{document}

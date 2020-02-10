@@ -1,4 +1,4 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -40,10 +40,5 @@ K.~Skovhede and B.~Vinter.
 B.~Vinter and K.~Skovhede.
 \newblock Synchronous message exchange for hardware designs.
 \newblock \emph{Communicating Process Architectures}, pages 201--212, 2014.
-
-\bibitem[Vinter and Skovhede(2015)]{vinter2015bus}
-B.~Vinter and K.~Skovhede.
-\newblock Bus centric synchronous message exchange for hardware designs.
-\newblock \emph{Communicating Process Architectures}, 2015.
 
 \end{thebibliography}

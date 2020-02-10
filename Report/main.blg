@@ -12,44 +12,44 @@ A level-1 auxiliary file: chapters/appendix.aux
 A level-1 auxiliary file: chapters/RiscVReferenceCard.aux
 The style file: abbrvnat.bst
 Database file #1: bibliography.bib
-You've used 7 entries,
+You've used 6 entries,
             2773 wiz_defined-function locations,
-            646 strings with 5716 characters,
-and the built_in function-call counts, 3163 in all, are:
-= -- 302
-> -- 145
-< -- 9
-+ -- 49
-- -- 42
-* -- 212
-:= -- 477
-add.period$ -- 24
-call.type$ -- 7
-change.case$ -- 34
-chr.to.int$ -- 7
-cite$ -- 14
-duplicate$ -- 161
-empty$ -- 263
-format.name$ -- 59
-if$ -- 684
+            643 strings with 5638 characters,
+and the built_in function-call counts, 2800 in all, are:
+= -- 270
+> -- 124
+< -- 8
++ -- 42
+- -- 36
+* -- 189
+:= -- 419
+add.period$ -- 21
+call.type$ -- 6
+change.case$ -- 29
+chr.to.int$ -- 6
+cite$ -- 12
+duplicate$ -- 142
+empty$ -- 233
+format.name$ -- 50
+if$ -- 608
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 7
-newline$ -- 45
-num.names$ -- 28
-pop$ -- 70
+missing$ -- 6
+newline$ -- 40
+num.names$ -- 24
+pop$ -- 60
 preamble$ -- 1
-purify$ -- 28
+purify$ -- 24
 quote$ -- 0
-skip$ -- 136
+skip$ -- 120
 stack$ -- 0
-substring$ -- 119
-swap$ -- 30
+substring$ -- 117
+swap$ -- 29
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 72
+type$ -- 61
 warning$ -- 0
-while$ -- 32
+while$ -- 29
 width$ -- 0
-write$ -- 101
+write$ -- 89
