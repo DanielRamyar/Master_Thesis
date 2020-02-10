@@ -18,11 +18,8 @@ entity Decoder_2_Bit_export is
     -- Top-level bus Input_0 signals
     Input_0_Value: in STD_LOGIC;
 
-    -- Top-level bus NOTOutput_0 signals
-    NOTOutput_0_Value: out STD_LOGIC;
-
-    -- Top-level bus NOTOutput_1 signals
-    NOTOutput_1_Value: out STD_LOGIC;
+    -- Top-level bus Input_1 signals
+    Input_1_Value: in STD_LOGIC;
 
     -- Top-level bus ANDOutput_0 signals
     ANDOutput_0_Value: out STD_LOGIC;
@@ -72,11 +69,8 @@ begin
         -- Input bus Input_0
         Input_0_Value => Input_0_Value,
 
-        -- Output bus NOTOutput_0
-        NOTOutput_0_Value => NOTOutput_0_Value,
-
-        -- Output bus NOTOutput_1
-        NOTOutput_1_Value => NOTOutput_1_Value,
+        -- Input bus Input_1
+        Input_1_Value => Input_1_Value,
 
         -- Output bus ANDOutput_0
         ANDOutput_0_Value => ANDOutput_0_Value,

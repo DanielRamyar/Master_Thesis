@@ -98,6 +98,9 @@ begin
         assert are_strings_equal(tmp, "Input_0.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Input_0.Value" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
+        assert are_strings_equal(tmp, "Input_1.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Input_1.Value" severity Failure;
+        fieldno := fieldno + 1;
+        read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "ANDOutput_0.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ANDOutput_0.Value" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
@@ -108,9 +111,6 @@ begin
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "ANDOutput_3.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected ANDOutput_3.Value" severity Failure;
-        fieldno := fieldno + 1;
-        read_csv_field(L, tmp);
-        assert are_strings_equal(tmp, "Input_1.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected Input_1.Value" severity Failure;
         fieldno := fieldno + 1;
         read_csv_field(L, tmp);
         assert are_strings_equal(tmp, "NOTOutput_0.Value") report "Field #" & integer'image(fieldno) & " is not correctly named: " & truncate(tmp) & ", expected NOTOutput_0.Value" severity Failure;
@@ -144,6 +144,13 @@ begin
                 Input_0_Value <= 'U';
             else
                 Input_0_Value <= to_std_logic(truncate(tmp));
+            end if;
+            fieldno := fieldno + 1;
+            read_csv_field(L, tmp);
+            if are_strings_equal(tmp, "U") then
+                Input_1_Value <= 'U';
+            else
+                Input_1_Value <= to_std_logic(truncate(tmp));
             end if;
             fieldno := fieldno + 1;
 
@@ -188,15 +195,6 @@ begin
             	if not are_strings_equal(str(ANDOutput_3_Value), tmp) then
                     newfailures := newfailures + 1;
                     report "Value for ANDOutput_3_Value in cycle " & integer'image(clockcycle) & " was: " & str(ANDOutput_3_Value) & " but should have been: " & truncate(tmp) severity Error;
-                end if;
-            end if;
-            fieldno := fieldno + 1;
-
-	        read_csv_field(L, tmp);
-	        if not are_strings_equal(tmp, "U") then
-            	if not are_strings_equal(str(Input_1_Value), tmp) then
-                    newfailures := newfailures + 1;
-                    report "Value for Input_1_Value in cycle " & integer'image(clockcycle) & " was: " & str(Input_1_Value) & " but should have been: " & truncate(tmp) severity Error;
                 end if;
             end if;
             fieldno := fieldno + 1;

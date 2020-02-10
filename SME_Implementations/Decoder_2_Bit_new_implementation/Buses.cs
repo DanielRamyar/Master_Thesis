@@ -13,13 +13,11 @@ namespace Decoder_2_Bit {
         bool Value {get; set;}
     }
 
-    [TopLevelOutputBus]
     public interface NOTOutput_0 : IBus {
         [InitialValue]
         bool Value {get; set;}
     }
 
-    [TopLevelOutputBus]
     public interface NOTOutput_1 : IBus {
         [InitialValue]
         bool Value {get; set;}

@@ -19,11 +19,8 @@ entity Decoder_2_Bit is
     -- Top-level bus Input_0 signals
     Input_0_Value: in T_SYSTEM_BOOL;
 
-    -- Top-level bus NOTOutput_0 signals
-    NOTOutput_0_Value: out T_SYSTEM_BOOL;
-
-    -- Top-level bus NOTOutput_1 signals
-    NOTOutput_1_Value: out T_SYSTEM_BOOL;
+    -- Top-level bus Input_1 signals
+    Input_1_Value: in T_SYSTEM_BOOL;
 
     -- Top-level bus ANDOutput_0 signals
     ANDOutput_0_Value: out T_SYSTEM_BOOL;
@@ -38,8 +35,10 @@ entity Decoder_2_Bit is
     ANDOutput_3_Value: out T_SYSTEM_BOOL;
 
 
-    -- Interconnection bus Input_1 signals
-    Input_1_Value: inout T_SYSTEM_BOOL;
+    -- Interconnection bus NOTOutput_0 signals
+    NOTOutput_0_Value: inout T_SYSTEM_BOOL;
+    -- Interconnection bus NOTOutput_1 signals
+    NOTOutput_1_Value: inout T_SYSTEM_BOOL;
 
     -- User defined signals here
     -- #### USER-DATA-ENTITYSIGNALS-START
