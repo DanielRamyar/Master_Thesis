@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -11,6 +11,12 @@ C.~A.~R. Hoare.
 \newblock \emph{Communications of the ACM}, 21\penalty0 (8):\penalty0 666--677,
   1978.
 \newblock ISSN 1557-7317.
+
+\bibitem[Johnson(2017)]{CarlSpeciale}
+C.-J. Johnson.
+\newblock Implementing a mips processor using sme.
+\newblock Master's thesis, University of Copenhagen, Niels Bohr Institute,
+  2017.
 
 \bibitem[Patterson and Hennessy(2017)]{riscVbook}
 D.~A. Patterson and J.~L. Hennessy.
@@ -32,7 +38,7 @@ E.~Skaarup and A.~Frisch.
 
 \bibitem[Skovhede and Vinter(2016)]{skovhede2016building}
 K.~Skovhede and B.~Vinter.
-\newblock Building hardware from c\# models.
+\newblock Building hardware from c\scalerel*{\#}{X} models.
 \newblock In \emph{FSP 2016; Third International Workshop on FPGAs for Software
   Programmers}, pages 1--9. VDE, 2016.
 

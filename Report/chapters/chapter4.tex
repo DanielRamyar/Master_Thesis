@@ -1,24 +1,392 @@
-\chapter{Introduction to RISC-V instructions}\unsure{Chapter sections are subject to change in name and order}
+\chapter{Introduction to RISC-V instructions}
+    To understand the design decisions made, building the RISC-V CPU in Chapter \ref{Chapter:5}, we will go through the fundamentals of the machine language behind the RISC-V architecture. 
+    
+    To this end we will go through a top down approach going from code written by the programmer all the way down to electrical signals firing in the hardware implementation. We will therefore start out by introducing the RISC-V assembly code in section \ref{section:RISC-V Asembly}. 
+    
+    \note{rewrite this section when finished with chapter}
+    Hereafter we will talk about the operands of the RISC-V CPU, which unlike high-level programming languages are confined in a small directory called the \textit{register}. 
+    
+    Hereafter we will go through the base 2 numeral system to make meaning of the following section, which will go through how the assembly language, also known as instructions, is represented in the CPU itself. This chapter is based on chapter 2 in \cite{riscVbook}, which can be refereed to if more detailed explanations is needed.
 
-This chapter aims to introduce the reader to the basics of machine language. Based on chapter 2 in \cite{riscVbook} 
+\section{RISC-V Assembly}\label{section:RISC-V Asembly}
+    Like every computer, we need a way of telling it what to do. This is done via the RISC-V assembly language, which is a human readable abstraction of the RISC-V instruction set. We will get into what this instruction set looks like in a bit, for now we will just introduce the assembly language. All following code can be run in the RISC-V Assembler simulator Jupiter, which can be found in this footnote\footnote{\url{https://github.com/andrescv/Jupiter}}.\note{change this to after when we can actually run code}
+    
+    For the assembler to know where to start reading instructions from we use:
+    
+    \begin{lstlisting}[language=]
+.global __start
 
-\section{RISC-V Assembly}
+__start:
+    \end{lstlisting}
+    where all instructions are added after the \texttt{\_\_start:} command.
     
-\section{Operands}
+    We will in this example start by adding two numbers together. Keep in mind however that this is not executable by the Jupiter simulator, as crucial instructions has been omitted to ease readability for the reader. An executable version of the example will be shown when the necessary concepts has been introduced.
+    
+    To find the sum between two numbers, we use the \texttt{add} instruction:
+    \begin{lstlisting}[language=, ]
+.global __start
 
-    \subsection{Register}
+__start:
+    add a, b, c
+    \end{lstlisting}
+    here we tell the CPU to find the sum between the two varibles, b and c, and save the result in variable a. Is is worth noting that the RISC-V assembly language instructions always have exactly 3 operands and always performs a single operation.
     
-    \subsection{Memory Format}
+    This may seem to restrictive, because how would the then calculate the following equation:
+    \begin{equation}\label{Eq.Addexample}
+        d = a + b + c
+    \end{equation}
     
-    \subsection{Const vs imm }
+    The answer is to split the equation up in small bites. To add more instructions we simply add a new line, since only one instruction is allowed per line. The indent is just there for readability purposes and is not necessary. 
     
+    Having that in mind we therefore split Eq. \ref{Eq.Addexample} the following way:
+    \begin{lstlisting}[language=]
+.global __start
+
+__start:
+    add d, a, b # Find the sum between a and b and put the result in variable d
+    add d, d, c # Take the previous result which now lies in d = a + b and add c to it. 
+                # Then save the result to the same varible 
+    \end{lstlisting}
+    We see that we had to use two instructions in order to solve Eq. \ref{Eq.Addexample}. Everything right of the Hashtags are the way we add comments to code, which the computer ignores.
+    
+    In the previous examples, we made use of a single instruction, the \texttt{add} instruction. There are however 49 base instructions in the RISC-V instruction set, a subset of these is shown in Table \ref{table:RISCVInstructions}. The rest can be refereed to in the RISC-V reference card in behind the appendix.   
+
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|l|}
+        	\hline
+        	Name     & Assembly         & Description (in C) \\ \hline
+        	Add      & add rd, rs1, rs2 & rd = rs1 $+$ rs2   \\
+        	Subtract & sub rd, rs1, rs2 & rd = rs1 $-$ rs2   \\
+        	AND      & and rd, rs1, rs2 & rd = rs1 \& rs2    \\
+        	OR       & or rd, rs1, rs2  & rd = rs1 $|$ rs2   \\
+        	XOR      & xor rd, rs1, rs2 & rd = rs1 \^{} rs2  \\ \hline
+        \end{tabular}
+        \caption{This table is a subset of the RISC-V assembly language arithmetic instructions. For the complete base instruction set, please refer to the RISC-V reference card behind the appendix.}
+        \label{table:RISCVInstructions}
+    \end{table}
+
+\section{Register}\label{section:Register}
+    In a high-level programming language we do not think much, when we declare a variable. For the most part the memory management is hidden for the end user and is taken care of by the compiler. However we do not have this convenience in assembly, where the operands of instructions are much more restricted. 
+    
+    In the RISC-V architecture we have a special location reserved for the operands build directly into the hardware implementation, which is known as the \textit{register}. It comprises of 32 storage locations for operands, each of which is 64 bits long. These locations is accessed by the instructions, using the numbers 0 through 31 with an x in front e.g. using our addition instruction we type:
+    \begin{lstlisting}[language=]
+add x18, x12, x13
+    \end{lstlisting}
+     which finds the sum between values stored in register 12 and 13 and stores the result in register 18.
+     
+     We do in principle have full control over what we store in these registers, but we will follow the conventions specified in the RISC-V spec sheet, which can be found here\footnote{\url{https://riscv.org/specifications/}} and is summarized in Table \ref{table:RISCVRegister}. Notice that each register also has an ABI (application binary interface) calling convention, so we could also type
+     \begin{lstlisting}[language=]
+add s2, a2, a3
+     \end{lstlisting}
+     to access the exact same registers as in the previous example.
+     
+     \begin{table}[h!]
+         \centering
+         \begin{tabular}{|l|l|l|}
+         	\hline
+         	Register & ABI Name & Description                       \\ \hline
+         	x0       & zero     & Hard-wired zero                   \\
+         	x1       & ra       & Return address                    \\
+         	x2       & sp       & Stack pointer                     \\
+         	x3       & gp       & Global pointer                    \\
+         	x4       & tp       & Thread pointer                    \\
+         	x5       & t0       & Temporary/alternate link register \\
+         	x6-7     & t1-2     & Temporaries                       \\
+         	x8       & s0/fp    & Saved register/frame pointer      \\
+         	x9       & s1       & Saved register                    \\
+         	x10-11   & a0-1     & Function arguments/return values  \\
+         	x12-17   & a2-7     & Function arguments                \\
+         	x18-27   & s2-11    & Saved registers                   \\
+         	x28-31   & t3-6     & Temporaries                       \\ \hline
+         \end{tabular}
+         \caption{This table shows the register naming conventions RISC-V architecture. Both the register number and ABI name can be used to access a register.}
+         \label{table:RISCVRegister}
+     \end{table} 
+        
+    
+\section{Data transfer instructions}\label{section:datatranserinstructions}
+    So far our operands in Section \ref{section:RISC-V Asembly} and \ref{section:Register} have been restricted to the register. This approach will however quickly run into its limitations, as only a small amount of data can be stored here. To support larger data sizes and complex data structures, we therefore need a larger storage location for our data, which we call the \textit{memory}.
+    
+    To access the memory we make use of the \textit{data transfer instructions}. A subset of these are outlined in Table \ref{table:RISCVDataTranferInstructions}.
+    
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|l|}
+            \hline
+            Name             & Assembly         & Description (in C)             \\ \hline
+            Load Byte        & lb rd, rs1, imm  & rd = M[rs1$+$imm][0:7]         \\
+            Load Half        & lh rd, rs1, imm  & rd = M[rs1$+$imm][0:15]        \\
+            Load Word        & lw rd, rs1, imm  & rd = M[rs1$+$imm][0:31]        \\
+            Load Doubleword  & ld rd, rs1, imm  & rd = M[rs1$+$imm][0:63]        \\ \hline
+            Store Byte       & sb rs1, rs2, imm & M[rs1$+$imm][0:7] = rs2[0:7]   \\
+            Store Half       & sh rs1, rs2, imm & M[rs1$+$imm][0:15] = rs2[0:15] \\
+            Store Word       & sw rs1, rs2, imm & M[rs1$+$imm][0:31] = rs2[0:31] \\
+            Store Doubleword & sd rs1, rs2, imm & M[rs1$+$imm][0:63] = rs2[0:63] \\ \hline
+        \end{tabular}
+        \caption{This table is a subset of the RISC-V assembly language data transfer instructions. For the complete base instruction set, please refer to the RISC-V reference card behind the appendix.}
+        \label{table:RISCVDataTranferInstructions}
+    \end{table}
+
+    The memory can be thought of as a big array, where each element is 8 bits or a byte long. In RISC-V the memory is little-endian addressed. This means that if we had to store the doubleword value $8444628$ in memory, which is equal to $10000000 \; 11011010 \; 11010100$ in binary, it would get stored such that rightmost 8 bits would be the \textit{base address} and the subsequent 8 bit chunks offset with respect to the base address. In Figure \ref{fig:memory} this is illustrated.
+    
+    \begin{figure}[h!]
+        \centering
+        \subimport{tikz_stuff/}{memory}
+        \caption{This figure illustrates the memory, with the data contents inside the blue squares. They each contain 1 byte or 8 bits of data. To the left we see the address of each block, which is offset by 8 due to the number of bits they contain.}
+        \label{fig:memory}
+    \end{figure}
+
+    Assuming that we in a high-level programming language have associated an array of doublewords, meaning each element in the array is 64 bit, with the variable \texttt{A}. We now want to calculate
+    
+    \begin{equation}
+        A[2] = x + A[4]
+    \end{equation}
+    
+    where x is stored in register x12 and suppose that the base address of \texttt{A} is saved in register x9. Using the load doubleword instruction, we copy the fourth element into the register 6
+    \begin{lstlisting}[language=]
+ld x6, x9, 256 # The temporary register x6 gets fourth element in array A.
+    \end{lstlisting}
+    here the first argument tells the CPU where to save the loaded data, in this case register 6. The second argument tells the instruction, where in memory the array is located. Finally the last argument specifies the offset, so if each doubleword is 64 bits long (each element in A is 64 bits) and we want to access element four in A, we need an offset of 256 ($64\cdot 4=256$).
+    
+    We then want to do the sum and save it back to the second element in A:
+    \begin{lstlisting}[language=]
+add x6, x6, x12 # x + A[4]
+sd x9, x6, 128  # Store sum in the second element of A 
+    \end{lstlisting}
+    
+    After finding the sum we save the value back into the second element of A using the \texttt{sd} instruction. Here the first argument takes the base address and third argument the offset. The second argument then contains the data to be stored. 
+    
+    
+    
+\section{Immediate instructions}
+    Up until now we have had to load constants from memory (assuming the values got loaded into memory on startup) to the register everytime we wanted to do an arithmetic operation. As operations with constants are the most frequently used in most programs, dedicated instructions has been added for this purpose. With these the constant is typed into the immediate field \texttt{imm} and is added directly into the instruction itself. 
+    
+    Using the add immediate instruction \texttt{addi} for example, we can skip the step of loading constants from memory, thus making our program faster, like so:
+    \begin{lstlisting}[language=]
+addi x13, x0, -5 # x13 = 0 - 5
+    \end{lstlisting}
+    notice that we made use of the zero register, which is hard-wired to zero, to add the number -5 to register 13. A subset of the immediate instructions has been outlined in Table \ref{table:RISCVImmediateInstructions}. It should be noted that any instruction with an \texttt{imm} parameter when refering to the full instruction set behind the appendix, a numerical integer can be inserted just as shown.
+    
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l|l|}
+        	\hline
+        	Name          & Assembly          & Description (in C) \\ \hline
+        	Add Immediate & addi rd, rs1, imm & rd = rs1 $+$ rs2   \\
+        	AND Immediate & andi rd, rs1, imm & rd = rs1 \& rs2    \\
+        	OR Immediate  & ori rd, rs1, imm  & rd = rs1 $|$ rs2   \\
+        	XOR Immediate & xori rd, rs1, imm & rd = rs1 \^{} rs2  \\ \hline
+        \end{tabular}
+        \caption{This table is a subset of the RISC-V assembly language arithmetic immediate instructions. For the complete base instruction set, please refer to the RISC-V reference card behind the appendix.}
+        \label{table:RISCVImmediateInstructions}
+    \end{table}
+        
 \section{Numeral system of a computer}
-
-    \subsection{base 2}
+    In everyday life we are used to using the decimal numeral system, meaning that ten base digits are used to represent a quantity, such as 6 apples. However the decimal numeral system was not chosen to represent numbers in a computer. Here we live in a world were everything consists of signals being high and low or transistors being on or off. Therefore a much more inherent counting system can be chosen to represent numbers in this world, namely the binary numeral system.
     
-    \subsection{signed unsigned}
+    The binary digit or bit is the fundamental building block of any computer. A bit require only two "symbols" to be represented. A high/low signal, on/off transistor, true/false statements and of course, but not limited to, the digits 0 and 1.
+    
+    In this thesis we label the digits such that the rightmost digit in a number is the zeroth digit and then increasing the index going left. To avoid confusion we will always label which numeral system we are working with e.g. $10_{\;\texttt{two}}$ or $10_{\;\texttt{ten}}$.
+    
+    Since humans do not usually think in binary, we need a way of converting decimal numbers to binary numbers. We know that any base $b$ repressentation of a number can be exressed in base 10 using\footnote{The following derivation is inspired from \\\url{https://math.stackexchange.com/questions/1359770/why-does-the-division-algorithm-work-for-converting-between-number-bases}} (note that the following derivation only works for positive/unsigned numbers) 
+    \begin{equation}\label{Eq:baseXToDecimal}
+        N_b = \sum_{i=0}^{n} d_i b^i
+    \end{equation}
+    where $N_b$ is the number to be converted to base 10 and $d_i$ is the i'th digit in $N_b$. 
+   
+    We can for example expand the number $1101$
+    \begin{equation}\label{Eq:bintodecimal}
+        1101_{\;\texttt{two}} = (1 \cdot 2^3 + 1 \cdot 2^2 + 0\cdot 2^1 + 1\cdot 2^0)_{\;\texttt{ten}} = 13_{\;\texttt{ten}}
+    \end{equation}
+    
+    Now Eq. \ref{Eq:baseXToDecimal} is invertible by using the remainder theorem, which states that there exists a unique choice of quotient $q$ and remainder $r$ such that 
+    \begin{equation}\label{Eq:remainder}
+        n = qb+r \quad \text{and} \quad 0 \leq r < b
+    \end{equation}
+    For example
+    \begin{equation}
+        13_{\;\texttt{ten}} = (6\cdot 2 + 1)_{\;\texttt{ten}}
+    \end{equation}
+    Rewriting Eq. \ref{Eq:baseXToDecimal} to
+    \begin{equation}\label{Eq:baseXToDecimalRemainderForm}
+        N_b = N'_b \cdot b+d_0
+    \end{equation}
+    where
+    \begin{equation}
+        N'_b = \sum_{i=0}^{n-1} d_{i+1} b^i
+    \end{equation}
+    We can see that $d_0$ corresponds to the remainder $r$ and $N'_b$ to the quotient $q$ in \ref{Eq:remainder} .
+    Dividing by the base $b$ to get the remainder
+    \begin{equation}
+        \frac{N_b}{b} = N'_b +\frac{d_0}{b}
+    \end{equation}
+    which we know corresponds to the leftmost digit in the target repressentation (see Eq. \ref{Eq:bintodecimal}). The same process can be continuned with the quotient $N'_b$ to gain the remaining digits.
+    For example inverting $13_{\;\texttt{ten}}$ back to binary
+    \begin{equation}
+        \frac{13_{\;\texttt{ten}}}{2_{\;\texttt{ten}}} = 6_{\;\texttt{ten}} + \frac{1_{\;\texttt{ten}} }{2_{\;\texttt{ten}} }
+    \end{equation}
+    we have the remainder 1, which is the leftmost digit and quotient 6. Reapeating with the quotient
+    \begin{equation}
+        \frac{6_{\;\texttt{ten}}}{2_{\;\texttt{ten}}} = (3\cdot 2)_{\;\texttt{ten}} + 0_{\;\texttt{ten}} 
+    \end{equation}
+    we have the remainder 0 and quotient 3. Reapeating again
+    \begin{equation}
+        \frac{3_{\;\texttt{ten}}}{2_{\;\texttt{ten}}} = 1_{\;\texttt{ten}} + \frac{1_{\;\texttt{ten}} }{2_{\;\texttt{ten}} }
+    \end{equation}
+    we have the remainder 1 and quotient 1. Reapeating again
+    \begin{equation}
+    \frac{1_{\;\texttt{ten}}}{2_{\;\texttt{ten}}} = 0_{\;\texttt{ten}} + \frac{1_{\;\texttt{ten}} }{2_{\;\texttt{ten}} }
+    \end{equation}
+    we have the remainder 1 and quotient 0 and we are done.
+    Arranging the remainders in the right order we have
+    \begin{equation}
+    13_{\;\texttt{ten}} = 1101_{\;\texttt{two}} 
+    \end{equation}
+    
+    We have matched unsigned decimal numbers 0 through 15 with the corresponding unsigned binary value in Table \ref{table:DecimalToBinaryUnsigned}.
+    
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|l||l|l|}
+        	\hline
+        	Decimal & Binary & Decimal & Binary \\ \hline
+        	0       & 0      & 8       & 1000   \\
+        	1       & 1      & 9       & 1001   \\
+        	2       & 10     & 10      & 1010   \\
+        	3       & 11     & 11      & 1011   \\
+        	4       & 100    & 12      & 1100   \\
+        	5       & 101    & 13      & 1101   \\
+        	6       & 110    & 14      & 1110   \\
+        	7       & 111    & 15      & 1111   \\ \hline
+        \end{tabular}
+        \caption{Table of unsigned decimal numbers and their unsigned binary representation.}
+        \label{table:DecimalToBinaryUnsigned}
+    \end{table} 
+    
+    \subsection{Signed and Unsigned numbers}
+        No computer would be any good for scientific purposes if we are not able to work with negative numbers. Therefore we need a way of representing them in binary. The standard implementation is the \textit{two complement} representation. Here leading zeros means a positive number and leading ones means a negative number. Using 4 bits we are able to represent numbers -8 to 7 and have been outlined in Table \ref{table:DecimalToBinarySigned}. 
+        We observe that 
+        \begin{equation}\label{Eq:complement}
+            x + \bar{x} = -1
+        \end{equation}
+        where $x$ is a decimal and $\bar{x}$ its complement e.g. $0001_{\; \texttt{two}}+1110_{\; \texttt{two}}=1111_{\; \texttt{two}}$. Rearranging Eq. \ref{Eq:complement}
+        \begin{equation}
+        \bar{x} + 1 = x
+        \end{equation}
+        
+        Therefore to negate any number you simply invert all bits and add one e.g. going from -7 to 7
+        \begin{equation}\label{Eq:Negationshortcut}
+            -7_{\; \texttt{ten}} = 1001_{\; \texttt{two}} \xrightarrow{\text{Invert Bits}} 0110_{\; \texttt{two}} \xrightarrow{\text{+1}} 0111_{\; \texttt{two}} = 7_{\; \texttt{ten}}
+        \end{equation}
+        Notice however that $-8$ do not have any complement using only 4 bits. In the two complement representation we will always end up with an extra negative number, if not careful this may cause problems and should be known.
+        
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|l|l||l|l|}
+            	\hline
+            	Decimal & Binary & Decimal & Binary \\ \hline
+            	0       & 0000   & -1      & 1111   \\
+            	1       & 0001   & -2      & 1110   \\
+            	2       & 0010   & -3      & 1101   \\
+            	3       & 0011   & -4      & 1100   \\
+            	4       & 0100   & -5      & 1011   \\
+            	5       & 0101   & -6      & 1010   \\
+            	6       & 0110   & -7      & 1001   \\
+            	7       & 0111   & -8      & 1000   \\ \hline
+            \end{tabular}
+            \caption{Table of unsigned decimal numbers and their unsigned binary representation.}
+            \label{table:DecimalToBinarySigned}
+        \end{table}
     
 \section{Instruction representation in binary}
+    All instructions in the RISC-V architecture are 32 bits long, meaning 32 binary digits are used represent an instruction. This is what all assembly code gets compiled into and is known as \textit{machine code}.
+    Going back to our \texttt{add} instruction 
+    \begin{lstlisting}[language=, numbers=none]
+add x18, x12, x13
+    \end{lstlisting}
+    in machine code the instruction would look like
+    \begin{lstlisting}[language=, numbers=none]
+0000000 01101 01100 000    10010 0110011
+funct7  x13   x12   funct3 x18   add
+    \end{lstlisting}
+    where first (remember we count from right) 7 bits tells the CPU what instruction it should perform, in this case \texttt{add}. The next 5 bits tells which register the CPU should save the result to, in this case \texttt{x18}. Bits 12-14 and 25-31 again tells the instruction type in conjunction with first 7 bits. Bits 15-19 and 20-24 tells which register the first operand and second operand is located respectively, in this case register \texttt{x12} and \texttt{x13}. A subset of instruction formats is shown in Table \ref{table:InstructionFormats}. For a more comprehensive table please refer to the RISC-V instruction set sheet behind the appendix.
+    
+    \begin{table}[h!]
+        \scriptsize
+        \begin{tabular} %In the table specs i create 32 even size colums and 1 coloum for text
+            {p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm} p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}
+                p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm} p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}
+                p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm} p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm}
+                p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm} p{0.01mm}p{0.01mm}p{0.01mm}p{0.01mm} l}
+            %Here we create the row for the bit numbers (only relevant ones are filled for space)
+            \multicolumn{1}{c}{31}&&&&&&
+            \multicolumn{1}{c}{25}&
+            \multicolumn{1}{c}{24}&&&&
+            \multicolumn{1}{c}{20}&
+            \multicolumn{1}{c}{19}&&&&
+            \multicolumn{1}{c}{15}&
+            \multicolumn{1}{c}{14}&&
+            \multicolumn{1}{c}{12}&
+            \multicolumn{1}{c}{11}&&&&
+            \multicolumn{1}{c}{7}&
+            \multicolumn{1}{c}{6}&&&&&&
+            \multicolumn{1}{c}{0}&
+            \\
+            %Here we create the R-type row
+            \cline{0-31} 
+            \multicolumn{7}{|c|}{funct7} &
+            \multicolumn{5}{c|}{rs2}&
+            \multicolumn{5}{c|}{rs1}&
+            \multicolumn{3}{c|}{funct3}&
+            \multicolumn{5}{c|}{rd}&
+            \multicolumn{7}{c|}{opcode}&
+            R-type
+            \\
+            %Here we create the I-type row
+            \cline{0-31} 
+            \multicolumn{12}{|c|}{imm[11:0]} &
+            \multicolumn{5}{c|}{rs1}&
+            \multicolumn{3}{c|}{funct3}&
+            \multicolumn{5}{c|}{rd}&
+            \multicolumn{7}{c|}{opcode}&
+            I-type
+            \\
+            %Here we create the S-type row
+            \cline{0-31} 
+            \multicolumn{7}{|c|}{imm[11:5]} &
+            \multicolumn{5}{c|}{rs2}&
+            \multicolumn{5}{c|}{rs1}&
+            \multicolumn{3}{c|}{funct3}&
+            \multicolumn{5}{c|}{imm[4:0]}&
+            \multicolumn{7}{c|}{opcode}&
+            S-type
+            \\
+            \cline{0-31} 
+        \end{tabular}
+        \caption{A subset of machine code instruction formats, where the \texttt{opcode}, \texttt{funct3} and \texttt{funct7} fields are responsible for instruction detection. The \texttt{rd}, \texttt{rs1}, and \texttt{rs2} fields are operand fields and is responsible the register destination and register source for the first and second operands respectively. The immediate fields \texttt{imm} are where the constants are stored, where the I-type instruction stores the whole constant in bits 20-31 and S-type splits the constant into bits 7-11 and 25-31.}
+        \label{table:InstructionFormats}
+    \end{table}
+
+        \subsection{Hexadecimal}
+            Now working with 32 bit strings can get quite bothersome. A more compact representation is possible using hexadecimal or base 16. Here a single hexadecimal digit corresponds to 4 binary digits. So we only need 8 hexadecimal digits instead of 32 bits to represent an instruction. All hexadecimal digits and their corresponding binary values are shown in Table \ref{table:Hexadecimal}. 
+            
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|l|l||l|l||l|l||l|l|}
+                	\hline
+                	Hexadecimal           & Binary                   & Hexadecimal           & Binary                   & Hexadecimal           & Binary                   & Hexadecimal           & Binary                   \\ \hline
+                	$0_{\; \texttt{hex}}$ & $0000_{\; \texttt{two}}$ & $4_{\; \texttt{hex}}$ & $0100_{\; \texttt{two}}$ & $8_{\; \texttt{hex}}$ & $1000_{\; \texttt{two}}$ & $c_{\; \texttt{hex}}$ & $1100_{\; \texttt{two}}$ \\
+                	$1_{\; \texttt{hex}}$ & $0001_{\; \texttt{two}}$ & $5_{\; \texttt{hex}}$ & $0101_{\; \texttt{two}}$ & $9_{\; \texttt{hex}}$ & $1001_{\; \texttt{two}}$ & $d_{\; \texttt{hex}}$ & $1101_{\; \texttt{two}}$ \\
+                	$2_{\; \texttt{hex}}$ & $0010_{\; \texttt{two}}$ & $6_{\; \texttt{hex}}$ & $0110_{\; \texttt{two}}$ & $a_{\; \texttt{hex}}$ & $1010_{\; \texttt{two}}$ & $e_{\; \texttt{hex}}$ & $1110_{\; \texttt{two}}$ \\
+                	$3_{\; \texttt{hex}}$ & $0011_{\; \texttt{two}}$ & $7_{\; \texttt{hex}}$ & $0111_{\; \texttt{two}}$ & $b_{\; \texttt{hex}}$ & $1011_{\; \texttt{two}}$ & $f_{\; \texttt{hex}}$ & $1111_{\; \texttt{two}}$ \\ \hline
+                \end{tabular}
+                \caption{Table of hexadecimal numbers and their corresponding binary digits.}
+                \label{table:Hexadecimal}
+            \end{table}
+            
+            
+    
 
 \section{Operators}
     

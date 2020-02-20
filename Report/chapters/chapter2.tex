@@ -2,21 +2,21 @@
     
     This chapter aims to introduce the reader to the basics of logic design, which will be imperative to the understanding the subsequent chapters. The general structure of this chapter will be based on Appendix A in \cite{riscVbook}. 
     
-    We will begin in section \ref{section:Boolean_algebra} by introducing the fundamental algebra and the physical building blocks, used to implement the algebra, such as the OR gate. 
+    We will begin in Section \ref{section:Boolean_algebra} by introducing the fundamental algebra and the physical building blocks, used to implement the algebra, such as the OR gate. 
     
     Hereafter we will be using these building blocks to design and create the core components used in the RISC-V architecture such as the decoder and multiplexer in section \ref{section:Combinational_logic}. 
 
     \section{Boolean algebra}\label{section:Boolean_algebra}
     
-        The fundamental tool used in logic design is a branch of mathematical logic called Boolean algebra. Compared to elementary algebra, where we deal with variables which represents some real or complex number, in Boolean algebra the variables are viewed as statements or propositions which is either \textit{true} or \textit{false}.
+        The fundamental tool used in logic design is a branch of mathematical logic called Boolean algebra. Compared to elementary algebra, where we deal with variables which represents some real or complex number, in Boolean algebra the variables are viewed as statements or propositions, which are either \textit{true} or \textit{false}.
         
         In addition to the variables in elementary algebra we also had a means of manipulating them. These manipulations are called operations which operates on the variables (operands) where the basic operators of algebra consists of $+$, $-$, $\cross$ and $\divisionsymbol$.
         
-        In Boolean algebra we have a distinction between operators which work on one operand and the ones that work on to two operands. These are called unary and binary operators respectively. We would go through a description of these in the following section. 
+        In Boolean algebra we have a distinction between operators which work on one operand and the ones that work on to two operands. These are called unary and binary operators respectively. We will go through a description of these in the following section. 
         
         \subsection{Unary operators}\improvement{make ven diagrams to show the operator function}
         
-            With a single binary operand p we have 2 possible input $true$ and $false$. All output combinations are summarized in table \ref{LogicTable:unary}. Each numbered column here represents an unnamed operator. We will go ahead and describe one of these in the following. The rest can referred to in appendix \ref{appendix:Unary_Operators}. 
+            With a single binary operand p we have 2 possible input $true$ and $false$. All output combinations are summarized in Table \ref{LogicTable:unary}. Each numbered column here represents an unnamed operator. We will go ahead and describe one of these in the following. The rest can referred to in Appendix \ref{appendix:Unary_Operators}. 
             
             \begin{table}[h!]
                 \centering
@@ -37,7 +37,7 @@
                 The negation operator inverts an operand such that $\neg true = false$ and $\neg false = true$.
                 Using a table we can neatly represent the complete function of the negation operator. These tables are called \textit{logic tables}.
                 
-                A logic table has been created for the negation operator as can be seen in table \ref{LogicTable:Negation}.  The first column represents our proposition and all its possible arguments $true$ and $false$. The second column is then the negated proposition.
+                A logic table has been created for the negation operator as can be seen in Table \ref{LogicTable:Negation}.  The first column represents our proposition and all its possible arguments $true$ and $false$. The second column is then the negated proposition.
                 
                 \begin{table}[h!]
                     \centering
@@ -53,7 +53,7 @@
             
             \subsubsection{Summary}
                 
-                We can now go ahead and fill the numbered columns table \ref{LogicTable:unary} with the corresponding operators which we have defined throughout this section and appendix \ref{appendix:Unary_Operators}. The filled table can be found in table \ref{LogicTable:unaryfilled}. \improvement{rewrite this section.}
+                We can now go ahead and fill the numbered columns Table \ref{LogicTable:unary} with the corresponding operators, which we have defined throughout this section and Appendix \ref{appendix:Unary_Operators}. The filled table can be found in Table \ref{LogicTable:unaryfilled}.
                 
                 \begin{table}[h!]
                     \centering
@@ -79,9 +79,9 @@
             \end{equation}
             where $(p, q) = \{(true, true), (true, false), (false, true), (false, false)\}$ is the set of possible inputs. 
             
-            All output sets are summarized in table \ref{LogicTable:PossibleOperators} where each numbered column represents an unnamed operator. 
+            All output sets are summarized in Table \ref{LogicTable:PossibleOperators} where each numbered column represents an unnamed operator. 
             
-            We will in this section start by defining the basic operators from which we will derive the rest. For brevity we will only go through the 3 most commonly used operators, the rest can be referred to in appendix \ref{appendix:Binaray_Operators}.  
+            We will in this section start by defining the basic operators from which we will derive the rest. For brevity we will only go through the 3 most commonly used operators, the rest can be referred to in Appendix \ref{appendix:Binaray_Operators}.  
             
             The choice of basic operators is arbitrary but I have chosen the operators for which it is the easiest to derive all other operators, since there exists a method to convert any truth table into a Boolean expression using these which we will get into later.
              
@@ -104,7 +104,7 @@
         
                 The logical conjunction operator is represented by $\wedge$ in mathematics; AND, \&, \&\& in computer science and a $\cdot$ in electronic engineering and commonly referred to as the AND operator or the logical product. The AND operator only results in a true value if both of the operands are true.
                 
-                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 12 and is summarized in table \ref{LogicTable:AND}. 
+                Using Table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 12 and is summarized in Table \ref{LogicTable:AND}. 
                 
                 Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the AND operation between $p$ and $q$. 
                 
@@ -126,7 +126,7 @@
             
                 The logical disjunction operator is represented by $\vee$ in mathematics; OR, $\vert$, $\vert \vert$  in computer science and a $+$ in electronic engineering and commonly referred to as the OR operator or the logical sum. The OR operator results in a true value if one or more of the operands are true.
                 
-                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 2 and is summarized in table \ref{LogicTable:OR}. 
+                Using Table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 2 and is summarized in Table \ref{LogicTable:OR}. 
                 
                 Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the OR operation between $p$ and $q$.
                 
@@ -150,7 +150,7 @@
                 
                 The exclusive disjunction is represented by $\veebar$ in mathematics or XOR, \textsuperscript{$\wedge$} in computer science and commonly referred to as the XOR or exclusive OR operator. The XOR operator results in a true value only if the operands differ.
                 
-                Using table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 7 and is summarized in table \ref{LogicTable:XOR}.
+                Using Table \ref{LogicTable:PossibleOperators} we see that the set of outputs which corresponds to this definition is column 7 and is summarized in Table \ref{LogicTable:XOR}.
                 
                 Here we have the propositions $p$ and $q$ in the first two columns and all possible permutations between them in the following rows. The last column then shows the resulting value after doing the XOR operation between $p$ and $q$.
                 
@@ -168,7 +168,7 @@
                     \label{LogicTable:XOR}
                 \end{table}
             
-                We can define this operator in disjunctive normal form, DNF for short, using our basic operators AND, OR and NOT. A logic equation (see section \ref{Section:BooleanEquation}) is said to be in DNF, when it consists of disjunctions between one or more conjunctions, where each of the propositions can be complemented.
+                We can define this operator in \textit{disjunctive normal form} (DNF) or \textit{Sum of products form}, using our basic operators AND, OR and NOT. A logic equation (see section \ref{Section:BooleanEquation}) is said to be in DNF, when it consists of disjunctions between one or more conjunctions, where each of the propositions can be complemented.
                 
                 To do write our operator in DNF, we first identify all true output in \ref{LogicTable:XOR} namely row 3 and 4. We then take a look at the corresponding input values
                 \begin{equation}
@@ -200,7 +200,7 @@
                 
             \subsubsection{Summary}
             
-                We can now go ahead and fill the numbered columns table \ref{LogicTable:PossibleOperators} with the corresponding operators which we have defined throughout this section. The filled table can be found in table \ref{LogicTable:BinaryOperators}. \improvement{rewrite this section.}
+                We can now go ahead and fill the numbered columns Table \ref{LogicTable:PossibleOperators} with the corresponding operators, which we have defined throughout this section and Appendix \ref{appendix:Binaray_Operators}. The filled table can be found in Table \ref{LogicTable:BinaryOperators}. 
                 
                 \begin{table}[h!]
                     \centering
@@ -218,7 +218,7 @@
         
         \subsection{Boolean equations}\label{Section:BooleanEquation}
         
-            In the last section we saw that it was possible to describe any logic table in terms of the AND, OR and Negation operators. An example of this could be the following
+            In Section \ref{DNF}, we saw that it was possible to describe any logic table in terms of the AND, OR and Negation operators. An example of this could be the following
             
             \begin{equation}
                 \label{booleanexample}
@@ -226,7 +226,7 @@
             \end{equation}
             where $p$ and $q$ was our propositions. Expression \ref{booleanexample} is an example of a \textit{Boolean equation}. 
             
-            Like ordinary algebra, Boolean equations satisfy many of the same basic laws of algebra as summarized in table \ref{Table:Algebralaws}. Here we see that the laws are exactly equivalent to the version we see with ordinary addition and multiplication, hence the names logical sum $\vee$ and logical product $\wedge$.
+            Like ordinary algebra, Boolean equations satisfy many of the same basic laws of algebra as summarized in Table \ref{Table:Algebralaws}. Here we see that the laws are exactly equivalent to the version we see with ordinary addition and multiplication, hence the names logical sum $\vee$ and logical product $\wedge$.
             
             Using these laws we can drastically simplify complex expressions which we will use later to greatly reduce the complexity of logic units. 
             
@@ -237,13 +237,13 @@
                 C = A \cdot \bar{B} \cdot \bar{S} + A \cdot B \cdot \bar{S} + \bar{A} \cdot B \cdot S
                   + A \cdot B \cdot S
             \end{equation}
-            where A, B, C and S are Boolean variables. Notice that $\cdot = \wedge$ and $+ = \vee$, we use this notation since it is much easier to discern the individual terms. Now we can use the distributivity law we found in table \ref{Table:Algebralaws} to pull $A\cdot \bar{S}$ and $B \cdot S$ outside the parentheses
+            where A, B, C and S are Boolean variables. Notice that $\cdot = \wedge$ and $+ = \vee$, we change to this notation since I find it much easier to discern the individual terms. Now we can use the distributivity law we found in Table \ref{Table:Algebralaws} to pull $A\cdot \bar{S}$ and $B \cdot S$ outside the parentheses
             
             \begin{equation}
                 C = (\bar{B} + B) \cdot A\cdot \bar{S} + (\bar{A} + A)\cdot B\cdot S.
             \end{equation}
             
-            Lastly we use the complement law in table \ref{Table:Booleanlaws} ($\bar{B} + B = 1$ and $\bar{A} + A = 1$) and the identity law in table \ref{Table:Algebralaws} ($1 \cdot A\cdot \bar{S} = A\cdot \bar{S}$ and $1 \cdot B\cdot S = B\cdot S$) to simplify such that we have
+            Lastly we use the complement law in Table \ref{Table:Booleanlaws} ($\bar{B} + B = 1$ and $\bar{A} + A = 1$) and the identity law in Table \ref{Table:Algebralaws} ($1 \cdot A\cdot \bar{S} = A\cdot \bar{S}$ and $1 \cdot B\cdot S = B\cdot S$) to simplify such that we have
             
             \begin{equation}
                 \label{simplify2}
@@ -290,10 +290,10 @@
             
             We will use 3 fundamental physical components, \textit{gates}, to implement logic tables or Boolean equations and each of these is represented by a symbol which we will go through in the following.
             
-            It should be noted that multiple input are possible with the AND and OR gates since they are both commutative and associative. There will though always be 1 output which is the result of all the subsequent input.
+            It should be noted that multiple input are possible with the AND and OR gates since they are both commutative and associative. There will though always be 1 output, which is the result of all the subsequent input e.g. $A+B+C=D$ here the three input $A,B,C$ would go into a single OR gate and return a single output $D$.
             
             \subsubsection{AND Gate}
-                The AND gate is the physical implementation of logic table \ref{LogicTable:AND} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:ANDGate}. 
+                The AND gate is the physical implementation of logic Table \ref{LogicTable:AND} we defined earlier. It is illustrated by the symbol found in Figure \ref{fig:ANDGate}. 
                 
                 \begin{figure}[h!]
                     \centering
@@ -304,7 +304,7 @@
             
             \subsubsection{OR Gate}
             
-                The OR gate is the physical implementation of logic table \ref{LogicTable:OR} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:ORGate}. 
+                The OR gate is the physical implementation of logic Table \ref{LogicTable:OR} we defined earlier. It is illustrated by the symbol found in Figure \ref{fig:ORGate}. 
                 
                 \begin{figure}[h!]
                     \centering
@@ -315,7 +315,7 @@
             
             \subsubsection{NOT Gate}
             
-                The NOT gate or inverter is the physical implementation of logic table \ref{LogicTable:Negation} we defined earlier. It is illustrated by the symbol found in figure \ref{fig:NOTGate}. Usually the inverter is not drawn explicitly, but rather a "bubble" is drawn at the input or output of the respective gate, as shown in figure \ref{fig:NOTGateBubble}. 
+                The NOT gate or inverter is the physical implementation of logic table \ref{LogicTable:Negation} we defined earlier. It is illustrated by the symbol found in Figure \ref{fig:NOTGate}. Usually the inverter is not drawn explicitly, but rather a "bubble" is drawn at the input or output of the respective gate, as shown in figure \ref{fig:NOTGateBubble}. 
                 
                 \begin{figure}[h!]
                     \centering
@@ -340,7 +340,6 @@
                     \label{fig:NOTGateBubble}
                 \end{figure}
             
-        \improvement{maybe talk about that nor and nand gates are universal}
     \section{Combinational logic}\label{section:Combinational_logic}
     
         When we design logic units which contain no memory i.e always return the same output given same input, we deal with \textit{combinational logic}. In this section we will go through the essential combinational logic units that will be used throughout this thesis.  
@@ -351,11 +350,11 @@
             
             Say that we have 3 inputs i.e 3 bits of information. There are 8 possible configurations of these 3 bits ($2^{3}=8$) and for each configuration we assign one output to be asserted. 
             
-            In table \ref{LogicTable:Decoder} we have for each configuration asserted one output. Notice that we have used the binary representation of a decimal number to determine which output should be asserted for given input configuration. For example the binary representation for the decimal number $5$ is $101$, so when the input is $In2=1$, $In1=0$ and $In0=1$ output 5 is asserted. 
+            In Table \ref{LogicTable:Decoder} we have for each configuration asserted one output. Notice that we have used the binary representation of a decimal number to determine which output should be asserted for given input configuration. For example the binary representation for the decimal number $5$ is $101$, so when the input is $In2=1$, $In1=0$ and $In0=1$ output 5 is asserted. 
             
             It should be noted that the choice of which output that should get asserted for given input is arbitrary and up to the logic designer to decide, though each input configuration must only assert one unique output.
             
-            We had 3 input in the previous example, but we can generalize the decoder such that for $n$ input, where $n > 0$,  we have $2^{n}$ output. Only one output is asserted per input configuration. 
+            In this example we had 3 input, but we can generalize the decoder such that for $n$ input, where $n > 0$,  we have $2^{n}$ output. Only one output is asserted per input configuration. 
             
             \begin{table}[h!]
                 \centering
@@ -376,13 +375,13 @@
                 \label{LogicTable:Decoder}
             \end{table}
         
-        \subsection{Multiplexer}
+        \subsection{Multiplexer}\label{section:Multiplexer}
         
             When we will later deal with larger systems consisting of multiple logic units, we will need a way to select from which unit we want the output to go further up the chain. This select unit is known as a \textit{multiplexer} or \textit{mux}. Its function is to select one of multiple input to output unchanged.
             
-            In table \ref{LogicTable:Multiplexer} we have constructed a multiplexer with three input one of which is the control signal $S$. If the control signal is asserted $S=1$ the output will have the value of $B$ and if deasserted $S=0$ it will output the value of $A$. 
+            In Table \ref{LogicTable:Multiplexer} we have constructed a multiplexer with three input one of which is the control signal $S$. If the control signal is asserted $S=1$ the output will have the value of $B$ and if deasserted $S=0$ it will output the value of $A$. 
             
-            In this example we only have two input, but the multiplexer can be made such that it can select between arbitrary many input though this requires an increase in control signals. For $n$ control signals we are able to select between $2^{n}$ input, where $n > 0$.
+            In this example we only had two input, but the multiplexer can be made such that it can select between arbitrary many input though this requires an increase in control signals. For $n$ control signals we are able to select between $2^{n}$ input, where $n > 0$.
             \begin{table}[h!]
                 \centering
                 \begin{tabular}{|c|c|c||c|}
@@ -403,7 +402,7 @@
         
         \subsection{Two-level logic}
         
-            We saw in a previous section that it was possible to express any logic table into a logic equation expressed as a sum of one or more products, also known as \textit{disjunctive normal form} or \textit{Sum of Products}.
+            We saw in Section \ref{DNF} that it was possible to express any logic table into a logic equation expressed as a sum of one or more products, also known as \textit{disjunctive normal form} or \textit{Sum of Products}.
             As we will see shortly this type of logic expression can be implemented using only two levels of logic, one layer consisting only of AND gates and one only of OR Gates, where negations are only applied to individual variables.
             
             In this and next section we will see an example how one would implement various logic units, such as the multiplexer, going from logic table to the sum of products logic equation and lastly generating a gate-level implementation.
@@ -415,7 +414,7 @@
                     + A \cdot B \cdot S.
             \end{equation}
              
-            We already saw how one could drastically simplify this expression in section \ref{Section:BooleanEquation}, such that we end up with
+            We already saw how one could drastically simplify this expression in Section \ref{Section:BooleanEquation}, such that we end up with
             
             \begin{equation}
                 \label{multiplexer_equation}
@@ -426,7 +425,7 @@
         
         \subsection{Programmable logic array}
         
-            A common two-level logic device used to implement logic equations is the \textit{programmable logic array} or PLA for short. The PLA consists of two lines of input, one unaltered and one complemented (negated input), which are then connected to a plane of AND gates. The connections between the inputs and AND plane of course depends on the to be implemented logic equation. Hereafter the outputs of the AND plane connects to the OR plane and again the connections depends on the logic equation.
+            A common two-level logic device used to implement logic equations is the \textit{programmable logic array} or PLA for short. The PLA consists of two lines per input, one unaltered and one complemented (negated input), which are then connected to a plane of AND gates. The connections between the inputs and AND plane of course depends on the to be implemented logic equation. Hereafter the outputs of the AND plane connects to the OR plane and again the connections depends on the logic equation.
             
             Using this logic we can go ahead and implement \ref{multiplexer_equation}. Looking at the equation we see that we need to perform two AND operations and one OR operation. We therefore need two AND gates and one OR gate. Since the PLA has lines for both input and inverted input we only need to connect the correct lines to the corresponding gates. This is done in figure \ref{fig:MultiplexerSimpleA} where the black dots shows which lines are connected to which gate. When designing larger logic circuits it is more common to omit drawing all gates explicitly, which is illustrated in \ref{fig:MultiplexerSimpleB}. 
         
