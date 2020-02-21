@@ -281,6 +281,19 @@ addi x13, x0, -5 # x13 = 0 - 5
         \end{equation}
         Notice however that $-8$ do not have any complement using only 4 bits. In the two complement representation we will always end up with an extra negative number, if not careful this may cause problems and should be known.
         
+        Subtraction of two complement numbers is very simple. You just add them together and throw away the overflow bit. Meaning if we got two 4 bit numbers we want to find the sum of and we still have a carry after the 4'th bit, which is supposed to be in the 5'th bit place, we throw away the carry. For example subtracting five with two
+
+        \begin{center}
+            \begin{tabular}{c@{\,}c@{\,}c@{\,}c@{\,}c}
+            	1 & 1 &   &   &   \\
+            	  & \bcancel{0} & \bcancel{1} & 0 & $1_{\; \texttt{two}}$ \\
+            	+ & 1 & 1 & 1 & $0_{\; \texttt{two}}$ \\ \hline
+            	1 & 0 & 0 & 1 & $1_{\; \texttt{two}}$
+            \end{tabular}
+        \end{center}
+        and throwing away the carry we get $0011_{\; \texttt{two}} = 3_{\; \texttt{ten}}$
+        
+        
         \begin{table}[h!]
             \centering
             \begin{tabular}{|l|l||l|l|}
@@ -299,7 +312,7 @@ addi x13, x0, -5 # x13 = 0 - 5
             \label{table:DecimalToBinarySigned}
         \end{table}
     
-\section{Instruction representation in binary}
+\section{Instruction representation in binary}\label{section:InstructionRep}
     All instructions in the RISC-V architecture are 32 bits long, meaning 32 binary digits are used represent an instruction. This is what all assembly code gets compiled into and is known as \textit{machine code}.
     Going back to our \texttt{add} instruction 
     \begin{lstlisting}[language=, numbers=none]
@@ -364,7 +377,7 @@ funct7  x13   x12   funct3 x18   add
             \\
             \cline{0-31} 
         \end{tabular}
-        \caption{A subset of machine code instruction formats, where the \texttt{opcode}, \texttt{funct3} and \texttt{funct7} fields are responsible for instruction detection. The \texttt{rd}, \texttt{rs1}, and \texttt{rs2} fields are operand fields and is responsible the register destination and register source for the first and second operands respectively. The immediate fields \texttt{imm} are where the constants are stored, where the I-type instruction stores the whole constant in bits 20-31 and S-type splits the constant into bits 7-11 and 25-31.}
+        \caption{A subset of machine code instruction formats, where the \texttt{opcode}, \texttt{funct3} and \texttt{funct7} fields are responsible for instruction identification. The \texttt{rd}, \texttt{rs1}, and \texttt{rs2} fields are operand fields and is responsible the register destination and register source for the first and second operands respectively. The immediate fields \texttt{imm} are where the constants are stored, where the I-type instruction stores the whole constant in bits 20-31 and S-type splits the constant into bits 7-11 and 25-31.}
         \label{table:InstructionFormats}
     \end{table}
 
@@ -384,9 +397,121 @@ funct7  x13   x12   funct3 x18   add
                 \caption{Table of hexadecimal numbers and their corresponding binary digits.}
                 \label{table:Hexadecimal}
             \end{table}
+        
+            As an example we can convert the add instruction machine code shown in Section \ref{section:InstructionRep} to hexadecimal. Using the lookup table shown in Table \ref{table:Hexadecimal}, we can easily convert the machine code to hex and back, as illustrated in Figure \ref{fig:bintohex}. In many programming languages hexadecimal numbers are usually preceded by a \texttt{0x} such that the hex value shown in Table \ref{fig:bintohex} would look like \texttt{0x00d60d33}.
             
-            
-    
-
+            \begin{figure}[h!]
+                \centering
+                \subimport{tikz_stuff/}{Bintohex}
+                \caption{Using Table \ref{table:Hexadecimal} we can convert the 32 binary string to hexadecimal and vice versa.}
+                \label{fig:bintohex}
+            \end{figure}
+       
 \section{Operators}
+    In Section \ref{section:InstructionRep} we introduced the machine code representation for instructions. We saw that within the 32-bit strings existed various fields responsible for instruction identification, target registers and constant fields.
+    In this section we take a look at some useful operations, outlined in Table \ref{table:operators}, to address strings of bits or even individual bits within an instruction.
+    
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|c|l|}
+        	\hline
+        	Decimal                & C operators                & RISC-V Instruction          \\ \hline
+        	Logical left shift     & $<<$                      & \texttt{sll}, \texttt{slli} \\ \hline
+        	Logical right shift    & $>>$                      & \texttt{srl}, \texttt{srli} \\ \hline
+        	Arithmetic right shift & $>>$                      & \texttt{sra}, \texttt{srai} \\ \hline
+        	Bitwise AND            & \&                         & \texttt{and}, \texttt{andi} \\ \hline
+        	Bitwise OR             & $\mid$                     & \texttt{or}, \texttt{ori}   \\ \hline
+        	Bitwise XOR            & \textsuperscript{$\wedge$} & \texttt{xor}, \texttt{xori} \\ \hline
+        	Bitwise NOT            & $\sim$                     & \texttt{xori}               \\ \hline
+        \end{tabular}
+        \caption{Table of logical and bitwise operators in C and corresponding RISC-V Instruction.}
+        \label{table:operators}
+    \end{table}
+    
+    \subsection{Shifts}
+        To move bits within a string of bits left or right, we make use of the shift operations. There exist two types of shifts, arithmetic and logical.
+        The logical shift moves strings of bits in a given direction e.g. we have the 16 bits
+        \begin{equation*}
+            \text{\Huge 0000\, 0000\, 1101 \, 0110}
+        \end{equation*}
+        
+        logical shifting left by 9 bits
+        \begin{figure*}[h!]
+            \centering
+            \subimport{tikz_stuff/}{shiftleft}
+        \end{figure*}
+     
+        logical shifting right by 9 bits
+        \begin{figure*}[h!]
+            \centering
+            \subimport{tikz_stuff/}{shiftright}
+        \end{figure*} 
+
+        When shifting left the bit at the end, bit number 15, gets discarded and at the opposite end, bit number 0, a zero gets inserted. The exact opposite happens when logical shifting right. Notice that the logical shift does not preserve sign, this is what the arithmetic shift is for. Again with the same string of bits
+        \begin{equation*}
+            \text{\Huge 0000\, 0000\, 1101 \, 0110}
+        \end{equation*}
+        we perform a arithmetic shift to the left by 9 bits
+        \begin{figure*}[h!]
+            \centering
+            \subimport{tikz_stuff/}{shiftleft}
+        \end{figure*}
+    
+        then performing a arithmetic shift to the right by 9 bits
+        \begin{figure*}[h!]
+            \centering
+            \subimport{tikz_stuff/}{shiftrightarithmetic}
+        \end{figure*}
+        
+        When shifting left the bit at the end, bit number 15, gets discarded and at the opposite end, bit number 0, a zero gets inserted. However going right something different happens this time, as the arithmetic shifts preserves sign, so the inserted bit depends on the end bit (bit number 15 here). If the end bit is 1, ones will get inserted and if its 0, zeros will get inserted when shifting right.
+        
+        We see that the arithmetic shift to the left is exactly the same as the logical left shift, therefore only logical left instruction is needed.
+        A beneficial shortcut to know about is shifting bits in the left direction \texttt{i} times multiplies the number by $2^\texttt{i}$ times. Shifting right therefore is the opposite and divides the number by $2^\texttt{i}$.
+        
+    \subsection{Bitwise logical operations}
+        Just like the logical operators \texttt{AND} and \texttt{OR}, which compares two values e.g $7_{\; \texttt{\scriptsize ten}} \; \texttt{AND} \; 4_{\; \texttt{\scriptsize ten}} = \texttt{FALSE}$. We have bitwise versions of the logical operators \texttt{AND} and \texttt{OR}. The bitwise operators work a little different than their logical versions. They compare every bit in a string of bits, so using the operator on the decimals seven and four as before would result in
+        
+        \begin{center}
+            \begin{tabular}{c@{\,}c@{\,}c@{\,}c@{\,}c}
+            	   & 0 & 1 & 1 & $1_{\; \texttt{two}}$ \\
+            	\& & 0 & 1 & 0 & $0_{\; \texttt{two}}$ \\ \hline
+            	   & 0 & 1 & 0 & $0_{\; \texttt{two}}$
+            \end{tabular}
+        \end{center}
+        
+        You have to be careful using the bitwise logical operators, as they give unintuitive results when used with decimals as you can see $7_{\; \texttt{\scriptsize ten}} \; \texttt{\&} \; 4_{\; \texttt{\scriptsize ten}} = 4_{\; \texttt{\scriptsize ten}}$.
+        
+        This operator is very useful when used in conjunction with the logical right shift operator for isolating fields in various strings of bits, for example an instruction. Say we wanted to isolate the register field in the \texttt{add} instruction, 
+        \begin{lstlisting}[language=, numbers=none]
+                        0000000 01101 01100 000    10010 0110011
+                        funct7  rs2   rs1   funct3 rd    add
+        \end{lstlisting}
+        you simply shift the instruction to the right by 15 bits, such that bits numbers 0-4 now contains register 1 field bits. 
+        \begin{lstlisting}[language=, numbers=none]
+                        000000000000000000000001101 01100 # shifted right by 15 bits
+        \end{lstlisting} 
+        Hereafter you perform a bitwise \texttt{AND} instruction with string of bits that contains ones only at position 0-4 
+        \begin{lstlisting}[language=, numbers=none]
+                        000000000000000000000001101 01100 
+                      & 000000000000000000000000000 11111
+                    _____________________________________
+                        000000000000000000000000000 01100
+        \end{lstlisting} 
+        everything but the first 5 bits gets canceled out and we end up with the contents of the rs1 field.
+        Our 32-bits now contains whole slew of zeros left of the fourth bit. To place string of bits back into the 32-bits we can use the bitwise \texttt{OR} operator for example
+        \begin{lstlisting}[language=, numbers=none]
+                        000000000000000000000000000 01100
+                      | 000000001010110000000000000 00000
+                    _____________________________________
+                        000000001010110000000000000 01100
+        \end{lstlisting}
+        Lastly we have the bitwise \texttt{XOR} and \texttt{NOT} operators. Since \texttt{XOR} can be used to perform a \texttt{NOT} operation, only the \texttt{XOR} operator has a dedicated instruction in the RISC-V architecture.
+        To emulate the bitwise \texttt{NOT} operation, which inverts every bit, using the \texttt{XOR} operator, you simply compare is to -1, for example using our result from the \texttt{OR} operation
+        \begin{lstlisting}[language=, numbers=none]
+                        000000001010110000000000000 01100
+                      ^ 111111111111111111111111111 11111
+                    _____________________________________
+                        111111110101001111111111111 10011
+        \end{lstlisting}
+        
     

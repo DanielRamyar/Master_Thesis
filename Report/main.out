@@ -28,28 +28,30 @@
 \BOOKMARK [1][-]{section.4.6}{Instruction representation in binary}{chapter.4}% 28
 \BOOKMARK [2][-]{subsection.4.6.1}{Hexadecimal}{section.4.6}% 29
 \BOOKMARK [1][-]{section.4.7}{Operators}{chapter.4}% 30
-\BOOKMARK [0][-]{chapter.5}{The RISC-V processor}{}% 31
-\BOOKMARK [1][-]{section.5.1}{Single Cycle RISC-V Units}{chapter.5}% 32
-\BOOKMARK [2][-]{subsection.5.1.1}{Program Counter}{section.5.1}% 33
-\BOOKMARK [2][-]{subsection.5.1.2}{Instruction Memory}{section.5.1}% 34
-\BOOKMARK [2][-]{subsection.5.1.3}{incrementor?}{section.5.1}% 35
-\BOOKMARK [2][-]{subsection.5.1.4}{Register}{section.5.1}% 36
-\BOOKMARK [2][-]{subsection.5.1.5}{Arithmetic Logic Unit \(ALU\)}{section.5.1}% 37
-\BOOKMARK [2][-]{subsection.5.1.6}{Immediate generator}{section.5.1}% 38
-\BOOKMARK [2][-]{subsection.5.1.7}{Data Memory}{section.5.1}% 39
-\BOOKMARK [1][-]{section.5.2}{Designing the Control}{chapter.5}% 40
-\BOOKMARK [1][-]{section.5.3}{Single Cycle RISC-V datapath}{chapter.5}% 41
-\BOOKMARK [1][-]{section.5.4}{Improving the datapath}{chapter.5}% 42
-\BOOKMARK [2][-]{subsection.5.4.1}{RV64I Base Instructions Support}{section.5.4}% 43
-\BOOKMARK [2][-]{subsection.5.4.2}{Supporting R-Format}{section.5.4}% 44
-\BOOKMARK [2][-]{subsection.5.4.3}{Supporting I-Format}{section.5.4}% 45
-\BOOKMARK [2][-]{subsection.5.4.4}{Supporting S-Format}{section.5.4}% 46
-\BOOKMARK [2][-]{subsection.5.4.5}{Supporting B-Format}{section.5.4}% 47
-\BOOKMARK [2][-]{subsection.5.4.6}{Supporting U-Format}{section.5.4}% 48
-\BOOKMARK [2][-]{subsection.5.4.7}{Supporting J-Format}{section.5.4}% 49
-\BOOKMARK [1][-]{section.5.5}{Debugging the instructions}{chapter.5}% 50
-\BOOKMARK [2][-]{subsection.5.5.1}{Writing assembly to test instructions}{section.5.5}% 51
-\BOOKMARK [2][-]{subsection.5.5.2}{Writing simple C code to run on RISC-V}{section.5.5}% 52
-\BOOKMARK [0][-]{chapter.6}{Conclusion and future work}{}% 53
-\BOOKMARK [0][-]{appendix.A}{Unary Operators}{}% 54
-\BOOKMARK [0][-]{appendix.B}{Binary Operators}{}% 55
+\BOOKMARK [2][-]{subsection.4.7.1}{Shifts}{section.4.7}% 31
+\BOOKMARK [2][-]{subsection.4.7.2}{Bitwise logical operations}{section.4.7}% 32
+\BOOKMARK [0][-]{chapter.5}{The RISC-V processor}{}% 33
+\BOOKMARK [1][-]{section.5.1}{Single Cycle RISC-V Units}{chapter.5}% 34
+\BOOKMARK [2][-]{subsection.5.1.1}{Program Counter}{section.5.1}% 35
+\BOOKMARK [2][-]{subsection.5.1.2}{Instruction Memory}{section.5.1}% 36
+\BOOKMARK [2][-]{subsection.5.1.3}{incrementor?}{section.5.1}% 37
+\BOOKMARK [2][-]{subsection.5.1.4}{Register}{section.5.1}% 38
+\BOOKMARK [2][-]{subsection.5.1.5}{Arithmetic Logic Unit \(ALU\)}{section.5.1}% 39
+\BOOKMARK [2][-]{subsection.5.1.6}{Immediate generator}{section.5.1}% 40
+\BOOKMARK [2][-]{subsection.5.1.7}{Data Memory}{section.5.1}% 41
+\BOOKMARK [1][-]{section.5.2}{Designing the Control}{chapter.5}% 42
+\BOOKMARK [1][-]{section.5.3}{Single Cycle RISC-V datapath}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.4}{Improving the datapath}{chapter.5}% 44
+\BOOKMARK [2][-]{subsection.5.4.1}{RV64I Base Instructions Support}{section.5.4}% 45
+\BOOKMARK [2][-]{subsection.5.4.2}{Supporting R-Format}{section.5.4}% 46
+\BOOKMARK [2][-]{subsection.5.4.3}{Supporting I-Format}{section.5.4}% 47
+\BOOKMARK [2][-]{subsection.5.4.4}{Supporting S-Format}{section.5.4}% 48
+\BOOKMARK [2][-]{subsection.5.4.5}{Supporting B-Format}{section.5.4}% 49
+\BOOKMARK [2][-]{subsection.5.4.6}{Supporting U-Format}{section.5.4}% 50
+\BOOKMARK [2][-]{subsection.5.4.7}{Supporting J-Format}{section.5.4}% 51
+\BOOKMARK [1][-]{section.5.5}{Debugging the instructions}{chapter.5}% 52
+\BOOKMARK [2][-]{subsection.5.5.1}{Writing assembly to test instructions}{section.5.5}% 53
+\BOOKMARK [2][-]{subsection.5.5.2}{Writing simple C code to run on RISC-V}{section.5.5}% 54
+\BOOKMARK [0][-]{chapter.6}{Conclusion and future work}{}% 55
+\BOOKMARK [0][-]{appendix.A}{Unary Operators}{}% 56
+\BOOKMARK [0][-]{appendix.B}{Binary Operators}{}% 57

@@ -1,0 +1,52 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows,arrows.meta}
+
+
+\definecolor{mycolor}{RGB}{0, 153, 255}
+\tikzstyle{process} = [rectangle, rounded corners,
+                       minimum width=2cm, minimum height=1cm,
+                       text centered, draw=black, fill=mycolor,
+                       text=white, line width=0.3mm]
+
+\tikzstyle{arrow} = [thick,<->,>=stealth]
+
+\begin{document}
+    \begin{tikzpicture}[node distance=2cm]
+        
+        %32 bit instruction
+        \node at (0,0) [text centered] (7) {\Huge 1010};
+        \node at (2,0) [text centered] (6) {\Huge 1100};
+        \node at (4,0) [text centered] (5) {\Huge 0000};
+        \node at (6,0) [text centered] (4) {\Huge 0000};
+        
+        new bit in
+        \draw [thick,->,>=stealth] (7.7,0) -- (7,0);
+        \node at (8,0) [text centered] {\Huge 0};
+        \node at (8.4,-0.2) [text centered] {$\; \texttt{ two}$};
+        
+        %last bit out
+        \draw [thick,->,>=stealth] (-1,0) -- (-1.7,0);
+        \node at (-2,0) [text centered] {\Huge \cancel{1}};
+        
+        %shifts
+        \draw[->,thick] (-0.2,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (0.2,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (0.6,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        
+        \draw[->,thick] (1.4,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (1.8,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (2.2,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (2.6,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        
+        \draw[->,thick] (3.4,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (3.8,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (4.2,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (4.6,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        
+        \draw[->,thick] (5.4,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (5.8,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (6.2,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+        \draw[->,thick] (6.6,0.4)  arc[radius = 3mm, start angle= 0, end angle= 120];
+    \end{tikzpicture}
+\end{document}

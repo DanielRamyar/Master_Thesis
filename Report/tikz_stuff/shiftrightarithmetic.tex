@@ -1,0 +1,53 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows,arrows.meta}
+
+
+\definecolor{mycolor}{RGB}{0, 153, 255}
+\tikzstyle{process} = [rectangle, rounded corners,
+                       minimum width=2cm, minimum height=1cm,
+                       text centered, draw=black, fill=mycolor,
+                       text=white, line width=0.3mm]
+
+\tikzstyle{arrow} = [thick,<->,>=stealth]
+
+\begin{document}
+    \begin{tikzpicture}[node distance=2cm]
+        
+        %32 bit instruction
+        \node at (0,0) [text centered] (7) {\Huge 1111};
+        \node at (2,0) [text centered] (6) {\Huge 1111};
+        \node at (4,0) [text centered] (5) {\Huge 1101};
+        \node at (6,0) [text centered] (4) {\Huge 0110};
+        
+        new bit in
+        \draw [thick,<-,>=stealth] (7.7,0) -- (7,0);
+        \node at (8,0) [text centered] {\Huge \cancel{0}};
+        \node at (8.4,-0.2) [text centered] {$\; \texttt{ two}$};
+        
+        %last bit out
+        \draw [thick,<-,>=stealth] (-1,0) -- (-1.7,0);
+        \node at (-2,0) [text centered] {\Huge 1};
+        
+        %shifts
+        \draw[<-,thick] (-0.15,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (0.25,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (0.65,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (1.05,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        
+        \draw[<-,thick] (1.85,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (2.25,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (2.65,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (3.05,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        
+        \draw[<-,thick] (3.85,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (4.25,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (4.65,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (5.05,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        
+        \draw[<-,thick] (5.85,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (6.25,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (6.65,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+        \draw[<-,thick] (7.05,0.6)  arc[radius = 3mm, start angle= 60, end angle= 180];
+    \end{tikzpicture}
+\end{document}
