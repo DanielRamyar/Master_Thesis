@@ -4,41 +4,49 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {5}The RISC-V processor}{43}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{Chapter:5}{{5}{43}{The RISC-V processor}{chapter.5}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{red}{}{red!25}{\leavevmode {\color  {red!25}o}}\ Chapter sections are subject to change in name and order}{43}{section*.66}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}Single Cycle RISC-V Units}{43}{section.5.1}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color  {Plum!25}o}}\ make a better title}{43}{section*.67}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Program Counter}{43}{subsection.5.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Instruction Memory}{43}{subsection.5.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}incrementor?}{43}{subsection.5.1.3}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{red}{}{red!25}{\leavevmode {\color  {red!25}o}}\ figure out a name for this subsection}{43}{section*.68}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.4}Register}{43}{subsection.5.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.5}Arithmetic Logic Unit (ALU)}{43}{subsection.5.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.6}Immediate generator}{43}{subsection.5.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.7}Data Memory}{43}{subsection.5.1.7}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color  {Plum!25}o}}\ Need to figure out more sections to explain whole datapath}{43}{section*.69}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Designing the Control}{43}{section.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Single Cycle RISC-V datapath}{43}{section.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Improving the datapath}{43}{section.5.4}\protected@file@percent }
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color  {Plum!25}o}}\ figure out better naming for sections}{43}{section*.70}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}RV64I Base Instructions Support}{44}{subsection.5.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Supporting R-Format}{44}{subsection.5.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Supporting I-Format}{44}{subsection.5.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.4}Supporting S-Format}{44}{subsection.5.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.5}Supporting B-Format}{44}{subsection.5.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.6}Supporting U-Format}{44}{subsection.5.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.7}Supporting J-Format}{44}{subsection.5.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Debugging the instructions}{44}{section.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Writing assembly to test instructions}{44}{subsection.5.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Writing simple C code to run on RISC-V}{44}{subsection.5.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Illustration of the clocked \texttt  {program counter} process having the next address as input and current address as output.\relax }}{44}{figure.caption.64}\protected@file@percent }
+\newlabel{fig:PC}{{5.1}{44}{Illustration of the clocked \texttt {program counter} process having the next address as input and current address as output.\relax }{figure.caption.64}{}}
+\newlabel{PCSME}{{5.1}{44}{A slice of the PC unit SME code, which contains variable that holds the input address. On every cycle edge it then holds and outputs the current address}{lstlisting.5.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}A slice of the PC unit SME code, which contains variable that holds the input address. On every cycle edge it then holds and outputs the current address.}{44}{lstlisting.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Instruction Memory}{44}{subsection.5.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Illustration of the \texttt  {instruction memory} process, taking the PC output as input and outputting to the 5 buses, \texttt  {Read RS1 and RS2}, \texttt  {Write RS}, \texttt  {Instruction} and \texttt  {CPU}.\relax }}{45}{figure.caption.65}\protected@file@percent }
+\newlabel{fig:IM}{{5.2}{45}{Illustration of the \texttt {instruction memory} process, taking the PC output as input and outputting to the 5 buses, \texttt {Read RS1 and RS2}, \texttt {Write RS}, \texttt {Instruction} and \texttt {CPU}.\relax }{figure.caption.65}{}}
+\newlabel{IMSME}{{5.2}{45}{A slice of the Instruction Memory unit SME code. It contains a single byte array, which holds all the instructions to be run. First we check whether the given address to be accessed lies within instruction array, if not we shut down the CPU. We then use the address to access the correct array elements to create a temporary variable, which contains the instruction, as shown in lines 9-12. Hereafter we slice out the fields in the instruction and place the values in the correct busses. Lastly we tell the simulator to keep the CPU running using the CPU bus}{lstlisting.5.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.2}A slice of the Instruction Memory unit SME code. It contains a single byte array, which holds all the instructions to be run. First we check whether the given address to be accessed lies within instruction array, if not we shut down the CPU. We then use the address to access the correct array elements to create a temporary variable, which contains the instruction, as shown in lines 9-12. Hereafter we slice out the fields in the instruction and place the values in the correct busses. Lastly we tell the simulator to keep the CPU running using the CPU bus.}{45}{lstlisting.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}Next instruction Unit}{46}{subsection.5.1.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Illustration of the \texttt  {next} process, taking the \texttt  {PC output} as input and outputs the next instruction adress to the \texttt  {next output} bus.\relax }}{46}{figure.caption.66}\protected@file@percent }
+\newlabel{fig:NEXT}{{5.3}{46}{Illustration of the \texttt {next} process, taking the \texttt {PC output} as input and outputs the next instruction adress to the \texttt {next output} bus.\relax }{figure.caption.66}{}}
+\newlabel{NEXTSME}{{5.3}{46}{A slice of the \texttt {Next} process SME code. Here we declare a temporary varible, which contains the program counter output. We increment the temporary variable by four and place it in the output bus}{lstlisting.5.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.3}A slice of the \texttt  {Next} process SME code. Here we declare a temporary varible, which contains the program counter output. We increment the temporary variable by four and place it in the output bus.}{46}{lstlisting.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.4}Register}{46}{subsection.5.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.5}Arithmetic Logic Unit (ALU)}{46}{subsection.5.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.6}Immediate generator}{46}{subsection.5.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.7}Data Memory}{46}{subsection.5.1.7}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color  {Plum!25}o}}\ Need to figure out more sections to explain whole datapath}{46}{section*.67}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Designing the Control}{47}{section.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Single Cycle RISC-V datapath}{47}{section.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Improving the datapath}{47}{section.5.4}\protected@file@percent }
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color  {Plum!25}o}}\ figure out better naming for sections}{47}{section*.68}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}RV64I Base Instructions Support}{47}{subsection.5.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Supporting R-Format}{47}{subsection.5.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Supporting I-Format}{47}{subsection.5.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.4}Supporting S-Format}{47}{subsection.5.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.5}Supporting B-Format}{47}{subsection.5.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.6}Supporting U-Format}{47}{subsection.5.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.7}Supporting J-Format}{47}{subsection.5.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Debugging the instructions}{47}{section.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Writing assembly to test instructions}{47}{subsection.5.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Writing simple C code to run on RISC-V}{47}{subsection.5.5.2}\protected@file@percent }
 \@setckpt{chapters/chapter5}{
-\setcounter{page}{45}
+\setcounter{page}{48}
 \setcounter{equation}{0}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{0}
+\setcounter{footnote}{1}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{5}
@@ -47,7 +55,7 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{0}
+\setcounter{figure}{3}
 \setcounter{table}{0}
 \setcounter{parentequation}{0}
 \setcounter{caption@flags}{0}
@@ -57,11 +65,11 @@
 \setcounter{currfiledepth}{0}
 \setcounter{NAT@ctr}{0}
 \setcounter{Item}{4}
-\setcounter{Hfootnote}{10}
+\setcounter{Hfootnote}{11}
 \setcounter{bookmark@seq@number}{54}
 \setcounter{pp@next@reset}{0}
-\setcounter{lstnumber}{5}
-\setcounter{@todonotes@numberoftodonotes}{12}
+\setcounter{lstnumber}{8}
+\setcounter{@todonotes@numberoftodonotes}{7}
 \setcounter{section@level}{2}
-\setcounter{lstlisting}{0}
+\setcounter{lstlisting}{3}
 }

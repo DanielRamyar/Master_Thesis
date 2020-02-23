@@ -34,7 +34,7 @@
 \BOOKMARK [1][-]{section.5.1}{Single Cycle RISC-V Units}{chapter.5}% 34
 \BOOKMARK [2][-]{subsection.5.1.1}{Program Counter}{section.5.1}% 35
 \BOOKMARK [2][-]{subsection.5.1.2}{Instruction Memory}{section.5.1}% 36
-\BOOKMARK [2][-]{subsection.5.1.3}{incrementor?}{section.5.1}% 37
+\BOOKMARK [2][-]{subsection.5.1.3}{Next instruction Unit}{section.5.1}% 37
 \BOOKMARK [2][-]{subsection.5.1.4}{Register}{section.5.1}% 38
 \BOOKMARK [2][-]{subsection.5.1.5}{Arithmetic Logic Unit \(ALU\)}{section.5.1}% 39
 \BOOKMARK [2][-]{subsection.5.1.6}{Immediate generator}{section.5.1}% 40

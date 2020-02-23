@@ -1,15 +1,14 @@
 \chapter{Introduction to RISC-V instructions}
     To understand the design decisions made, building the RISC-V CPU in Chapter \ref{Chapter:5}, we will go through the fundamentals of the machine language behind the RISC-V architecture. 
     
-    To this end we will go through a top down approach going from code written by the programmer all the way down to electrical signals firing in the hardware implementation. We will therefore start out by introducing the RISC-V assembly code in section \ref{section:RISC-V Asembly}. 
+    To this end we will go through a top down approach going from assembly code written by the programmer all the way down to the machine code representation in the hardware implementation. We will therefore start out by introducing the RISC-V assembly code in section \ref{section:RISC-V Asembly}. 
     
-    \note{rewrite this section when finished with chapter}
     Hereafter we will talk about the operands of the RISC-V CPU, which unlike high-level programming languages are confined in a small directory called the \textit{register}. 
     
-    Hereafter we will go through the base 2 numeral system to make meaning of the following section, which will go through how the assembly language, also known as instructions, is represented in the CPU itself. This chapter is based on chapter 2 in \cite{riscVbook}, which can be refereed to if more detailed explanations is needed.
+    Then we will go through the base 2 numeral system to make meaning of the following section, which will go through how the assembly language, also known as instructions, is represented in the CPU itself. This chapter is based on chapter 2 in \cite{riscVbook}, which can be refereed to if more detailed explanations is needed.
 
 \section{RISC-V Assembly}\label{section:RISC-V Asembly}
-    Like every computer, we need a way of telling it what to do. This is done via the RISC-V assembly language, which is a human readable abstraction of the RISC-V instruction set. We will get into what this instruction set looks like in a bit, for now we will just introduce the assembly language. All following code can be run in the RISC-V Assembler simulator Jupiter, which can be found in this footnote\footnote{\url{https://github.com/andrescv/Jupiter}}.\note{change this to after when we can actually run code}
+    Like every computer, we need a way of telling it what to do. This is done via the RISC-V assembly language, which is a human readable abstraction of the RISC-V instruction set. We will get into what this instruction set looks like in a bit, for now we will just introduce the assembly language. For writing small RISC-V Assembler programs I can recommend the RISC-V Assembly simulator \textit{Jupiter} , which can be found in this footnote\footnote{\url{https://github.com/andrescv/Jupiter}}.
     
     For the assembler to know where to start reading instructions from we use:
     
@@ -69,7 +68,7 @@ __start:
 \section{Register}\label{section:Register}
     In a high-level programming language we do not think much, when we declare a variable. For the most part the memory management is hidden for the end user and is taken care of by the compiler. However we do not have this convenience in assembly, where the operands of instructions are much more restricted. 
     
-    In the RISC-V architecture we have a special location reserved for the operands build directly into the hardware implementation, which is known as the \textit{register}. It comprises of 32 storage locations for operands, each of which is 64 bits long. These locations is accessed by the instructions, using the numbers 0 through 31 with an x in front e.g. using our addition instruction we type:
+    In the RISC-V architecture we have a special location reserved for the operands build directly into the hardware implementation, which is known as the \textit{register}. It comprises of 32 storage locations for operands, each of which is 64 bits long. These locations are accessed by the instructions, using the numbers 0 through 31 with an x in front e.g. using our addition instruction we type:
     \begin{lstlisting}[language=]
 add x18, x12, x13
     \end{lstlisting}
@@ -138,7 +137,6 @@ add s2, a2, a3
     \end{figure}
 
     Assuming that we in a high-level programming language have associated an array of doublewords, meaning each element in the array is 64 bit, with the variable \texttt{A}. We now want to calculate
-    
     \begin{equation}
         A[2] = x + A[4]
     \end{equation}
@@ -183,19 +181,17 @@ addi x13, x0, -5 # x13 = 0 - 5
     \end{table}
         
 \section{Numeral system of a computer}
-    In everyday life we are used to using the decimal numeral system, meaning that ten base digits are used to represent a quantity, such as 6 apples. However the decimal numeral system was not chosen to represent numbers in a computer. Here we live in a world were everything consists of signals being high and low or transistors being on or off. Therefore a much more inherent counting system can be chosen to represent numbers in this world, namely the binary numeral system.
+    In everyday life we are used to using the decimal numeral system, meaning that ten base digits are used to represent a quantity, such as 6 apples. However the decimal numeral system was not chosen to represent numbers in a computer. Here we live in a world were everything consists of signals being high and low voltage or transistors being on or off. Therefore a much more inherent counting system can be chosen to represent numbers in this world, namely the binary numeral system.
     
-    The binary digit or bit is the fundamental building block of any computer. A bit require only two "symbols" to be represented. A high/low signal, on/off transistor, true/false statements and of course, but not limited to, the digits 0 and 1.
+    The binary digit or bit is the fundamental building block of any computer. A bit require only two "symbols" to be represented. A high/low signal, on/off transistor, true/false statements or of course, but not limited to, the digits 0 and 1.
     
     In this thesis we label the digits such that the rightmost digit in a number is the zeroth digit and then increasing the index going left. To avoid confusion we will always label which numeral system we are working with e.g. $10_{\;\texttt{two}}$ or $10_{\;\texttt{ten}}$.
     
-    Since humans do not usually think in binary, we need a way of converting decimal numbers to binary numbers. We know that any base $b$ repressentation of a number can be exressed in base 10 using\footnote{The following derivation is inspired from \\\url{https://math.stackexchange.com/questions/1359770/why-does-the-division-algorithm-work-for-converting-between-number-bases}} (note that the following derivation only works for positive/unsigned numbers) 
+    Since humans do not usually think in binary, we need a way of converting decimal numbers to binary numbers. We know that any base repressentation of a number can be exressed in base 10 using\footnote{The following derivation is inspired from \\\url{https://math.stackexchange.com/questions/1359770/why-does-the-division-algorithm-work-for-converting-between-number-bases}} (note that the following derivation only works for positive/unsigned numbers) 
     \begin{equation}\label{Eq:baseXToDecimal}
         N_b = \sum_{i=0}^{n} d_i b^i
     \end{equation}
-    where $N_b$ is the number to be converted to base 10 and $d_i$ is the i'th digit in $N_b$. 
-   
-    We can for example expand the number $1101$
+    where $N_b$ is the number to be converted to base 10, $b$ is the target base and $d_i$ is the i'th digit in $N_b$, which satisfies $0 \leq d_k < b$. We can for example expand the number $1101$
     \begin{equation}\label{Eq:bintodecimal}
         1101_{\;\texttt{two}} = (1 \cdot 2^3 + 1 \cdot 2^2 + 0\cdot 2^1 + 1\cdot 2^0)_{\;\texttt{ten}} = 13_{\;\texttt{ten}}
     \end{equation}
@@ -266,13 +262,14 @@ addi x13, x0, -5 # x13 = 0 - 5
     
     \subsection{Signed and Unsigned numbers}
         No computer would be any good for scientific purposes if we are not able to work with negative numbers. Therefore we need a way of representing them in binary. The standard implementation is the \textit{two complement} representation. Here leading zeros means a positive number and leading ones means a negative number. Using 4 bits we are able to represent numbers -8 to 7 and have been outlined in Table \ref{table:DecimalToBinarySigned}. 
+        
         We observe that 
         \begin{equation}\label{Eq:complement}
             x + \bar{x} = -1
         \end{equation}
         where $x$ is a decimal and $\bar{x}$ its complement e.g. $0001_{\; \texttt{two}}+1110_{\; \texttt{two}}=1111_{\; \texttt{two}}$. Rearranging Eq. \ref{Eq:complement}
         \begin{equation}
-        \bar{x} + 1 = x
+        \bar{x} + 1 = -x
         \end{equation}
         
         Therefore to negate any number you simply invert all bits and add one e.g. going from -7 to 7
@@ -407,7 +404,7 @@ funct7  x13   x12   funct3 x18   add
                 \label{fig:bintohex}
             \end{figure}
        
-\section{Operators}
+\section{Operators}\label{section:Operators}
     In Section \ref{section:InstructionRep} we introduced the machine code representation for instructions. We saw that within the 32-bit strings existed various fields responsible for instruction identification, target registers and constant fields.
     In this section we take a look at some useful operations, outlined in Table \ref{table:operators}, to address strings of bits or even individual bits within an instruction.
     
@@ -434,13 +431,12 @@ funct7  x13   x12   funct3 x18   add
         \begin{equation*}
             \text{\Huge 0000\, 0000\, 1101 \, 0110}
         \end{equation*}
-        
         logical shifting left by 9 bits
         \begin{figure*}[h!]
             \centering
             \subimport{tikz_stuff/}{shiftleft}
         \end{figure*}
-     
+    \\
         logical shifting right by 9 bits
         \begin{figure*}[h!]
             \centering
@@ -456,7 +452,7 @@ funct7  x13   x12   funct3 x18   add
             \centering
             \subimport{tikz_stuff/}{shiftleft}
         \end{figure*}
-    
+    \\
         then performing a arithmetic shift to the right by 9 bits
         \begin{figure*}[h!]
             \centering
