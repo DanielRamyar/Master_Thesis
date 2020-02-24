@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  23 FEB 2020 16:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  24 FEB 2020 16:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1184,7 +1184,7 @@ l.75     \include{frontpage}
 page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.52 ... {5.1.7}Data Memory}{46}{subsection.5.1.7}
+l.52 ... {5.1.7}Data Memory}{51}{subsection.5.1.7}
                                                   % [1
 
 
@@ -1626,7 +1626,7 @@ Package xcolor Warning: Incompatible color definition on input line 15.
 Package xcolor Warning: Incompatible color definition on input line 15.
 
 )
-<pictures/ANDGate.pdf, id=654, 170.6375pt x 260.975pt>
+<pictures/ANDGate.pdf, id=652, 170.6375pt x 260.975pt>
 File: pictures/ANDGate.pdf Graphic file (type pdf)
 <use pictures/ANDGate.pdf>
 Package pdftex.def Info: pictures/ANDGate.pdf  used on input line 200.
@@ -1793,7 +1793,7 @@ Chapter 5.
 
 
 ]
-<pictures/PC.pdf, id=990, 1027.84pt x 273.93752pt>
+<pictures/PC.pdf, id=988, 1027.84pt x 273.93752pt>
 File: pictures/PC.pdf Graphic file (type pdf)
 <use pictures/PC.pdf>
 Package pdftex.def Info: pictures/PC.pdf  used on input line 24.
@@ -1817,7 +1817,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 29--40
  []
 
 [44 <./pictures/PC.pdf>]
-<pictures/IM.pdf, id=1016, 845.1575pt x 217.3981pt>
+<pictures/IM.pdf, id=1014, 845.1575pt x 217.3981pt>
 File: pictures/IM.pdf Graphic file (type pdf)
 <use pictures/IM.pdf>
 Package pdftex.def Info: pictures/IM.pdf  used on input line 53.
@@ -2051,7 +2051,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 58--87
  []
 
 [45 <./pictures/IM.pdf>]
-<pictures/Next.pdf, id=1063, 845.1575pt x 219.49644pt>
+<pictures/Next.pdf, id=1061, 845.1575pt x 219.49644pt>
 File: pictures/Next.pdf Graphic file (type pdf)
 <use pictures/Next.pdf>
 Package pdftex.def Info: pictures/Next.pdf  used on input line 98.
@@ -2074,12 +2074,390 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 103--114
 []$[]$ 
  []
 
-[46 <./pictures/Next.pdf>]) [47]
+[46 <./pictures/Next.pdf>]
+<pictures/REGISTER.pdf, id=1086, 845.1575pt x 349.7332pt>
+File: pictures/REGISTER.pdf Graphic file (type pdf)
+<use pictures/REGISTER.pdf>
+Package pdftex.def Info: pictures/REGISTER.pdf  used on input line 128.
+(pdftex.def)             Requested size: 245.0894pt x 101.42003pt.
+
+
+Package xcolor Warning: Incompatible color definition on input line 136.
+
+
+Package xcolor Warning: Incompatible color definition on input line 136.
+
+
+Package xcolor Warning: Incompatible color definition on input line 136.
+
+
+Package xcolor Warning: Incompatible color definition on input line 141.
+
+
+Package xcolor Warning: Incompatible color definition on input line 141.
+
+
+Package xcolor Warning: Incompatible color definition on input line 141.
+
+
+Package xcolor Warning: Incompatible color definition on input line 142.
+
+
+Package xcolor Warning: Incompatible color definition on input line 142.
+
+
+Package xcolor Warning: Incompatible color definition on input line 145.
+
+
+Package xcolor Warning: Incompatible color definition on input line 148.
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 133--154
+[]$[]$ 
+ []
+
+[47 <./pictures/REGISTER.pdf>]
+<pictures/ALU.pdf, id=1120, 845.1575pt x 428.58354pt>
+File: pictures/ALU.pdf Graphic file (type pdf)
+<use pictures/ALU.pdf>
+Package pdftex.def Info: pictures/ALU.pdf  used on input line 163.
+(pdftex.def)             Requested size: 270.45592pt x 137.14952pt.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 172.
+
+
+Package xcolor Warning: Incompatible color definition on input line 173.
+
+
+Package xcolor Warning: Incompatible color definition on input line 174.
+
+
+Package xcolor Warning: Incompatible color definition on input line 174.
+
+
+Package xcolor Warning: Incompatible color definition on input line 174.
+
+
+Package xcolor Warning: Incompatible color definition on input line 174.
+
+
+Package xcolor Warning: Incompatible color definition on input line 175.
+
+
+Package xcolor Warning: Incompatible color definition on input line 176.
+
+
+Package xcolor Warning: Incompatible color definition on input line 177.
+
+
+Package xcolor Warning: Incompatible color definition on input line 177.
+
+
+Package xcolor Warning: Incompatible color definition on input line 177.
+
+
+Package xcolor Warning: Incompatible color definition on input line 177.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 180.
+
+
+Package xcolor Warning: Incompatible color definition on input line 180.
+
+
+Package xcolor Warning: Incompatible color definition on input line 180.
+
+
+Package xcolor Warning: Incompatible color definition on input line 180.
+
+
+Package xcolor Warning: Incompatible color definition on input line 181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 182.
+
+
+Package xcolor Warning: Incompatible color definition on input line 183.
+
+
+Package xcolor Warning: Incompatible color definition on input line 183.
+
+
+Package xcolor Warning: Incompatible color definition on input line 183.
+
+
+Package xcolor Warning: Incompatible color definition on input line 183.
+
+
+Package xcolor Warning: Incompatible color definition on input line 184.
+
+
+Package xcolor Warning: Incompatible color definition on input line 185.
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 168--191
+[]$[]$ 
+ []
+
+[48 <./pictures/ALU.pdf>]
+<pictures/IMMGEN.pdf, id=1158, 845.1575pt x 216.91771pt>
+File: pictures/IMMGEN.pdf Graphic file (type pdf)
+<use pictures/IMMGEN.pdf>
+Package pdftex.def Info: pictures/IMMGEN.pdf  used on input line 209.
+(pdftex.def)             Requested size: 295.80956pt x 75.92233pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package xcolor Warning: Incompatible color definition on input line 217.
+
+
+Package xcolor Warning: Incompatible color definition on input line 217.
+
+
+Package xcolor Warning: Incompatible color definition on input line 217.
+
+
+Package xcolor Warning: Incompatible color definition on input line 218.
+
+
+Package xcolor Warning: Incompatible color definition on input line 218.
+
+
+Package xcolor Warning: Incompatible color definition on input line 219.
+
+
+Package xcolor Warning: Incompatible color definition on input line 219.
+
+
+Package xcolor Warning: Incompatible color definition on input line 221.
+
+
+Package xcolor Warning: Incompatible color definition on input line 223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 224.
+
+
+Package xcolor Warning: Incompatible color definition on input line 226.
+
+
+Package xcolor Warning: Incompatible color definition on input line 227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 228.
+
+
+Package xcolor Warning: Incompatible color definition on input line 230.
+
+
+Package xcolor Warning: Incompatible color definition on input line 231.
+
+
+Package xcolor Warning: Incompatible color definition on input line 232.
+
+
+Package xcolor Warning: Incompatible color definition on input line 233.
+
+
+Package xcolor Warning: Incompatible color definition on input line 233.
+
+
+Package xcolor Warning: Incompatible color definition on input line 233.
+
+
+Package xcolor Warning: Incompatible color definition on input line 234.
+
+
+Package xcolor Warning: Incompatible color definition on input line 236.
+
+
+Package xcolor Warning: Incompatible color definition on input line 238.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Package xcolor Warning: Incompatible color definition on input line 239.
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 214--245
+[]$[]$ 
+ []
+
+[49] [50 <./pictures/IMMGEN.pdf>]
+<pictures/DM.pdf, id=1204, 845.1575pt x 478.93808pt>
+File: pictures/DM.pdf Graphic file (type pdf)
+<use pictures/DM.pdf>
+Package pdftex.def Info: pictures/DM.pdf  used on input line 251.
+(pdftex.def)             Requested size: 295.80956pt x 167.63083pt.
+
+
+Package xcolor Warning: Incompatible color definition on input line 259.
+
+
+Package xcolor Warning: Incompatible color definition on input line 259.
+
+
+Package xcolor Warning: Incompatible color definition on input line 259.
+
+
+Package xcolor Warning: Incompatible color definition on input line 261.
+
+
+Package xcolor Warning: Incompatible color definition on input line 261.
+
+
+Package xcolor Warning: Incompatible color definition on input line 261.
+
+
+Package xcolor Warning: Incompatible color definition on input line 262.
+
+
+Package xcolor Warning: Incompatible color definition on input line 264.
+
+
+Package xcolor Warning: Incompatible color definition on input line 266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 266.
+
+
+Package xcolor Warning: Incompatible color definition on input line 270.
+
+
+Package xcolor Warning: Incompatible color definition on input line 271.
+
+
+Package xcolor Warning: Incompatible color definition on input line 272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 277.
+
+
+Package xcolor Warning: Incompatible color definition on input line 277.
+
+
+Package xcolor Warning: Incompatible color definition on input line 278.
+
+
+Package xcolor Warning: Incompatible color definition on input line 280.
+
+
+Package xcolor Warning: Incompatible color definition on input line 281.
+
+
+Package xcolor Warning: Incompatible color definition on input line 282.
+
+
+Package xcolor Warning: Incompatible color definition on input line 283.
+
+
+Package xcolor Warning: Incompatible color definition on input line 284.
+
+
+Package xcolor Warning: Incompatible color definition on input line 285.
+
+
+Package xcolor Warning: Incompatible color definition on input line 286.
+
+
+Package xcolor Warning: Incompatible color definition on input line 289.
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 256--295
+[]$[]$ 
+ []
+
+[51 <./pictures/DM.pdf>] [52]) [53]
 \openout2 = `chapters/chapter6.aux'.
 
  (./chapters/chapter6.tex
 Chapter 6.
-) [48
+) [54
 
 
 
@@ -2088,23 +2466,23 @@ Chapter 6.
 
  (./chapters/appendix.tex
 Appendix A.
-[49
+[55
 
 
 
-] [50]
+] [56]
 Appendix B.
-[51
+[57
 
-] [52]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[53] [54] [55]
+] [58]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[56] [57]) [58] [59]
+[59] [60] [61]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[62] [63]) [64] [65]
 \openout2 = `chapters/RiscVReferenceCard.aux'.
 
  (./chapters/RiscVReferenceCard.tex
@@ -2150,11 +2528,11 @@ Overfull \hbox (24.23172pt too wide) in paragraph at lines 102--167
 [][] 
  []
 
-[60
+[66
 
 
 
-] [61]) (./main.bbl) [62
+] [67]) (./main.bbl) [68
 
 
 
@@ -2176,13 +2554,13 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 37467 strings out of 492163
- 706363 string characters out of 6125305
- 1015042 words of memory out of 5000000
- 40584 multiletter control sequences out of 15000+600000
+ 37629 strings out of 492163
+ 708847 string characters out of 6125305
+ 1017462 words of memory out of 5000000
+ 40631 multiletter control sequences out of 15000+600000
  550863 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,97p,943b,1466s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,15n,97p,1243b,1466s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not ex
 ist, replaced by a fixed one
 
@@ -2244,10 +2622,10 @@ type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
 e1/public/amsfonts/latxfont/line10.pfb></usr/local/texlive/2019/texmf-dist/font
 s/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (66 pages, 572354 bytes).
+Output written on main.pdf (72 pages, 620326 bytes).
 PDF statistics:
- 1449 PDF objects out of 1728 (max. 8388607)
- 1308 compressed objects within 14 object streams
- 511 named destinations out of 1000 (max. 500000)
- 585 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1644 PDF objects out of 1728 (max. 8388607)
+ 1484 compressed objects within 15 object streams
+ 622 named destinations out of 1000 (max. 500000)
+ 605 words of extra memory for PDF output out of 10000 (max. 10000000)
 

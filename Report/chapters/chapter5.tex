@@ -103,24 +103,195 @@
         \begin{minipage}{\linewidth}
             \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Next} process SME code. Here we declare a temporary varible, which contains the program counter output. We increment the temporary variable by four and place it in the output bus.},captionpos=b, label = NEXTSME]
 ...
-        ulong temp;
-        
-        protected override void OnTick() {
-            temp = m_Input.Address + 4;
-            Output.Address = temp;
-        }
+    ulong temp;
+    
+    protected override void OnTick() {
+        temp = m_Input.Address + 4;
+        Output.Address = temp;
+    }
             \end{lstlisting}
         \end{minipage}  
         
     
     \subsection{Register}
+        The \texttt{register}, or RS for short, is a small data storage location for operands of instructions among others (see Table \ref{table:RISCVRegister}). It can be accessed by specifying a register address in an instruction. 
+        
+        Since R-type instructions use two operands to execute an arithmetic operation, the register has two input lines carrying the address to the specified registers and two output lines carrying the data in the read registers.
+        
+        Furthermore the result needs to get stored, therefore we need two additional lines one carrying the result of an operation and the other an address for the storage location. To avoid any unintentional write backs to the register, we introduce a write control line, which is asserted if write back is intended.
+        
+        In SME the register is declared as a process containing a signed 64-bit array with 32 entries. To ensure the latest data is always read, we write to the register as the first thing. Since register 0 is hard-wired to zero according to the conventions, we make sure that the write back address lies within the range 1-31 and that the write control is asserted.
+        Lastly we check if the read addresses lies within the range of the register and then output the data in the read registers to the corresponding buses. The \texttt{register} process is illustrated in Figure \ref{fig:REGISTER} and a code segment shown in Listing \ref{REGISTER}.
+    
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.29]{pictures/REGISTER.pdf}
+            \caption{Illustration of the \texttt{register} process. It gets its information on which register addresses to read from \texttt{Read RS1, RS2} buses. To write data the register uses \texttt{write register} bus to know which register to write to, the \texttt{write data} bus contains the data to be written and the \texttt{write control} bus authorize whether the register should write or not.}
+            \label{fig:REGISTER}
+        \end{figure}
+    
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{register} process SME code. The register is declared as a signed 64-bit array with 32 elements. In every clock cycle the process checks if the write control signal is asserted. If it is we check if the address to be written lies within the register range and is above 0, as this register is reserved to be hard-wired zero. Lastly the process reads the two specified registers and if they lie within the register range, they get outputted to the corresponding buses.},captionpos=b, label = REGISTER]
+...
+    private readonly long[] m_register = {0, 0, 0, 0, 0, 0, 0, 0,
+                                          0, 0, 0, 0, 0, 0, 0, 0,
+                                          0, 0, 0, 0, 0, 0, 0, 0,
+                                          0, 0, 0, 0, 0, 0, 0, 0,};
+            
+    protected override void OnTick() {
+        if (m_write_control.Enable == true && m_write.Address > 0 && m_write.Address < 32) {
+            m_register[m_write.Address] = m_write_data.Data;          
+        }
+        if (m_read_1.Address >= 0 && m_read_1.Address < 32) { 
+            output_1.Data = m_register[m_read_1.Address];
+        }
+        if (m_read_2.Address >= 0 && m_read_2.Address < 32) { 
+            output_2.Data = m_register[m_read_2.Address];
+        }
+    }
+            \end{lstlisting}
+        \end{minipage}  
     
     \subsection{Arithmetic Logic Unit (ALU)}
+        The \texttt{Arithmetic Logic Unit}, or ALU for short, is the computational powerhouse of the CPU. It is here all arithmetic, logical, shift and bitwise operations are computed.
+        The ALU has two inputs that consists of the operands of an operation. The output is then the result. To determine which operation to perform we additionally have a control line with the operation code or opcode.
+        
+        In the SME implementation all the operations are enclosed in a \texttt{switch} statement, that is controlled by the opcode to determine which operation to execute. The ALU is illustrated in Figure \ref{fig:ALU} and a code segment is shown in Listing \ref{ALU}.
+    
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.32]{pictures/ALU.pdf}
+            \caption{Illustration of the \texttt{ALU} process. The two input contains the operands of the operation to be executed and the output is the result. The ALU opcode (in red) controls which operations the ALU will perform.}
+            \label{fig:ALU}
+        \end{figure}
+    
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{ALU} process SME code. The ALU consists of a large \texttt{switch} statement, with cases for each operation to be performed, which is controlled by the ALU operation code (\texttt{opcode}). },captionpos=b, label = ALU]
+...
+    protected override void OnTick() {
+        switch (m_ALUOP.Value) {
+            case 0:
+                output.Value = m_ALU_In_1.Data + m_ALU_In_2.Data;   // ADD
+                break;
+            case 1:
+                output.Value = m_ALU_In_1.Data - m_ALU_In_2.Data;   // SUB
+                break;
+            case 2:
+                output.Value = m_ALU_In_1.Data & m_ALU_In_2.Data;   // AND
+                break;
+            case 3:
+                output.Value = m_ALU_In_1.Data | m_ALU_In_2.Data;   // OR
+                break;
+            case 4:
+                ...
+        }
+    }
+            \end{lstlisting}
+        \end{minipage}  
+        
     
     \subsection{Immediate generator}
+        The \texttt{Immediate Generator}, or IMMGEN for short, extracts immediate fields from instructions. This is a pretty large unit since it needs to know where the immediate field is located in every instruction. To make matters worse some immediate fields in the instructions are totally scrambled, so we have to be really careful on how we reconstruct them.
+        
+        To start we need to be able to identify which type of instruction we are dealing with to know where the immediate field is located. Luckily almost all types of instructions have a unique operation code (for example the I-type has opcode 19), we therefore use a \texttt{switch} statement in the SME code with the opcode in the instruction as a branching condition to identify the instruction type.
+        
+        Some instructions of same type, only use the lower 6 bits in the immediate field, such as the \texttt{slli} instruction. To accommodate this fact we make use of another \texttt{switch} statement, within the specific case of the first \texttt{switch} statement, that uses the \texttt{funct3} field as branching condition, since this is the unique identifier within the same type of instruction (for example \texttt{opcode} 19, \texttt{funct3} 1 is the \texttt{slli} instruction).
+        
+        When we know where the immediate field is located it is time to extract it. This is done by shifting the instruction in question to the right, such that the first bit of the immediate field is located at bit index 0 of the 32-bit instruction. Hereafter we do a bitwise AND operation to remove all but the necessary bits (see Section \ref{section:Operators}). It should be noted that in cases, where the immediate field only is 12-bits long we need to perform a shift to the left and then right to retain the sign bit, as 12-bit numbers are not supported by \texttt{C\#} and therefore does not happen automatically, when cast to \texttt{long} type.
+        
+        If we deal with \texttt{B-} and \texttt{J-type} instructions, we need to be really careful when we reconstruct the immediate field, as the immediate field bits do not lie in a trivial manner. An important thing to note is that in these types of instructions the first bit is not supplied and therefore should not get shifted all the way to the 0'th bit index but should get shifted to the 1'st bit index. This firstly ensures that we only jump by an even number of bytes, as this is where the base index is for the instructions and we effectively double the range we can jump instructions.
+        
+        When the immediate field is constructed it simply gets outputted as a signed 64-bit number. The immediate generator is illustrated in Figure \ref{fig:IMMGEN} and a code segment is shown in Listing \ref{IMMGEN}.
+        
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.35]{pictures/IMMGEN.pdf}
+            \caption{Illustration of the \texttt{immediate generation} process, taking an instruction as input. It then extracts the immediate field, which it outputs. }
+            \label{fig:IMMGEN}
+        \end{figure}
     
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{IMMGEN} process SME code. We first extract the opcode and funct3 fields from the instruction and put them in a variable. We then use a \texttt{switch} statement and the opcode to determine what type of instruction we are dealing with. Since some instructions of same type like \texttt{slli} only use the lower 6 bits in the immediate field (shamt field), we need another switch statement to tell these apart using the funct3 field. Lastly we construct the immediate and output it . Note that in line 18 we make use of a little hack to retain the sign bit of a 12 bit number since it is not supported in \texttt{C\#}},captionpos=b, label = IMMGEN]
+...
+    protected override void OnTick() {
+        uint Opcode = m_instruction.Current & (uint)0x7F;
+        uint funct3 = m_instruction.Current >> 12 & (uint)0x7;
+            
+        switch(Opcode) {
+            ...
+            case 19:                                        // I-format
+                switch (funct3) {
+                    ...
+                    case 5:
+                        temp1 = m_instruction.Current >> 20 & (uint)0x3F;
+                        temp0 = (long)temp1;
+                        output.Immediate = temp0;
+                        break;
+                    default:
+                        temp1 = m_instruction.Current >> 20 & (uint)0xFFF;
+                        short temp5 = (short)((short)(temp1 << 4) >> 4);
+                        temp0 = (long)temp5;
+                        output.Immediate = temp0;
+                        break;
+                }
+            break;
+            case 27:                                        // I-format Word
+                ....
+        }
+    }
+            \end{lstlisting}
+        \end{minipage} 
+\newpage
     \subsection{Data Memory}
-    \improvement{Need to figure out more sections to explain whole datapath}
+        The \texttt{Data Memory}, or DM for short, is the main data storage unit of the CPU, as it can contain much more data than the register.
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.35]{pictures/DM.pdf}
+            \caption{Illustration of the \texttt{Data Memory} process. As input it takes the result from the ALU and controls signals (in red) \texttt{Memory Read}, \texttt{Memory Write} and \texttt{Size and Sign}. It then outputs the read data or 0 if both \texttt{Memory Read} and \texttt{Memory Write} are deasserted.}
+            \label{fig:DM}
+        \end{figure}
+    
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Data Memory} process SME code. Similar to the instruction memory, the data memory consists of a byte array, which we made 2000 elements long in this case. As there can only be read or written to the data memory once per clock cycle, we simply construct an \texttt{if/else} statement, which uses control signals to determine the procedure to be done. Both the read and write procedures needs to know the size and sign of the data to be loaded or written. Therefore a \texttt{switch} statement has been added to both outcomes, which uses \texttt{SizeAndSign} control signal to choose between the cases. When reading the data from memory we need to remember that it is little-endian addressed  so before we output the value the bits need to be shuffled around in the correct order, so the correct value is added to the register, as that is big-endian. When writing the data the opposite need to happen, so a big-endian value need to be converted to a little-endian one. If both read and write control signals are deasserted I choose to output 0.},captionpos=b, label = DM]
+...
+    byte[] Data_Memory = new byte[2000];
+            
+    protected override void OnTick() {
+        if (m_MemRead.Enable) {
+            ...
+            switch (m_SizeAndSign.Value) {
+                ...
+                case 1: // load word
+                    temp0 =
+                    Data_Memory[m_Address.Value] | Data_Memory[m_Address.Value + 1] << 8
+                                                 | Data_Memory[m_Address.Value + 2] << 16
+                                          | (sbyte)Data_Memory[m_Address.Value + 3] << 24;
+                    break;
+                case 2: // load short
+                    ...
+            }
+            output.Data = temp0;
+        }
+        else if (m_MemWrite.Enable) {
+            switch (m_SizeAndSign.Value) {
+                ...
+                case 2:
+                    Data_Memory[m_Address.Value]     = (byte)(m_Data_input.Data      & 0xFF);
+                    Data_Memory[m_Address.Value + 1] = (byte)(m_Data_input.Data >> 8 & 0xFF);
+                    break;
+                case 3:
+                    Data_Memory[m_Address.Value] = (byte)(m_Data_input.Data & 0xFF); 
+                    break;
+            }
+        }
+        else {
+            output.Data = 0;
+        }
+    }
+            \end{lstlisting}
+        \end{minipage} 
     
 \section{Designing the Control}
     

@@ -3,6 +3,5 @@
 \contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color {Plum!25}o}}\ make ven diagrams to show the operator function}{2}{section*.5}%
 \contentsline {todo}{\color@fb@x {}{black}{}{yellow!40}{\leavevmode {\color {yellow!40}o}}\ beskriv clocked proceser der trigger ikke clocked processer plus nævn skjult bus, skriv hvad latch er}{15}{section*.33}%
 \contentsline {todo}{\color@fb@x {}{black}{}{yellow!40}{\leavevmode {\color {yellow!40}o}}\ beskriv rendevouz og broadcast}{15}{section*.34}%
-\contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color {Plum!25}o}}\ Need to figure out more sections to explain whole datapath}{46}{section*.67}%
-\contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color {Plum!25}o}}\ figure out better naming for sections}{47}{section*.68}%
-\contentsline {todo}{\color@fb@x {}{black}{}{yellow!40}{\leavevmode {\color {yellow!40}o}}\ Pipeline the processor, Add necessary elements to run linux on it, add an fft instruction}{48}{section*.69}%
+\contentsline {todo}{\color@fb@x {}{Plum}{}{Plum!25}{\leavevmode {\color {Plum!25}o}}\ figure out better naming for sections}{53}{section*.71}%
+\contentsline {todo}{\color@fb@x {}{black}{}{yellow!40}{\leavevmode {\color {yellow!40}o}}\ Pipeline the processor, Add necessary elements to run linux on it, add an fft instruction}{54}{section*.72}%
