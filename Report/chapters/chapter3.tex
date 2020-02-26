@@ -10,7 +10,7 @@ Starting out we will go through a short introduction behind the inspiration for 
     
     A classic example of non-determinism would be the act of printing out the numbers one through ten, to your console using more than one thread. If the aforementioned code is executed multiple times, you will notice that the order of numbers would vary between the runs. This is due to the scheduler of the operating system, which we do not have control over. That can create race conditions (meaning the behavior in your code is dependent on the timing of different threads), which can cause unpredictable behavior and therefore bugs, which is undesirable.
     
-    Various attempts has been made to solve this problem, such as the introduction of mutexes or locks. Though it does not solve our problem completely as these "solutions" introduces deadlocks, which is a state, where multiple processes are waiting for each other and the program stalls indefinitely. These deadlocks might not happen every run and thus introduces another layer of difficulty, as error reproducibility is essential for code debugging and therefore makes it hard to make reliable software.
+    Various attempts have been made to solve this problem, such as the introduction of mutexes or locks. Though it does not solve our problem completely as these "solutions" introduce deadlocks, which is a state, where multiple processes are waiting for each other and the program stalls indefinitely. These deadlocks might not happen every run and thus introduces another layer of difficulty, as error reproducibility is essential for code debugging and therefore makes it hard to make reliable software.
     
     Communicating Sequential Processes (CSP) is an algebra first proposed by \citet{HoareC1978Csp} to solve exactly these issues.
     CSP is build on two very basic primitives, first is the process (which should not be confused with operating system processes). A process could be an ordered sequence of operations. These processes do not share any memory, therefore one process cannot access a specific value in another process (which solves the problems we had with shared memory).
@@ -50,12 +50,13 @@ Starting out we will go through a short introduction behind the inspiration for 
             \caption{CSP many to many}
             \label{fig:many_to_many}
         \end{subfigure}%
+        \caption{Figures illustrating various CSP process configurations.}
     \end{figure}
     
 \section{Synchronous Message Exchange}
     The idea of using CSP for hardware modeling was first introduced in \citet{BPUSimulator2013} and later further developed in \cite{PyCSPFPGA}, where two students successfully implemented a vector processor using PyCSP (a CSP library for python). They however found a number of shortcomings of using PyCSP for hardware modeling. The need for global synchronicity, when simulating hardware models using CSP, meant that additional channels were needed to simulate clock progress and emulation of latches among others. This caused an explosion of required channels and processes, which is an unnecessary increase in complexity.
     
-    They did however find that building isolated processes and then connecting them via channels proved to be a powerful approach for building larger hardware models. As in the unit testing method one can develop and test individual processes to then connecting them together and form larger hardware models.
+    They did however find that building isolated processes and then connecting them via channels proved to be a powerful approach for building larger hardware models. As in the unit testing method one can develop and test individual processes and then connecting them together and form larger hardware models.
     
     With this in mind a more suitable message-passing framework for hardware modeling was developed, with the following requirements:
     
@@ -66,7 +67,7 @@ Starting out we will go through a short introduction behind the inspiration for 
         \item Implicit latches
     \end{itemize} 
     
-    all these observations laid the foundation behind Synchronous Message Exchange (SME),  \citet{vinter2014synchronous}. 
+    All these observations laid the foundation behind Synchronous Message Exchange (SME),  \citet{vinter2014synchronous}. 
     Since then the SME framework has been implemented in the .NET framework, \citet{skovhede2016building}, which is the version of SME that will be used throughout this thesis.
     
     We will not dwell further into the theory behind SME in this thesis. Instead we will be developing actual units in SME, that will be needed when we later implement the RISC-V architecture. The SME syntax will be introduced as we go through the examples and is intended to be a from-scratch introduction for the uninitiated reader. 
@@ -120,20 +121,20 @@ $ dotnet add package SME.VHDL --version=0.4.0-beta
         
         
 \newpage
-        Opening up the \texttt{Program.cs} file, we are going to add a couple of lines, as shown in Listing \ref{projectfile}. The \texttt{Program.cs} contains the \texttt{Main()} method of the project and is the entry point of any C\scalerel*{\#}{X} program. To use the SME library we import it with the "\texttt{using SME}" command as shown in the second line. 
+        Opening up the \texttt{Program.cs} file, we are going to add a couple of lines, as shown in Listing \ref{projectfile}. \texttt{Program.cs} contains the \texttt{Main()} method of the project and is the entry point of any C\scalerel*{\#}{X} program. To use the SME library we import it with the "\texttt{using SME}" command as shown in the second line. 
         
-        Within the \texttt{Main()} method, the first function we meet is the using function, this is just to ensure the resources is properly cleaned up after the simulation.
+        Within the \texttt{Main()} method, the first function we meet is the using function, this is just to ensure the resources are properly cleaned up after the simulation.
         
-        Hereafter we see the simulation object, which as the name implies, is responsible for the simulation of the logic unit. We then pass the simulated input to the \texttt{ANDgate} object, which will then perform the AND operation (it is not necessary to pass the simulation object itself to the \texttt{ANDGate}, but is shown here to not cause confusion about how the simulation passes input values to the AND process). We will see how these objects are defined shortly. 
+        Hereafter we see the simulation object, which as the name implies, is responsible for the simulation of the logic unit. We then pass the simulated input to the \texttt{ANDgate} object, which will then perform the AND operation (it is not necessary to pass the simulation object itself to the \texttt{ANDGate}, but it is shown here to not cause confusion about how the simulation passes input values to the AND process). We will see how these objects are defined shortly. 
         
         Lastly we can configure the simulation with the sim object, which uses fluent syntax. In this case we configured it to build a CSV file, which shows what each bus contained at every clock cycle. We build a graph, which outputs a \texttt{.dot} file that shows how all the processes are connected and we transpile the code to VHDL. It should be noted that \texttt{Run()} should always be the last method called.
         
-        The file which contains the \texttt{Main()} will ways be named \texttt{program.cs} in this thesis, but the naming is irrelevant.
+        The file which contains the \texttt{Main()} will always be named \texttt{program.cs} in this thesis, but the naming is irrelevant.
         
         
         \lstinputlisting[language={[Sharp]C}, caption={The \texttt{Program.cs} file, which contains the \texttt{Main()} method for the project.},captionpos=b, label = projectfile]{/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/Project.cs}  
 
-        We are going to need a way to test our AND gate, this is what the simulation file is for and is shown in Listing \ref{simulatorfile}. Remember to name your \texttt{namespace} the same as in the project file. The first two definitions inside the simulation process creates or loads the two buses for the test. Notice that the gate output is labeled as an input bus and vice versa for the gate input. This is due to the simulation is a process in and of itself and therefore needs to output the test values to a bus, which the \texttt{ANDGate} process takes in as input.
+        We are going to need a way to test our AND gate, this is what the simulation file is for and is shown in Listing \ref{simulatorfile}. Remember to name your \texttt{namespace} the same as in the project file. The first two definitions inside the simulation process create or load the two buses for the test. Notice that the gate output is labeled as an input bus and vice versa for the gate input. This is because the simulation is a process in and of itself and therefore needs to output the test values to a bus, which the \texttt{ANDGate} process takes in as input.
         
         Now everything within the \texttt{Run()} method is what is going to be simulated and each time we want a new clock cycle to occur, we use the line \texttt{await ClockAsync()}. In a simulation process any .NET library is allowed and is not going to get transpiled to a VHDL file. Therefore we can print the output of the AND gate to console to see whether or not it works correctly. We do this by transmitting data via the input bus, which contains two signals, \texttt{in1} and \texttt{in2}. We then set the two signals to false wait a clock cycle and print the output. Since this is a fairly small system we can test for all input combinations and look at the outputs to see if the gate is behaving correctly. 
 
@@ -170,7 +171,7 @@ namespace ANDGate {
         
         A bus can contain multiple signals of various types. Since the AND gate evaluates binary values, the \texttt{bool} type has been chosen for the input and output signals. You may have noticed that all the signals have the \texttt{InitialValue} attribute. What this does is that once the bus is created it will contain an initial value. If this is not done you have to be careful not to read the bus before any value has been given to it, as this will crash the program.
         
-        Hereafter we have the \texttt{TopLevelInputBus} and \texttt{TopLevelOuputBus} attributes, they tell SME which buses goes in and out of the hardware implementation. Remember that this attribute is only given to buses which interfacing with some outside process, in this case the simulation process. Internal buses should not be given this attribute. By a internal bus we mean a bus which is connecting processes inside the hardware implementation (see Figure \ref{fig:2BitDecoderSME} here the internal buses goes from the NOT gates to the AND gates).
+        Then we have the \texttt{TopLevelInputBus} and \texttt{TopLevelOuputBus} attributes, they tell SME which buses goes in and out of the hardware implementation. Remember that this attribute is only given to buses which are interfacing with some outside process, in this case the simulation process. Internal buses should not be given this attribute. By an internal bus we mean a bus which is connecting processes inside the hardware implementation (see Figure \ref{fig:2BitDecoderSME}, here the internal buses goes from the NOT gates to the AND gates).
 
         \lstinputlisting[language={[Sharp]C}, caption={The file where all bus declarations are made.},captionpos=b, label = busdeclarations]{/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/Buses.cs}
         
@@ -187,7 +188,7 @@ namespace ANDGate {
         \begin{lstlisting}[language=bash]
 $ dotnet run
         \end{lstlisting}
-        this will output 3 files to a folder named output placed in the same directory as the project. These files consist of \texttt{network.dot}, \texttt{trace.csv} and a \texttt{VHDL} folder. The \texttt{network.dot} file is a graphical representation of our model, which we have shown in Figure \ref{fig:ANDGateDOTFile}. Next we have the \texttt{trace.csv} file, which shows what each signal in all buses contained at each clock cycle. This is a very helpful tool when debugging, as problems quickly can be identified if wrong values are spotted throughout the simulation.
+        this will output 3 files to a folder named output placed in the same directory as the project. These files consist of \texttt{network.dot}, \texttt{trace.csv} and a \texttt{VHDL} folder. The \texttt{network.dot} file is a graphical representation of our model, which we have shown in Figure \ref{fig:ANDGateDOTFile}. Next we have the \texttt{trace.csv} file, which shows what each signal in all buses contained at each clock cycle. This is a very helpful tool when debugging, as problems can be identified quickly if wrong values are spotted throughout the simulation.
         
         Lastly we transpiled the VHDL files to the \texttt{VHDL} folder, which we can verify using any VHDL simulator (\texttt{GHDL} is recommended). The folder contains a \texttt{makefile}, which automates this process, so you simply navigate to the \texttt{VHDL} folder in your terminal and run the command
         \begin{lstlisting}[language=bash]
@@ -198,7 +199,7 @@ $ make
         \begin{figure}[h!]
                 \centering
                 \includegraphics{pictures/ANDGate.pdf}
-                \caption{Graphical representation of the AND gate generated by the outputted network.dot file. Here rectangles represent processes and ellipses buses. The arrows show the direction of the data flow, where a dotted line indicates data flow to a clocked process, which means that the process is activated on a rising clock edge.}
+                \caption{Graphical representation of the AND gate generated by the outputted network.dot file. Here rectangles represent processes and ellipse buses. The arrows show the direction of the data flow, where a dotted line indicates data flow to a clocked process, which means that the process is activated on a rising clock edge.}
                 \label{fig:ANDGateDOTFile}
             
         \end{figure} 
@@ -231,7 +232,7 @@ $ make
                 Out3 = In1 \cdot In0
         \end{equation}
         
-        We notice from Eq. \ref{Eq:2Bitdecoder} that we need two NOT gates (one each input), four AND gates and four outputs. Since we only have 1 minterm per output no OR gates are necessary.
+        We notice from Eq. \ref{Eq:2Bitdecoder} that we need two NOT gates (one each input), four AND gates and four outputs. Since we only have 1 minterm (a term which results in true) per output no OR gates are necessary.
         We can then create a circuit diagram of the decoder, as shown in Figure \ref{fig:2BitDecoderSchematic} and use it as our design guide when we implement it in SME.
         \begin{figure}[h!]
             \centering
@@ -312,7 +313,7 @@ $ make
     \subsection{Full Adder}
         No general purpose CPU would be any good if it could not add two numbers together. This is why we will go through a gate level implementation of an adder unit in SME. Doing this will also give the reader a good intuition on how the arithmetic logic unit (ALU) works, when we later move away from this approach and let the C\scalerel*{\#}{X} compiler do the work for us and the gate level implementation is "hidden".
         
-        As always we start by writing up a logic table with the correct function, which has been done in Table \ref{LogicTable:1BitFullAdder}. The idea is that by chaining multiple 2-bit full adders, we will be able to create an n-bit adder. Therefore each unit contains a carry input and a carry output. The rest is just a matter of asserting the sum output depending on the sum of bits in the inputs. For example in row 3 (not counting the label row) in Table \ref{LogicTable:1BitFullAdder}, we see that only input B is asserted, then it follow from addition $A+B+CarryIn=1$ hence the sum has to be asserted. If the result exceeds 1-bit e.g $1+1=10$ in binary, the CarryOut signal is asserted and sum output deasserted. Following this approach the whole table an be filled.
+        As always we start by writing up a logic table with the correct function, which has been done in Table \ref{LogicTable:1BitFullAdder}. The idea is that by chaining multiple 2-bit full adders, we will be able to create an n-bit adder. Therefore each unit contains a carry input and a carry output. The rest is just a matter of asserting the sum output depending on the sum of bits in the inputs. For example in row 3 (not counting the label row) in Table \ref{LogicTable:1BitFullAdder}, we see that only input B is asserted, then it follow from addition $A+B+CarryIn=1$ hence the sum has to be asserted. If the result exceeds 1-bit e.g $1+1=10$ in binary, the CarryOut signal is asserted and sum output deasserted. Following this approach the whole table can be filled.
         
         \begin{table}[h!]
             \centering
@@ -363,7 +364,8 @@ $ make
         
         Moving on to the buses we see that we have 3 input buses and 3 negated input buses. Here we really see the power of SME, since I only have to create a bus once from which all processes can read data from, because of broadcasting (this means i don't have to make a separate copy of the same bus every time a process needs access to it i.e. the bus gets "broadcasted" to all processes). All AND gate processes have an output, so we create 7 output buses for these. Lastly we create the two output buses for the OR gate processes. That is 15 buses in total.  
         
-        Wiring the corresponding buses to the correct processes we end up with the SME implementation as shown in Figure \ref{fig:1BitFullAdderSME}. Now this implementation quickly became very complex compared to previous units and this is only for the 2-bit full adder! Realizing that it would be very ambitious project to fully do a gate level implementation of the RISC-V processor, we will move on to another approach discussed in the next section. 
+        Wiring the corresponding buses to the correct processes we end up with the SME implementation as shown in Figure \ref{fig:1BitFullAdderSME}. Now this implementation quickly became very complex compared to previous units and this is only for the 2-bit full adder! Realizing that it would
+        be a very ambitious project to do a full gate level implementation of the RISC-V processor, we will move on to another approach discussed in the next section. 
         
         The code can be found following the link in this footnote\footnote{\url{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations/FullAdder_2_Bit}}  
     
@@ -377,12 +379,12 @@ $ make
     \subsection{Arithmetic Logic Unit}
         We will in this section move away from the gate level implementation of various units. Instead we will fully utilize the power of C\scalerel*{\#}{X} and let the compiler do most of the work for us. What is meant by this is for example rather than writing a gate level implementation of 64-bit adder, we would instead write a process, which just adds two numbers together using the C\scalerel*{\#}{X} syntax, which simplifies things a whole lot.
         
-        The arithmetic logic unit (ALU) is the where all operations happens in the RISC-V architecture. 
+        The arithmetic logic unit (ALU) is where all operations happens in the RISC-V architecture. 
         In the following we will go ahead and implement a simple ALU, which can do 4 operations. These operations are addition, subtraction, AND and OR. This will all be contained within the ALU process.
         
         Drawing up a flowchart for the ALU SME project, as we have done in Figure \ref{fig:ALUSME}, we see that the ALU takes 3 input, two lines with data to operate on and one line for selecting the desired operation.
         Now inside the ALU process a \texttt{switch} statement has been made (see Listing \ref{ALUSME}), which uses an operation code coming from the \texttt{OperationCode} bus to determine, which operation it has to do on our data. Hereafter the ALU outputs the result for us to read.
-        Now if this had to be implemented using gate level approach, as we did before, it would have quickly been an overwhelming project and is exactly why using a high level language to do the hard work for us is a powerful approach.
+        Now if this had to be implemented using gate level approach, as we did before, it would have quickly been an overwhelming project and this is exactly why using a high level language to do the hard work for us is a powerful approach.
         
         The code for this project can be found following the link in this footnote\footnote{\url{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations/ALU_1_Bit}}  
         

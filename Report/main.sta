@@ -60,15 +60,15 @@
 \usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows, shapes.symbols}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,->,>=stealth]
 \endsubpreamble
 \subpreamble{tikz_stuff/Bintohex.tex}
-\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,<->,>=stealth]
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]
 \endsubpreamble
 \subpreamble{tikz_stuff/shiftleft.tex}
-\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows,arrows.meta}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,<->,>=stealth]
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows,arrows.meta}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]
 \endsubpreamble
 \subpreamble{tikz_stuff/shiftright.tex}
-\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows,arrows.meta}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,<->,>=stealth]
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows,arrows.meta}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]
 \endsubpreamble
 \subpreamble{tikz_stuff/shiftrightarithmetic.tex}
-\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows,arrows.meta}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]\tikzstyle {arrow} = [thick,<->,>=stealth]
+\usepackage {tikz}\usetikzlibrary {shapes.geometric, arrows,arrows.meta}\definecolor {mycolor}{RGB}{0, 153, 255}\tikzstyle {process} = [rectangle, rounded corners,minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=mycolor,text=white, line width=0.3mm]
 \endsubpreamble
 \endstandalonepreambles

@@ -5,7 +5,7 @@
     
     Hereafter we will talk about the operands of the RISC-V CPU, which unlike high-level programming languages are confined in a small directory called the \textit{register}. 
     
-    Then we will go through the base 2 numeral system to make meaning of the following section, which will go through how the assembly language, also known as instructions, is represented in the CPU itself. This chapter is based on chapter 2 in \cite{riscVbook}, which can be refereed to if more detailed explanations is needed.
+    Then we will go through the base 2 numeral system to make meaning of the following section, which will go through how the assembly language, also known as instructions, is represented in the CPU itself. This chapter is based on chapter 2 in \cite{riscVbook}, which can be referred to if more detailed explanations are needed.
 
 \section{RISC-V Assembly}\label{section:RISC-V Asembly}
     Like every computer, we need a way of telling it what to do. This is done via the RISC-V assembly language, which is a human readable abstraction of the RISC-V instruction set. We will get into what this instruction set looks like in a bit, for now we will just introduce the assembly language. For writing small RISC-V Assembler programs I can recommend the RISC-V Assembly simulator \textit{Jupiter} , which can be found in this footnote\footnote{\url{https://github.com/andrescv/Jupiter}}.
@@ -19,7 +19,7 @@ __start:
     \end{lstlisting}
     where all instructions are added after the \texttt{\_\_start:} command.
     
-    We will in this example start by adding two numbers together. Keep in mind however that this is not executable by the Jupiter simulator, as crucial instructions has been omitted to ease readability for the reader. An executable version of the example will be shown when the necessary concepts has been introduced.
+    We will in this example start by adding two numbers together. Keep in mind however that this is not executable by the Jupiter simulator, as crucial instructions have been omitted to ease readability for the reader. An executable version of the example will be shown when the necessary concepts have been introduced.
     
     To find the sum between two numbers, we use the \texttt{add} instruction:
     \begin{lstlisting}[language=, ]
@@ -28,7 +28,7 @@ __start:
 __start:
     add a, b, c
     \end{lstlisting}
-    here we tell the CPU to find the sum between the two varibles, b and c, and save the result in variable a. Is is worth noting that the RISC-V assembly language instructions always have exactly 3 operands and always performs a single operation.
+    here we tell the CPU to find the sum between the two varibles, b and c, and save the result in variable a. It is worth noting that the RISC-V assembly language instructions always have exactly 3 operands and always performs a single operation.
     
     This may seem to restrictive, because how would the then calculate the following equation:
     \begin{equation}\label{Eq.Addexample}
@@ -48,7 +48,7 @@ __start:
     \end{lstlisting}
     We see that we had to use two instructions in order to solve Eq. \ref{Eq.Addexample}. Everything right of the Hashtags are the way we add comments to code, which the computer ignores.
     
-    In the previous examples, we made use of a single instruction, the \texttt{add} instruction. There are however 49 base instructions in the RISC-V instruction set, a subset of these is shown in Table \ref{table:RISCVInstructions}. The rest can be refereed to in the RISC-V reference card in behind the appendix.   
+    In the previous examples, we made use of a single instruction, the \texttt{add} instruction. There are however 49 base instructions in the RISC-V instruction set, a subset of these is shown in Table \ref{table:RISCVInstructions}. The rest can be referred to in the RISC-V reference card in the appendix.   
 
     \begin{table}[h!]
         \centering
@@ -61,14 +61,14 @@ __start:
         	OR       & or rd, rs1, rs2  & rd = rs1 $|$ rs2   \\
         	XOR      & xor rd, rs1, rs2 & rd = rs1 \^{} rs2  \\ \hline
         \end{tabular}
-        \caption{This table is a subset of the RISC-V assembly language arithmetic instructions. For the complete base instruction set, please refer to the RISC-V reference card behind the appendix.}
+        \caption{This table is a subset of the RISC-V assembly language arithmetic instructions. For the complete base instruction set, please refer to the RISC-V reference card in the appendix.}
         \label{table:RISCVInstructions}
     \end{table}
 
 \section{Register}\label{section:Register}
     In a high-level programming language we do not think much, when we declare a variable. For the most part the memory management is hidden for the end user and is taken care of by the compiler. However we do not have this convenience in assembly, where the operands of instructions are much more restricted. 
     
-    In the RISC-V architecture we have a special location reserved for the operands build directly into the hardware implementation, which is known as the \textit{register}. It comprises of 32 storage locations for operands, each of which is 64 bits long. These locations are accessed by the instructions, using the numbers 0 through 31 with an x in front e.g. using our addition instruction we type:
+    In the RISC-V architecture we have a special location reserved for the operands build directly into the hardware implementation, which is known as the \textit{register}. It comprises of 32 storage locations for operands, each of which is 64 bits long (this depends on the architecture and can vary in size). These locations are accessed by the instructions, using the numbers 0 through 31 with an x in front e.g. using our addition instruction we type:
     \begin{lstlisting}[language=]
 add x18, x12, x13
     \end{lstlisting}
@@ -127,7 +127,7 @@ add s2, a2, a3
         \label{table:RISCVDataTranferInstructions}
     \end{table}
 
-    The memory can be thought of as a big array, where each element is 8 bits or a byte long. In RISC-V the memory is little-endian addressed. This means that if we had to store the doubleword value $8444628$ in memory, which is equal to $10000000 \; 11011010 \; 11010100$ in binary, it would get stored such that rightmost 8 bits would be the \textit{base address} and the subsequent 8 bit chunks offset with respect to the base address. In Figure \ref{fig:memory} this is illustrated.
+    The memory can be thought of as a big array, where each element is 8 bits or a byte long. In RISC-V the memory is little-endian addressed. This means that if we had to store the doubleword value $8444628$ in memory, which is equal to $10000000 \; 11011010 \; 11010100$ in binary, it would get stored such that rightmost 8 bits would be the \textit{base address} and the subsequent 8 bit chunks offset with respect to the base address. This is illustrated in Figure \ref{fig:memory}.
     
     \begin{figure}[h!]
         \centering
@@ -158,9 +158,11 @@ sd x9, x6, 128  # Store sum in the second element of A
     
     
 \section{Immediate instructions}
-    Up until now we have had to load constants from memory (assuming the values got loaded into memory on startup) to the register everytime we wanted to do an arithmetic operation. As operations with constants are the most frequently used in most programs, dedicated instructions has been added for this purpose. With these the constant is typed into the immediate field \texttt{imm} and is added directly into the instruction itself. 
+    Up until now we have had to load constants from memory (assuming the values got loaded into memory on startup) to the register everytime we wanted to do an arithmetic operation and what do we do if the memory do not contain the required data? 
     
-    Using the add immediate instruction \texttt{addi} for example, we can skip the step of loading constants from memory, thus making our program faster, like so:
+    As operations with constants are the most frequently used in most programs, dedicated instructions have been added for this purpose. With these the constant is typed into the immediate field \texttt{imm} and is added directly into the instruction itself. 
+    
+    Using the add immediate instruction \texttt{addi} allows us to add data directly into the register and skip the step of loading constants from memory entirely, like so:
     \begin{lstlisting}[language=]
 addi x13, x0, -5 # x13 = 0 - 5
     \end{lstlisting}
@@ -176,18 +178,18 @@ addi x13, x0, -5 # x13 = 0 - 5
         	OR Immediate  & ori rd, rs1, imm  & rd = rs1 $|$ rs2   \\
         	XOR Immediate & xori rd, rs1, imm & rd = rs1 \^{} rs2  \\ \hline
         \end{tabular}
-        \caption{This table is a subset of the RISC-V assembly language arithmetic immediate instructions. For the complete base instruction set, please refer to the RISC-V reference card behind the appendix.}
+        \caption{This table is a subset of the RISC-V assembly language arithmetic immediate instructions. For the complete base instruction set, please refer to the RISC-V reference card in the appendix.}
         \label{table:RISCVImmediateInstructions}
     \end{table}
         
 \section{Numeral system of a computer}
     In everyday life we are used to using the decimal numeral system, meaning that ten base digits are used to represent a quantity, such as 6 apples. However the decimal numeral system was not chosen to represent numbers in a computer. Here we live in a world were everything consists of signals being high and low voltage or transistors being on or off. Therefore a much more inherent counting system can be chosen to represent numbers in this world, namely the binary numeral system.
     
-    The binary digit or bit is the fundamental building block of any computer. A bit require only two "symbols" to be represented. A high/low signal, on/off transistor, true/false statements or of course, but not limited to, the digits 0 and 1.
+    The binary digit or bit is the fundamental building block of any computer. A bit requires only two "symbols" to be represented. A high/low signal, on/off transistor, true/false statements or of course, but not limited to, the digits 0 and 1.
     
     In this thesis we label the digits such that the rightmost digit in a number is the zeroth digit and then increasing the index going left. To avoid confusion we will always label which numeral system we are working with e.g. $10_{\;\texttt{two}}$ or $10_{\;\texttt{ten}}$.
     
-    Since humans do not usually think in binary, we need a way of converting decimal numbers to binary numbers. We know that any base repressentation of a number can be exressed in base 10 using\footnote{The following derivation is inspired from \\\url{https://math.stackexchange.com/questions/1359770/why-does-the-division-algorithm-work-for-converting-between-number-bases}} (note that the following derivation only works for positive/unsigned numbers) 
+    Since humans do not usually think in binary, we need a way of converting decimal numbers to binary numbers. We know that any base repressentation of a number can be expressed in base 10 using\footnote{The following derivation is inspired from \\\url{https://math.stackexchange.com/questions/1359770/why-does-the-division-algorithm-work-for-converting-between-number-bases}} (note that the following derivation only works for positive/unsigned numbers) 
     \begin{equation}\label{Eq:baseXToDecimal}
         N_b = \sum_{i=0}^{n} d_i b^i
     \end{equation}
@@ -217,7 +219,7 @@ addi x13, x0, -5 # x13 = 0 - 5
     \begin{equation}
         \frac{N_b}{b} = N'_b +\frac{d_0}{b}
     \end{equation}
-    which we know corresponds to the leftmost digit in the target repressentation (see Eq. \ref{Eq:bintodecimal}). The same process can be continuned with the quotient $N'_b$ to gain the remaining digits.
+    which we know corresponds to the leftmost digit in the target repressentation (see Eq. \ref{Eq:bintodecimal}). The same process can be done with the quotient $N'_b$ to gain the remaining digits.
     For example inverting $13_{\;\texttt{ten}}$ back to binary
     \begin{equation}
         \frac{13_{\;\texttt{ten}}}{2_{\;\texttt{ten}}} = 6_{\;\texttt{ten}} + \frac{1_{\;\texttt{ten}} }{2_{\;\texttt{ten}} }
@@ -261,7 +263,7 @@ addi x13, x0, -5 # x13 = 0 - 5
     \end{table} 
     
     \subsection{Signed and Unsigned numbers}
-        No computer would be any good for scientific purposes if we are not able to work with negative numbers. Therefore we need a way of representing them in binary. The standard implementation is the \textit{two complement} representation. Here leading zeros means a positive number and leading ones means a negative number. Using 4 bits we are able to represent numbers -8 to 7 and have been outlined in Table \ref{table:DecimalToBinarySigned}. 
+        No computer would be any good for scientific purposes if we are not able to work with negative numbers. Therefore we need a way of representing them in binary. The standard implementation is the \textit{two's complement} representation. Here leading zeros means a positive number and leading ones means a negative number. Using 4 bits we are able to represent numbers -8 to 7 and have been outlined in Table \ref{table:DecimalToBinarySigned}. 
         
         We observe that 
         \begin{equation}\label{Eq:complement}
@@ -276,10 +278,9 @@ addi x13, x0, -5 # x13 = 0 - 5
         \begin{equation}\label{Eq:Negationshortcut}
             -7_{\; \texttt{ten}} = 1001_{\; \texttt{two}} \xrightarrow{\text{Invert Bits}} 0110_{\; \texttt{two}} \xrightarrow{\text{+1}} 0111_{\; \texttt{two}} = 7_{\; \texttt{ten}}
         \end{equation}
-        Notice however that $-8$ do not have any complement using only 4 bits. In the two complement representation we will always end up with an extra negative number, if not careful this may cause problems and should be known.
+        Notice however that $-8$ do not have any complement using only 4 bits. In the two's complement representation we will always end up with an extra negative number, if not careful this may cause problems and should be known.
         
-        Subtraction of two complement numbers is very simple. You just add them together and throw away the overflow bit. Meaning if we got two 4 bit numbers we want to find the sum of and we still have a carry after the 4'th bit, which is supposed to be in the 5'th bit place, we throw away the carry. For example subtracting five with two
-
+        Subtraction of two's complement numbers is very simple. You just add them together and throw away the last bit, which exceeds the size of the bit field. In other words if we got two 4 bit numbers we want to find the sum of and we still have a carry after the 4'th bit, which is supposed to be in the 5'th bit place, we throw away the carry. For example subtracting five with two
         \begin{center}
             \begin{tabular}{c@{\,}c@{\,}c@{\,}c@{\,}c}
             	1 & 1 &   &   &   \\
@@ -310,7 +311,7 @@ addi x13, x0, -5 # x13 = 0 - 5
         \end{table}
     
 \section{Instruction representation in binary}\label{section:InstructionRep}
-    All instructions in the RISC-V architecture are 32 bits long, meaning 32 binary digits are used represent an instruction. This is what all assembly code gets compiled into and is known as \textit{machine code}.
+    All base instructions in the RISC-V architecture (Rv) are 32 bits long, meaning 32 binary digits are used to represent an instruction. This is what all assembly code gets compiled into and is known as \textit{machine code}.
     Going back to our \texttt{add} instruction 
     \begin{lstlisting}[language=, numbers=none]
 add x18, x12, x13
@@ -320,7 +321,7 @@ add x18, x12, x13
 0000000 01101 01100 000    10010 0110011
 funct7  x13   x12   funct3 x18   add
     \end{lstlisting}
-    where first (remember we count from right) 7 bits tells the CPU what instruction it should perform, in this case \texttt{add}. The next 5 bits tells which register the CPU should save the result to, in this case \texttt{x18}. Bits 12-14 and 25-31 again tells the instruction type in conjunction with first 7 bits. Bits 15-19 and 20-24 tells which register the first operand and second operand is located respectively, in this case register \texttt{x12} and \texttt{x13}. A subset of instruction formats is shown in Table \ref{table:InstructionFormats}. For a more comprehensive table please refer to the RISC-V instruction set sheet behind the appendix.
+    where first (remember we count from right) 7 bits tell the CPU what instruction it should perform, in this case \texttt{add}. The next 5 bits tells which register the CPU should save the result to, in this case \texttt{x18}. Bits 12-14 and 25-31 again tell the instruction type in conjunction with the first 7 bits. Bits 15-19 and 20-24 tell which register the first operand and second operand is located respectively, in this case register \texttt{x12} and \texttt{x13}. A subset of instruction formats is shown in Table \ref{table:InstructionFormats}. For a more comprehensive table please refer to the RISC-V instruction set sheet behind the appendix.
     
     \begin{table}[h!]
         \scriptsize
@@ -374,7 +375,7 @@ funct7  x13   x12   funct3 x18   add
             \\
             \cline{0-31} 
         \end{tabular}
-        \caption{A subset of machine code instruction formats, where the \texttt{opcode}, \texttt{funct3} and \texttt{funct7} fields are responsible for instruction identification. The \texttt{rd}, \texttt{rs1}, and \texttt{rs2} fields are operand fields and is responsible the register destination and register source for the first and second operands respectively. The immediate fields \texttt{imm} are where the constants are stored, where the I-type instruction stores the whole constant in bits 20-31 and S-type splits the constant into bits 7-11 and 25-31.}
+        \caption{A subset of machine code instruction formats, where the \texttt{opcode}, \texttt{funct3} and \texttt{funct7} fields are responsible for instruction identification. The \texttt{rd}, \texttt{rs1}, and \texttt{rs2} fields are operand fields and is responsible for the register destination and register source for the first and second operands respectively. The immediate fields \texttt{imm} are where the constants are stored, where the I-type instruction stores the whole constant in bits 20-31 and S-type splits the constant into bits 7-11 and 25-31.}
         \label{table:InstructionFormats}
     \end{table}
 
@@ -405,7 +406,7 @@ funct7  x13   x12   funct3 x18   add
             \end{figure}
        
 \section{Operators}\label{section:Operators}
-    In Section \ref{section:InstructionRep} we introduced the machine code representation for instructions. We saw that within the 32-bit strings existed various fields responsible for instruction identification, target registers and constant fields.
+    In Section \ref{section:InstructionRep} we introduced the machine code representation for instructions. We saw that within the 32-bit strings there existed various fields responsible for instruction identification, target registers and constant fields.
     In this section we take a look at some useful operations, outlined in Table \ref{table:operators}, to address strings of bits or even individual bits within an instruction.
     
     \begin{table}[h!]
@@ -447,7 +448,7 @@ funct7  x13   x12   funct3 x18   add
         \begin{equation*}
             \text{\Huge 0000\, 0000\, 1101 \, 0110}
         \end{equation*}
-        we perform a arithmetic shift to the left by 9 bits
+        we perform an arithmetic shift to the left by 9 bits
         \begin{figure*}[h!]
             \centering
             \subimport{tikz_stuff/}{shiftleft}
@@ -494,7 +495,7 @@ funct7  x13   x12   funct3 x18   add
                         000000000000000000000000000 01100
         \end{lstlisting} 
         everything but the first 5 bits gets canceled out and we end up with the contents of the rs1 field.
-        Our 32-bits now contains whole slew of zeros left of the fourth bit. To place string of bits back into the 32-bits we can use the bitwise \texttt{OR} operator for example
+        Our 32-bits now contain whole slew of zeros left of the fourth bit. To place string of bits back into the 32-bits we can use the bitwise \texttt{OR} operator for example
         \begin{lstlisting}[language=, numbers=none]
                         000000000000000000000000000 01100
                       | 000000001010110000000000000 00000
@@ -508,6 +509,19 @@ funct7  x13   x12   funct3 x18   add
                       ^ 111111111111111111111111111 11111
                     _____________________________________
                         111111110101001111111111111 10011
+        \end{lstlisting}
+        
+        
+    \section{Branching Instructions}
+        To make any useful simulation or program it is essential to able to make decisions depending on some condition. An example of this could be iterating over an array and changing elements depending on some condition. This requires that the processor is able to loop trough the array and stop when the end is reached and check whether some condition is meet at each element.
+        
+        What this would look like in the assembly code is that some lines of instructions would keep getting executed. It does this is by using \texttt{branching} instructions to jump back to a line until some condition is met.
+        
+        For example 
+        
+        \begin{lstlisting}[language=C]
+
+        
         \end{lstlisting}
         
     

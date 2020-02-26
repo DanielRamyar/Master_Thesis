@@ -170,7 +170,7 @@
             
                 We can define this operator in \textit{disjunctive normal form} (DNF) or \textit{Sum of products form}, using our basic operators AND, OR and NOT. A logic equation (see section \ref{Section:BooleanEquation}) is said to be in DNF, when it consists of disjunctions between one or more conjunctions, where each of the propositions can be complemented.
                 
-                To do write our operator in DNF, we first identify all true output in \ref{LogicTable:XOR} namely row 3 and 4. We then take a look at the corresponding input values
+                To write our operator in DNF, we first identify all true outputs in \ref{LogicTable:XOR} namely row 3 and 4. We then take a look at the corresponding input values
                 \begin{equation}
                     (p,q) = (true, false) \quad \text{and} \quad (p,q) = (false, true)
                 \end{equation}
@@ -181,7 +181,7 @@
                 
                 Hereafter we apply the AND operator between the values in each tuple of input such that
                 \begin{equation}
-                    p \wedge \neg q = true \wedge \neg false \quad \text{and} \quad \neg p \wedge q = false \wedge \neg true.
+                    p \wedge \neg q = true \wedge \neg false \quad \text{and} \quad \neg p \wedge q = \neg false \wedge true.
                 \end{equation}
                 Lastly we apply the OR operators between each tuple and we have the final expression for XOR in terms of the basic operators
                 \begin{equation}
@@ -200,7 +200,7 @@
                 
             \subsubsection{Summary}
             
-                We can now go ahead and fill the numbered columns Table \ref{LogicTable:PossibleOperators} with the corresponding operators, which we have defined throughout this section and Appendix \ref{appendix:Binaray_Operators}. The filled table can be found in Table \ref{LogicTable:BinaryOperators}. 
+                We can now go ahead and fill the numbered columns in Table \ref{LogicTable:PossibleOperators} with the corresponding operators, which we have defined throughout this section and Appendix \ref{appendix:Binaray_Operators}. The filled table can be found in Table \ref{LogicTable:BinaryOperators}. 
                 
                 \begin{table}[h!]
                     \centering
@@ -286,11 +286,11 @@
         
         \subsection{Gates}
             
-            In this and following sections the physical abstractions to the propositions $true$ and $false$ will be represented by a voltage either being high or low. When the voltage is high we say that the signal is \textit{asserted} and represented by $1$ and when low is \textit{deasserted} and represented by $0$. 
+            In this and following sections the physical abstractions to the propositions $true$ and $false$ will be represented by a voltage either being high or low. When the voltage is high we say that the signal is \textit{asserted} and represented by $1$ and when the voltage low it is \textit{deasserted} and represented by $0$. 
             
             We will use 3 fundamental physical components, \textit{gates}, to implement logic tables or Boolean equations and each of these is represented by a symbol which we will go through in the following.
             
-            It should be noted that multiple input are possible with the AND and OR gates since they are both commutative and associative. There will though always be 1 output, which is the result of all the subsequent input e.g. $A+B+C=D$ here the three input $A,B,C$ would go into a single OR gate and return a single output $D$.
+            It should be noted that multiple input are possible with the AND and OR gates since they are both commutative and associative. There will always be 1 output, which is the result of all the subsequent inputs e.g. $A+B+C=D$ here the three input $A,B,C$ would go into a single OR gate and return a single output $D$.
             
             \subsubsection{AND Gate}
                 The AND gate is the physical implementation of logic Table \ref{LogicTable:AND} we defined earlier. It is illustrated by the symbol found in Figure \ref{fig:ANDGate}. 
@@ -377,7 +377,7 @@
         
         \subsection{Multiplexer}\label{section:Multiplexer}
         
-            When we will later deal with larger systems consisting of multiple logic units, we will need a way to select from which unit we want the output to go further up the chain. This select unit is known as a \textit{multiplexer} or \textit{mux}. Its function is to select one of multiple input to output unchanged.
+            When we will later deal with larger systems consisting of multiple logic units, we will need a way to select from which unit we want the output to go further up the chain. This select unit is known as a \textit{multiplexer} or \textit{mux}. Its function is to select one of multiple input and output the selected input unchanged.
             
             In Table \ref{LogicTable:Multiplexer} we have constructed a multiplexer with three input one of which is the control signal $S$. If the control signal is asserted $S=1$ the output will have the value of $B$ and if deasserted $S=0$ it will output the value of $A$. 
             
@@ -421,13 +421,13 @@
                 C = A\cdot \bar{S} + B\cdot S.
             \end{equation}
             
-            Now we have the simplified two-level representation for the two input multiplexer, in next section we will se how this is used to generate the gate-level implementation.
+            Now we have the simplified two-level representation for the two input multiplexer, in the next section we will se how this is used to generate the gate-level implementation.
         
         \subsection{Programmable logic array}
         
-            A common two-level logic device used to implement logic equations is the \textit{programmable logic array} or PLA for short. The PLA consists of two lines per input, one unaltered and one complemented (negated input), which are then connected to a plane of AND gates. The connections between the inputs and AND plane of course depends on the to be implemented logic equation. Hereafter the outputs of the AND plane connects to the OR plane and again the connections depends on the logic equation.
+            A common two-level logic device used to implement logic equations is the \textit{programmable logic array} or PLA for short. The PLA consists of two lines per input, one unaltered and one complemented (negated input), which are then connected to a plane of AND gates. The connections between the inputs and AND plane of course depends on the logic equation, which is to be implemented. Hereafter the outputs of the AND plane connects to the OR plane and again the connections depends on the logic equation.
             
-            Using this logic we can go ahead and implement \ref{multiplexer_equation}. Looking at the equation we see that we need to perform two AND operations and one OR operation. We therefore need two AND gates and one OR gate. Since the PLA has lines for both input and inverted input we only need to connect the correct lines to the corresponding gates. This is done in figure \ref{fig:MultiplexerSimpleA} where the black dots shows which lines are connected to which gate. When designing larger logic circuits it is more common to omit drawing all gates explicitly, which is illustrated in \ref{fig:MultiplexerSimpleB}. 
+            Using this logic we can go ahead and implement \ref{multiplexer_equation}. Looking at the equation we see that we need to perform two AND operations and one OR operation. We therefore need two AND gates and one OR gate. Since the PLA has lines for both input and inverted input we only need to connect the correct lines to the corresponding gates. This is done in figure \ref{fig:MultiplexerSimpleA} where the black dots show which lines are connected to which gate. When designing larger logic circuits it is more common to omit drawing all gates explicitly, which is illustrated in \ref{fig:MultiplexerSimpleB}. 
         
             \begin{figure}[h!]
                 \hspace*{-1cm}
@@ -444,7 +444,7 @@
                     \caption{ }
                     \label{fig:MultiplexerSimpleB}
                 \end{subfigure}%
-                \caption{Both of these circuits shows the PLA implementation of the logic equation we saw in \ref{multiplexer_equation}. (a) Illustrates the multiplexer with explicitly drawn gates where the black dots indicates a connection. (b) Illustrates the multiplexer with implicitly drawn gates where each vertical line in the AND plane represents a connection to an AND gate and each horizontal line in the OR plane represents a connection to an OR gate. As before the black dots shows which lines are connected.}
+                \caption{Both of these circuits show the PLA implementation of the logic equation we saw in \ref{multiplexer_equation}. (a) Illustrates the multiplexer with explicitly drawn gates where the black dots indicates a connection. (b) Illustrates the multiplexer with implicitly drawn gates where each vertical line in the AND plane represents a connection to an AND gate and each horizontal line in the OR plane represents a connection to an OR gate. As before the black dots shows which lines are connected.}
                 
             \end{figure}
         

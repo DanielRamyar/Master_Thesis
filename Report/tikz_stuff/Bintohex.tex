@@ -8,7 +8,6 @@
                        text centered, draw=black, fill=mycolor,
                        text=white, line width=0.3mm]
 
-\tikzstyle{arrow} = [thick,<->,>=stealth]
 
 \begin{document}
     \begin{tikzpicture}[node distance=2cm]
@@ -37,14 +36,14 @@
         \node at (5.25  ,-1.25) [text centered] (a) {3};
         
         %Arrows
-        \draw [arrow] (7) |- (h);
-        \draw [arrow] (6) -- ++(0,-0.7) -- ++(1.25,0) -- (g);
-        \draw [arrow] (5) -- ++(0,-0.5) -- ++(0.75,0) -- (f);
-        \draw [arrow] (4) -- ++(0,-0.5) -- ++(0.25,0) -- (e);
-        \draw [arrow] (3) -- ++(0,-0.5) -- ++(-0.25,0) -- (d);
-        \draw [arrow] (2) -- ++(0,-0.5) -- ++(-0.75,0) -- (c);
-        \draw [arrow] (1) -- ++(0,-0.7) -- ++(-1.25,0) -- (b);
-        \draw [arrow] (0) |- (a);
+        \draw [thick,<->,>=stealth] (7) |- (h);
+        \draw [thick,<->,>=stealth] (6) -- ++(0,-0.7) -- ++(1.25,0) -- (g);
+        \draw [thick,<->,>=stealth] (5) -- ++(0,-0.5) -- ++(0.75,0) -- (f);
+        \draw [thick,<->,>=stealth] (4) -- ++(0,-0.5) -- ++(0.25,0) -- (e);
+        \draw [thick,<->,>=stealth] (3) -- ++(0,-0.5) -- ++(-0.25,0) -- (d);
+        \draw [thick,<->,>=stealth] (2) -- ++(0,-0.5) -- ++(-0.75,0) -- (c);
+        \draw [thick,<->,>=stealth] (1) -- ++(0,-0.7) -- ++(-1.25,0) -- (b);
+        \draw [thick,<->,>=stealth] (0) |- (a);
         \node at (5.5,-1.40) [text centered] {$\; \texttt{\scriptsize hex}$};
     
     \end{tikzpicture}

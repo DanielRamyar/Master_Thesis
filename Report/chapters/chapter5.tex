@@ -1,4 +1,4 @@
-\chapter{The RISC-V processor}
+\chapter{The RISC-V processor}\label{Chapter:5}
     We are finally at a point where we can start building the RISC-V CPU in SME. At the start of this project I followed the approach described in chapter 4 of the RISC-V book \cite{riscVbook}, but when a functioning CPU was made I quickly came to the realization that the version described in the book was quite inadequate. It only supported a handful instructions, which is not enough to run any but the simplest of programs. 
     
     Therefore I had to sit down and design a version with the requirement of supporting all 49 basic RISC-V instructions. This design of course took foundation in the book version, with improvements from the lessons learned from the first implementation.
@@ -6,7 +6,7 @@
     Throughout this chapter we will go through the new design, which can be found here\footnote{\url{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations/SingleCycleRISCV2}}.
 
 \section{Single Cycle RISC-V Units}
-    In this section we will explain the function of each of the 14 units, used in the implementation of the CPU. This design is single cycle, meaning that only one instruction is executed per clock cycle. 
+    In this section we will explain the function of each of the 12 unique units, used in the implementation of the CPU. This design is single cycle, meaning that only one instruction is executed per clock cycle. 
 
     \subsection{Program Counter}
         The \textit{program counter}, PC for short, keeps track of where in the program we are located and is a fairly simple unit. It can we thought of a single register, which holds the address of the current instruction.
@@ -21,8 +21,8 @@
         
         \begin{figure}[h!]
             \centering
-            \includegraphics[scale=0.25]{pictures/PC.pdf}
-            \caption{Illustration of the clocked \texttt{program counter} process having the next address as input and current address as output.}
+            \includegraphics[scale=0.2]{pictures/PC.pdf}
+            \caption{Illustration of the clocked \texttt{program counter} process having the next address as input and current address as output. The dashed square indicates a clocked process.}
             \label{fig:PC}
         \end{figure}
     
@@ -50,7 +50,7 @@
      
         \begin{figure}[h!]
             \centering
-            \includegraphics[scale=0.34]{pictures/IM.pdf}
+            \includegraphics[scale=0.3]{pictures/IM.pdf}
             \caption{Illustration of the \texttt{instruction memory} process, taking the PC output as input and outputting to the 5 buses, \texttt{Read RS1 and RS2}, \texttt{Write RS}, \texttt{Instruction} and \texttt{CPU}.}
             \label{fig:IM}
         \end{figure}
@@ -244,12 +244,22 @@
         \end{minipage} 
 \newpage
     \subsection{Data Memory}
-        The \texttt{Data Memory}, or DM for short, is the main data storage unit of the CPU, as it can contain much more data than the register.
+        The \texttt{Data Memory}, or DM for short, is the main data storage unit of the CPU, as it can contain much more data than the register. The data memory is very similar to the instruction memory, as it is also little-endian addressed and is constructed from a byte array. The processor can either read or write from the data memory unit once per clock cycle.
+        
+        Because of this fact the data memory needs control signals, which manages read and write access. To support data of varying size an additional control signal has been added to distinguish between double word, word, short and byte access. Since unsigned versions of the \texttt{load} instructions also needs to be supported, this functionality is added to the size control signal.
+        
+        As the data memory communicates with the register, which is big-endian addressed and every element is 64-bit a translation needs to happen between these formats.
+        
+        In SME a process is created that contains a byte array. To support 64-bit numbers the array has to be larger than 8 bytes if a single number has to be stored. Otherwise the sizing is irrelevant if made big enough and is divisible by eight. In this implementation the array is 2000 bytes long.
+        
+        To distinguish between the read and write states an \texttt{if/else} statement is used. For the branching condition, two control signals are used to determine whether a read or write should be performed. When reading or writing the size of the data needs to be known, such that a correct translation between big- and little-endian formats can take place. To this end a \texttt{switch} statement is used, with cases for each data size scenario. Furthermore cases for handling unsigned reads has been added.
+        
+        The read and write address gets calculated by the ALU and the data is supplied by the second register output line. If the read control is enabled the data memory will output the specified data. The data memory is illustrated in Figure \ref{fig:DM} and a code segment is shown in Listing \ref{DM}.
         
         \begin{figure}[h!]
             \centering
-            \includegraphics[scale=0.35]{pictures/DM.pdf}
-            \caption{Illustration of the \texttt{Data Memory} process. As input it takes the result from the ALU and controls signals (in red) \texttt{Memory Read}, \texttt{Memory Write} and \texttt{Size and Sign}. It then outputs the read data or 0 if both \texttt{Memory Read} and \texttt{Memory Write} are deasserted.}
+            \includegraphics[scale=0.29]{pictures/DM.pdf}
+            \caption{Illustration of the \texttt{Data Memory} process. The target address is calculated in the ALU and data to be written outputted from register 2, which the unit takes as input. Controls signals are marked in red and consists of \texttt{Memory Read}, \texttt{Memory Write} and \texttt{Size and Sign}. It then outputs the read data or 0 if both \texttt{Memory Read} and \texttt{Memory Write} are deasserted.}
             \label{fig:DM}
         \end{figure}
     
@@ -293,11 +303,120 @@
             \end{lstlisting}
         \end{minipage} 
     
+    \subsection{Go to Unit}
+        To support the RISC-V branching and jump instructions a special unit called \texttt{Go To} was created. The purpose of this unit is to do the logical comparison between the specified registers. For example if the \texttt{branch if equal} (\texttt{BEQ}) instruction is given, the unit will check if the values in the specified registers are equal and outputs logical \texttt{true} or \texttt{false} depending on the result.
+        
+        In the SME implementation a simple \texttt{switch} statement is used. Each case represent the comparison to be done by a given instruction, where the case branching is controlled by a control line. The result is then outputted. The Go To unit is illustrated in Figure \ref{fig:GOTO} and a code segment is shown in Listing \ref{GOTO}.
+        
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.35]{pictures/GOTO.pdf}
+            \caption{Illustration of the \texttt{Go To} process. As input it uses the two output lines from the register. It has one control line in red and one output line in green.}
+            \label{fig:GOTO}
+        \end{figure}
+    
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Go To} process SME code. The unit consists of a \texttt{switch} statement, where each case does the comparison relevandt to the branching instruction. The conditional operator \texttt{?} is used for the comparison (the syntax goes as follows \texttt{condition ? If true return this : If false return this}).},captionpos=b, label = GOTO]
+...
+    protected override void OnTick() {
+        switch (m_BJSIGN.Value) {
+            case 0:
+                output.Value = (m_RS1.Data == m_RS2.Data) ? true:false; // BEQ
+                break;
+            case 1:
+                output.Value = (m_RS1.Data != m_RS2.Data) ? true:false; // BNE
+                break;
+            case 2:
+                ...
+        }
+    }
+            \end{lstlisting}
+        \end{minipage}
+    
+    \subsection{Multiplexer}
+        To select between multiple lines we make use of a \texttt{multiplexer}, or mux. It is a fairly simple process that only consists of a \texttt{switch} statement, where each case corresponds to an input to output. The cases then gets selected depending on the control line. 
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.35]{pictures/MUX.pdf}
+            \caption{Illustration of the \texttt{Multiplexer} process. An arbitrary amount of input can be given, where the output i selected by the red control line. }
+            \label{fig:MUX}
+        \end{figure}
+    
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={An example of a \texttt{Multiplexer} process SME code. The whole multiplexer simply consists of a \texttt{switch} statement that selects an input to output dependent on \texttt{SelectBus}.},captionpos=b, label = MUX]
+...
+    protected override void OnTick() {
+        switch (SelectBus) {
+            case 0:
+                Mux_output = input1;
+                break;
+            case 1:
+                Mux_output = input2; 
+                break;
+            case 2:
+                Mux_output = input3; 
+                break;
+        }
+    }
+            \end{lstlisting}
+        \end{minipage}
+    
+    \subsection{Write Back Unit}
+        When wire-ring the processor there is going to form a second closed loop between the register and data memory. As with the closed loop between the program counter and Next unit, there has to be a clocked process somewhere in the loop. For this reason a clocked write back process is introduced. It works exactly the same as the program counter, which read the contents of a bus that contained data from the previous clock cycle and got outputted unchanged. 
+        
+        It may seem that this could cause problems, but as the data output from this unit gets written to the register as the first thing, instructions will never access old data.  
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.35]{pictures/WB.pdf}
+            \caption{Illustration of the \texttt{Write Back} process. It has 3 input \texttt{Data}, \texttt{Write Register} and \texttt{Write control}. These input gets outputted unchanged to their respective output buses. The dashed square indicates a clocked process.}
+            \label{fig:WB}
+        \end{figure}
+    
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Write Back} process SME code. It contains 3 variables, which will hold the incomming values, which gets outputted unchanged in the same clock cycle.},captionpos=b, label = WB]
+...
+    long WB_Data_Hold;
+    uint WB_RegisterWrite_Hold;
+    bool WB_WriteControl_Hold;
+    
+    protected override void OnTick() {
+        WB_Data_Hold = m_write_data.Data;
+        WB_RegisterWrite_Hold = m_write_register.Address;
+        WB_WriteControl_Hold = m_write_control.Enable;
+    
+        m_WB_Data.Data = WB_Data_Hold;
+        m_WB_WriteRegister.Address = WB_RegisterWrite_Hold;
+        m_WB_WriteControl.Enable = WB_WriteControl_Hold;
+    }
+            \end{lstlisting}
+        \end{minipage} 
+    
+    \subsection{AND gate unit}
+        To make use of a trick inspired from the RISC-V implementation in chapter 4 of \cite{riscVbook} an AND gate unit has been implemented. The purpose of this unit is to check whether branching or jumping instructions are given. If such instructions are taking place a control signal is asserted. The AND gate only returns true if the branching condition from the \texttt{Go To} gate returns true. This result can now be feed to a multiplexer which chooses whether to run next instruction or jump in the instruction memory.
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.35]{pictures/AND.pdf}
+            \caption{Illustration of the \texttt{AND gate} process. It has two input one from the \texttt{Go To} unit and one from the \texttt{control unit} named \texttt{PCSel}. The output is then the result of the logical AND operation between the two input.}
+            \label{fig:AND}
+        \end{figure}
+    
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{AND gate} process SME code. It simply calculates the logical AND of two input and outputs the result.},captionpos=b, label = AND]
+...
+    protected override void OnTick() {
+        Output.Value = m_Input_1.Value && m_Input_2.Value;
+    }
+            \end{lstlisting}
+        \end{minipage} 
+        
+    
 \section{Designing the Control}
     
-\section{Single Cycle RISC-V datapath}
-
-\section{Improving the datapath} \improvement{figure out better naming for sections}
+\section{Single Cycle RISC-V datapaths}
 
     \subsection{RV64I Base Instructions Support}
 
