@@ -5,7 +5,7 @@
     
     Throughout this chapter we will go through the new design, which can be found here\footnote{\url{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations/SingleCycleRISCV2}}.
 
-\section{Single Cycle RISC-V Units}
+\section{Single Cycle RISC-V Units}\label{section:riscunits}
     In this section we will explain the function of each of the 12 unique units, used in the implementation of the CPU. This design is single cycle, meaning that only one instruction is executed per clock cycle. 
 
     \subsection{Program Counter}
@@ -362,12 +362,11 @@
     }
             \end{lstlisting}
         \end{minipage}
-    
+\newpage
     \subsection{Write Back Unit}
         When wire-ring the processor there is going to form a second closed loop between the register and data memory. As with the closed loop between the program counter and Next unit, there has to be a clocked process somewhere in the loop. For this reason a clocked write back process is introduced. It works exactly the same as the program counter, which read the contents of a bus that contained data from the previous clock cycle and got outputted unchanged. 
         
         It may seem that this could cause problems, but as the data output from this unit gets written to the register as the first thing, instructions will never access old data.  The \texttt{Write Back} unit is illustrated in Figure \ref{fig:WB} and a code segment is shown in Listing \ref{WB}.
-        
         \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.35]{pictures/WB.pdf}
@@ -467,22 +466,166 @@
     }
             \end{lstlisting}
         \end{minipage} 
-    
+\newpage
 \section{Single Cycle RISC-V datapaths}\label{section:Datapaths}
+    In Section \ref{section:riscunits} all necessary units for the RISC-V implementation were covered. The final step is to connect all units and define the instruction datapaths. The datapath is defined as the path an instruction takes through the RISC-V implementation. The full implementation is illustrated in Figure \ref{fig:RISCV}. 
+    
+    The unit that determines what path an instruction takes is the control unit. By modifying the values in the control signals, the path an instruction takes can be manipulated. Since the different types of instructions need to follow a very specific path, we need to design the control unit such that the correct paths gets taken.
+    
+    \begin{figure}[h!]
+        \hspace*{-3.8cm}
+        \centering
+        \includegraphics[scale=0.8]{pictures/RISCV.pdf}
+        \caption{}
+        \label{fig:RISCV}
+    \end{figure} 
 
-    \subsection{RV64I Base Instructions Support}
-
-    \subsection{Supporting R-Format}
+    \subsection{Supporting R-Format instructions}\label{section:Rformat}
+        All R-format instructions perform some arithmetic or logical operation on 2 operands in the register and saves the result back into some specified register. For that to take place two registers has to be read and sent to the \texttt{ALU} where the operation takes place. Therefore the control signals controlling \texttt{mux2} and \texttt{mux3} needs to be deasserted, such that they output the values read in the two registers. 
+        
+        The control signal that controls the \texttt{ALU} is then set to the operation to be performed by the R-type instruction. The write back to the register is then determined by \texttt{mux4}. Since the result of the \texttt{ALU} is to be written back into some specified register, input 0 of \texttt{mux4} is selected and the write control line of the register is asserted.
+        
+        Finally the \texttt{PCSel} line is deasserted such that address of the next instruction is inputted to the program counter, since R-format instructions do not perform any branching. Every control signal value is summarized in Table \ref{table:RFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
+        
+        \begin{table}[h!]
+            \small
+            \hspace{-2.4cm}
+            \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+            	\hline
+            	                  & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
+            	\textbf{R-Format} &       0        &         1         &        0         &        0         &      0-14      &        0        &          0           &         0         &        0         &       0        \\ \hline
+            \end{tabular}
+            \caption{This table shows control line values for the R-format datapath. Only the \texttt{ALUop} line is different between the R-format instructions and the values range from 0 to 14.}
+            \label{table:RFORMAT}
+        \end{table}
     
-    \subsection{Supporting I-Format}
+    \subsection{Supporting I-Format instructions}
+        The I-Format instructions perform an arithmetic or logical operation between one operand in the register and one operand contained within the immediate field of the instruction. The result is then saved to some specified register. Therefore the only difference between the I- and R-Format instructions are the second operand, which instead comes from the immediate field. 
+        
+        For this reason the only change that needs to be made to the control lines compared to the R-Format instructions are that the \texttt{ALUSrc2} line gets asserted, such that the second input to the \texttt{ALU} comes from the immediate field. All other control lines follows the same reasoning as the R-Format, which can be read in Section \ref{section:Rformat}. Every control signal value is summarized in Table \ref{table:IFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
+        
+        \begin{table}[h!]
+            \small
+            \hspace{-2.4cm}
+            \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+            	\hline
+            	                  & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
+            	\textbf{I-Format} &       0        &         1         &        0         &        1         &      0-14      &        0        &          0           &         0         &        0         &       0        \\ \hline
+            \end{tabular}
+            \caption{This table shows control line values for the I-format datapath. Only the \texttt{ALUop} line is different between the I-format instructions and the values range from 0 to 14.}
+            \label{table:IFORMAT}
+        \end{table}
     
-    \subsection{Supporting S-Format}
+        \subsubsection{Load instructions}
+            The load instructions is a special case of the I-Format instructions. Compared to the general I-Format instruction, only the sum between the register and immediate is calculated, so \texttt{ALUOp} is always set to 0.
+            
+            To load from the data memory the size of data needs to be known. Furthermore unsigned loads are available in the basic RISC-V instruction set. This information is stored within the \texttt{SizeAndSign} control line and ranges between the values 0 and 6.
+            
+            Since we read the memory the \texttt{MemRead} control line is asserted and the control line for \texttt{mux4} is set to 1, as it is the value read from the data memory that has to get written back to the register.
+            
+            Every control signal value is summarized in Table \ref{table:LOADFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
+            
+            
+            \begin{table}[h!]
+                \small
+                \hspace{-2.4cm}
+                \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+                	\hline
+                	                  & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
+                	\textbf{I-Format} &       0        &         1         &        0         &        1         &      0      &        0        &          0-6           &         0         &        1         &       1        \\ \hline
+                \end{tabular}
+                \caption{This table shows control line values for the special case I-format \texttt{load} instruction datapath. }
+                \label{table:LOADFORMAT}
+            \end{table}
+        
+        \subsubsection{Jump and link register}
+            The \texttt{jump and link register} is another special case of the I-Format instruction where (as with the \texttt{load} instruction) only the sum between the register and immediate is calculated, so \texttt{ALUOp} is always set to 0.
+            
+            This sum is then sent directly back to the program counter from the ALU, which is then selected by \texttt{mux1}. For this selection to happen the AND gate needs to return 1, which can only happen if \texttt{PCSel} is asserted. Furthermore a special case has been added to the \texttt{GOTO} unit, which automatically asserts its output. This happens if \texttt{BJSIGN} is set to 6. This combination allows \texttt{mux1} to select the ALU output.
+            
+            To save the output from the \texttt{NEXT} instruction unit, which is the address of the following instruction, back to some specified register, the control line \texttt{WBsel} for \texttt{mux4} is set to 2. The data memory is not accessed hence all control lines going to the data memory is deasserted.
+            
+            Every control signal value is summarized in Table \ref{table:JALRFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
+            
+            \begin{table}[h!]
+                \small
+                \hspace{-2.4cm}
+                \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+                	\hline
+                	                  & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
+                	\textbf{I-Format} &       1        &         1         &        0         &        1         &       0        &        6        &         0          &         0         &        0         &       2        \\ \hline
+                \end{tabular}
+                \caption{This table shows control line values for the special case I-format \texttt{jalr} instruction datapath. }
+                \label{table:JALRFORMAT}
+            \end{table}
+        
     
-    \subsection{Supporting B-Format}
+    \subsection{Supporting S-Format instructions}
+        The S-Format instructions moves data stored in registers to the data memory. No write back to the register happens, therefore the register write control is deasserted. Because of this it does not matter what value \texttt{WBSel} control line has. 
+        
+        To calculate the address to which the data is to be saved, the base address stored in a register is used. This register is read and sent out to the \texttt{RS1} read line. For this reason the control for \texttt{mux2} is deasserted. The offset to the base address lies within the immediate field, so the control line for \texttt{mux3} is asserted.
+        
+        The ALU then finds the sum between the address given by the \texttt{RS1} line and the offset given by the immediate line. Addition is defined as case 0 in the \texttt{ALU} therefore opcode 0 is set for the ALU control line.
+        
+        The data memory needs to know whether the data to be stored is a byte, half, word or double word, so the control line \texttt{SizeAndSign} range between 0 and 3 and is set depending on the given S-type instruction. The data to be stored comes from the second register line and is directly connected to the data memory. Since the data memory will get written to the control line \texttt{MemWrite} is asserted to authorize this. No read is happening so \texttt{MemRead} is deasserted.
+        
+        Finally the \texttt{PCSel} line is deasserted such that address of the next instruction is inputted to the program counter, since S-format instructions do not perform any branching. Every control signal value is summarized in Table \ref{table:SFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
+        
+        
+        \begin{table}[h!]
+            \small
+            \hspace{-2.4cm}
+            \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+            	\hline
+            	                  & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
+            	\textbf{S-Format} &       0        &         0         &        0         &        1         &       0        &        0        &         0-3          &         1         &        0         &       0        \\ \hline
+            \end{tabular}
+            \caption{This table shows control line values for the S-format datapath.}
+            \label{table:SFORMAT}
+        \end{table}
     
-    \subsection{Supporting U-Format}
+    \subsection{Supporting B-Format instructions}
+        The B-Format instruction, also known as branching instructions determines whether the following instruction or an alternate instruction located at different address should be run next, based on some branching condition.
+        
+        The address of the alternate instruction is calculated using the current address and an offset specified in the immediate field of the branching instruction. Therefore both control signals, \texttt{ALUSrc1} and \texttt{ALUSrc2}, going to \texttt{mux2} and \texttt{mux3} is asserted. The ALU then needs to find the sum between these so \texttt{ALUop} is set to 0. Hereafter the result gets sent back to \texttt{mux1}.
+        
+        \texttt{PCSel} is asserted since the AND gate needs to be able to output 1. To determine whether the branching should happen the \texttt{GOTO} unit compare the values given to lines \texttt{RS1} and \texttt{RS2}. There is 6 different comparisons, so the \texttt{BJSIGN} control line is used to choose the right one depending on the given instruction. The values range between 0 and 5.
+        
+        Since the memory is not accessed and the register is not written to, all the respective control lines are deasserted. Every control signal value is summarized in Table \ref{table:BFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
+        
+        \begin{table}[h!]
+            \small
+            \hspace{-2.4cm}
+            \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+            	\hline
+            	                  & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
+            	\textbf{B-Format} &       1        &         0         &        1         &        1         &       0        &        0-5        &         0          &         0         &        0         &       0        \\ \hline
+            \end{tabular}
+            \caption{This table shows control line values for the B-format datapath.}
+            \label{table:BFORMAT}
+        \end{table}
+    \subsection{Supporting U-Format instructions}
+        There are two U-Format instructions, \texttt{AUIPC} and \texttt{LUI}. They are both very similar as they load some value to a register destination. 
+        
+        \texttt{LUI} loads a shifted immediate to the register. The immediate shift is done in the \texttt{ImmGen} unit, so a special case has been added to the ALU, which just outputs the value given to the second ALU input. This case is chosen when \texttt{ALUop} is set to 15.
+        
+         \texttt{AUIPC} on the other hand adds the shifted immediate to the current address in the program counter, so the control line \texttt{ALUSrc1} going to \texttt{mux2} gets asserted and \texttt{ALUop} is set to 0 to find the sum between the current address and immediate input.
+         
+         Since a register write is taking place \texttt{RegWrite} is asserted and \texttt{WBSel} is set to 0 to select the ALU output. The data memory is never accessed so all control lines going to it are deasserted. Finally the \texttt{PCSel} line is deasserted such that address of the next instruction is inputted to the program counter, since U-format instructions do not perform any branching. Every control signal value is summarized in Table \ref{table:UFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
     
-    \subsection{Supporting J-Format}
+        \begin{table}[h!]
+            \small
+            \hspace{-2.4cm}
+            \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+            	\hline
+            	                  & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
+            	\textbf{U-Format} &       0        &         1         &      1 or 0      &        1         &    0 or 15     &        0        &          0           &         0         &        0         &       0        \\ \hline
+            \end{tabular}
+            \caption{This table shows control line values for the U-format datapath.}
+            \label{table:UFORMAT}
+        \end{table}
+    
+    \subsection{Supporting J-Format instructions}
     
 \section{Debugging the instructions}
 

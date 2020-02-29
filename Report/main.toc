@@ -57,36 +57,38 @@
 \contentsline {subsection}{\numberline {5.1.7}Data Memory}{54}{subsection.5.1.7}%
 \contentsline {subsection}{\numberline {5.1.8}Go to Unit}{56}{subsection.5.1.8}%
 \contentsline {subsection}{\numberline {5.1.9}Multiplexer}{57}{subsection.5.1.9}%
-\contentsline {subsection}{\numberline {5.1.10}Write Back Unit}{57}{subsection.5.1.10}%
-\contentsline {subsection}{\numberline {5.1.11}AND gate unit}{58}{subsection.5.1.11}%
+\contentsline {subsection}{\numberline {5.1.10}Write Back Unit}{58}{subsection.5.1.10}%
+\contentsline {subsection}{\numberline {5.1.11}AND gate unit}{59}{subsection.5.1.11}%
 \contentsline {subsection}{\numberline {5.1.12}Control}{59}{subsection.5.1.12}%
 \contentsline {section}{\numberline {5.2}Single Cycle RISC-V datapaths}{62}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}RV64I Base Instructions Support}{62}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Supporting R-Format}{62}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Supporting I-Format}{62}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Supporting S-Format}{62}{subsection.5.2.4}%
-\contentsline {subsection}{\numberline {5.2.5}Supporting B-Format}{62}{subsection.5.2.5}%
-\contentsline {subsection}{\numberline {5.2.6}Supporting U-Format}{62}{subsection.5.2.6}%
-\contentsline {subsection}{\numberline {5.2.7}Supporting J-Format}{62}{subsection.5.2.7}%
-\contentsline {section}{\numberline {5.3}Debugging the instructions}{62}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Writing assembly to test instructions}{62}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Writing simple C code to run on RISC-V}{62}{subsection.5.3.2}%
-\contentsline {chapter}{\numberline {6}Conclusion and future work}{63}{chapter.6}%
-\contentsline {chapter}{\numberline {A}Unary Operators}{64}{appendix.A}%
-\contentsline {subsubsection}{Logical identity}{64}{section*.78}%
-\contentsline {subsubsection}{Logical true}{64}{section*.80}%
-\contentsline {subsubsection}{Logical false}{65}{section*.82}%
-\contentsline {chapter}{\numberline {B}Binary Operators}{66}{appendix.B}%
-\contentsline {subsubsection}{Joint denial}{66}{section*.84}%
-\contentsline {subsubsection}{Alternative denial}{66}{section*.86}%
-\contentsline {subsubsection}{Logical biconditional}{67}{section*.88}%
-\contentsline {subsubsection}{Tautology}{68}{section*.90}%
-\contentsline {subsubsection}{Contradiction}{68}{section*.92}%
-\contentsline {subsubsection}{Proposition P}{69}{section*.94}%
-\contentsline {subsubsection}{Proposition Q}{69}{section*.96}%
-\contentsline {subsubsection}{Negated P}{70}{section*.98}%
-\contentsline {subsubsection}{Negated Q}{71}{section*.100}%
-\contentsline {subsubsection}{Material implication}{71}{section*.102}%
-\contentsline {subsubsection}{Converse implication}{72}{section*.104}%
-\contentsline {subsubsection}{Material nonimplication}{72}{section*.106}%
-\contentsline {subsubsection}{Converse nonimplication}{73}{section*.108}%
+\contentsline {subsection}{\numberline {5.2.1}Supporting R-Format instructions}{63}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Supporting I-Format instructions}{63}{subsection.5.2.2}%
+\contentsline {subsubsection}{Load instructions}{64}{section*.80}%
+\contentsline {subsubsection}{Jump and link register}{64}{section*.82}%
+\contentsline {subsection}{\numberline {5.2.3}Supporting S-Format instructions}{65}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Supporting B-Format instructions}{65}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.5}Supporting U-Format instructions}{66}{subsection.5.2.5}%
+\contentsline {subsection}{\numberline {5.2.6}Supporting J-Format instructions}{66}{subsection.5.2.6}%
+\contentsline {section}{\numberline {5.3}Debugging the instructions}{66}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Writing assembly to test instructions}{66}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Writing simple C code to run on RISC-V}{66}{subsection.5.3.2}%
+\contentsline {chapter}{\numberline {6}Conclusion and future work}{67}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Unary Operators}{68}{appendix.A}%
+\contentsline {subsubsection}{Logical identity}{68}{section*.88}%
+\contentsline {subsubsection}{Logical true}{68}{section*.90}%
+\contentsline {subsubsection}{Logical false}{69}{section*.92}%
+\contentsline {chapter}{\numberline {B}Binary Operators}{70}{appendix.B}%
+\contentsline {subsubsection}{Joint denial}{70}{section*.94}%
+\contentsline {subsubsection}{Alternative denial}{70}{section*.96}%
+\contentsline {subsubsection}{Logical biconditional}{71}{section*.98}%
+\contentsline {subsubsection}{Tautology}{72}{section*.100}%
+\contentsline {subsubsection}{Contradiction}{72}{section*.102}%
+\contentsline {subsubsection}{Proposition P}{73}{section*.104}%
+\contentsline {subsubsection}{Proposition Q}{73}{section*.106}%
+\contentsline {subsubsection}{Negated P}{74}{section*.108}%
+\contentsline {subsubsection}{Negated Q}{75}{section*.110}%
+\contentsline {subsubsection}{Material implication}{75}{section*.112}%
+\contentsline {subsubsection}{Converse implication}{76}{section*.114}%
+\contentsline {subsubsection}{Material nonimplication}{76}{section*.116}%
+\contentsline {subsubsection}{Converse nonimplication}{77}{section*.118}%
+\contentsline {chapter}{\numberline {C}Control Signal values}{79}{appendix.C}%

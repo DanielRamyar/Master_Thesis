@@ -6,6 +6,7 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{Chapter:5}{{5}{46}{The RISC-V processor}{chapter.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}Single Cycle RISC-V Units}{46}{section.5.1}\protected@file@percent }
+\newlabel{section:riscunits}{{5.1}{46}{Single Cycle RISC-V Units}{section.5.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Program Counter}{46}{subsection.5.1.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Illustration of the clocked \texttt  {program counter} process having the next address as input and current address as output. The dashed square indicates a clocked process.\relax }}{47}{figure.caption.65}\protected@file@percent }
 \newlabel{fig:PC}{{5.1}{47}{Illustration of the clocked \texttt {program counter} process having the next address as input and current address as output. The dashed square indicates a clocked process.\relax }{figure.caption.65}{}}
@@ -52,13 +53,13 @@
 \newlabel{fig:MUX}{{5.9}{57}{Illustration of the \texttt {Multiplexer} process. An arbitrary amount of input can be given, where the output i selected by the red control line. \relax }{figure.caption.73}{}}
 \newlabel{MUX}{{5.9}{57}{An example of a \texttt {Multiplexer} process SME code. The whole multiplexer simply consists of a \texttt {switch} statement that selects an input to output dependent on \texttt {SelectBus}}{lstlisting.5.9}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {5.9}An example of a \texttt  {Multiplexer} process SME code. The whole multiplexer simply consists of a \texttt  {switch} statement that selects an input to output dependent on \texttt  {SelectBus}.}{57}{lstlisting.5.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.10}Write Back Unit}{57}{subsection.5.1.10}\protected@file@percent }
 \citation{riscVbook}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.10}Write Back Unit}{58}{subsection.5.1.10}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Illustration of the \texttt  {Write Back} process. It has 3 input \texttt  {Data}, \texttt  {Write Register} and \texttt  {Write control}. These input gets outputted unchanged to their respective output buses. The dashed square indicates a clocked process.\relax }}{58}{figure.caption.74}\protected@file@percent }
 \newlabel{fig:WB}{{5.10}{58}{Illustration of the \texttt {Write Back} process. It has 3 input \texttt {Data}, \texttt {Write Register} and \texttt {Write control}. These input gets outputted unchanged to their respective output buses. The dashed square indicates a clocked process.\relax }{figure.caption.74}{}}
 \newlabel{WB}{{5.10}{58}{A slice of the \texttt {Write Back} process SME code. It contains 3 variables, which will hold the incomming values, which gets outputted unchanged in the same clock cycle}{lstlisting.5.10}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {5.10}A slice of the \texttt  {Write Back} process SME code. It contains 3 variables, which will hold the incomming values, which gets outputted unchanged in the same clock cycle.}{58}{lstlisting.5.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.11}AND gate unit}{58}{subsection.5.1.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.11}AND gate unit}{59}{subsection.5.1.11}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5.11}{\ignorespaces Illustration of the \texttt  {AND gate} process. It has two input one from the \texttt  {Go To} unit and one from the \texttt  {control unit} named \texttt  {PCSel}. The output is then the result of the logical AND operation between the two input.\relax }}{59}{figure.caption.75}\protected@file@percent }
 \newlabel{fig:AND}{{5.11}{59}{Illustration of the \texttt {AND gate} process. It has two input one from the \texttt {Go To} unit and one from the \texttt {control unit} named \texttt {PCSel}. The output is then the result of the logical AND operation between the two input.\relax }{figure.caption.75}{}}
 \newlabel{AND}{{5.11}{59}{A slice of the \texttt {AND gate} process SME code. It simply calculates the logical AND of two input and outputs the result}{lstlisting.5.11}{}}
@@ -70,18 +71,36 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {5.12}A slice of the \texttt  {Control} process SME code. First 3 varibles are declared for the extracted \texttt  {opcode}, \texttt  {funct3} and \texttt  {func7} fields. They are then used in the following \texttt  {switch} statements to correctly identify the given instruction. Finally the control lines are set with the values for the respective instruction.}{61}{lstlisting.5.12}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5.2}Single Cycle RISC-V datapaths}{62}{section.5.2}\protected@file@percent }
 \newlabel{section:Datapaths}{{5.2}{62}{Single Cycle RISC-V datapaths}{section.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}RV64I Base Instructions Support}{62}{subsection.5.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Supporting R-Format}{62}{subsection.5.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Supporting I-Format}{62}{subsection.5.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Supporting S-Format}{62}{subsection.5.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.5}Supporting B-Format}{62}{subsection.5.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.6}Supporting U-Format}{62}{subsection.5.2.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.7}Supporting J-Format}{62}{subsection.5.2.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Debugging the instructions}{62}{section.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Writing assembly to test instructions}{62}{subsection.5.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Writing simple C code to run on RISC-V}{62}{subsection.5.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.13}{\ignorespaces \relax }}{62}{figure.caption.77}\protected@file@percent }
+\newlabel{fig:RISCV}{{5.13}{62}{\relax }{figure.caption.77}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Supporting R-Format instructions}{63}{subsection.5.2.1}\protected@file@percent }
+\newlabel{section:Rformat}{{5.2.1}{63}{Supporting R-Format instructions}{subsection.5.2.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces This table shows control line values for the R-format datapath. Only the \texttt  {ALUop} line is different between the R-format instructions and the values range from 0 to 14.\relax }}{63}{table.caption.78}\protected@file@percent }
+\newlabel{table:RFORMAT}{{5.1}{63}{This table shows control line values for the R-format datapath. Only the \texttt {ALUop} line is different between the R-format instructions and the values range from 0 to 14.\relax }{table.caption.78}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Supporting I-Format instructions}{63}{subsection.5.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces This table shows control line values for the I-format datapath. Only the \texttt  {ALUop} line is different between the I-format instructions and the values range from 0 to 14.\relax }}{63}{table.caption.79}\protected@file@percent }
+\newlabel{table:IFORMAT}{{5.2}{63}{This table shows control line values for the I-format datapath. Only the \texttt {ALUop} line is different between the I-format instructions and the values range from 0 to 14.\relax }{table.caption.79}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Load instructions}{64}{section*.80}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces This table shows control line values for the special case I-format \texttt  {load} instruction datapath. \relax }}{64}{table.caption.81}\protected@file@percent }
+\newlabel{table:LOADFORMAT}{{5.3}{64}{This table shows control line values for the special case I-format \texttt {load} instruction datapath. \relax }{table.caption.81}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Jump and link register}{64}{section*.82}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces This table shows control line values for the special case I-format \texttt  {jalr} instruction datapath. \relax }}{64}{table.caption.83}\protected@file@percent }
+\newlabel{table:JALRFORMAT}{{5.4}{64}{This table shows control line values for the special case I-format \texttt {jalr} instruction datapath. \relax }{table.caption.83}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Supporting S-Format instructions}{65}{subsection.5.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces This table shows control line values for the S-format datapath.\relax }}{65}{table.caption.84}\protected@file@percent }
+\newlabel{table:SFORMAT}{{5.5}{65}{This table shows control line values for the S-format datapath.\relax }{table.caption.84}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Supporting B-Format instructions}{65}{subsection.5.2.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces This table shows control line values for the B-format datapath.\relax }}{66}{table.caption.85}\protected@file@percent }
+\newlabel{table:BFORMAT}{{5.6}{66}{This table shows control line values for the B-format datapath.\relax }{table.caption.85}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.5}Supporting U-Format instructions}{66}{subsection.5.2.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces This table shows control line values for the U-format datapath.\relax }}{66}{table.caption.86}\protected@file@percent }
+\newlabel{table:UFORMAT}{{5.7}{66}{This table shows control line values for the U-format datapath.\relax }{table.caption.86}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.6}Supporting J-Format instructions}{66}{subsection.5.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Debugging the instructions}{66}{section.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Writing assembly to test instructions}{66}{subsection.5.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Writing simple C code to run on RISC-V}{66}{subsection.5.3.2}\protected@file@percent }
 \@setckpt{chapters/chapter5}{
-\setcounter{page}{63}
+\setcounter{page}{67}
 \setcounter{equation}{0}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}
@@ -96,8 +115,8 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{12}
-\setcounter{table}{0}
+\setcounter{figure}{13}
+\setcounter{table}{7}
 \setcounter{parentequation}{0}
 \setcounter{caption@flags}{0}
 \setcounter{continuedfloat}{0}
@@ -107,7 +126,7 @@
 \setcounter{NAT@ctr}{0}
 \setcounter{Item}{4}
 \setcounter{Hfootnote}{12}
-\setcounter{bookmark@seq@number}{62}
+\setcounter{bookmark@seq@number}{61}
 \setcounter{pp@next@reset}{0}
 \setcounter{lstnumber}{34}
 \setcounter{@todonotes@numberoftodonotes}{3}
