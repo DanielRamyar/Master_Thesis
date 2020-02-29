@@ -8,7 +8,7 @@
     Then we will go through the base 2 numeral system to make meaning of the following section, which will go through how the assembly language, also known as instructions, is represented in the CPU itself. This chapter is based on chapter 2 in \cite{riscVbook}, which can be referred to if more detailed explanations are needed.
 
 \section{RISC-V Assembly}\label{section:RISC-V Asembly}
-    Like every computer, we need a way of telling it what to do. This is done via the RISC-V assembly language, which is a human readable abstraction of the RISC-V instruction set. We will get into what this instruction set looks like in a bit, for now we will just introduce the assembly language. For writing small RISC-V Assembler programs I can recommend the RISC-V Assembly simulator \textit{Jupiter} , which can be found in this footnote\footnote{\url{https://github.com/andrescv/Jupiter}}.
+    Like every computer, we need a way of telling it what to do. This is done via the RISC-V assembly language, which is a human readable abstraction of the RISC-V instruction set. There exists multiple instruction standards like \texttt{RV32I} and \texttt{RV64I} for the RISC-V architecture and extensions to these\footnote{The exect specifications can be found here \url{https://riscv.org/specifications/}}. This project will implement the \texttt{RV64I} instructions. For writing small RISC-V Assembler programs I can recommend the RISC-V Assembly simulator \textit{Jupiter}\footnote{\url{https://github.com/andrescv/Jupiter}}.
     
     For the assembler to know where to start reading instructions from we use:
     
@@ -52,6 +52,7 @@ __start:
 
     \begin{table}[h!]
         \centering
+        \small
         \begin{tabular}{|l|l|l|}
         	\hline
         	Name     & Assembly         & Description (in C) \\ \hline
@@ -64,7 +65,7 @@ __start:
         \caption{This table is a subset of the RISC-V assembly language arithmetic instructions. For the complete base instruction set, please refer to the RISC-V reference card in the appendix.}
         \label{table:RISCVInstructions}
     \end{table}
-
+\newpage
 \section{Register}\label{section:Register}
     In a high-level programming language we do not think much, when we declare a variable. For the most part the memory management is hidden for the end user and is taken care of by the compiler. However we do not have this convenience in assembly, where the operands of instructions are much more restricted. 
     
@@ -311,7 +312,7 @@ addi x13, x0, -5 # x13 = 0 - 5
         \end{table}
     
 \section{Instruction representation in binary}\label{section:InstructionRep}
-    All base instructions in the RISC-V architecture (Rv) are 32 bits long, meaning 32 binary digits are used to represent an instruction. This is what all assembly code gets compiled into and is known as \textit{machine code}.
+    All base instructions in the RISC-V architecture implemented in this project, \texttt{RV64I}, are 32 bits long, meaning 32 binary digits are used to represent an instruction. This is what all assembly code gets compiled into and is known as \textit{machine code}.
     Going back to our \texttt{add} instruction 
     \begin{lstlisting}[language=, numbers=none]
 add x18, x12, x13
@@ -513,15 +514,84 @@ funct7  x13   x12   funct3 x18   add
         
         
     \section{Branching Instructions}
-        To make any useful simulation or program it is essential to able to make decisions depending on some condition. An example of this could be iterating over an array and changing elements depending on some condition. This requires that the processor is able to loop trough the array and stop when the end is reached and check whether some condition is meet at each element.
+        To produce advanced programs that do more than arithmetic calculations, \textit{branching} instructions are supported by the basic RISC-V instruction set.
+        Branching instructions allows the processor to execute instructions not located immediately after the current one based on some condition. 
         
-        What this would look like in the assembly code is that some lines of instructions would keep getting executed. It does this is by using \texttt{branching} instructions to jump back to a line until some condition is met.
-        
-        For example 
-        
+        For example to move 5 instructions back if values stored in registers 17 and 18 are equal the \texttt{beq} instruction would be used. In assembly this would be written like so
         \begin{lstlisting}[language=C]
-
-        
+...
+beq x17, x18, -5
         \end{lstlisting}
         
+        In higher level programming languages the abstractions for the branching instructions are commonly represented by \texttt{if/else} statements or \texttt{for/while} loops. In an \texttt{if/else} statement the branching instruction would be used to go to a specific place in the program if some condition is met. In a \texttt{for/while} loop branching instructions would be used to jump back and repeat the same part of a program until the condition is met. A subset of the branching instructions are outlined in Table \ref{table:RISCVBranchingInstructions}.
+       
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|l|l|l|}
+            	\hline
+            	Name                         & Assembly           & Description (in C)          \\ \hline
+            	Branch If Equal              & beq rs1, rs2, imm  & if(rs1 == rs2) PC += imm    \\
+            	Branch Not Equal             & bne rs1, rs2, imm  & if(rs1 != rs2) PC += imm    \\
+            	Branch Less Than             & blt rs1, rs2, imm  & if(rs1 $<$ rs2) PC += imm   \\
+            	Branch Greater Than Or Equal & bgeu rs1, rs2, imm & if(rs1 $\ge$ rs2) PC += imm \\ \hline
+            \end{tabular}
+            \caption{This table is a subset of the RISC-V assembly language branching instructions. For the complete base instruction set, please refer to the RISC-V reference card in the appendix.}
+            \label{table:RISCVBranchingInstructions}
+        \end{table}
+        
+    \section{Jumping Instructions}
+        When creating larger programs often same the procedure is used multiple times. An example of this could be calculating $\sin(x)$ multiple places in the code. Instead of rewriting the algorithm for calculating $\sin(x)$ every time it is used, a function can be written once, which we call instead every time it is needed.
+        
+        In assembly jumping instructions are used for this purpose. Two jumping instructions are supported in the basic instruction set, \texttt{jump and link} and \texttt{jump and link register}. They have been outlined in Table \ref{table:RISCVJumpingInstructions}.
+        
+        Assuming that the $\sin(x)$ is implemented at some address, jumping to the procedure would be done with a \texttt{jump and link} instruction like so
+        \begin{lstlisting}[language=C]
+...
+jal x1, sinxprocedureaddress
+        \end{lstlisting}
+        here the address for the next instruction after the current is saved in register \texttt{x1}. To return from the $\sin(x)$ procedure the \texttt{jump and link register} instruction is used as so
+        \begin{lstlisting}[language=C]
+...
+jalr x0, x0, x1
+        \end{lstlisting}
+        taking advantage of the hard-wired zero in register 0.
+        
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|l|l|l|}
+            	\hline
+            	Name                   & Assembly          & Description (in C)          \\ \hline
+            	Jump and link          & jal rd, imm       & rd = PC + 4; PC += imm      \\
+            	Jump and link register & jalr rd, rs1, imm & rd = PC + 4; PC = rs1 + imm \\ \hline
+            \end{tabular}
+            \caption{This table shows the RISC-V assembly language jumping instructions. For the complete base instruction set, please refer to the RISC-V reference card in the appendix.}
+            \label{table:RISCVJumpingInstructions}
+        \end{table}
     
+    \section{Compiling simple C code to assembly}
+        To close this chapter off an example of a simple \texttt{C} programs compilation into assembly will be shown.
+        
+        For this example a loop that increments the value, stored in variable \texttt{a} is constructed
+        \begin{lstlisting}[language=C]
+int a = 0;
+for (int i=0; i<10; i++) {
+    a+=i;
+}
+        \end{lstlisting}
+        Using any RISC-V compiler the \texttt{C} program can get compiled into its assembly equivalent. It will however look quite different from the code about to be shown depending on the compiler, but the train of thought should still be the same.
+        
+        In the following the first line adds variable \texttt{a} to register 6 with value 0, the second line add the index \texttt{i} to register 7 with value 0 and constant \texttt{c=10} is added to register 28. 
+        
+        Line 4 finds the sum between \texttt{a} and \texttt{i}, which gets stored back into register 6 and line 5 increment \texttt{i} by 1.
+        
+        Lastly to emulate the \texttt{for} loop a branch if less than, \texttt{blt}, instruction has been added to go back to line 4 as long as \texttt{i<10}.
+        \begin{lstlisting}[language=C]
+ori x6, x0, 0   # a=0
+ori x7, x0, 0   # i=0
+ori x28, x0, 10 # c=10 (the value i has to be less than in the for loop)
+add x6, x6, x7  # a=a+i
+addi x7, x7, 1  # i=i+1
+blt x7, x28, -2 # if(i < 10) go two instructions back
+        \end{lstlisting}
+        
+        

@@ -63,6 +63,7 @@ Starting out we will go through a short introduction behind the inspiration for 
     \begin{itemize}
         \item Globally synchronous
         \item Broadcasting channels
+        \item Hidden clock
         \item Shared nothing
         \item Implicit latches
     \end{itemize} 
@@ -70,10 +71,28 @@ Starting out we will go through a short introduction behind the inspiration for 
     All these observations laid the foundation behind Synchronous Message Exchange (SME),  \citet{vinter2014synchronous}. 
     Since then the SME framework has been implemented in the .NET framework, \citet{skovhede2016building}, which is the version of SME that will be used throughout this thesis.
     
-    We will not dwell further into the theory behind SME in this thesis. Instead we will be developing actual units in SME, that will be needed when we later implement the RISC-V architecture. The SME syntax will be introduced as we go through the examples and is intended to be a from-scratch introduction for the uninitiated reader. 
+    \subsection{The hidden clock}
+        To ensure predictability for hardware models some form of global coordination is needed. If processes could read and write signals at any time there is no way of knowing if subsequent processes would use old or new data. This would lead to undesirable behavior.
+        
+        Therefore a clocking methodology is introduced to establish coordination between processes. In SME a hidden clock exist, which synchronizes all processes. The clock can be thought of as a function cycling between high and low, as shown in Figure \ref{fig:clockexample}. 
+        
+        In SME, Clocked processes are then activated (meaning the procedure defined inside the process gets executed) on rising clock edges. Un-clocked SME processes on the other hand first activates once its input has been written to by other (clocked or un-clocked) processes. 
+        
+        A single clock cycle is then defined to start at every rising edge and end at the next one. In a clock cycle the following then happens: A clocked process gets activated on a rising clock edge, which outputs a value to some bus that is connected to an un-clocked process, this will then activate the process. This whole procedure would then be repeated in the following cycle. This ensures global coordination between processes.
+        
+        \begin{figure}[h!]
+            \centering
+            \subimport{tikz_stuff/}{clockexample}
+            \caption{Illustration of 2 clock cycles where the first clock cycle is shown in red and the second clock cycle in blue.}
+            \label{fig:clockexample}
+        \end{figure}
     
-    \note{beskriv clocked proceser der trigger ikke clocked processer plus nævn skjult bus, skriv hvad latch er}
-    \note{beskriv rendevouz og broadcast}
+    \subsection{Broadcasting and buses}
+        In CSP processes communicate with each other using channels that make use of the rendezvous protocol, meaning that data first gets transmitted through the channel once the destination says it is ready to receive. 
+        
+        SME on the other hand uses a broadcasting model, meaning that data instead gets transmitted to SME busses, that any process can read from. In other words a process can broadcast its output to multiple processes through a single bus. Using CSP, multiple channels would have to be used to emulate a single bus in SME. When data is written to a bus it will first be available in the following clock cycle. Furthermore a bus is able to contain multiple data types and values that can be accessed by a process. 
+        
+        We will not dwell further into the theory behind SME in this thesis. Instead we will be developing actual units in SME, that will be needed when we later implement the RISC-V architecture. The SME syntax will be introduced as we go through the examples and is intended to be a from-scratch introduction for the uninitiated reader. 
 
     \subsection{SME setup and structure}
         We will in this section go through the code structure I have decided to use for the development of all logic units. Much thought has been given to this and from previous experience doing code projects I would say it is good practice to think about the general structure of the project for ease of development and future extensions.
@@ -81,8 +100,6 @@ Starting out we will go through a short introduction behind the inspiration for 
         A modular design is essential, as many logic units is going to be needed when implementing the RISC-V architecture. This also allows for easy debugging and testing, as individual units can be addressed before integrating them into a larger system. Each logic unit will also be separated into two files. One which contains all the buses and one which contains the function of the unit. The thought behind this is to help compartmentalize bus declarations from unit function and hopefully ease development.  
         
         In the following it is a prerequisite that .NET Core SDK\footnote{The SDK can be found here \url{https://dotnet.microsoft.com/download}} is installed on their respective systems to be able to run the code. All following code examples can be found by clicking \href{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations}{here} or if reading printed version the full link can be found in this footnote\footnote{\url{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations}}.
-        
-        In the following it should be noted that the equivalent to a channel in CSP, is a bus in SME. Buses however, are able to contain multiple signals/channels.  
         
         \subsubsection{Project structure example}
         We are going to build an AND gate for this example. This will be the only section were the complete code is shown, as this section is meant to serve as a "quick start guide" for readers beginning their journey into SME. Subsequent sections will only show relevant parts of the code. 
@@ -169,7 +186,7 @@ namespace ANDGate {
 \newpage
         Hereafter we are going to make our bus declarations in a new file called buses.cs. Looking at Listing \ref{busdeclarations}, we see that the bus declarations are made using the interface command, which inherits its fields and methods from the \texttt{IBus} interface. The name for the bus is free of choice and in this case are called \texttt{GateInputs} and \texttt{GateOuputs} respectively.
         
-        A bus can contain multiple signals of various types. Since the AND gate evaluates binary values, the \texttt{bool} type has been chosen for the input and output signals. You may have noticed that all the signals have the \texttt{InitialValue} attribute. What this does is that once the bus is created it will contain an initial value. If this is not done you have to be careful not to read the bus before any value has been given to it, as this will crash the program.
+        A bus can contain multiple signals of various types. Since the AND gate evaluates binary values, the \texttt{bool} type has been chosen for the input and output signals. You may have noticed that all the signals have the \texttt{InitialValue} attribute. What this does is that once the bus is created it will contain an initial value. If this is not done you have to be careful not letting clocked processes read the bus before any value has been given to it, as this will crash the program.
         
         Then we have the \texttt{TopLevelInputBus} and \texttt{TopLevelOuputBus} attributes, they tell SME which buses goes in and out of the hardware implementation. Remember that this attribute is only given to buses which are interfacing with some outside process, in this case the simulation process. Internal buses should not be given this attribute. By an internal bus we mean a bus which is connecting processes inside the hardware implementation (see Figure \ref{fig:2BitDecoderSME}, here the internal buses goes from the NOT gates to the AND gates).
 

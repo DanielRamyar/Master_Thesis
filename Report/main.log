@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  26 FEB 2020 15:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  29 FEB 2020 14:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1184,7 +1184,7 @@ l.75     \include{frontpage}
 page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.52 ...Immediate generator}{49}{subsection.5.1.6}
+l.52 ...}Instruction Memory}{47}{subsection.5.1.2}
                                                   % [1
 
 
@@ -1271,28 +1271,26 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 64.
-
-
-LaTeX Warning: Marginpar on page 15 moved.
-
-[15] (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+ [15]
+(./tikz_stuff/clockexample.tex) [16]
+(/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 )
 
-Package xcolor Warning: Incompatible color definition on input line 100.
+Package xcolor Warning: Incompatible color definition on input line 117.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 100.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 117.
 (./tikz_stuff/ANDGateSME.tex)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[16]
+[17]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 135.
+nput line 152.
  (/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/Project.cs
 
 Package xcolor Warning: Incompatible color definition on input line 1.
@@ -1327,201 +1325,12 @@ Package xcolor Warning: Incompatible color definition on input line 9.
 
 Package xcolor Warning: Incompatible color definition on input line 10.
 
-) [17]
+) [18]
 
-Package xcolor Warning: Incompatible color definition on input line 142.
+Package xcolor Warning: Incompatible color definition on input line 159.
 
 
-Package xcolor Warning: Incompatible color definition on input line 143.
-
-
-Package xcolor Warning: Incompatible color definition on input line 145.
-
-
-Package xcolor Warning: Incompatible color definition on input line 146.
-
-
-Package xcolor Warning: Incompatible color definition on input line 146.
-
-
-Package xcolor Warning: Incompatible color definition on input line 148.
-
-
-Package xcolor Warning: Incompatible color definition on input line 148.
-
-
-Package xcolor Warning: Incompatible color definition on input line 151.
-
-
-Package xcolor Warning: Incompatible color definition on input line 151.
-
-
-Package xcolor Warning: Incompatible color definition on input line 153.
-
-
-Package xcolor Warning: Incompatible color definition on input line 153.
-
-
-Package xcolor Warning: Incompatible color definition on input line 154.
-
-
-Package xcolor Warning: Incompatible color definition on input line 154.
-
-
-Package xcolor Warning: Incompatible color definition on input line 154.
-
-
-Package xcolor Warning: Incompatible color definition on input line 154.
-
-
-Package xcolor Warning: Incompatible color definition on input line 154.
-
-
-Package xcolor Warning: Incompatible color definition on input line 154.
-
-
-Package xcolor Warning: Incompatible color definition on input line 154.
-
-
-Package xcolor Warning: Incompatible color definition on input line 157.
-
-
-Package xcolor Warning: Incompatible color definition on input line 158.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 161.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
-
-
-Package xcolor Warning: Incompatible color definition on input line 162.
+Package xcolor Warning: Incompatible color definition on input line 160.
 
 
 Package xcolor Warning: Incompatible color definition on input line 162.
@@ -1530,24 +1339,213 @@ Package xcolor Warning: Incompatible color definition on input line 162.
 Package xcolor Warning: Incompatible color definition on input line 163.
 
 
-Package xcolor Warning: Incompatible color definition on input line 164.
+Package xcolor Warning: Incompatible color definition on input line 163.
 
 
-Package xcolor Warning: Incompatible color definition on input line 164.
+Package xcolor Warning: Incompatible color definition on input line 165.
 
 
-Package xcolor Warning: Incompatible color definition on input line 164.
+Package xcolor Warning: Incompatible color definition on input line 165.
 
 
-Package xcolor Warning: Incompatible color definition on input line 164.
+Package xcolor Warning: Incompatible color definition on input line 168.
 
 
-Package xcolor Warning: Incompatible color definition on input line 164.
+Package xcolor Warning: Incompatible color definition on input line 168.
 
 
-Package xcolor Warning: Incompatible color definition on input line 164.
+Package xcolor Warning: Incompatible color definition on input line 170.
 
-[18] (/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/Buses.cs
+
+Package xcolor Warning: Incompatible color definition on input line 170.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 171.
+
+
+Package xcolor Warning: Incompatible color definition on input line 174.
+
+
+Package xcolor Warning: Incompatible color definition on input line 175.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 179.
+
+
+Package xcolor Warning: Incompatible color definition on input line 180.
+
+
+Package xcolor Warning: Incompatible color definition on input line 181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 181.
+
+[19] (/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/Buses.cs
 
 Package xcolor Warning: Incompatible color definition on input line 1.
 
@@ -1578,7 +1576,7 @@ Package xcolor Warning: Incompatible color definition on input line 14.
 
 Package xcolor Warning: Incompatible color definition on input line 16.
 
-) [19]
+) [20]
 (/Users/danielramyar/Desktop/Thesis/SME_Implementations/ANDGate/ANDgate.cs
 
 Package xcolor Warning: Incompatible color definition on input line 1.
@@ -1626,17 +1624,17 @@ Package xcolor Warning: Incompatible color definition on input line 15.
 Package xcolor Warning: Incompatible color definition on input line 15.
 
 )
-<pictures/ANDGate.pdf, id=670, 170.6375pt x 260.975pt>
+<pictures/ANDGate.pdf, id=692, 170.6375pt x 260.975pt>
 File: pictures/ANDGate.pdf Graphic file (type pdf)
 <use pictures/ANDGate.pdf>
-Package pdftex.def Info: pictures/ANDGate.pdf  used on input line 201.
+Package pdftex.def Info: pictures/ANDGate.pdf  used on input line 218.
 (pdftex.def)             Requested size: 170.63707pt x 260.97437pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[20] (./tikz_stuff/2BitDecoderSchematic.tex) [21 <./pictures/ANDGate.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 244--244
+[21] (./tikz_stuff/2BitDecoderSchematic.tex) [22 <./pictures/ANDGate.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 261--261
 [][][][]$\OT1/cmtt/m/n/8 https : / / github . com / DanielRamyar / Master _ The
 sis / tree / master / SME _ Implementations / Decoder _ 2 _ Bit _ new _
  []
@@ -1645,103 +1643,107 @@ sis / tree / master / SME _ Implementations / Decoder _ 2 _ Bit _ new _
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[22]
+[23]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[23] (./tikz_stuff/2BitMultiplexerSchematic.tex) [24]
+[24] (./tikz_stuff/2BitMultiplexerSchematic.tex) [25]
 (./tikz_stuff/2BitMultiplexerSME.tex)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[25] (./tikz_stuff/1BitFullAdder.tex)
+[26] (./tikz_stuff/1BitFullAdder.tex)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[26] (./tikz_stuff/1BitFullAdderSME.tex)
-Overfull \hbox (9.67546pt too wide) in paragraph at lines 108--375
+[27] (./tikz_stuff/1BitFullAdderSME.tex)
+Overfull \hbox (9.67546pt too wide) in paragraph at lines 108--392
  [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[27] (./tikz_stuff/ALUSME.tex)
+[28] (./tikz_stuff/ALUSME.tex)
 
-Package xcolor Warning: Incompatible color definition on input line 402.
-
-
-Package xcolor Warning: Incompatible color definition on input line 402.
+Package xcolor Warning: Incompatible color definition on input line 419.
 
 
-Package xcolor Warning: Incompatible color definition on input line 402.
+Package xcolor Warning: Incompatible color definition on input line 419.
 
 
-Package xcolor Warning: Incompatible color definition on input line 403.
+Package xcolor Warning: Incompatible color definition on input line 419.
 
 
-Package xcolor Warning: Incompatible color definition on input line 404.
+Package xcolor Warning: Incompatible color definition on input line 420.
 
 
-Package xcolor Warning: Incompatible color definition on input line 406.
+Package xcolor Warning: Incompatible color definition on input line 421.
 
 
-Package xcolor Warning: Incompatible color definition on input line 407.
+Package xcolor Warning: Incompatible color definition on input line 423.
 
 
-Package xcolor Warning: Incompatible color definition on input line 409.
+Package xcolor Warning: Incompatible color definition on input line 424.
 
 
-Package xcolor Warning: Incompatible color definition on input line 410.
+Package xcolor Warning: Incompatible color definition on input line 426.
 
 
-Package xcolor Warning: Incompatible color definition on input line 412.
+Package xcolor Warning: Incompatible color definition on input line 427.
 
 
-Package xcolor Warning: Incompatible color definition on input line 413.
+Package xcolor Warning: Incompatible color definition on input line 429.
 
 
-Package xcolor Warning: Incompatible color definition on input line 415.
+Package xcolor Warning: Incompatible color definition on input line 430.
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 400--419
+Package xcolor Warning: Incompatible color definition on input line 432.
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 417--436
 []$[]$ 
  []
 
-) [28] [29]
+) [29] [30]
 \openout2 = `chapters/chapter4.aux'.
 
  (./chapters/chapter4.tex
 Chapter 4.
-[30
+[31
 
 
 
-] [31] [32] (./tikz_stuff/memory.tex) [33]
+] [32] [33] (./tikz_stuff/memory.tex) [34]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[34]
-Overfull \hbox (49.50237pt too wide) in paragraph at lines 192--192
+[35]
+Overfull \hbox (49.50237pt too wide) in paragraph at lines 193--193
 [][]$\OT1/cmtt/m/n/8 https : / / math . stackexchange . com / questions / 13597
 70 / why-[]does-[]the-[]division-[]algorithm-[]work-[]for-[]converting-[]betwee
 n-[]number-[]bases$[][]| 
  []
-
-[35]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [36]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [37]
-Overfull \hbox (34.32115pt too wide) in paragraph at lines 328--378
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[38]
+Overfull \hbox (34.32115pt too wide) in paragraph at lines 329--379
 [][] 
  []
 
-[38] (./tikz_stuff/Bintohex.tex) [39] (./tikz_stuff/shiftleft.tex
+[39] (./tikz_stuff/Bintohex.tex)
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(./tikz_stuff/shiftleft.tex
 Missing character: There is no n in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no w in font nullfont!
@@ -1750,47 +1752,68 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
+) (./tikz_stuff/shiftright.tex
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+) [40]
+(./tikz_stuff/shiftleft.tex
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+) (./tikz_stuff/shiftrightarithmetic.tex
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+) [41]
+[42] (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
 )
-(./tikz_stuff/shiftright.tex
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-) (./tikz_stuff/shiftleft.tex
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-)
-(./tikz_stuff/shiftrightarithmetic.tex
-Missing character: There is no n in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-) [40] [41]) [42]
+(/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+) [43]
+
+Package xcolor Warning: Incompatible color definition on input line 576.
+
+
+Package xcolor Warning: Incompatible color definition on input line 577.
+
+
+Package xcolor Warning: Incompatible color definition on input line 577.
+
+[44]
+
+Package xcolor Warning: Incompatible color definition on input line 591.
+
+
+Package xcolor Warning: Incompatible color definition on input line 594.
+
+) [45]
 \openout2 = `chapters/chapter5.aux'.
 
-
-(./chapters/chapter5.tex
+ (./chapters/chapter5.tex
 Chapter 5.
-[43
+[46
 
 
 
 ]
-<pictures/PC.pdf, id=1007, 1027.84pt x 273.93752pt>
+<pictures/PC.pdf, id=1068, 1027.84pt x 273.93752pt>
 File: pictures/PC.pdf Graphic file (type pdf)
 <use pictures/PC.pdf>
 Package pdftex.def Info: pictures/PC.pdf  used on input line 24.
@@ -1813,8 +1836,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 29--40
 []$[]$ 
  []
 
-[44 <./pictures/PC.pdf>]
-<pictures/IM.pdf, id=1034, 845.1575pt x 217.3981pt>
+[47 <./pictures/PC.pdf>]
+<pictures/IM.pdf, id=1094, 845.1575pt x 217.3981pt>
 File: pictures/IM.pdf Graphic file (type pdf)
 <use pictures/IM.pdf>
 Package pdftex.def Info: pictures/IM.pdf  used on input line 53.
@@ -2047,8 +2070,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 58--87
 []$[]$ 
  []
 
-[45 <./pictures/IM.pdf>]
-<pictures/Next.pdf, id=1080, 845.1575pt x 219.49644pt>
+[48 <./pictures/IM.pdf>]
+<pictures/Next.pdf, id=1139, 845.1575pt x 219.49644pt>
 File: pictures/Next.pdf Graphic file (type pdf)
 <use pictures/Next.pdf>
 Package pdftex.def Info: pictures/Next.pdf  used on input line 98.
@@ -2071,8 +2094,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 103--114
 []$[]$ 
  []
 
-[46 <./pictures/Next.pdf>]
-<pictures/REGISTER.pdf, id=1105, 845.1575pt x 349.7332pt>
+[49 <./pictures/Next.pdf>]
+<pictures/REGISTER.pdf, id=1165, 845.1575pt x 349.7332pt>
 File: pictures/REGISTER.pdf Graphic file (type pdf)
 <use pictures/REGISTER.pdf>
 Package pdftex.def Info: pictures/REGISTER.pdf  used on input line 128.
@@ -2113,8 +2136,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 133--154
 []$[]$ 
  []
 
-[47 <./pictures/REGISTER.pdf>]
-<pictures/ALU.pdf, id=1140, 845.1575pt x 428.58354pt>
+[50 <./pictures/REGISTER.pdf>]
+<pictures/ALU.pdf, id=1199, 845.1575pt x 428.58354pt>
 File: pictures/ALU.pdf Graphic file (type pdf)
 <use pictures/ALU.pdf>
 Package pdftex.def Info: pictures/ALU.pdf  used on input line 163.
@@ -2212,8 +2235,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 168--191
 []$[]$ 
  []
 
-[48 <./pictures/ALU.pdf>]
-<pictures/IMMGEN.pdf, id=1177, 845.1575pt x 216.91771pt>
+[51 <./pictures/ALU.pdf>]
+<pictures/IMMGEN.pdf, id=1237, 845.1575pt x 216.91771pt>
 File: pictures/IMMGEN.pdf Graphic file (type pdf)
 <use pictures/IMMGEN.pdf>
 Package pdftex.def Info: pictures/IMMGEN.pdf  used on input line 209.
@@ -2338,8 +2361,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 214--245
 []$[]$ 
  []
 
-[49] [50 <./pictures/IMMGEN.pdf>]
-<pictures/DM.pdf, id=1225, 845.1575pt x 379.09216pt>
+[52] [53 <./pictures/IMMGEN.pdf>]
+<pictures/DM.pdf, id=1286, 845.1575pt x 379.09216pt>
 File: pictures/DM.pdf Graphic file (type pdf)
 <use pictures/DM.pdf>
 Package pdftex.def Info: pictures/DM.pdf  used on input line 261.
@@ -2449,8 +2472,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 266--305
 []$[]$ 
  []
 
-[51 <./pictures/DM.pdf>] [52]
-<pictures/GOTO.pdf, id=1283, 845.1575pt x 352.52406pt>
+[54 <./pictures/DM.pdf>] [55]
+<pictures/GOTO.pdf, id=1342, 845.1575pt x 352.52406pt>
 File: pictures/GOTO.pdf Graphic file (type pdf)
 <use pictures/GOTO.pdf>
 Package pdftex.def Info: pictures/GOTO.pdf  used on input line 314.
@@ -2518,8 +2541,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 319--336
 []$[]$ 
  []
 
-[53 <./pictures/GOTO.pdf>]
-<pictures/MUX.pdf, id=1314, 845.1575pt x 430.86308pt>
+[56 <./pictures/GOTO.pdf>]
+<pictures/MUX.pdf, id=1376, 845.1575pt x 430.86308pt>
 File: pictures/MUX.pdf Graphic file (type pdf)
 <use pictures/MUX.pdf>
 Package pdftex.def Info: pictures/MUX.pdf  used on input line 342.
@@ -2560,8 +2583,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 347--365
 []$[]$ 
  []
 
-[54 <./pictures/MUX.pdf>]
-<pictures/WB.pdf, id=1343, 845.1575pt x 597.23125pt>
+[57 <./pictures/MUX.pdf>]
+<pictures/WB.pdf, id=1408, 845.1575pt x 597.23125pt>
 File: pictures/WB.pdf Graphic file (type pdf)
 <use pictures/WB.pdf>
 Package pdftex.def Info: pictures/WB.pdf  used on input line 373.
@@ -2590,8 +2613,8 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 378--396
 []$[]$ 
  []
 
-[55 <./pictures/WB.pdf>]
-<pictures/AND.pdf, id=1380, 845.1575pt x 397.2957pt>
+[58 <./pictures/WB.pdf>]
+<pictures/AND.pdf, id=1446, 845.1575pt x 397.2957pt>
 File: pictures/AND.pdf Graphic file (type pdf)
 <use pictures/AND.pdf>
 Package pdftex.def Info: pictures/AND.pdf  used on input line 402.
@@ -2611,12 +2634,141 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 407--415
 []$[]$ 
  []
 
-) [56 <./pictures/AND.pdf>] [57]
+[59 <./pictures/AND.pdf>]
+<pictures/CONTROL.pdf, id=1472, 845.1575pt x 301.94737pt>
+File: pictures/CONTROL.pdf Graphic file (type pdf)
+<use pictures/CONTROL.pdf>
+Package pdftex.def Info: pictures/CONTROL.pdf  used on input line 428.
+(pdftex.def)             Requested size: 295.80956pt x 105.68315pt.
+
+
+Package xcolor Warning: Incompatible color definition on input line 436.
+
+
+Package xcolor Warning: Incompatible color definition on input line 436.
+
+
+Package xcolor Warning: Incompatible color definition on input line 436.
+
+
+Package xcolor Warning: Incompatible color definition on input line 437.
+
+
+Package xcolor Warning: Incompatible color definition on input line 437.
+
+
+Package xcolor Warning: Incompatible color definition on input line 438.
+
+
+Package xcolor Warning: Incompatible color definition on input line 438.
+
+
+Package xcolor Warning: Incompatible color definition on input line 439.
+
+
+Package xcolor Warning: Incompatible color definition on input line 439.
+
+
+Package xcolor Warning: Incompatible color definition on input line 440.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 442.
+
+
+Package xcolor Warning: Incompatible color definition on input line 443.
+
+
+Package xcolor Warning: Incompatible color definition on input line 444.
+
+
+Package xcolor Warning: Incompatible color definition on input line 445.
+
+
+Package xcolor Warning: Incompatible color definition on input line 446.
+
+
+Package xcolor Warning: Incompatible color definition on input line 449.
+
+
+Package xcolor Warning: Incompatible color definition on input line 450.
+
+
+Package xcolor Warning: Incompatible color definition on input line 453.
+
+
+Package xcolor Warning: Incompatible color definition on input line 454.
+
+
+Package xcolor Warning: Incompatible color definition on input line 455.
+
+
+Package xcolor Warning: Incompatible color definition on input line 456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 456.
+
+
+Package xcolor Warning: Incompatible color definition on input line 458.
+
+
+Package xcolor Warning: Incompatible color definition on input line 459.
+
+
+Package xcolor Warning: Incompatible color definition on input line 459.
+
+
+Package xcolor Warning: Incompatible color definition on input line 459.
+
+
+Package xcolor Warning: Incompatible color definition on input line 459.
+
+
+Package xcolor Warning: Incompatible color definition on input line 459.
+
+
+Package xcolor Warning: Incompatible color definition on input line 461.
+
+
+Package xcolor Warning: Incompatible color definition on input line 463.
+
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 433--470
+[]$[]$ 
+ []
+
+[60 <./pictures/CONTROL.pdf>]) [61] [62]
 \openout2 = `chapters/chapter6.aux'.
 
  (./chapters/chapter6.tex
 Chapter 6.
-) [58
+) [63
 
 
 
@@ -2625,23 +2777,23 @@ Chapter 6.
 
  (./chapters/appendix.tex
 Appendix A.
-[59
+[64
 
 
 
-] [60]
+] [65]
 Appendix B.
-[61
+[66
 
-] [62]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[63] [64] [65]
+] [67]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[66] [67]) [68] [69]
+[68] [69] [70]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[71] [72]) [73] [74]
 \openout2 = `chapters/RiscVReferenceCard.aux'.
 
  (./chapters/RiscVReferenceCard.tex
@@ -2687,11 +2839,11 @@ Overfull \hbox (24.23172pt too wide) in paragraph at lines 102--167
 [][] 
  []
 
-[70
+[75
 
 
 
-] [71]) (./main.bbl) [72
+] [76]) (./main.bbl) [77
 
 
 
@@ -2705,19 +2857,22 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0EBF202C68C0A04B8061D1E7D434BB4C;4238.
+(rerunfilecheck)             Checksum: A81509EB6518432351AE40C601BFCE74;4528.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 37733 strings out of 492163
- 710499 string characters out of 6125305
- 1018368 words of memory out of 5000000
- 40672 multiletter control sequences out of 15000+600000
+ 38014 strings out of 492163
+ 714419 string characters out of 6125305
+ 1024965 words of memory out of 5000000
+ 40878 multiletter control sequences out of 15000+600000
  550863 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,15n,97p,1243b,1466s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not ex
+pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not ex
 ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
+t, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
 t, replaced by a fixed one
@@ -2777,10 +2932,10 @@ type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
 e1/public/amsfonts/latxfont/line10.pfb></usr/local/texlive/2019/texmf-dist/font
 s/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (76 pages, 667052 bytes).
+Output written on main.pdf (81 pages, 694216 bytes).
 PDF statistics:
- 1801 PDF objects out of 2073 (max. 8388607)
- 1619 compressed objects within 17 object streams
- 682 named destinations out of 1000 (max. 500000)
- 657 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1936 PDF objects out of 2073 (max. 8388607)
+ 1745 compressed objects within 18 object streams
+ 749 named destinations out of 1000 (max. 500000)
+ 694 words of extra memory for PDF output out of 10000 (max. 10000000)
 

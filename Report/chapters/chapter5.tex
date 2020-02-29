@@ -1,7 +1,7 @@
 \chapter{The RISC-V processor}\label{Chapter:5}
     We are finally at a point where we can start building the RISC-V CPU in SME. At the start of this project I followed the approach described in chapter 4 of the RISC-V book \cite{riscVbook}, but when a functioning CPU was made I quickly came to the realization that the version described in the book was quite inadequate. It only supported a handful instructions, which is not enough to run any but the simplest of programs. 
     
-    Therefore I had to sit down and design a version with the requirement of supporting all 49 basic RISC-V instructions. This design of course took foundation in the book version, with improvements from the lessons learned from the first implementation.
+    Therefore I had to sit down and design a version with the requirement of supporting all 49 basic RISC-V instructions \texttt{RV64I}. This design of course took foundation in the book version, with improvements from the lessons learned from the first implementation.
     
     Throughout this chapter we will go through the new design, which can be found here\footnote{\url{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations/SingleCycleRISCV2}}.
 
@@ -9,7 +9,7 @@
     In this section we will explain the function of each of the 12 unique units, used in the implementation of the CPU. This design is single cycle, meaning that only one instruction is executed per clock cycle. 
 
     \subsection{Program Counter}
-        The \textit{program counter}, PC for short, keeps track of where in the program we are located and is a fairly simple unit. It can we thought of a single register, which holds the address of the current instruction.
+        The \textit{program counter}, PC for short, keeps track of where in the program we are located and is a fairly simple unit. It can we thought of as a single register, which holds the address of the current instruction.
         
         To implement the PC unit we create a clocked SME process. It needs to be clocked, meaning the unit will activate on a rising clock edge, as it will part of a closed loop circuit, when we later connect the units. If no unit is clocked in a closed loop, there is no way of knowing, where to begin sending signals. Therefore the PC was chosen to be clocked, as it seemed like the most logical place to start the signal propagation.
         
@@ -46,7 +46,7 @@
         The instruction memory process has a single input from the program counter, which it uses access the correct instructions. In each cycle we first check whether the address given lies within the instruction array range, if not we shut down the CPU.
         We then construct an instruction, using methods discussed in \ref{section:Operators}, to a temporary variable.
         
-        The register fields are then sliced out of this variable and put in the corresponding output buses, \texttt{Read RS1, RS2} and \texttt{Write RS}. The full instruction is also outputted to its own bus, \texttt{instruction}. Lastly we tell the simulation process to keep the CPU running by asserting the \texttt{CPU} bus. The instruction memory process has been illustrated in Figure \ref{fig:IM} and a code segment is shown Listing \ref{IMSME} explaining parts of the code. 
+        The register fields are then sliced out of this variable and put in the corresponding output buses, \texttt{Read RS1, RS2} and \texttt{Write RS}. The full instruction is also outputted to its own bus, \texttt{Instruction}. Lastly we tell the simulation process to keep the CPU running by asserting the \texttt{CPU} bus. The instruction memory process has been illustrated in Figure \ref{fig:IM} and a code segment is shown Listing \ref{IMSME} explaining parts of the code. 
      
         \begin{figure}[h!]
             \centering
@@ -56,7 +56,7 @@
         \end{figure}
     
         \begin{minipage}{\linewidth}
-            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the Instruction Memory unit SME code. It contains a single byte array, which holds all the instructions to be run. First we check whether the given address to be accessed lies within instruction array, if not we shut down the CPU. We then use the address to access the correct array elements to create a temporary variable, which contains the instruction, as shown in lines 9-12. Hereafter we slice out the fields in the instruction and place the values in the correct busses. Lastly we tell the simulator to keep the CPU running using the CPU bus.},captionpos=b, label = IMSME]
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the Instruction Memory unit SME code. It contains a single byte array, which holds all the instructions to be run. First we check whether the given address to be accessed lies within instruction array, if not we shut down the CPU. We then use the address to access the correct array elements and create a temporary variable, which contains the instruction, as shown in lines 9-12. Hereafter we slice out the fields in the instruction and place the values in the correct busses. Lastly we tell the simulator to keep the CPU running using the CPU bus.},captionpos=b, label = IMSME]
 ...
     private readonly byte[] Instruction_Memory = System.IO.File.ReadAllBytes("/Users/danielramyar/Downloads/fibo.bin");
             
@@ -96,7 +96,7 @@
         \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.34]{pictures/Next.pdf}
-            \caption{Illustration of the \texttt{next} process, taking the \texttt{PC output} as input and outputs the next instruction adress to the \texttt{next output} bus.}
+            \caption{Illustration of the \texttt{next} process, taking the \texttt{PC output} as input and outputs the next instruction address to the \texttt{next output} bus.}
             \label{fig:NEXT}
         \end{figure}
     
@@ -131,7 +131,7 @@
         \end{figure}
     
         \begin{minipage}{\linewidth}
-            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{register} process SME code. The register is declared as a signed 64-bit array with 32 elements. In every clock cycle the process checks if the write control signal is asserted. If it is we check if the address to be written lies within the register range and is above 0, as this register is reserved to be hard-wired zero. Lastly the process reads the two specified registers and if they lie within the register range, they get outputted to the corresponding buses.},captionpos=b, label = REGISTER]
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{register} process SME code. The register is declared as a signed 64-bit array with 32 elements. In every clock cycle the process checks if the write control signal is asserted. If it is, we check if the address to be written lies within the register range and is above 0, as this register is reserved to be hard-wired zero. Lastly the process reads the two specified registers and if they lie within the register range, they get outputted to the corresponding buses.},captionpos=b, label = REGISTER]
 ...
     private readonly long[] m_register = {0, 0, 0, 0, 0, 0, 0, 0,
                                           0, 0, 0, 0, 0, 0, 0, 0,
@@ -190,7 +190,7 @@
         \end{minipage}  
         
     
-    \subsection{Immediate generator}
+    \subsection{Immediate generator}\label{section:immediategenerator}
         The \texttt{Immediate Generator}, or IMMGEN for short, extracts immediate fields from instructions. This is a pretty large unit since it needs to know where the immediate field is located in every instruction. To make matters worse some immediate fields in the instructions are totally scrambled, so we have to be really careful on how we reconstruct them.
         
         To start we need to be able to identify which type of instruction we are dealing with to know where the immediate field is located. Luckily almost all types of instructions have a unique operation code (for example the I-type has opcode 19), we therefore use a \texttt{switch} statement in the SME code with the opcode in the instruction as a branching condition to identify the instruction type.
@@ -199,7 +199,7 @@
         
         When we know where the immediate field is located it is time to extract it. This is done by shifting the instruction in question to the right, such that the first bit of the immediate field is located at bit index 0 of the 32-bit instruction. Hereafter we do a bitwise AND operation to remove all but the necessary bits (see Section \ref{section:Operators}). It should be noted that in cases, where the immediate field only is 12-bits long we need to perform a shift to the left and then right to retain the sign bit, as 12-bit numbers are not supported by \texttt{C\#} and therefore does not happen automatically, when cast to \texttt{long} type.
         
-        If we deal with \texttt{B-} and \texttt{J-type} instructions, we need to be really careful when we reconstruct the immediate field, as the immediate field bits do not lie in a trivial manner. An important thing to note is that in these types of instructions the first bit is not supplied and therefore should not get shifted all the way to the 0'th bit index but should get shifted to the 1'st bit index. This firstly ensures that we only jump by an even number of bytes, as this is where the base index is for the instructions and we effectively double the range we can jump instructions.
+        If we deal with \texttt{B-} and \texttt{J-type} instructions, we need to be really careful when we reconstruct the immediate field, as the immediate field bits do not lie in a trivial manner. An important thing to note is that in these types of instructions the first bit is not supplied and therefore should not get shifted all the way to the 0'th bit index but should get shifted to the 1'st bit index. This firstly ensures that we only jump by an even number of bytes, as this is where the base index is for the instructions and secondly it effectively doubles the range we can jump instructions.
         
         When the immediate field is constructed it simply gets outputted as a signed 64-bit number. The immediate generator is illustrated in Figure \ref{fig:IMMGEN} and a code segment is shown in Listing \ref{IMMGEN}.
         
@@ -335,7 +335,7 @@
         \end{minipage}
     
     \subsection{Multiplexer}
-        To select between multiple lines we make use of a \texttt{multiplexer}, or mux. It is a fairly simple process that only consists of a \texttt{switch} statement, where each case corresponds to an input to output. The cases then gets selected depending on the control line. 
+        To select between multiple lines we make use of a \texttt{multiplexer}, or mux. It is a fairly simple process that only consists of a \texttt{switch} statement, where each case corresponds to an input to output. The cases then gets selected depending on the control line. The multiplexer is illustrated in Figure \ref{fig:MUX} and a code segment is shown in Listing \ref{MUX}.
         
         \begin{figure}[h!]
             \centering
@@ -366,7 +366,7 @@
     \subsection{Write Back Unit}
         When wire-ring the processor there is going to form a second closed loop between the register and data memory. As with the closed loop between the program counter and Next unit, there has to be a clocked process somewhere in the loop. For this reason a clocked write back process is introduced. It works exactly the same as the program counter, which read the contents of a bus that contained data from the previous clock cycle and got outputted unchanged. 
         
-        It may seem that this could cause problems, but as the data output from this unit gets written to the register as the first thing, instructions will never access old data.  
+        It may seem that this could cause problems, but as the data output from this unit gets written to the register as the first thing, instructions will never access old data.  The \texttt{Write Back} unit is illustrated in Figure \ref{fig:WB} and a code segment is shown in Listing \ref{WB}.
         
         \begin{figure}[h!]
             \centering
@@ -395,7 +395,7 @@
         \end{minipage} 
     
     \subsection{AND gate unit}
-        To make use of a trick inspired from the RISC-V implementation in chapter 4 of \cite{riscVbook} an AND gate unit has been implemented. The purpose of this unit is to check whether branching or jumping instructions are given. If such instructions are taking place a control signal is asserted. The AND gate only returns true if the branching condition from the \texttt{Go To} gate returns true. This result can now be feed to a multiplexer which chooses whether to run next instruction or jump in the instruction memory.
+        To make use of a trick inspired from the RISC-V implementation in chapter 4 of \cite{riscVbook} an AND gate unit has been implemented. The purpose of this unit is to check whether branching or jumping instructions are given. If such instructions are taking place a control signal is asserted. The AND gate only returns true if the branching condition from the \texttt{Go To} gate returns true. This result can now be feed to a multiplexer which chooses whether to run next instruction or jump in the instruction memory. The \texttt{AND} unit is illustrated in Figure \ref{fig:AND} and a code segment is shown in Listing \ref{AND}.
         
         \begin{figure}[h!]
             \centering
@@ -413,10 +413,62 @@
             \end{lstlisting}
         \end{minipage} 
         
+    \subsection{Control}
+        The final unit that is to be shown is the \texttt{Control} unit. This is quite a substantial unit, as its function is to correctly set the values for the control lines for all 49 instructions. What the values look like will be discussed in Section \ref{section:Datapaths}. For now the SME implementation will be covered.
+        
+        This unit uses a similar solution for instruction detection, as the \texttt{Immediate Generator} (see Section \ref{section:immediategenerator}). To identify the current instruction the \texttt{opcode}, \texttt{funct3} and \texttt{funct7} fields are extracted from the 32-bit instruction input and put in their respective variables. All 3 fields are used this time, as every instruction needs to be identified to correctly set the control lines.
+        
+        Multiple \texttt{switch} statements are layered for instruction detection. The first \texttt{switch} uses the \texttt{opcode} to determine the type of instruction that is currently running. Say a R-type instruction has been identified. Most control lines can be set here, as only the control line for the ALU is different between the R-type instructions. To set the last control line a second \texttt{switch} statement is used with the \texttt{funct3} field as branching condition to identify which R-type instruction is given. Since some R-type instructions has the same \texttt{funct3} code, a third \texttt{switch} statement is required to differentiate these.
+        
+        When an instruction as been identified the control lines are set to the correct values and outputted. The \texttt{Control} unit is illustrated in Figure \ref{fig:CONTROL} and a code segment is shown in Listing \ref{CONTROL}.
+        
+        
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.35]{pictures/CONTROL.pdf}
+            \caption{Illustration of the \texttt{Control} process. It takes a 32-bit instruction as input and sets the control lines for the respective instruction.}
+            \label{fig:CONTROL}
+        \end{figure}
     
-\section{Designing the Control}
+        \begin{minipage}{\linewidth}
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Control} process SME code. First 3 varibles are declared for the extracted \texttt{opcode}, \texttt{funct3} and \texttt{func7} fields. They are then used in the following \texttt{switch} statements to correctly identify the given instruction. Finally the control lines are set with the values for the respective instruction.},captionpos=b, label = CONTROL]
+...
+    protected override void OnTick() {
+        uint Opcode = m_instruction.Current       & (uint)0x7F;  
+        uint funct3 = m_instruction.Current >> 12 & (uint)0x7;  
+        uint funct7 = m_instruction.Current >> 25 & (uint)0x7F;
+        switch (Opcode) {
+            ...
+            case 51:                            // R-format
+                PCSel.Value = false;
+                RegWrite.Enable = true;
+                ALUSrc1.Enable = false;
+                ALUSrc2.Enable = false;
+                BJSIGN.Value = 0;
+                SizeAndSign.Value = 0;
+                MemWrite.Enable = false;
+                MemRead.Enable = false;
+                WBSel.Value = 0;
+                
+                switch (funct3) {
+                    case 5:
+                        switch (funct7) {
+                            case 0:                         // ADD
+                            ALUOP.Value = 0;
+                            break;
+                        case 32:                        // Subtract
+                            ALUOP.Value = 1;
+                            break;
+                        }
+                        break;
+                    ...
+            ...
+        }
+    }
+            \end{lstlisting}
+        \end{minipage} 
     
-\section{Single Cycle RISC-V datapaths}
+\section{Single Cycle RISC-V datapaths}\label{section:Datapaths}
 
     \subsection{RV64I Base Instructions Support}
 

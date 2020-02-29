@@ -121,9 +121,9 @@
             Shift Right Arithmetic Word\qdag      & R   & 0111011 &  101   & 0100000 & sraw rd, rs1, rs2   & rd = rs1 $\gg$ rs2             \\
             \hline
         	Add Immediate                         & I   & 0010011 &  000   &         & addi rd, rs1, imm   & rd = rs1 $+$ imm               \\
-        	AND Immediate                         & I   & 0010011 &  111   &         & and rd, rs1, imm    & rd = rs1 \& imm                \\
-        	OR Immediate                          & I   & 0010011 &  110   &         & or rd, rs1, imm     & rd = rs1 $|$ imm               \\
-        	XOR Immediate                         & I   & 0010011 &  100   &         & xor rd, rs1, imm    & rd = rs1 \^{} imm              \\
+        	AND Immediate                         & I   & 0010011 &  111   &         & andi rd, rs1, imm    & rd = rs1 \& imm                \\
+        	OR Immediate                          & I   & 0010011 &  110   &         & ori rd, rs1, imm     & rd = rs1 $|$ imm               \\
+        	XOR Immediate                         & I   & 0010011 &  100   &         & xori rd, rs1, imm    & rd = rs1 \^{} imm              \\
         	Shift Left Logical Immediate          & I   & 0010011 &  001   & 0000000 & slli rd, rs1, shamt & rd = rs1 $\ll$ shamt           \\
         	Shift Right Logical Immediate         & I   & 0010011 &  101   & 0000000 & srli rd, rs1, shamt & rd = rs1 $\gg$ shamt           \\
         	Shift Right Arithmetic Immediate\qdag & I   & 0010011 &  101   & 0100000 & srai rd, rs1, shamt & rd = rs1 $\gg$ shamt           \\
