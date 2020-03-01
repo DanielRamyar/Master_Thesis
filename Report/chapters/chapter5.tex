@@ -9,7 +9,7 @@
     In this section we will explain the function of each of the 12 unique units, used in the implementation of the CPU. This design is single cycle, meaning that only one instruction is executed per clock cycle. 
 
     \subsection{Program Counter}
-        The \textit{program counter}, PC for short, keeps track of where in the program we are located and is a fairly simple unit. It can we thought of as a single register, which holds the address of the current instruction.
+        The \textit{program counter}, PC for short, keeps track of where in the program we are located and is a fairly simple unit. It can be thought of as a single register, which holds the address of the current instruction.
         
         To implement the PC unit we create a clocked SME process. It needs to be clocked, meaning the unit will activate on a rising clock edge, as it will part of a closed loop circuit, when we later connect the units. If no unit is clocked in a closed loop, there is no way of knowing, where to begin sending signals. Therefore the PC was chosen to be clocked, as it seemed like the most logical place to start the signal propagation.
         
@@ -27,7 +27,7 @@
         \end{figure}
     
         \begin{minipage}{\linewidth}
-            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the PC unit SME code, which contains variable that holds the input address. On every cycle edge it then holds and outputs the current address.},captionpos=b, label = PCSME]
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the PC unit SME code, which contains a variable that holds the input address. On every cycle edge it then holds and outputs the current address.},captionpos=b, label = PCSME]
 ...
     ulong address_hold;
 
@@ -43,8 +43,8 @@
         
         The instructions can also be hand written when declaring the array. Since an instruction is 32-bits, 4 elements in the array are needed to form an instruction, where index 0-3 contains the first instruction.
         
-        The instruction memory process has a single input from the program counter, which it uses access the correct instructions. In each cycle we first check whether the address given lies within the instruction array range, if not we shut down the CPU.
-        We then construct an instruction, using methods discussed in \ref{section:Operators}, to a temporary variable.
+        The instruction memory process has a single input from the program counter, which it uses to access the correct instructions. In each cycle we first check whether the address given lies within the instruction array range, if not we shut down the CPU.
+        We then construct an instruction to a temporary variable, using methods discussed in \ref{section:Operators}. 
         
         The register fields are then sliced out of this variable and put in the corresponding output buses, \texttt{Read RS1, RS2} and \texttt{Write RS}. The full instruction is also outputted to its own bus, \texttt{Instruction}. Lastly we tell the simulation process to keep the CPU running by asserting the \texttt{CPU} bus. The instruction memory process has been illustrated in Figure \ref{fig:IM} and a code segment is shown Listing \ref{IMSME} explaining parts of the code. 
      
@@ -91,7 +91,7 @@
     \subsection{Next instruction Unit}
         To calculate the address of the next instruction in the queue I have created a unit called \texttt{Next}. This unit is very simple, as its only function is to increment the value found in the PC output bus by 4. We increment by 4, since each instruction is 32 bits long and since our instructions are contained in a byte array, we need to move 4 bytes every time we want to access the following instruction. For example if we are placed at index 0, we would have to go to index 4 to access the next instruction (index 0-3 contains instruction 1 and index 4-7 the next).
         
-        The next instruction process has the the output from the program counter as input and sends the incremented address to the \texttt{Next Output} bus. The \texttt{Next} process is illustrated in \ref{fig:NEXT} and a code segment is shown in Listing \ref{NEXTSME}.
+        The next instruction process has the output from the program counter as input and sends the incremented address to the \texttt{Next Output} bus. The \texttt{Next} process is illustrated in \ref{fig:NEXT} and a code segment is shown in Listing \ref{NEXTSME}.
         
         \begin{figure}[h!]
             \centering
@@ -121,12 +121,12 @@
         Furthermore the result needs to get stored, therefore we need two additional lines one carrying the result of an operation and the other an address for the storage location. To avoid any unintentional write backs to the register, we introduce a write control line, which is asserted if write back is intended.
         
         In SME the register is declared as a process containing a signed 64-bit array with 32 entries. To ensure the latest data is always read, we write to the register as the first thing. Since register 0 is hard-wired to zero according to the conventions, we make sure that the write back address lies within the range 1-31 and that the write control is asserted.
-        Lastly we check if the read addresses lies within the range of the register and then output the data in the read registers to the corresponding buses. The \texttt{register} process is illustrated in Figure \ref{fig:REGISTER} and a code segment shown in Listing \ref{REGISTER}.
+        Lastly we check if the read addresses lie within the range of the register and then output the data in the read registers to the corresponding buses. The \texttt{register} process is illustrated in Figure \ref{fig:REGISTER} and a code segment shown in Listing \ref{REGISTER}.
     
         \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.29]{pictures/REGISTER.pdf}
-            \caption{Illustration of the \texttt{register} process. It gets its information on which register addresses to read from \texttt{Read RS1, RS2} buses. To write data the register uses \texttt{write register} bus to know which register to write to, the \texttt{write data} bus contains the data to be written and the \texttt{write control} bus authorize whether the register should write or not.}
+            \caption{Illustration of the \texttt{register} process. It gets the information on which register addresses to read from \texttt{Read RS1, RS2} buses. To write data the register uses the \texttt{write register} bus to know which register to write to. The \texttt{write data} bus contains the data to be written and the \texttt{write control} bus authorize whether the register should write or not.}
             \label{fig:REGISTER}
         \end{figure}
     
@@ -154,7 +154,7 @@
     
     \subsection{Arithmetic Logic Unit (ALU)}
         The \texttt{Arithmetic Logic Unit}, or ALU for short, is the computational powerhouse of the CPU. It is here all arithmetic, logical, shift and bitwise operations are computed.
-        The ALU has two inputs that consists of the operands of an operation. The output is then the result. To determine which operation to perform we additionally have a control line with the operation code or opcode.
+        The ALU has two inputs that consist of the operands of an operation. The output is then the result. To determine which operation to perform we additionally have a control line with the operation code or opcode.
         
         In the SME implementation all the operations are enclosed in a \texttt{switch} statement, that is controlled by the opcode to determine which operation to execute. The ALU is illustrated in Figure \ref{fig:ALU} and a code segment is shown in Listing \ref{ALU}.
     
@@ -248,7 +248,7 @@
         
         Because of this fact the data memory needs control signals, which manages read and write access. To support data of varying size an additional control signal has been added to distinguish between double word, word, short and byte access. Since unsigned versions of the \texttt{load} instructions also needs to be supported, this functionality is added to the size control signal.
         
-        As the data memory communicates with the register, which is big-endian addressed and every element is 64-bit a translation needs to happen between these formats.
+        As the data memory communicates with the register, which is big-endian addressed and every element is 64-bit, a translation needs to happen between these formats.
         
         In SME a process is created that contains a byte array. To support 64-bit numbers the array has to be larger than 8 bytes if a single number has to be stored. Otherwise the sizing is irrelevant if made big enough and is divisible by eight. In this implementation the array is 2000 bytes long.
         
@@ -264,7 +264,7 @@
         \end{figure}
     
         \begin{minipage}{\linewidth}
-            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Data Memory} process SME code. Similar to the instruction memory, the data memory consists of a byte array, which we made 2000 elements long in this case. As there can only be read or written to the data memory once per clock cycle, we simply construct an \texttt{if/else} statement, which uses control signals to determine the procedure to be done. Both the read and write procedures needs to know the size and sign of the data to be loaded or written. Therefore a \texttt{switch} statement has been added to both outcomes, which uses \texttt{SizeAndSign} control signal to choose between the cases. When reading the data from memory we need to remember that it is little-endian addressed  so before we output the value the bits need to be shuffled around in the correct order, so the correct value is added to the register, as that is big-endian. When writing the data the opposite need to happen, so a big-endian value need to be converted to a little-endian one. If both read and write control signals are deasserted I choose to output 0.},captionpos=b, label = DM]
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Data Memory} process SME code. Similar to the instruction memory, the data memory consists of a byte array, which we made 2000 elements long in this case. As there can only be read or written to the data memory once per clock cycle, we simply construct an \texttt{if/else} statement, which uses control signals to determine the procedure to be done. Both the read and write procedures need to know the size and sign of the data to be loaded or written. Therefore a \texttt{switch} statement has been added to both outcomes, which uses \texttt{SizeAndSign} control signal to choose between the cases. When reading the data from memory we need to remember that it is little-endian addressed  so before we output the value the bits need to be shuffled around in the correct order, so the correct value is added to the register, as that is big-endian. When writing the data the opposite need to happen, so a big-endian value need to be converted to a little-endian one. If both read and write control signals are deasserted I choose to output 0.},captionpos=b, label = DM]
 ...
     byte[] Data_Memory = new byte[2000];
             
@@ -303,21 +303,21 @@
             \end{lstlisting}
         \end{minipage} 
     
-    \subsection{Go to Unit}
-        To support the RISC-V branching and jump instructions a special unit called \texttt{Go To} was created. The purpose of this unit is to do the logical comparison between the specified registers. For example if the \texttt{branch if equal} (\texttt{BEQ}) instruction is given, the unit will check if the values in the specified registers are equal and outputs logical \texttt{true} or \texttt{false} depending on the result.
+    \subsection{GoTo Unit}
+        To support the RISC-V branching and jump instructions a special unit called \texttt{GoTo} was created. The purpose of this unit is to do the logical comparison between the specified registers. For example if the \texttt{branch if equal} (\texttt{BEQ}) instruction is given, the unit will check if the values in the specified registers are equal and outputs logical \texttt{true} or \texttt{false} depending on the result.
         
-        In the SME implementation a simple \texttt{switch} statement is used. Each case represent the comparison to be done by a given instruction, where the case branching is controlled by a control line. The result is then outputted. The Go To unit is illustrated in Figure \ref{fig:GOTO} and a code segment is shown in Listing \ref{GOTO}.
+        In the SME implementation a simple \texttt{switch} statement is used. Each case represent the comparison to be done by a given instruction, where the case branching is controlled by a control line. The result is then outputted. The \texttt{GoTo} unit is illustrated in Figure \ref{fig:GOTO} and a code segment is shown in Listing \ref{GOTO}.
         
         
         \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.35]{pictures/GOTO.pdf}
-            \caption{Illustration of the \texttt{Go To} process. As input it uses the two output lines from the register. It has one control line in red and one output line in green.}
+            \caption{Illustration of the \texttt{GoTo} process. As input it uses the two output lines from the register. It has one control line in red and one output line in green.}
             \label{fig:GOTO}
         \end{figure}
     
         \begin{minipage}{\linewidth}
-            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Go To} process SME code. The unit consists of a \texttt{switch} statement, where each case does the comparison relevandt to the branching instruction. The conditional operator \texttt{?} is used for the comparison (the syntax goes as follows \texttt{condition ? If true return this : If false return this}).},captionpos=b, label = GOTO]
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{GoTo} process SME code. The unit consists of a \texttt{switch} statement, where each case does the comparison relevant to the branching instruction. The conditional operator \texttt{?} is used for the comparison (the syntax goes as follows \texttt{condition ? If true return this : If false return this}).},captionpos=b, label = GOTO]
 ...
     protected override void OnTick() {
         switch (m_BJSIGN.Value) {
@@ -340,7 +340,7 @@
         \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.35]{pictures/MUX.pdf}
-            \caption{Illustration of the \texttt{Multiplexer} process. An arbitrary amount of input can be given, where the output i selected by the red control line. }
+            \caption{Illustration of the \texttt{Multiplexer} process. An arbitrary amount of input can be given, where the output is selected by the red control line. }
             \label{fig:MUX}
         \end{figure}
     
@@ -364,7 +364,7 @@
         \end{minipage}
 \newpage
     \subsection{Write Back Unit}
-        When wire-ring the processor there is going to form a second closed loop between the register and data memory. As with the closed loop between the program counter and Next unit, there has to be a clocked process somewhere in the loop. For this reason a clocked write back process is introduced. It works exactly the same as the program counter, which read the contents of a bus that contained data from the previous clock cycle and got outputted unchanged. 
+        When wiring the processor there is going to form a second closed loop between the register and data memory. As with the closed loop between the program counter and Next unit, there has to be a clocked process somewhere in the loop. For this reason a clocked write back process is introduced. It works exactly the same as the program counter, which read the contents of a bus that contained data from the previous clock cycle and got outputted unchanged. 
         
         It may seem that this could cause problems, but as the data output from this unit gets written to the register as the first thing, instructions will never access old data.  The \texttt{Write Back} unit is illustrated in Figure \ref{fig:WB} and a code segment is shown in Listing \ref{WB}.
         \begin{figure}[h!]
@@ -394,12 +394,12 @@
         \end{minipage} 
     
     \subsection{AND gate unit}
-        To make use of a trick inspired from the RISC-V implementation in chapter 4 of \cite{riscVbook} an AND gate unit has been implemented. The purpose of this unit is to check whether branching or jumping instructions are given. If such instructions are taking place a control signal is asserted. The AND gate only returns true if the branching condition from the \texttt{Go To} gate returns true. This result can now be feed to a multiplexer which chooses whether to run next instruction or jump in the instruction memory. The \texttt{AND} unit is illustrated in Figure \ref{fig:AND} and a code segment is shown in Listing \ref{AND}.
+        To make use of a trick inspired from the RISC-V implementation in chapter 4 of \cite{riscVbook} an AND gate unit has been implemented. The purpose of this unit is to check whether branching or jumping instructions are given. If such instructions are taking place a control signal is asserted. The AND gate only returns true if the branching condition from the \texttt{GoTo} unit returns true. This result can now be feed to a multiplexer which chooses whether to run next instruction or jump in the instruction memory. The \texttt{AND} unit is illustrated in Figure \ref{fig:AND} and a code segment is shown in Listing \ref{AND}.
         
         \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.35]{pictures/AND.pdf}
-            \caption{Illustration of the \texttt{AND gate} process. It has two input one from the \texttt{Go To} unit and one from the \texttt{control unit} named \texttt{PCSel}. The output is then the result of the logical AND operation between the two input.}
+            \caption{Illustration of the \texttt{AND gate} process. It has two input one from the \texttt{GoTo} unit and one from the \texttt{control unit} named \texttt{PCSel}. The output is then the result of the logical AND operation between the two input.}
             \label{fig:AND}
         \end{figure}
     
@@ -417,9 +417,9 @@
         
         This unit uses a similar solution for instruction detection, as the \texttt{Immediate Generator} (see Section \ref{section:immediategenerator}). To identify the current instruction the \texttt{opcode}, \texttt{funct3} and \texttt{funct7} fields are extracted from the 32-bit instruction input and put in their respective variables. All 3 fields are used this time, as every instruction needs to be identified to correctly set the control lines.
         
-        Multiple \texttt{switch} statements are layered for instruction detection. The first \texttt{switch} uses the \texttt{opcode} to determine the type of instruction that is currently running. Say a R-type instruction has been identified. Most control lines can be set here, as only the control line for the ALU is different between the R-type instructions. To set the last control line a second \texttt{switch} statement is used with the \texttt{funct3} field as branching condition to identify which R-type instruction is given. Since some R-type instructions has the same \texttt{funct3} code, a third \texttt{switch} statement is required to differentiate these.
+        Multiple \texttt{switch} statements are layered for instruction detection. The first \texttt{switch} uses the \texttt{opcode} to determine the type of instruction that is currently running. Say an R-type instruction has been identified. Most control lines can be set here, as only the control line for the ALU is different between the R-type instructions. To set the last control line a second \texttt{switch} statement is used with the \texttt{funct3} field as branching condition to identify which R-type instruction is given. Since some R-type instructions have the same \texttt{funct3} code, a third \texttt{switch} statement is required to differentiate these.
         
-        When an instruction as been identified the control lines are set to the correct values and outputted. The \texttt{Control} unit is illustrated in Figure \ref{fig:CONTROL} and a code segment is shown in Listing \ref{CONTROL}.
+        When an instruction has been identified the control lines are set to the correct values and outputted. The \texttt{Control} unit is illustrated in Figure \ref{fig:CONTROL} and a code segment is shown in Listing \ref{CONTROL}.
         
         
         \begin{figure}[h!]
@@ -430,7 +430,7 @@
         \end{figure}
     
         \begin{minipage}{\linewidth}
-            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Control} process SME code. First 3 varibles are declared for the extracted \texttt{opcode}, \texttt{funct3} and \texttt{func7} fields. They are then used in the following \texttt{switch} statements to correctly identify the given instruction. Finally the control lines are set with the values for the respective instruction.},captionpos=b, label = CONTROL]
+            \begin{lstlisting}[language={[Sharp]C}, caption={A slice of the \texttt{Control} process SME code. First 3 variables are declared for the extracted \texttt{opcode}, \texttt{funct3} and \texttt{func7} fields. They are then used in the following \texttt{switch} statements to correctly identify the given instruction. Finally the control lines are set with the values for the respective instruction.},captionpos=b, label = CONTROL]
 ...
     protected override void OnTick() {
         uint Opcode = m_instruction.Current       & (uint)0x7F;  
@@ -470,18 +470,18 @@
 \section{Single Cycle RISC-V datapaths}\label{section:Datapaths}
     In Section \ref{section:riscunits} all necessary units for the RISC-V implementation were covered. The final step is to connect all units and define the instruction datapaths. The datapath is defined as the path an instruction takes through the RISC-V implementation. The full implementation is illustrated in Figure \ref{fig:RISCV}. 
     
-    The unit that determines what path an instruction takes is the control unit. By modifying the values in the control signals, the path an instruction takes can be manipulated. Since the different types of instructions need to follow a very specific path, we need to design the control unit such that the correct paths gets taken.
+    The unit that determines what path an instruction takes is the control unit. By modifying the values in the control signals, the path an instruction takes can be manipulated. Since the different types of instructions need to follow a very specific path, we need to design the control unit such that the correct paths get taken.
     
     \begin{figure}[h!]
         \hspace*{-3.8cm}
         \centering
         \includegraphics[scale=0.8]{pictures/RISCV.pdf}
-        \caption{}
+        \caption{An illustration of the wired RISC-V CPU.}
         \label{fig:RISCV}
     \end{figure} 
 
     \subsection{Supporting R-Format instructions}\label{section:Rformat}
-        All R-format instructions perform some arithmetic or logical operation on 2 operands in the register and saves the result back into some specified register. For that to take place two registers has to be read and sent to the \texttt{ALU} where the operation takes place. Therefore the control signals \texttt{ALUSrc1} and \texttt{ALUSrc2} controlling \texttt{mux2} and \texttt{mux3} needs to be deasserted, such that they output the values read in the two registers. 
+        All R-format instructions perform some arithmetic or logical operations on 2 operands in the register and saves the result back into some specified register. For that to take place two registers has to be read and sent to the \texttt{ALU} where the operation takes place. Therefore the control signals \texttt{ALUSrc1} and \texttt{ALUSrc2} controlling \texttt{mux2} and \texttt{mux3} need to be deasserted, such that they output the values read in the two registers. 
         
         The control signal \texttt{ALUop} that controls the \texttt{ALU} is then set to the operation to be performed by the R-type instruction and range between 0 and 14. The value that gets written back to the register is then determined by \texttt{mux4}. Since it is the result of the \texttt{ALU} that has to be written back into some specified register, input 0 of \texttt{mux4} is selected by setting \texttt{WBSel} to zero and the write control line \texttt{RegWrite} of the register is asserted.
         
@@ -504,7 +504,7 @@
     \subsection{Supporting I-Format instructions}
         The I-Format instructions perform an arithmetic or logical operation between one operand in the register and one operand contained within the immediate field of the instruction. The result is then saved to some specified register. Therefore the only difference between the I- and R-Format instructions are the second operand, which instead comes from the immediate field. 
         
-        For this reason the only change that needs to be made to the control lines compared to the R-Format instructions are that the \texttt{ALUSrc2} line gets asserted, such that the second input to the \texttt{ALU} comes from the immediate field. All other control lines follows the same reasoning as the R-Format, which can be read in Section \ref{section:Rformat}. Every control signal value is summarized in Table \ref{table:IFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
+        For this reason the only change that needs to be made to the control lines compared to the R-Format instructions are that the \texttt{ALUSrc2} line gets asserted, such that the second input to the \texttt{ALU} comes from the immediate field. All other control lines follow the same reasoning as the R-Format, which can be read in Section \ref{section:Rformat}. Every control signal value is summarized in Table \ref{table:IFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
         
         \begin{table}[h!]
             \small
@@ -543,9 +543,9 @@
         \subsubsection{Jump and link register}
             The \texttt{jump and link register} is another special case of the I-Format instruction where (as with the \texttt{load} instruction) only the sum between the register and immediate is calculated, so \texttt{ALUOp} is always set to 0.
             
-            This sum is then sent directly back to the program counter from the ALU, which is then selected by \texttt{mux1}. For this selection to happen the AND gate needs to return 1, which can only happen if \texttt{PCSel} is asserted. Furthermore a special case has been added to the \texttt{GOTO} unit, which automatically asserts its output. This happens if \texttt{BJSIGN} is set to 6. This combination allows \texttt{mux1} to select the ALU output.
+            This sum is then sent directly back to the program counter from the ALU, which is then selected by \texttt{mux1}. For this selection to happen the AND gate needs to return 1, which can only happen if \texttt{PCSel} is asserted. Furthermore a special case has been added to the \texttt{GoTo} unit, which automatically asserts its output. This happens if \texttt{BJSIGN} is set to 6. This combination allows \texttt{mux1} to select the ALU output.
             
-            To save the output from the \texttt{NEXT} instruction unit, which is the address of the following instruction, back to some specified register, the control line \texttt{WBsel} for \texttt{mux4} is set to 2. The data memory is not accessed hence all control lines going to the data memory is deasserted.
+            To save the output from the \texttt{NEXT} unit (which is the address of the following instruction) back to some specified register, the control line \texttt{WBsel} for \texttt{mux4} is set to 2. The data memory is not accessed hence all control lines going to the data memory is deasserted.
             
             Every control signal value is summarized in Table \ref{table:JALRFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
             
@@ -563,7 +563,7 @@
         
     
     \subsection{Supporting S-Format instructions}
-        The S-Format instructions moves data stored in registers to the data memory. No write back to the register happens, therefore the register write control is deasserted. Because of this it does not matter what value \texttt{WBSel} control line has. 
+        The S-Format instructions move data stored in registers to the data memory. No write back to the register happens, therefore the register write control is deasserted. Because of this it does not matter what value \texttt{WBSel} control line has. 
         
         To calculate the address to which the data is to be saved, the base address stored in a register is used. This register is read and sent out to the \texttt{RS1} read line. For this reason the control line \texttt{ALUSrc1} for \texttt{mux2} is deasserted. The offset to the base address lies within the immediate field, so the control line \texttt{ALUSrc2} for \texttt{mux3} is asserted.
         
@@ -587,11 +587,11 @@
         \end{table}
     
     \subsection{Supporting B-Format instructions}
-        The B-Format instruction, also known as branching instructions determines whether the following instruction or an alternate instruction located at different address should be run next, based on some branching condition.
+        The B-Format instructions, also known as branching instructions, determine whether the following instruction or an alternate instruction, located at a different address should be run next. This is  based on some branching condition.
         
         The address of the alternate instruction is calculated using the current address and an offset specified in the immediate field of the branching instruction. Therefore both control signals, \texttt{ALUSrc1} and \texttt{ALUSrc2}, going to \texttt{mux2} and \texttt{mux3} is asserted. The ALU then needs to find the sum between them so \texttt{ALUop} is set to 0. Hereafter the result gets sent back to \texttt{mux1}.
         
-        \texttt{PCSel} is asserted since the AND gate needs to be able to output 1. To determine whether the branching should happen the \texttt{GOTO} unit compare the values given to lines \texttt{RS1} and \texttt{RS2}. There is 6 different comparisons, so the \texttt{BJSIGN} control line is used to choose the right one depending on the given instruction. The values range between 0 and 5.
+        \texttt{PCSel} is asserted since the AND gate needs to be able to output 1. To determine whether the branching should happen the \texttt{GoTo} unit compare the values given to lines \texttt{RS1} and \texttt{RS2}. There are 6 different comparisons, so the \texttt{BJSIGN} control line is used to choose the right one depending on the given instruction. The values range between 0 and 5.
         
         Since the memory is not accessed and the register is not written to, all the respective control lines are deasserted. Every control signal value is summarized in Table \ref{table:BFORMAT}. For full table please refer to Appendix \ref{appendix:Controlsignalvalues}.
         
@@ -609,7 +609,7 @@
     \subsection{Supporting U-Format instructions}
         There are two U-Format instructions, \texttt{AUIPC} and \texttt{LUI}. They are both very similar as they load some value to a register destination. 
         
-        \texttt{LUI} loads a shifted immediate to the register. The immediate shift is done in the \texttt{ImmGen} unit, so a special case has been added to the ALU, which just outputs the value given to the second ALU input. This case is chosen when \texttt{ALUop} is set to 15. 
+        \texttt{LUI} loads a shifted immediate to the register. The immediate shift is done in the \texttt{ImmGen} unit, so a special case has been added to the ALU, which outputs the value given to the second ALU input. This case is chosen when \texttt{ALUop} is set to 15. 
         To get the immediate field to the ALU, \texttt{ALUSrc2} going to \texttt{mux3} is asserted.
         The first ALU input is irrelevant in this case so the value of \texttt{ALUSrc1} does not matter. 
         
@@ -625,14 +625,14 @@
             	                  & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
             	\textbf{U-Format} &       0        &         1         &      1 or 0      &        1         &    0 or 15     &        0        &          0           &         0         &        0         &       0        \\ \hline
             \end{tabular}
-            \caption{This table shows control line values for the U-format datapath. \texttt{ALUSrc1} is asserted for\texttt{AUIPC} and deasserted for \texttt{LUI}. \texttt{ALUop} is set to 0 for \texttt{AUIPC} and set to 15 for \texttt{LUI}.}
+            \caption{This table shows control line values for the U-format datapath. \texttt{ALUSrc1} is asserted for \texttt{AUIPC} and deasserted for \texttt{LUI}. \texttt{ALUop} is set to 0 for \texttt{AUIPC} and set to 15 for \texttt{LUI}.}
             \label{table:UFORMAT}
         \end{table}
     
     \subsection{Supporting J-Format instructions}
         There is only a single J-Format instruction in the \texttt{RV64I} basic instruction set, which is called jump and link, \texttt{JAL}. It is very similar to the \texttt{JALR} instruction. But instead of branching relative to a value stored in the register, \texttt{JAL} branches relative to the current instruction address stored in the program counter. For this reason the control line \texttt{ALUSrc1} going to \texttt{mux2} gets asserted. The offset used to calculate the alternate address is stored in the immediate field of the instruction, so \texttt{ALUSrc2} going to \texttt{mux3} gets asserted. The ALU then has to find the sum between the two values, so \texttt{ALUop} is set to 0.
         
-        As with the case with \texttt{JALR}, the ALU output needs to be sent back to the program counter so \texttt{PCSel} is asserted and \texttt{BJSIGN} is set to 6, which automatically makes the \texttt{GOTO} unit return 1.
+        As with the case with \texttt{JALR}, the ALU output needs to be sent back to the program counter so \texttt{PCSel} is asserted and \texttt{BJSIGN} is set to 6, which automatically makes the \texttt{GoTo} unit return 1.
         
         To save the output from the \texttt{NEXT} instruction unit, which is the address of the following instruction, back to some specified register, the control line \texttt{WBsel} for \texttt{mux4} is set to 2 and \texttt{RegWrite} is asserted. The data memory is not accessed hence all control lines going to the data memory is deasserted.
         
@@ -651,13 +651,130 @@
             \label{table:JFORMAT}
         \end{table}
     
+    \subsection{Special Zero instruction}
+        The zero instruction simply deasserts all control lines. This instruction was added to mark an end to a program. So when this instruction is run the CPU shuts down. Every control signal value is summarized in Table \ref{table:ZEROFORMAT}. 
+        
+        \begin{table}[h!]
+            \small
+            \hspace{-2.4cm}
+            \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+                \hline
+                & \textbf{PCSel} & \textbf{RegWrite} & \textbf{ALUSrc1} & \textbf{ALUSrc2} & \textbf{ALUop} & \textbf{BJSIGN} & \textbf{SizeAndSign} & \textbf{MemWrite} & \textbf{MemRead} & \textbf{WBSel} \\ \hline\hline
+                \textbf{U-Format} &       0        &         0         &        0         &        0         &       0        &        0        &          0           &         0         &        0         &       0        \\ \hline
+            \end{tabular}
+            \caption{This table shows control line values for the Zero instruction datapath.}
+            \label{table:ZEROFORMAT}
+        \end{table} 
+    
+    
 \section{Debugging the instructions}
+    We are now at a point where instructions can be run on the CPU. Extensive testing has been done to confirm that the behavior of the instructions are correct. To test the individual instructions a small program is written in \texttt{Jupiter}\footnote{\url{https://github.com/andrescv/Jupiter}}. Only a single instruction test are going to be covered here, but all assembly and binary instruction testers can be found here\footnote{\url{https://github.com/DanielRamyar/Master_Thesis/tree/master/SME_Implementations/SingleCycleRISCV2/RISCVTESTERS}}.
+    
+    To test the \texttt{add} instruction the following program has been written
+    
 
-    \subsection{Writing assembly to test instructions}
+        \begin{lstlisting}[language={[Sharp]C}]
+.global __start
+
+__start:
+    addi x0, x0, 10 # Check to see if register 0 can be written to
+    
+    addi x13, x0, -2048 # x13 = -2048
+    addi x14, x0, -5    # Set regiser 14 to have value -5
+    addi x15, x0, 1     # Set regiser 15 to have value 1
+    addi x16, x0, 8     # Set regiser 16 to have value 8
+    addi x17, x0, 7     # Set regiser 17 to have value 7
+    
+    add x18, x17, x16 # x18 = x17 + x16 | 15 = 7 + 8
+    add x19, x16, x17 # x19 = x16 + x17 | 15 = 8 + 7
+    add x20, x13, x16 # x20 = x13 + x16 | -2040 = -2048 + 8
+    add x21, x16, x13 # x21 = x16 + x13 | -2040 = 8 - 2048
+        \end{lstlisting}
+
+    
+    First data values are loaded into the register. The values are chosen such that both negative and position operands in the addition can be verified. On line 12 positive operands are tested. The values are then swapped in the following line to make sure this does not affect the result.
+    
+    On lines 14 and 15 the same procedure is then repeated to check if mixed positive and negative numbers exhibit correct behavior.
+    
+    To run the shown assembly code on the CPU a hex dump is done in Jupiter, which looks like the following
+    
+
+        \begin{lstlisting}[language={[Sharp]C}]
+0x00a00013
+0x80000693
+0xffb00713
+0x00100793
+0x00800813
+0x00700893
+0x01088933
+0x011809b3
+0x01068a33
+0x00d80ab3
+0x00000000 <- This zero instruction is added manually  
+        \end{lstlisting}
+
+    To mark the end of the program a zero instruction is manually added at the end of the hex numbers. The hex dumps can also be found in the \texttt{RISCVTESTERS} folder. As the CPU instruction memory imports program using the binary read command the hex file is converted to binary.
+    
+    A hex to binary converter was used for this purpose and can be found here\footnote{\url{https://tomeko.net/online_tools/hex_to_file.php?lang=en}}. The hex dump simply gets pasted into hex string field of the site. To have the correct format for the binary import command \texttt{myfile.dat} is changed to \texttt{myfile.bin}. Convert is then pressed and the file automatically gets downloaded to the system. All binary files are also located in the \texttt{RISVTESTERS} folder.
+    
+    The path to the file is then given to the instruction memory. Then the \texttt{dotnet run} command is run in the terminal and the program is executed. The register is then checked to see if the correct registers contain the correct values.
     
     \subsection{Writing simple C code to run on RISC-V}
-    
-    
-    
+        When all instructions have been tested a \texttt{C} program is written to see if a larger compiled program behaves correctly. The program tested is a simple Fibonacci sequence with the following code:
+        
 
+            \begin{lstlisting}[language={[Sharp]C}]
+int main(int argc, const char * argv[]) {
+    int x, x_old, x_new, t, i;
+    
+    x = 1;
+    x_old = 0;
+    t = 14;
+    
+    for (i = 0; i < t; i++) {
+        x_new = x + x_old;
+        x_old = x;
+        x = x_new;
+    }
+    return 0;
+}
+            \end{lstlisting}
+
+        To compile the \texttt{C} code the site\footnote{\url{https://bellard.org/jslinux/} } is used. They have fully implemented a RISC-V CPU, which can be run in the browser. Choosing 64-bit console version we make a new file with the Fibonacci code within. The code can then be compiled with the gcc compiler making sure it only uses the \texttt{RV64I} instruction set. If this is not done 16-bit instructions will get used, which is currently not supported in this project. The following command is used for the compilation
+        \begin{lstlisting}[language={[Sharp]C}]
+gcc -c -march=rv64i -mabi=lp64 YourProgram.c
+        \end{lstlisting}
+        The compiled file can be read using
+        \begin{lstlisting}[language={[Sharp]C}]
+objdump -D hello.o | less
+        \end{lstlisting} 
+        which will look like the following
+        \begin{lstlisting}[language={[Sharp]C}]
+...
+0000000000000000 <main>:
+0:   fc010113                addi    sp,sp,-64
+4:   02813c23                sd      s0,56(sp)
+8:   04010413                addi    s0,sp,64
+c:   00050793                mv      a5,a0
+10:   fcb43023                sd      a1,-64(s0)
+14:   fcf42623                sw      a5,-52(s0)
+18:   00100793                li      a5,1
+1c:   fef42623                sw      a5,-20(s0)
+20:   fe042423                sw      zero,-24(s0)
+24:   00e00793                li      a5,14
+28:   fef42023                sw      a5,-32(s0)
+2c:   fe042223                sw      zero,-28(s0)
+30:   0300006f                j       60 <.L2>
+
+0000000000000034 <.L3>:
+34:   fec42703                lw      a4,-20(s0)
+38:   fe842783                lw      a5,-24(s0)
+3c:   00f707bb                addw    a5,a4,a5
+...
+        \end{lstlisting} 
+        The leftmost column indicates the base address for the instruction, the second column is the hex number for the instruction, the third and fourth column is the instruction name and values given to the instruction respectively (the names may not seem familiar, this is due to pseodo instruction support in assembler, which we have not covered).
+        
+        Finally the hex values are converted to a binary file (remembering to add a zero instruction to the end) that can be read by the CPU and executed. Since the program is automatically compiled it is not trivial to check if the program got executed correctly. Therefore the compiled code has to be read carefully to figure out where in the data memory variables are stored and again see if they are updated correctly on every clock cycle. 
+        
+        The Fibonacci sequence returned with the correct results, this indicates that the RISC-V implementation behaves correctly.
     

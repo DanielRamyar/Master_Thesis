@@ -55,7 +55,7 @@
 \contentsline {subsection}{\numberline {5.1.5}Arithmetic Logic Unit (ALU)}{51}{subsection.5.1.5}%
 \contentsline {subsection}{\numberline {5.1.6}Immediate generator}{52}{subsection.5.1.6}%
 \contentsline {subsection}{\numberline {5.1.7}Data Memory}{54}{subsection.5.1.7}%
-\contentsline {subsection}{\numberline {5.1.8}Go to Unit}{56}{subsection.5.1.8}%
+\contentsline {subsection}{\numberline {5.1.8}GoTo Unit}{56}{subsection.5.1.8}%
 \contentsline {subsection}{\numberline {5.1.9}Multiplexer}{57}{subsection.5.1.9}%
 \contentsline {subsection}{\numberline {5.1.10}Write Back Unit}{58}{subsection.5.1.10}%
 \contentsline {subsection}{\numberline {5.1.11}AND gate unit}{59}{subsection.5.1.11}%
@@ -69,26 +69,26 @@
 \contentsline {subsection}{\numberline {5.2.4}Supporting B-Format instructions}{65}{subsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.5}Supporting U-Format instructions}{66}{subsection.5.2.5}%
 \contentsline {subsection}{\numberline {5.2.6}Supporting J-Format instructions}{67}{subsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.2.7}Special Zero instruction}{67}{subsection.5.2.7}%
 \contentsline {section}{\numberline {5.3}Debugging the instructions}{67}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Writing assembly to test instructions}{67}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Writing simple C code to run on RISC-V}{67}{subsection.5.3.2}%
-\contentsline {chapter}{\numberline {6}Conclusion and future work}{68}{chapter.6}%
-\contentsline {chapter}{\numberline {A}Unary Operators}{69}{appendix.A}%
-\contentsline {subsubsection}{Logical identity}{69}{section*.89}%
-\contentsline {subsubsection}{Logical true}{69}{section*.91}%
-\contentsline {subsubsection}{Logical false}{70}{section*.93}%
-\contentsline {chapter}{\numberline {B}Binary Operators}{71}{appendix.B}%
-\contentsline {subsubsection}{Joint denial}{71}{section*.95}%
-\contentsline {subsubsection}{Alternative denial}{71}{section*.97}%
-\contentsline {subsubsection}{Logical biconditional}{72}{section*.99}%
-\contentsline {subsubsection}{Tautology}{73}{section*.101}%
-\contentsline {subsubsection}{Contradiction}{73}{section*.103}%
-\contentsline {subsubsection}{Proposition P}{74}{section*.105}%
-\contentsline {subsubsection}{Proposition Q}{74}{section*.107}%
-\contentsline {subsubsection}{Negated P}{75}{section*.109}%
-\contentsline {subsubsection}{Negated Q}{76}{section*.111}%
-\contentsline {subsubsection}{Material implication}{76}{section*.113}%
-\contentsline {subsubsection}{Converse implication}{77}{section*.115}%
-\contentsline {subsubsection}{Material nonimplication}{77}{section*.117}%
-\contentsline {subsubsection}{Converse nonimplication}{78}{section*.119}%
-\contentsline {chapter}{\numberline {C}Control Signal values}{80}{appendix.C}%
+\contentsline {subsection}{\numberline {5.3.1}Writing simple C code to run on RISC-V}{69}{subsection.5.3.1}%
+\contentsline {chapter}{\numberline {6}Conclusion and future work}{71}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Unary Operators}{72}{appendix.A}%
+\contentsline {subsubsection}{Logical identity}{72}{section*.90}%
+\contentsline {subsubsection}{Logical true}{72}{section*.92}%
+\contentsline {subsubsection}{Logical false}{73}{section*.94}%
+\contentsline {chapter}{\numberline {B}Binary Operators}{74}{appendix.B}%
+\contentsline {subsubsection}{Joint denial}{74}{section*.96}%
+\contentsline {subsubsection}{Alternative denial}{74}{section*.98}%
+\contentsline {subsubsection}{Logical biconditional}{75}{section*.100}%
+\contentsline {subsubsection}{Tautology}{76}{section*.102}%
+\contentsline {subsubsection}{Contradiction}{76}{section*.104}%
+\contentsline {subsubsection}{Proposition P}{77}{section*.106}%
+\contentsline {subsubsection}{Proposition Q}{77}{section*.108}%
+\contentsline {subsubsection}{Negated P}{78}{section*.110}%
+\contentsline {subsubsection}{Negated Q}{79}{section*.112}%
+\contentsline {subsubsection}{Material implication}{79}{section*.114}%
+\contentsline {subsubsection}{Converse implication}{80}{section*.116}%
+\contentsline {subsubsection}{Material nonimplication}{80}{section*.118}%
+\contentsline {subsubsection}{Converse nonimplication}{81}{section*.120}%
+\contentsline {chapter}{\numberline {C}Control Signal values}{83}{appendix.C}%

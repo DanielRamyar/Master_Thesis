@@ -44,7 +44,7 @@
 \BOOKMARK [2][-]{subsection.5.1.5}{Arithmetic Logic Unit \(ALU\)}{section.5.1}% 44
 \BOOKMARK [2][-]{subsection.5.1.6}{Immediate generator}{section.5.1}% 45
 \BOOKMARK [2][-]{subsection.5.1.7}{Data Memory}{section.5.1}% 46
-\BOOKMARK [2][-]{subsection.5.1.8}{Go to Unit}{section.5.1}% 47
+\BOOKMARK [2][-]{subsection.5.1.8}{GoTo Unit}{section.5.1}% 47
 \BOOKMARK [2][-]{subsection.5.1.9}{Multiplexer}{section.5.1}% 48
 \BOOKMARK [2][-]{subsection.5.1.10}{Write Back Unit}{section.5.1}% 49
 \BOOKMARK [2][-]{subsection.5.1.11}{AND gate unit}{section.5.1}% 50
@@ -56,9 +56,9 @@
 \BOOKMARK [2][-]{subsection.5.2.4}{Supporting B-Format instructions}{section.5.2}% 56
 \BOOKMARK [2][-]{subsection.5.2.5}{Supporting U-Format instructions}{section.5.2}% 57
 \BOOKMARK [2][-]{subsection.5.2.6}{Supporting J-Format instructions}{section.5.2}% 58
-\BOOKMARK [1][-]{section.5.3}{Debugging the instructions}{chapter.5}% 59
-\BOOKMARK [2][-]{subsection.5.3.1}{Writing assembly to test instructions}{section.5.3}% 60
-\BOOKMARK [2][-]{subsection.5.3.2}{Writing simple C code to run on RISC-V}{section.5.3}% 61
+\BOOKMARK [2][-]{subsection.5.2.7}{Special Zero instruction}{section.5.2}% 59
+\BOOKMARK [1][-]{section.5.3}{Debugging the instructions}{chapter.5}% 60
+\BOOKMARK [2][-]{subsection.5.3.1}{Writing simple C code to run on RISC-V}{section.5.3}% 61
 \BOOKMARK [0][-]{chapter.6}{Conclusion and future work}{}% 62
 \BOOKMARK [0][-]{appendix.A}{Unary Operators}{}% 63
 \BOOKMARK [0][-]{appendix.B}{Binary Operators}{}% 64
