@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  29 FEB 2020 23:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  1 MAR 2020 11:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2775,46 +2775,57 @@ Overfull \hbox (100.47357pt too wide) in paragraph at lines 476--479
  []
 
 [62 <./pictures/RISCV.pdf>]
-Overfull \hbox (65.12607pt too wide) in paragraph at lines 492--498
+Overfull \hbox (65.12607pt too wide) in paragraph at lines 494--500
 []  [] 
  []
 
 
-Overfull \hbox (61.16222pt too wide) in paragraph at lines 509--515
+Overfull \hbox (61.16222pt too wide) in paragraph at lines 511--517
 []  [] 
  []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [63]
-Overfull \hbox (61.16222pt too wide) in paragraph at lines 531--537
+Overfull \hbox (61.16222pt too wide) in paragraph at lines 533--539
 []  [] 
  []
 
 
-Overfull \hbox (61.16222pt too wide) in paragraph at lines 552--558
+Overfull \hbox (61.16222pt too wide) in paragraph at lines 554--560
 []  [] 
  []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [64]
-Overfull \hbox (63.06216pt too wide) in paragraph at lines 577--583
+Overfull \hbox (63.06216pt too wide) in paragraph at lines 579--585
 []  [] 
  []
 
 [65]
-Overfull \hbox (64.71355pt too wide) in paragraph at lines 598--604
+Overfull \hbox (64.71355pt too wide) in paragraph at lines 600--606
 []  [] 
  []
 
 
-Overfull \hbox (65.32329pt too wide) in paragraph at lines 618--624
+Overfull \hbox (65.32329pt too wide) in paragraph at lines 622--628
 []  [] 
  []
 
-) [66]
+[66]
+Overfull \hbox (65.32329pt too wide) in paragraph at lines 644--650
+[]  [] 
+ []
+
+) [67]
 \openout2 = `chapters/chapter6.aux'.
 
  (./chapters/chapter6.tex
 Chapter 6.
-) [67
+) [68
 
 
 
@@ -2823,25 +2834,25 @@ Chapter 6.
 
  (./chapters/appendix.tex
 Appendix A.
-[68
+[69
 
 
 
-] [69]
+] [70]
 Appendix B.
-[70
+[71
 
-] [71]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[72] [73] [74]
+] [72]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[75] [76] [77] [78]
+[73] [74] [75]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[76] [77] [78] [79]
 Appendix C.
-<pictures/Controltable1.pdf, id=1730, 597.23125pt x 845.1575pt>
+<pictures/Controltable1.pdf, id=1737, 597.23125pt x 845.1575pt>
 File: pictures/Controltable1.pdf Graphic file (type pdf)
 <use pictures/Controltable1.pdf>
 Package pdftex.def Info: pictures/Controltable1.pdf  used on input line 425.
@@ -2857,7 +2868,7 @@ LaTeX Warning: Float too large for page by 109.36717pt on input line 426.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<pictures/Controltable2.pdf, id=1731, 597.23125pt x 845.1575pt>
+<pictures/Controltable2.pdf, id=1738, 597.23125pt x 845.1575pt>
 File: pictures/Controltable2.pdf Graphic file (type pdf)
 <use pictures/Controltable2.pdf>
 Package pdftex.def Info: pictures/Controltable2.pdf  used on input line 432.
@@ -2873,7 +2884,7 @@ LaTeX Warning: Float too large for page by 109.36717pt on input line 433.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<pictures/Controltable3.pdf, id=1732, 597.23125pt x 845.1575pt>
+<pictures/Controltable3.pdf, id=1739, 597.23125pt x 845.1575pt>
 File: pictures/Controltable3.pdf Graphic file (type pdf)
 <use pictures/Controltable3.pdf>
 Package pdftex.def Info: pictures/Controltable3.pdf  used on input line 439.
@@ -2889,10 +2900,10 @@ LaTeX Warning: Float too large for page by 109.36717pt on input line 440.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [79
+) [80
 
-] [80 <./pictures/Controltable1.pdf>] [81 <./pictures/Controltable2.pdf>]
-[82 <./pictures/Controltable3.pdf>]
+] [81 <./pictures/Controltable1.pdf>] [82 <./pictures/Controltable2.pdf>]
+[83 <./pictures/Controltable3.pdf>]
 \openout2 = `chapters/RiscVReferenceCard.aux'.
 
  (./chapters/RiscVReferenceCard.tex
@@ -2938,11 +2949,11 @@ Overfull \hbox (24.23172pt too wide) in paragraph at lines 102--167
 [][] 
  []
 
-[83
+[84
 
 
 
-] [84]) (./main.bbl) [85
+] [85]) (./main.bbl) [86
 
 
 
@@ -2960,10 +2971,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 38072 strings out of 492163
- 715597 string characters out of 6125305
- 1026125 words of memory out of 5000000
- 40910 multiletter control sequences out of 15000+600000
+ 38075 strings out of 492163
+ 715636 string characters out of 6125305
+ 1026345 words of memory out of 5000000
+ 40911 multiletter control sequences out of 15000+600000
  551171 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,15n,97p,1243b,1466s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3032,10 +3043,10 @@ pe1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
 /public/amsfonts/latxfont/line10.pfb></usr/local/texlive/2019/texmf-dist/fonts/
 type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (89 pages, 805094 bytes).
+Output written on main.pdf (90 pages, 808276 bytes).
 PDF statistics:
- 2069 PDF objects out of 2073 (max. 8388607)
- 1850 compressed objects within 19 object streams
- 770 named destinations out of 1000 (max. 500000)
+ 2076 PDF objects out of 2487 (max. 8388607)
+ 1856 compressed objects within 19 object streams
+ 772 named destinations out of 1000 (max. 500000)
  714 words of extra memory for PDF output out of 10000 (max. 10000000)
 
