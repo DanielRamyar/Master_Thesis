@@ -778,15 +778,14 @@ c:   00050793                mv      a5,a0
         
         The Fibonacci sequence returned with the correct results, this indicates that the RISC-V implementation behaves correctly.
         
-        
     \subsection{VHDL and Synthesis}
         Information for this chapter was provided graciously by the help of Carl-Johannes Johnsen due to time constrains.
-        Throughout this project we have carefully made sure that the C\scalerel*{\#}{X} simulation matches the generated VHDL testbench. The generated VHDL can then be given to vendor synthesis tools, which is used to implement the VHDL code on an FPGA.
+        Throughout this project we have carefully made sure that the C\scalerel*{\#}{X} simulation matched the generated VHDL testbench. The generated VHDL could then be given to vendor synthesis tools, which is used to implement the VHDL code on an FPGA.
         This work has been done by Carl to get the performance numbers for my RISC-V implementation. The board that was used was the \texttt{TUL PYNQ™-Z2 board}\footnote{\url{http://www.tul.com.tw/ProductsPYNQ-Z2.html}}. 
         
         The speed at which the implementation was run were 100 MHz. The timing analyses showed a slack of 1.985 ns, which means that theoretically the processor could be run at 124 MHz (100 MHz corresponds to a clock cycle of 10 ns, removing the slack we can get down to about 8 ns per clock cycle, which corresponds to 124 Mhz, $10[ns]-1.985[ns]=8.015[ns]$). 
         
-        Compared to the PicoRV32 implementation in \cite{8760205}, which ran at 115 Mhz, the speed at which my implementation ran seems reasonable. Furthermore the utilization of FPGA resources i.e  the number of LUTs (Look up tables) and FFs (Flip flops) used in my implementation was 4586 and 2903 respectively. This is about double as many as the PicoRV32 implementation (2123 LUTs and 1509 FFs), which is also reasonable, since their implementation is 32-bit and mine is 64-bit.
+        Compared to the PicoRV32 implementation in \cite{8760205}, which ran at 115 Mhz, the speed at which my implementation ran seems reasonable. Furthermore the utilization of FPGA resources i.e  the number of LUTs (Look up tables) and FFs (Flip flops) used in my implementation was 4586 and 2903 respectively. This is about double as many as the PicoRV32 implementation (2123 LUTs and 1509 FFs), which also seems reasonable, since their implementation is 32-bit and mine is 64-bit.
         
         The thermal design power estimated by vivaldo is 0.19 W.
         

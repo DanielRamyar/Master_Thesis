@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  2 MAR 2020 19:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.25)  2 MAR 2020 23:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1179,8 +1179,8 @@ ftex/updmap/pdftex.map}>]
 me{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.9 \end{abstract}
-                   [1
+l.11 \end{abstract}
+                    [1
 
 
 
@@ -3030,15 +3030,8 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 104.
 (./chapters/RiscVReferenceCard.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 104.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 104.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: CBA3B9DE6FF830D0EC4A934BD568321E;4679
-(rerunfilecheck)             After:  65A9D162047BDFE831E5C1D29226E3FA;4684.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 65A9D162047BDFE831E5C1D29226E3FA;4684.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 104.
  ) 
 Here is how much of TeX's memory you used:
@@ -3133,7 +3126,7 @@ pe1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
 /public/amsfonts/latxfont/line10.pfb></usr/local/texlive/2019/texmf-dist/fonts/
 type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (96 pages, 1117637 bytes).
+Output written on main.pdf (96 pages, 1118022 bytes).
 PDF statistics:
  2265 PDF objects out of 2487 (max. 8388607)
  2022 compressed objects within 21 object streams

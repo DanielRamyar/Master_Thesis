@@ -1,17 +1,17 @@
 \chapter{Introduction}
-    In the modern age computers have accelerated the scientific process many fold. All from advanced weather models, the study of molecules to creating artificial intelligence has now become possible due to the rapid progress of computational power.
+    In the modern age, computers have accelerated the scientific process many fold. Applications ranging from advanced weather models, the study of molecules to creating artificial intelligence has now become possible due to the rapid progress of computational power.
     
-    Since the 1980s the computer architecture x86 pioneered by Intel has been the de facto standard. 
-    Ever since its inception an average of 1 instruction has been added to the x86 standard per week, resulting in over fifteen hundred x86 instructions today\footnote{They can be found here \url{https://software.intel.com/en-us/articles/intel-sdm}}. This kind of bloat leads to inefficiency and needless complexity.
+    Since the 1980s the computer architecture \texttt{x86}, pioneered by Intel, has been the de facto standard. 
+    Ever since its inception, an average of 1 instruction has been added to the \texttt{x86} standard per week, resulting in over fifteen hundred \texttt{x86} instructions today\footnote{They can be found here \url{https://software.intel.com/en-us/articles/intel-sdm}}. This kind of bloat leads to inefficiency and needless complexity.
     
-    This was not helped by the rapid advance in the miniaturization of transistors leading to huge leaps in computational power year over year making the mentioned deficiencies in the x86 less relevant. The deficiencies are however beginning to show today, since we are nearing the end of moore’s law and we are no longer seeing leaps in computational power motivating us to rethink the x86 architecture.
+    This was not helped by the rapid advance in the miniaturization of transistors leading to huge leaps in computational power year over year making the mentioned deficiencies in the \texttt{x86} less relevant. The deficiencies are however beginning to show today, since we are nearing the end of moore’s law and we are no longer seeing leaps in computational power motivating us to rethink the \texttt{x86} architecture.
     
-    Using the power of hindsight the \textit{Reduced Instruction Set Computing Five} or \textit{RISC-V} was created. The core of RISC-V consists of less than fifty locked down instructions and since RISC-V is open source any additional custom instruction needed can be added.
+    Using the power of hindsight the \textit{Reduced Instruction Set Computing Five} or \textit{RISC-V} was created. The core of RISC-V consists of less than fifty locked down instructions and since RISC-V is open source, any additional custom instruction can be added.
     
     
-    These days most measurement instruments are based on x86 CPUs, which greatly limits the bandwidth at which data collection is possible and greatly limits the possibility for custom solutions, since the x86 is a proprietary architecture owned by Intel. 
+    These days most measurement instruments are based on \texttt{x86} CPUs, which greatly limits the bandwidth at which data collection is possible and greatly limits the possibility for custom solutions, since the \texttt{x86} is a proprietary architecture owned by Intel. 
     
-    The RISC-V processor is designed to be especially well suited for embedding in scientific instruments and measuring devices and as such will play a central role in future physics instruments.
-    Therefore a custom implementation of the RISC-V architecture for scientific purposes would be of great benefit. 
+    For the aforementioned reasons, the RISC-V processor is especially well suited for embedding in scientific instruments and measuring devices and as such will play a central role in future physics instruments.
+    Therefore a custom implementation of the RISC-V architecture for scientific purposes show great promise. 
     
     In this project we will design a RISC-V processor and implement it using Synchronous Message Exchange (SME), which is used to rapidly develop circuits for Field Programmable Gate Arrays (FPGAs).
