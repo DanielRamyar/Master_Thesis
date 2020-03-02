@@ -88,9 +88,9 @@ Starting out we will go through a short introduction behind the inspiration for 
         \end{figure}
     
     \subsection{Broadcasting and buses}
-        In CSP processes communicate with each other using channels that make use of the rendezvous protocol, meaning that data first gets transmitted through the channel once the destination says it is ready to receive. 
+        In CSP, processes communicate with each other using channels that make use of the rendezvous protocol, meaning that data gets transmitted through the channel once the destination says it is ready to receive and vice versa. 
         
-        SME on the other hand uses a broadcasting model, meaning that data instead gets transmitted to SME busses, that any process can read from. In other words a process can broadcast its output to multiple processes through a single bus. Using CSP, multiple channels would have to be used to emulate a single bus in SME. When data is written to a bus it will first be available in the following clock cycle. Furthermore a bus is able to contain multiple data types and values that can be accessed by a process. 
+        SME on the other hand uses a broadcasting model, meaning that data instead gets transmitted to SME busses, that any process can read from. In other words a process can broadcast its output to multiple processes through a single bus. Using CSP, multiple channels would have to be used to emulate a single bus in SME. When data is written to a bus it will first be available in the following clock cycle if it is a clocked process and available right away for un-clocked processes. Furthermore a bus is able to contain multiple data types and values that can be accessed by a process. 
         
         We will not dwell further into the theory behind SME in this thesis. Instead we will be developing actual units in SME, that will be needed when we later implement the RISC-V architecture. The SME syntax will be introduced as we go through the examples and is intended to be a from-scratch introduction for the uninitiated reader. 
 

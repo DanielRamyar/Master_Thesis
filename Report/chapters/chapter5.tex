@@ -89,7 +89,7 @@
         
     
     \subsection{Next instruction Unit}
-        To calculate the address of the next instruction in the queue I have created a unit called \texttt{Next}. This unit is very simple, as its only function is to increment the value found in the PC output bus by 4. We increment by 4, since each instruction is 32 bits long and since our instructions are contained in a byte array, we need to move 4 bytes every time we want to access the following instruction. For example if we are placed at index 0, we would have to go to index 4 to access the next instruction (index 0-3 contains instruction 1 and index 4-7 the next).
+        To calculate the address of the next instruction in the queue I have created a unit called \texttt{Next}. This unit is very simple, as its only function is to increment the value found in the PC output bus by 4. We increment by 4, since each instruction is 32 bits long and since our instructions are contained in a byte array, we need to move 4 bytes every time we want to access the following instruction. For example if we are placed at index 0, we would have to go to index 4 to access the next instruction (index 0-3 contains instruction 1 and index 4-7 the next and etc.).
         
         The next instruction process has the output from the program counter as input and sends the incremented address to the \texttt{Next Output} bus. The \texttt{Next} process is illustrated in \ref{fig:NEXT} and a code segment is shown in Listing \ref{NEXTSME}.
         
@@ -113,7 +113,7 @@
         \end{minipage}  
         
     
-    \subsection{Register}
+    \subsection{Register File}
         The \texttt{register}, or RS for short, is a small data storage location for operands of instructions among others (see Table \ref{table:RISCVRegister}). It can be accessed by specifying a register address in an instruction. 
         
         Since R-type instructions use two operands to execute an arithmetic operation, the register has two input lines carrying the address to the specified registers and two output lines carrying the data in the read registers.
@@ -250,7 +250,7 @@
         
         As the data memory communicates with the register, which is big-endian addressed and every element is 64-bit, a translation needs to happen between these formats.
         
-        In SME a process is created that contains a byte array. To support 64-bit numbers the array has to be larger than 8 bytes if a single number has to be stored. Otherwise the sizing is irrelevant if made big enough and is divisible by eight. In this implementation the array is 2000 bytes long.
+        In SME a process is created that contains a byte array. To support 64-bit numbers the array has to be larger than 8 bytes if a single number has to be stored. Otherwise the sizing is irrelevant if made big enough and is divisible by eight. In this implementation the array is chosen 2000 bytes long to make sure it is big enough.
         
         To distinguish between the read and write states an \texttt{if/else} statement is used. For the branching condition, two control signals are used to determine whether a read or write should be performed. When reading or writing the size of the data needs to be known, such that a correct translation between big- and little-endian formats can take place. To this end a \texttt{switch} statement is used, with cases for each data size scenario. Furthermore cases for handling unsigned reads has been added.
         
@@ -777,4 +777,21 @@ c:   00050793                mv      a5,a0
         Finally the hex values are converted to a binary file (remembering to add a zero instruction to the end) that can be read by the CPU and executed. Since the program is automatically compiled it is not trivial to check if the program got executed correctly. Therefore the compiled code has to be read carefully to figure out where in the data memory variables are stored and again see if they are updated correctly on every clock cycle. 
         
         The Fibonacci sequence returned with the correct results, this indicates that the RISC-V implementation behaves correctly.
+        
+        
+    \subsection{VHDL and Synthesis}
+        Information for this chapter was provided graciously by the help of Carl-Johannes Johnsen due to time constrains.
+        Throughout this project we have carefully made sure that the C\scalerel*{\#}{X} simulation matches the generated VHDL testbench. The generated VHDL can then be given to vendor synthesis tools, which is used to implement the VHDL code on an FPGA.
+        This work has been done by Carl to get the performance numbers for my RISC-V implementation. The board that was used was the \texttt{TUL PYNQ™-Z2 board}\footnote{\url{http://www.tul.com.tw/ProductsPYNQ-Z2.html}}. 
+        
+        The speed at which the implementation was run were 100 MHz. The timing analyses showed a slack of 1.985 ns, which means that theoretically the processor could be run at 124 MHz (100 MHz corresponds to a clock cycle of 10 ns, removing the slack we can get down to about 8 ns per clock cycle, which corresponds to 124 Mhz, $10[ns]-1.985[ns]=8.015[ns]$). 
+        
+        Compared to the PicoRV32 implementation in \cite{8760205}, which ran at 115 Mhz, the speed at which my implementation ran seems reasonable. Furthermore the utilization of FPGA resources i.e  the number of LUTs (Look up tables) and FFs (Flip flops) used in my implementation was 4586 and 2903 respectively. This is about double as many as the PicoRV32 implementation (2123 LUTs and 1509 FFs), which is also reasonable, since their implementation is 32-bit and mine is 64-bit.
+        
+        The thermal design power estimated by vivaldo is 0.19 W.
+        
+        
+        
+        
+        
     

@@ -523,7 +523,7 @@ funct7  x13   x12   funct3 x18   add
 beq x17, x18, -5
         \end{lstlisting}
         
-        In higher level programming languages the abstractions for the branching instructions are commonly represented by \texttt{if/else} statements or \texttt{for/while} loops. In an \texttt{if/else} statement the branching instruction would be used to go to a specific place in the program if some condition is met. In a \texttt{for/while} loop branching instructions would be used to jump back and repeat the same part of a program until the condition is met. A subset of the branching instructions are outlined in Table \ref{table:RISCVBranchingInstructions}.
+        In higher level programming languages the abstractions for the branching instructions are commonly represented by \texttt{if/else} statements or \texttt{for/while} loops. In an \texttt{if/else} statement the branching instruction would be used to go to a specific place in the program if some condition is met. In a \texttt{for/while} loop branching instructions would be used to jump back and repeat the same part of a program as long as the condition is met. A subset of the branching instructions are outlined in Table \ref{table:RISCVBranchingInstructions}.
        
         \begin{table}[h!]
             \centering
@@ -540,7 +540,7 @@ beq x17, x18, -5
         \end{table}
         
     \section{Jumping Instructions}
-        When creating larger programs often same the procedure is used multiple times. An example of this could be calculating $\sin(x)$ multiple places in the code. Instead of rewriting the algorithm for calculating $\sin(x)$ every time it is used, a function can be written once, which we call instead every time it is needed.
+        When creating larger programs the same procedure is often used multiple times. An example of this could be calculating $\sin(x)$ multiple places in the code. Instead of rewriting the algorithm for calculating $\sin(x)$ every time it is used, a function can be written once, which we call instead every time it is needed.
         
         In assembly jumping instructions are used for this purpose. Two jumping instructions are supported in the basic instruction set, \texttt{jump and link} and \texttt{jump and link register}. They have been outlined in Table \ref{table:RISCVJumpingInstructions}.
         
@@ -552,7 +552,7 @@ jal x1, sinxprocedureaddress
         here the address for the next instruction after the current is saved in register \texttt{x1}. To return from the $\sin(x)$ procedure the \texttt{jump and link register} instruction is used as so
         \begin{lstlisting}[language=C]
 ...
-jalr x0, x0, x1
+jalr x0, x1, 0
         \end{lstlisting}
         taking advantage of the hard-wired zero in register 0.
         

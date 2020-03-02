@@ -1,4 +1,4 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -11,6 +11,16 @@ C.~A.~R. Hoare.
 \newblock \emph{Communications of the ACM}, 21\penalty0 (8):\penalty0 666--677,
   1978.
 \newblock ISSN 1557-7317.
+
+\bibitem[{Höller} et~al.(2019){Höller}, {Haselberger}, {Ballek}, {Rössler},
+  {Krapfenbauer}, and {Linauer}]{8760205}
+R.~{Höller}, D.~{Haselberger}, D.~{Ballek}, P.~{Rössler}, M.~{Krapfenbauer},
+  and M.~{Linauer}.
+\newblock Open-source risc-v processor ip cores for fpgas — overview and
+  evaluation.
+\newblock In \emph{2019 8th Mediterranean Conference on Embedded Computing
+  (MECO)}, pages 1--6, June 2019.
+\newblock \doi{10.1109/MECO.2019.8760205}.
 
 \bibitem[Johnson(2017)]{CarlSpeciale}
 C.-J. Johnson.

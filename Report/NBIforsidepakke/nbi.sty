@@ -1,0 +1,333 @@
+%See ReadMe.tex
+\ProvidesPackage{nbi}[15/9/2016 - this version should work for most people]
+\RequirePackage{geometry} %Requires the geometry package to change margins on the front page
+\RequirePackage{wrapfig} %Requires wrapfig to put logo next to signature
+\RequirePackage[utf8]{inputenc}
+
+%%Packages for the background picture
+\RequirePackage{graphicx} %Requires the graphicx package to show a logo picture
+\RequirePackage{eso-pic} %Requires the eso-pic package to change the background
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Package description for n00b options                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\DeclareOption*{\PackageWarning{nbi}{Unknown ‘\CurrentOption’. Please choose either options: 'dan' or 'eng'}}
+\DeclareOption*{%
+    \PackageWarning{nbi}{I think you mistyped something in the Packageoption. The options are 'dan' or 'eng'. You typed: '\CurrentOption'}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Package description for option: 'eng'(English)          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%Declare option: English frontpage (eng)
+\DeclareOption{eng}{
+
+%%New commands for filling out the front page with annoying prefilled lines
+\title{Doesn't your project have a title?} %Filling a title, if forgotten
+\author{Don't you have a name?} %Filling a subtitle, if forgotten
+
+%Provide subtitle
+    \newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
+    \newcommand*{\@subtitle}{Don't you have a subtitle for the project? If not, leave blank}
+
+%Provide title
+    \newcommand*{\project}[1]{\gdef\@project{#1}}
+    \newcommand*{\@project}{What kind of project did you do?}
+
+%Provide supervisor(s)
+    \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
+    \newcommand*{\@supervisor}{Didn't you have a supervisor(s)?}
+
+%%Commands for registration and cataloguing
+%Provide a faculty
+    \newcommand*{\faculty}[1]{\gdef\@faculty{#1}}
+    \newcommand*{\@faculty}{Which faculty(s) do you represent?}
+
+%Provide an institute
+    \newcommand*{\institute}[1]{\gdef\@institute{#1}}
+    \newcommand*{\@institute}{Which institute(s) do you represent?}
+
+%Provide an department
+    \newcommand*{\department}[1]{\gdef\@department{#1}}
+    \newcommand*{\@department}{Which department(s) do you represent?}    
+    
+
+%Provide an email:
+    \newcommand*{\email}[1]{\gdef\@email{#1}}
+    \newcommand*{\@email}{Please let us know your email address}
+
+%Provide handin date
+    \newcommand*{\handindate}[1]{\gdef\@handindate{#1}}
+    \newcommand*{\@handindate}{When did you hand in your project? \texttt{\handindate}}
+
+%Provide defence date
+    \newcommand*{\defencedate}[1]{\gdef\@defencedate{#1}}
+    \newcommand*{\@defencedate}{When is/was the defence?}
+
+%%Command for background - well, it will become a command when I'm done :-)
+%Define frontpage
+    \newcommand*{\frontpage}[1]{\gdef\@frontpage{#1}}
+    \newcommand*{\@frontpage}{KuRedCircle}
+
+%Define frontpage
+    \newcommand*{\secondpage}[1]{\gdef\@secondpage{#1}}
+    \newcommand*{\@secondpage}{KuRed}
+
+%Command for background (only on one page)
+    \newcommand*{\background}[1]{\AddToShipoutPicture*{\includegraphics[width=\paperwidth, height=\paperheight]{\@background{#1}}}}
+    \newcommand*{\@background}{}
+
+% \AddToShipoutPicture*{\includegraphics[width=\paperwidth, height=\paperheight]{KuRedCircle}} %This snip of code works well, if all else fails.
+
+    \renewcommand*{\maketitle}{%Define the content of the frontpage
+
+\begin{titlepage}
+    \newgeometry{margin=1.5cm,vmargin=2cm}
+%    \background{nat-farve.pdf}
+    
+    \AddToShipoutPicture*{\includegraphics[width=\paperwidth, height=\paperheight]{nat-farve.pdf}}
+
+\vspace*{-5cm}
+
+	%\centering
+    {\Huge\scshape\@title\unskip\strut\par}
+\vspace{2cm}
+    {\LARGE \@subtitle\unskip\strut\par}
+\vspace{2cm}
+    {\Large\scshape \@project\unskip\strut\par}
+
+    Written by {\large\itshape\@author\unskip\strut\par}
+
+    {\large \@date\par
+\vspace{1cm}
+    Supervised by\par
+    \@supervisor\unskip\strut\par}
+
+	
+	\begin{figure}[t]
+		\hspace{-1.5cm}
+		\includegraphics[width=15cm]{nat-en.pdf}
+	\end{figure}
+
+	\begin{figure}[h!]
+        \vspace*{-5cm}
+		\hspace{9cm}
+		\includegraphics[width=14cm]{RISC}
+	\end{figure}
+
+
+    {\centering\scshape\LARGE }
+    
+  
+  \vfill  
+
+%\newpage
+%\AddToShipoutPicture*{\includegraphics[width=\paperwidth, height=\paperheight]{nat-farve.pdf}}
+%
+%\begin{figure}[t]
+%	\hspace{-1.5cm}
+%	\includegraphics[width=15cm]{nat-en.pdf}
+%\end{figure}
+%
+%\thispagestyle{empty}
+%
+%\vspace*{-5cm}
+%    {\large
+%\begin{tabular}{p{5cm} p{10cm}}
+%
+%{\scshape Faculty:} & \@faculty\par\\
+%% \vspace{.5cm}
+%
+%{\scshape Institute:} & \@institute\par\\
+%% \vspace{.5cm}
+%
+%{\scshape Department:} & \@department\par\\
+%% \vspace{.5cm}
+%
+%{\scshape Author:} & \@author\par\\
+%% \vspace{.5cm}
+%
+%{\scshape Email:} & \@email\par\\
+%
+%{\scshape Title:} & \@title \hfill{} \linebreak \@subtitle\par\\
+%% \vspace{.5cm}
+%
+%{\scshape Supervisor:} & \@supervisor\par\\
+%% \vspace{.5cm}
+%
+%{\scshape Handed in:} & \@handindate\par\\
+%% \vspace{.5cm}
+%
+%{\scshape Defended:} & \@defencedate
+%\end{tabular}}
+%\vfill
+%
+%% \begin{wrapfigure}{r}{6.5cm}
+%%   \vspace{-4cm}
+%%     \includegraphics[width=5cm]{RkuEng}
+%% \end{wrapfigure}
+%
+%\noindent\makebox[6.5cm]{\scshape{Name}\enspace\hrulefill}\vspace*{1cm}\\
+%\noindent\makebox[6.5cm]{\scshape{Signature}\enspace\hrulefill}\vspace*{1cm}\\
+%\noindent\makebox[6.5cm]{\scshape{Date}\enspace\hrulefill}\\
+%\restoregeometry
+\end{titlepage}
+}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Package description for option: 'dan' (Danish)         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareOption{dan}{%New commands for filling out the front page with annoying prefilled lines
+    \title{Har opgaven ikke en titel?} %Filling a title, if forgotten
+    \author{Har du ikke et navn?} %Filling a subtitle, if forgotten
+
+%Provide subtitle
+    \newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
+    \newcommand*{\@subtitle}{$-$ Har du ikke en underoverskrift? Hvis ikke, lad stå blank}
+
+%Provide title
+    \newcommand*{\project}[1]{\gdef\@project{#1}}
+    \newcommand*{\@project}{Hvad slags opgave er det her?}
+
+%Provide supervisor(s)
+    \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
+    \newcommand*{\@supervisor}{Havde du ikke nogen vejleder(e)?}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Commands for registration and cataloguing (library needs)   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Provide an institute
+    \newcommand*{\institute}[1]{\gdef\@institute{#1}}
+    \newcommand*{\@institute}{Er du ikke under et institut?}
+
+%Provide a department
+    \newcommand*{\faculty}[1]{\gdef\@faculty{#1}}
+    \newcommand*{\@faculty}{Er du ikke en del af et fakultet?}
+    
+    %Provide an department
+    \newcommand*{\department}[1]{\gdef\@department{#1}}
+    \newcommand*{\@department}{Which department(s) do you represent?}    
+    
+
+%Provide an email:
+    \newcommand*{\email}[1]{\gdef\@email{#1}}
+    \newcommand*{\@email}{Oplys venligst en mailadresse til dig, tak.}
+
+%Provide handin date
+    \newcommand*{\handindate}[1]{\gdef\@handindate{#1}}
+    \newcommand*{\@handindate}{Hvornår afleverer du det her? \texttt{\handindate}}
+
+%Provide defence date
+    \newcommand*{\defencedate}[1]{\gdef\@defencedate{#1}}
+    \newcommand*{\@defencedate}{Hvornår forsvarer du det her?}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Background command                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Define frontpage
+    \newcommand*{\frontpage}[1]{\gdef\@frontpage{#1}}
+    \newcommand*{\@frontpage}{KuRedCircle}
+
+%Define frontpage
+    \newcommand*{\secondpage}[1]{\gdef\@secondpage{#1}}
+    \newcommand*{\@secondpage}{KuRed}
+
+%Command for background (only on one page)
+    \newcommand*{\background}[1]{\AddToShipoutPicture*{\includegraphics[width=\paperwidth, height=\paperheight]{\@background{#1}}}}
+    \newcommand*{\@background}{}
+
+% \AddToShipoutPicture*{\includegraphics[width=\paperwidth, height=\paperheight]{KuRedCircle}} %This snip of code works well, if all else fails.
+
+    \renewcommand*{\maketitle}{%Define the content of the frontpage
+
+\begin{titlepage}
+    \newgeometry{margin=1.5cm,vmargin=2cm}
+    \background{KuRedCircle.png}
+
+\vspace*{5cm}
+
+	%\centering
+    {\Huge\scshape\@title\unskip\strut\par}
+\vspace{1cm}
+    {\LARGE \@subtitle\unskip\strut\par}
+\vspace{2cm}
+    {\Large\scshape \@project\unskip\strut\par}
+
+    Skrevet af {\large\itshape\@author\unskip\strut\par}
+
+    {\large \@date\par
+\vspace{1cm}
+    Under vejledning af\par
+    \@supervisor\unskip\strut\par}
+
+\vfill
+
+{\centering\scshape\LARGE Københavns Universitet\par}
+
+\newpage
+\begin{wrapfigure}{r}{4cm}
+  \vspace{-12cm}
+    \includegraphics[width=5cm]{RkuEng}
+\end{wrapfigure}
+\thispagestyle{empty}
+
+\vspace*{6cm}
+    {\large
+\begin{tabular}{p{5cm} p{10cm}}
+
+{\scshape Fakultet:} & \@faculty\par\\
+% \vspace{.5cm}
+
+{\scshape Institut:} & \@institute\par\\
+% \vspace{.5cm}
+
+{\scshape Forfatter(e):} & \@author\par\\
+% \vspace{.5cm}
+
+{\scshape Email:} & \@email\par\\
+
+{\scshape Titel og undertitel:} & \@title \hfill{} \linebreak - \@subtitle\par\\
+% \vspace{.5cm}
+
+{\scshape Vejleder(e):} & \@supervisor\par\\
+% \vspace{.5cm}
+
+{\scshape Indleveret:} & \@handindate\par\\
+% \vspace{.5cm}
+
+{\scshape Forsvar:} & \@defencedate
+\end{tabular}}
+\vfill
+
+% \begin{wrapfigure}{r}{6.5cm}
+%   \vspace{-4cm}
+%     \includegraphics[width=5cm]{RkuEng}
+% \end{wrapfigure}
+
+\noindent\makebox[6.5cm]{\scshape{Navn}\enspace\hrulefill}\vspace*{1cm}\\
+\noindent\makebox[6.5cm]{\scshape{Signatur}\enspace\hrulefill}\vspace*{1cm}\\
+\noindent\makebox[6.5cm]{\scshape{Dato}\enspace\hrulefill}\\
+
+\restoregeometry
+\end{titlepage}
+}
+}
+
+\ExecuteOptions{\CurrentOption}
+
+\ProcessOptions \relax
+
+\endinput

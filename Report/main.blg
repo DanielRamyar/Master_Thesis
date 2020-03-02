@@ -1,7 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2019)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
-A level-1 auxiliary file: frontpage.aux
 A level-1 auxiliary file: chapters/chapter1.aux
 A level-1 auxiliary file: chapters/chapter2.aux
 A level-1 auxiliary file: chapters/chapter3.aux
@@ -12,44 +11,44 @@ A level-1 auxiliary file: chapters/appendix.aux
 A level-1 auxiliary file: chapters/RiscVReferenceCard.aux
 The style file: abbrvnat.bst
 Database file #1: bibliography.bib
-You've used 7 entries,
+You've used 8 entries,
             2773 wiz_defined-function locations,
-            647 strings with 5737 characters,
-and the built_in function-call counts, 3074 in all, are:
-= -- 297
-> -- 134
-< -- 9
-+ -- 46
-- -- 39
-* -- 203
-:= -- 469
-add.period$ -- 24
-call.type$ -- 7
-change.case$ -- 33
-chr.to.int$ -- 7
-cite$ -- 14
-duplicate$ -- 157
-empty$ -- 255
-format.name$ -- 54
-if$ -- 662
+            654 strings with 6015 characters,
+and the built_in function-call counts, 3776 in all, are:
+= -- 354
+> -- 191
+< -- 10
++ -- 65
+- -- 57
+* -- 266
+:= -- 575
+add.period$ -- 28
+call.type$ -- 8
+change.case$ -- 42
+chr.to.int$ -- 8
+cite$ -- 16
+duplicate$ -- 186
+empty$ -- 303
+format.name$ -- 73
+if$ -- 813
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 6
-newline$ -- 45
-num.names$ -- 28
-pop$ -- 66
+missing$ -- 7
+newline$ -- 51
+num.names$ -- 32
+pop$ -- 86
 preamble$ -- 1
-purify$ -- 27
+purify$ -- 35
 quote$ -- 0
-skip$ -- 132
+skip$ -- 156
 stack$ -- 0
-substring$ -- 119
-swap$ -- 29
-text.length$ -- 3
+substring$ -- 133
+swap$ -- 37
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 72
+type$ -- 83
 warning$ -- 0
-while$ -- 32
+while$ -- 37
 width$ -- 0
-write$ -- 102
+write$ -- 117

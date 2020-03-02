@@ -1,0 +1,56 @@
+\newgeometry{top=2cm,left=2cm,right=2cm,bottom=2cm}
+
+\begin{center}
+{\Huge \textbf{ReadMe.tex}}
+\end{center}
+
+\section*{Introduction}
+
+This frontpage package was written by Karen A. Voigt in agreement with the Niels Bohr Institute. The package contains the official, updated logos for the University of Copenhagen.\\
+
+Later versions will include logos for different institutes as well. Future versions will also include better commands i.e. for authors and supervisors which allows multiple inputs with separate/multiple affiliations as well as more options that will allow the user to easily adapt the document for different purposes.\\
+
+Suggestions, tips and ideas are welcome and can be directed to voigt@nbi.ku.dk. Please write as topic: 'Regarding the Latex package' or 'Forslag til nbi Latex pakken'. I also speak Danish.\\
+
+The information the user is prompted to provide covers everything the institute needs when registering and cataloguing projects and theses. The commands are fairly intuitive. The package will prompt you to provide:\\
+
+\begin{compactitem}[-]
+\item A title
+\item A subtitle
+\item The kind of project this covers
+\item An author
+\item A supervisor
+\item Your institute(s)
+\item Your department
+\item Your email
+\item The hand-in date for the project
+\item The defence date of the project
+\end{compactitem}
+
+\section*{Packages required}
+I have used the following packages in the .sty-file:
+\begin{compactitem}[-]
+\item \href{https://www.ctan.org/pkg/eso-pic}{eso-pic}
+\item \href{https://www.ctan.org/pkg/wrapfig}{wrapfig}
+\item \href{https://www.ctan.org/pkg/geometry}{geometry}
+\item \href{https://www.ctan.org/pkg/graphicx}{graphicx}
+\end{compactitem}
+
+\subsection*{Here's an example of how the commands}
+
+\noindent \verb|\supervisor{Dr. Jones}|\\
+\verb|\project{Jeg har pillet mig i navlen}|\\
+\verb|\author{A LaTeX enthusiast}|\\
+\verb|\title{Why i want to be a duck}|\\
+\verb|\subtitle{Something in a subtitle}|\\
+\verb|\faculty{Andediskoteket}|\\
+\verb|\institute{Niels Bohr Institutet}|\\
+\verb|\email{voigt@nbi.ku.com}|\\
+\verb|\handindate{24.13.1699}|\\
+\verb|\defencedate{35.00.7331}|\\
+
+\textbf{It is possible to choose between Danish and English using the options 'dan' or 'eng'.}
+
+% \section{Ducks are awesome}
+% \subsection{Proof of ducks' awesomeness}
+% \subsubsection{End of story}

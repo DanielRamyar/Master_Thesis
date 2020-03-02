@@ -1,5 +1,22 @@
-\chapter{Conclusion and future work}
+\chapter{Conclusion}
+    Throughout this project the theory behind the RISC-V implementation has been covered. To start fundamental Boolean algebra was introduced. This was used to design basic logic units such as the decoder and multiplexer. Hereafter the syntax of Synchronous Message Exchange (SME) was introduced, where the logic units covered previously was implemented as examples.
+    Finally the language (assembly and machine code) and architecture behind the RISC-V processor were covered.
+    
+    
+    This knowledge was then used to design a RISC-V CPU, based on the design covered in \cite{riscVbook} and knowledge gained from the first implementation of the CPU.  
+    Compared to the book design, our CPU has full \texttt{RV64I} instruction support.
+    
+    The new design was then implemented in SME and we managed to successfully run the Fibonacci sequence test program, verifying the possessors capability to run simple programs. 
+    
+    The generated VHDL was then successfully run in vendor synthesis tools (thanks to Carl-Johannes Johnsen) and a theoretical speed of 124 Mhz was achieved.   
+    
+    \section{Future work}
 
-\note{Pipeline the processor, Add necessary elements to run linux on it, add an fft instruction}
-
+    Due to time constrains the processor was never run on an FPGA and would therefore be an obvious next step. Furthermore the design could be extended to support the \texttt{RV64M} RISC-V instruction set, which contains multiplication, division and remainder operations.
+    
+    To increase the speed of the processor it could be redesigned into a pipelined implementation instead of a single cycle one. This would allow the processor to work on multiple instructions in a single clock cycle and hopefully significantly increase the speed of the processor.
+    
+    To test the performance of the processor a larger workload, in form of a physics problem or simulation, could be run on a traditional x86 system and on our RISC-V implementation for comparison. A dedicated instruction could then be added to see if a speed up could be achieved. An ideal candidate for this could be a Fast Fourier Transform (FFT) instruction, as no dedicated instruction for this exists on the x86 architecture and is used extensively in many scientific applications such as image processing.
+    
+    Finally necessary elements could be added to support an open source operating system such as Linux.
 
