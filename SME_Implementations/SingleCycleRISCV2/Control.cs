@@ -109,33 +109,82 @@ namespace SingleCycleRISCV {
                                 case 32:                        // Subtract
                                     ALUOP.Value = 1;
                                     break;
+                                case 1:                         // Multiply
+                                    ALUOP.Value = 16;
+                                    break;
                             }
                             break;
-                        case 7:                                 // AND
-                            ALUOP.Value = 2;
+                        case 7:                                 
+                            switch (funct7) {
+                                case 0:                         // AND
+                                    ALUOP.Value = 2;
+                                    break;
+                                case 1:                         // Remainder (U)
+                                    ALUOP.Value = 23;
+                                    break;
+                            }
                             break;
-                        case 6:                                 // OR
-                            ALUOP.Value = 3;
+                        case 6:                                 
+                            switch (funct7) {
+                                case 0:                         // OR
+                                    ALUOP.Value = 3;
+                                    break;
+                                case 1:                         // Remainder
+                                    ALUOP.Value = 22;
+                                    break;
+                            }
                             break;
-                        case 4:                                 // XOR
-                            ALUOP.Value = 4;
+                        case 4:                                 
+                            switch (funct7) {
+                                case 0:                         // XOR
+                                    ALUOP.Value = 4;
+                                    break;
+                                case 1:                         // Divide
+                                    ALUOP.Value = 20;
+                                    break;
+                            }
                             break;
-                        case 1:                                 // SLL
-                            ALUOP.Value = 5;
+                        case 1:
+                            switch (funct7) {
+                                case 0:                         // SLL
+                                    ALUOP.Value = 5;
+                                    break;
+                                case 1:                         // MULH
+                                    ALUOP.Value = 17;
+                                    break;
+                            }                                 
                             break;
-                        case 2:                                 // SLT
-                            ALUOP.Value = 6;
+                        case 2:                                 
+                            switch (funct7) {
+                                case 0:                         // SLT
+                                    ALUOP.Value = 6;
+                                    break;
+                                case 1:                         // MULHSU
+                                    ALUOP.Value = 18;
+                                    break;
+                            }
                             break;
-                        case 3:                                 // SLT (U)
-                            ALUOP.Value = 7;
+                        case 3:                                 
+                            switch (funct7) {
+                                case 0:                         // SLT (U)
+                                    ALUOP.Value = 7;
+                                    break;
+                                case 1:                         // MULHU
+                                    ALUOP.Value = 19;
+                                    break;
+                            }
                             break;
+                            
                         case 5:
                             switch (funct7) {
-                                case 0:                         //SRL
+                                case 0:                         // SRL
                                     ALUOP.Value = 8;
                                     break;
-                                case 32:                        //SRA
+                                case 32:                        // SRA
                                     ALUOP.Value = 9;
+                                    break;
+                                case 1:                         // DIV (U)
+                                    ALUOP.Value = 21;
                                     break;
                             }
                             break;
@@ -162,6 +211,9 @@ namespace SingleCycleRISCV {
                                 case 32:                        // Subtract Word
                                     ALUOP.Value = 11;
                                     break;
+                                case 1:                         // Multiply Word
+                                    ALUOP.Value = 24;
+                                    break;
                             }
                             break;
                         case 1:                                 //SLL
@@ -174,6 +226,30 @@ namespace SingleCycleRISCV {
                                     break;
                                 case 32:                        // SRA Word
                                     ALUOP.Value = 14;
+                                    break;
+                                case 1:                         // Divide Word (U)
+                                    ALUOP.Value = 26;
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch (funct7) {
+                                case 1:                         // Divide Word
+                                    ALUOP.Value = 25;
+                                    break;
+                            }
+                            break;
+                        case 6:
+                            switch (funct7) {
+                                case 1:                         // Remainder Word
+                                    ALUOP.Value = 27;
+                                    break;
+                            }
+                            break;
+                        case 7:
+                            switch (funct7) {
+                                case 1:                         // Remainder Word (U)
+                                    ALUOP.Value = 28;
                                     break;
                             }
                             break;

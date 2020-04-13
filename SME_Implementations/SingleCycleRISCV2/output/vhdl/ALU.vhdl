@@ -107,6 +107,7 @@ begin
 
             local_var_2 := TO_INTEGER(m_ALUOP_Value);
             case local_var_2 is
+                when 17 | 18 | 19 | 21 | 23 | 26 =>
                 when 0 =>
                     output_Value <= m_ALU_In_1_Data + m_ALU_In_2_Data;
                 when 1 =>
@@ -149,6 +150,18 @@ begin
                     output_Value <= resize(shift_right(resize(m_ALU_In_1_Data, T_SYSTEM_INT32'length), TO_INTEGER(m_ALU_In_2_Data)), T_SYSTEM_INT64'length);
                 when 15 =>
                     output_Value <= m_ALU_In_2_Data;
+                when 16 =>
+                    output_Value <= resize(m_ALU_In_1_Data * m_ALU_In_2_Data, 64);
+                when 20 =>
+                    output_Value <= m_ALU_In_1_Data / m_ALU_In_2_Data;
+                when 22 =>
+                    output_Value <= m_ALU_In_1_Data mod m_ALU_In_2_Data;
+                when 24 =>
+                    output_Value <= resize(resize(resize(m_ALU_In_1_Data, T_SYSTEM_INT32'length) * resize(m_ALU_In_2_Data, T_SYSTEM_INT32'length), 32), T_SYSTEM_INT64'length);
+                when 25 =>
+                    output_Value <= resize(resize(m_ALU_In_1_Data, T_SYSTEM_INT32'length) / resize(m_ALU_In_2_Data, T_SYSTEM_INT32'length), T_SYSTEM_INT64'length);
+                when 27 =>
+                    output_Value <= resize(resize(m_ALU_In_1_Data, T_SYSTEM_INT32'length) mod resize(m_ALU_In_2_Data, T_SYSTEM_INT32'length), T_SYSTEM_INT64'length);
                 when others =>
             end case;
 

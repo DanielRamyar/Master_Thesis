@@ -69,6 +69,24 @@ namespace SingleCycleRISCV {
                 case 15:
                     output.Value = m_ALU_In_2.Data;                                             // LUI
                     break;
+                case 16:                                                                        
+                    output.Value = m_ALU_In_1.Data * m_ALU_In_2.Data;                           // MUL
+                    break;
+                case 20:                                                                        
+                    output.Value = m_ALU_In_1.Data / m_ALU_In_2.Data;                           // DIV
+                    break;
+                case 22:
+                    output.Value = m_ALU_In_1.Data % m_ALU_In_2.Data;                           // REM
+                    break;
+                case 24:                                                                        
+                    output.Value = (int)m_ALU_In_1.Data * (int)m_ALU_In_2.Data;                 // MULW
+                    break;
+                case 25:                                                                        
+                    output.Value = (int)m_ALU_In_1.Data / (int)m_ALU_In_2.Data;                 // DIVW
+                    break;
+                case 27:                                                                        
+                    output.Value = (int)m_ALU_In_1.Data % (int)m_ALU_In_2.Data;                 // REMW
+                    break;
             }
         }
     }
