@@ -22,7 +22,7 @@ namespace SingleCycleRISCV {
         [OutputBus]
 		public readonly DM_Output output = Scope.CreateOrLoadBus<DM_Output>();
 
-        byte[] Data_Memory = new byte[4294963200];
+        byte[] Data_Memory = new byte[8000];
 
         protected override void OnTick() {
             if (m_MemRead.Enable) {

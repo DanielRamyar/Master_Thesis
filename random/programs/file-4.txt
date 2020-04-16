@@ -1,0 +1,114 @@
+
+chi2.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	f8010113          	addi	sp,sp,-128
+   4:	06113c23          	sd	ra,120(sp)
+   8:	06813823          	sd	s0,112(sp)
+   c:	06913423          	sd	s1,104(sp)
+  10:	08010413          	addi	s0,sp,128
+  14:	00050793          	mv	a5,a0
+  18:	f8b43023          	sd	a1,-128(s0)
+  1c:	f8f42623          	sw	a5,-116(s0)
+  20:	01e00793          	li	a5,30
+  24:	faf42823          	sw	a5,-80(s0)
+  28:	00e00793          	li	a5,14
+  2c:	faf42a23          	sw	a5,-76(s0)
+  30:	02200793          	li	a5,34
+  34:	faf42c23          	sw	a5,-72(s0)
+  38:	02d00793          	li	a5,45
+  3c:	faf42e23          	sw	a5,-68(s0)
+  40:	03900793          	li	a5,57
+  44:	fcf42023          	sw	a5,-64(s0)
+  48:	01400793          	li	a5,20
+  4c:	fcf42223          	sw	a5,-60(s0)
+  50:	01400793          	li	a5,20
+  54:	f8f42c23          	sw	a5,-104(s0)
+  58:	01400793          	li	a5,20
+  5c:	f8f42e23          	sw	a5,-100(s0)
+  60:	01e00793          	li	a5,30
+  64:	faf42023          	sw	a5,-96(s0)
+  68:	02800793          	li	a5,40
+  6c:	faf42223          	sw	a5,-92(s0)
+  70:	03c00793          	li	a5,60
+  74:	faf42423          	sw	a5,-88(s0)
+  78:	01e00793          	li	a5,30
+  7c:	faf42623          	sw	a5,-84(s0)
+  80:	fc043c23          	sd	zero,-40(s0)
+  84:	fc042a23          	sw	zero,-44(s0)
+  88:	0bc0006f          	j	144 <.L2>
+
+000000000000008c <.L3>:
+  8c:	fd442783          	lw	a5,-44(s0)
+  90:	00279793          	slli	a5,a5,0x2
+  94:	fe040713          	addi	a4,s0,-32
+  98:	00f707b3          	add	a5,a4,a5
+  9c:	fd07a703          	lw	a4,-48(a5)
+  a0:	fd442783          	lw	a5,-44(s0)
+  a4:	00279793          	slli	a5,a5,0x2
+  a8:	fe040693          	addi	a3,s0,-32
+  ac:	00f687b3          	add	a5,a3,a5
+  b0:	fb87a783          	lw	a5,-72(a5)
+  b4:	40f707bb          	subw	a5,a4,a5
+  b8:	0007879b          	sext.w	a5,a5
+  bc:	00078513          	mv	a0,a5
+  c0:	00000097          	auipc	ra,0x0
+  c4:	000080e7          	jalr	ra # c0 <.L3+0x34>
+  c8:	00050793          	mv	a5,a0
+  cc:	fcf43423          	sd	a5,-56(s0)
+  d0:	fc843583          	ld	a1,-56(s0)
+  d4:	fc843503          	ld	a0,-56(s0)
+  d8:	00000097          	auipc	ra,0x0
+  dc:	000080e7          	jalr	ra # d8 <.L3+0x4c>
+  e0:	00050793          	mv	a5,a0
+  e4:	00078493          	mv	s1,a5
+  e8:	fd442783          	lw	a5,-44(s0)
+  ec:	00279793          	slli	a5,a5,0x2
+  f0:	fe040713          	addi	a4,s0,-32
+  f4:	00f707b3          	add	a5,a4,a5
+  f8:	fb87a783          	lw	a5,-72(a5)
+  fc:	00078513          	mv	a0,a5
+ 100:	00000097          	auipc	ra,0x0
+ 104:	000080e7          	jalr	ra # 100 <.L3+0x74>
+ 108:	00050793          	mv	a5,a0
+ 10c:	00078593          	mv	a1,a5
+ 110:	00048513          	mv	a0,s1
+ 114:	00000097          	auipc	ra,0x0
+ 118:	000080e7          	jalr	ra # 114 <.L3+0x88>
+ 11c:	00050793          	mv	a5,a0
+ 120:	00078593          	mv	a1,a5
+ 124:	fd843503          	ld	a0,-40(s0)
+ 128:	00000097          	auipc	ra,0x0
+ 12c:	000080e7          	jalr	ra # 128 <.L3+0x9c>
+ 130:	00050793          	mv	a5,a0
+ 134:	fcf43c23          	sd	a5,-40(s0)
+ 138:	fd442783          	lw	a5,-44(s0)
+ 13c:	0017879b          	addiw	a5,a5,1
+ 140:	fcf42a23          	sw	a5,-44(s0)
+
+0000000000000144 <.L2>:
+ 144:	fd442783          	lw	a5,-44(s0)
+ 148:	0007871b          	sext.w	a4,a5
+ 14c:	00500793          	li	a5,5
+ 150:	f2e7dee3          	ble	a4,a5,8c <.L3>
+ 154:	00000793          	li	a5,0
+ 158:	00078513          	mv	a0,a5
+ 15c:	07813083          	ld	ra,120(sp)
+ 160:	07013403          	ld	s0,112(sp)
+ 164:	06813483          	ld	s1,104(sp)
+ 168:	08010113          	addi	sp,sp,128
+ 16c:	00008067          	ret
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	4700                	lw	s0,8(a4)
+   2:	203a4343          	fmadd.s	ft6,fs4,ft3,ft4,rmm
+   6:	4728                	lw	a0,72(a4)
+   8:	554e                	lw	a0,240(sp)
+   a:	2029                	0x2029
+   c:	2e332e37          	lui	t3,0x2e332
+  10:	0030                	addi	a2,sp,8

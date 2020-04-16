@@ -1,0 +1,129 @@
+
+main.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <sqrt>:
+   0:	fe010113          	addi	sp,sp,-32
+   4:	00113c23          	sd	ra,24(sp)
+   8:	00813823          	sd	s0,16(sp)
+   c:	02010413          	addi	s0,sp,32
+  10:	fea43423          	sd	a0,-24(s0)
+  14:	fe843583          	ld	a1,-24(s0)
+  18:	fe843503          	ld	a0,-24(s0)
+  1c:	00000097          	auipc	ra,0x0
+  20:	000080e7          	jalr	ra # 1c <sqrt+0x1c>
+  24:	00050793          	mv	a5,a0
+  28:	00078513          	mv	a0,a5
+  2c:	01813083          	ld	ra,24(sp)
+  30:	01013403          	ld	s0,16(sp)
+  34:	02010113          	addi	sp,sp,32
+  38:	00008067          	ret
+
+000000000000003c <main>:
+  3c:	f8010113          	addi	sp,sp,-128
+  40:	06113c23          	sd	ra,120(sp)
+  44:	06813823          	sd	s0,112(sp)
+  48:	06913423          	sd	s1,104(sp)
+  4c:	08010413          	addi	s0,sp,128
+  50:	00050793          	mv	a5,a0
+  54:	f8b43023          	sd	a1,-128(s0)
+  58:	f8f42623          	sw	a5,-116(s0)
+  5c:	01e00793          	li	a5,30
+  60:	faf42823          	sw	a5,-80(s0)
+  64:	00e00793          	li	a5,14
+  68:	faf42a23          	sw	a5,-76(s0)
+  6c:	02200793          	li	a5,34
+  70:	faf42c23          	sw	a5,-72(s0)
+  74:	02d00793          	li	a5,45
+  78:	faf42e23          	sw	a5,-68(s0)
+  7c:	03900793          	li	a5,57
+  80:	fcf42023          	sw	a5,-64(s0)
+  84:	01400793          	li	a5,20
+  88:	fcf42223          	sw	a5,-60(s0)
+  8c:	01400793          	li	a5,20
+  90:	f8f42c23          	sw	a5,-104(s0)
+  94:	01400793          	li	a5,20
+  98:	f8f42e23          	sw	a5,-100(s0)
+  9c:	01e00793          	li	a5,30
+  a0:	faf42023          	sw	a5,-96(s0)
+  a4:	02800793          	li	a5,40
+  a8:	faf42223          	sw	a5,-92(s0)
+  ac:	03c00793          	li	a5,60
+  b0:	faf42423          	sw	a5,-88(s0)
+  b4:	01e00793          	li	a5,30
+  b8:	faf42623          	sw	a5,-84(s0)
+  bc:	fc043c23          	sd	zero,-40(s0)
+  c0:	fc042a23          	sw	zero,-44(s0)
+  c4:	0b40006f          	j	178 <.L4>
+
+00000000000000c8 <.L5>:
+  c8:	fd442783          	lw	a5,-44(s0)
+  cc:	00279793          	slli	a5,a5,0x2
+  d0:	fe040713          	addi	a4,s0,-32
+  d4:	00f707b3          	add	a5,a4,a5
+  d8:	fd07a703          	lw	a4,-48(a5)
+  dc:	fd442783          	lw	a5,-44(s0)
+  e0:	00279793          	slli	a5,a5,0x2
+  e4:	fe040693          	addi	a3,s0,-32
+  e8:	00f687b3          	add	a5,a3,a5
+  ec:	fb87a783          	lw	a5,-72(a5)
+  f0:	40f707bb          	subw	a5,a4,a5
+  f4:	0007879b          	sext.w	a5,a5
+  f8:	00078513          	mv	a0,a5
+  fc:	00000097          	auipc	ra,0x0
+ 100:	000080e7          	jalr	ra # fc <.L5+0x34>
+ 104:	00050793          	mv	a5,a0
+ 108:	fcf43423          	sd	a5,-56(s0)
+ 10c:	fc843503          	ld	a0,-56(s0)
+ 110:	00000097          	auipc	ra,0x0
+ 114:	000080e7          	jalr	ra # 110 <.L5+0x48>
+ 118:	00050493          	mv	s1,a0
+ 11c:	fd442783          	lw	a5,-44(s0)
+ 120:	00279793          	slli	a5,a5,0x2
+ 124:	fe040713          	addi	a4,s0,-32
+ 128:	00f707b3          	add	a5,a4,a5
+ 12c:	fb87a783          	lw	a5,-72(a5)
+ 130:	00078513          	mv	a0,a5
+ 134:	00000097          	auipc	ra,0x0
+ 138:	000080e7          	jalr	ra # 134 <.L5+0x6c>
+ 13c:	00050793          	mv	a5,a0
+ 140:	00078593          	mv	a1,a5
+ 144:	00048513          	mv	a0,s1
+ 148:	00000097          	auipc	ra,0x0
+ 14c:	000080e7          	jalr	ra # 148 <.L5+0x80>
+ 150:	00050793          	mv	a5,a0
+ 154:	00078593          	mv	a1,a5
+ 158:	fd843503          	ld	a0,-40(s0)
+ 15c:	00000097          	auipc	ra,0x0
+ 160:	000080e7          	jalr	ra # 15c <.L5+0x94>
+ 164:	00050793          	mv	a5,a0
+ 168:	fcf43c23          	sd	a5,-40(s0)
+ 16c:	fd442783          	lw	a5,-44(s0)
+ 170:	0017879b          	addiw	a5,a5,1
+ 174:	fcf42a23          	sw	a5,-44(s0)
+
+0000000000000178 <.L4>:
+ 178:	fd442783          	lw	a5,-44(s0)
+ 17c:	0007871b          	sext.w	a4,a5
+ 180:	00500793          	li	a5,5
+ 184:	f4e7d2e3          	ble	a4,a5,c8 <.L5>
+ 188:	00000793          	li	a5,0
+ 18c:	00078513          	mv	a0,a5
+ 190:	07813083          	ld	ra,120(sp)
+ 194:	07013403          	ld	s0,112(sp)
+ 198:	06813483          	ld	s1,104(sp)
+ 19c:	08010113          	addi	sp,sp,128
+ 1a0:	00008067          	ret
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	4700                	lw	s0,8(a4)
+   2:	203a4343          	fmadd.s	ft6,fs4,ft3,ft4,rmm
+   6:	4728                	lw	a0,72(a4)
+   8:	554e                	lw	a0,240(sp)
+   a:	2029                	0x2029
+   c:	2e332e37          	lui	t3,0x2e332
+  10:	0030                	addi	a2,sp,8

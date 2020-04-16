@@ -1,0 +1,56 @@
+
+main1.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	fc010113          	addi	sp,sp,-64
+   4:	02813c23          	sd	s0,56(sp)
+   8:	04010413          	addi	s0,sp,64
+   c:	00050793          	mv	a5,a0
+  10:	fcb43023          	sd	a1,-64(s0)
+  14:	fcf42623          	sw	a5,-52(s0)
+  18:	00100793          	li	a5,1
+  1c:	fef42623          	sw	a5,-20(s0)
+  20:	fe042423          	sw	zero,-24(s0)
+  24:	00e00793          	li	a5,14
+  28:	fef42023          	sw	a5,-32(s0)
+  2c:	fe042223          	sw	zero,-28(s0)
+  30:	0300006f          	j	60 <.L2>
+
+0000000000000034 <.L3>:
+  34:	fec42703          	lw	a4,-20(s0)
+  38:	fe842783          	lw	a5,-24(s0)
+  3c:	00f707bb          	addw	a5,a4,a5
+  40:	fcf42e23          	sw	a5,-36(s0)
+  44:	fec42783          	lw	a5,-20(s0)
+  48:	fef42423          	sw	a5,-24(s0)
+  4c:	fdc42783          	lw	a5,-36(s0)
+  50:	fef42623          	sw	a5,-20(s0)
+  54:	fe442783          	lw	a5,-28(s0)
+  58:	0017879b          	addiw	a5,a5,1
+  5c:	fef42223          	sw	a5,-28(s0)
+
+0000000000000060 <.L2>:
+  60:	fe442703          	lw	a4,-28(s0)
+  64:	fe042783          	lw	a5,-32(s0)
+  68:	0007071b          	sext.w	a4,a4
+  6c:	0007879b          	sext.w	a5,a5
+  70:	fcf742e3          	blt	a4,a5,34 <.L3>
+  74:	00000793          	li	a5,0
+  78:	00078513          	mv	a0,a5
+  7c:	03813403          	ld	s0,56(sp)
+  80:	04010113          	addi	sp,sp,64
+  84:	00008067          	ret
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	4700                	lw	s0,8(a4)
+   2:	203a4343          	fmadd.s	ft6,fs4,ft3,ft4,rmm
+   6:	4728                	lw	a0,72(a4)
+   8:	554e                	lw	a0,240(sp)
+   a:	2029                	0x2029
+   c:	2e332e37          	lui	t3,0x2e332
+  10:	0030                	addi	a2,sp,8

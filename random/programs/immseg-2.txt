@@ -1,0 +1,1343 @@
+
+immseg.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	81010113          	addi	sp,sp,-2032
+   4:	7e113423          	sd	ra,2024(sp)
+   8:	7e813023          	sd	s0,2016(sp)
+   c:	7c913c23          	sd	s1,2008(sp)
+  10:	7f010413          	addi	s0,sp,2032
+  14:	ce010113          	addi	sp,sp,-800
+  18:	00050713          	mv	a4,a0
+  1c:	fffff7b7          	lui	a5,0xfffff
+  20:	fe040693          	addi	a3,s0,-32
+  24:	00f687b3          	add	a5,a3,a5
+  28:	50b7b823          	sd	a1,1296(a5) # fffffffffffff510 <.L2+0xfffffffffffff3e0>
+  2c:	fffff7b7          	lui	a5,0xfffff
+  30:	fe040693          	addi	a3,s0,-32
+  34:	00f687b3          	add	a5,a3,a5
+  38:	50e7ae23          	sw	a4,1308(a5) # fffffffffffff51c <.L2+0xfffffffffffff3ec>
+  3c:	00010793          	mv	a5,sp
+  40:	00078493          	mv	s1,a5
+  44:	fffff7b7          	lui	a5,0xfffff
+  48:	fe040713          	addi	a4,s0,-32
+  4c:	00f70733          	add	a4,a4,a5
+  50:	000007b7          	lui	a5,0x0
+  54:	52070713          	addi	a4,a4,1312
+  58:	00078693          	mv	a3,a5
+  5c:	000017b7          	lui	a5,0x1
+  60:	ac878793          	addi	a5,a5,-1336 # ac8 <.L2+0x998>
+  64:	00078613          	mv	a2,a5
+  68:	00068593          	mv	a1,a3
+  6c:	00070513          	mv	a0,a4
+  70:	00000097          	auipc	ra,0x0
+  74:	000080e7          	jalr	ra # 70 <main+0x70>
+  78:	2b200793          	li	a5,690
+  7c:	fcf42c23          	sw	a5,-40(s0)
+  80:	fd842783          	lw	a5,-40(s0)
+  84:	fff78793          	addi	a5,a5,-1
+  88:	fcf43823          	sd	a5,-48(s0)
+  8c:	fd842783          	lw	a5,-40(s0)
+  90:	00279793          	slli	a5,a5,0x2
+  94:	00378793          	addi	a5,a5,3
+  98:	00f78793          	addi	a5,a5,15
+  9c:	0047d793          	srli	a5,a5,0x4
+  a0:	00479793          	slli	a5,a5,0x4
+  a4:	40f10133          	sub	sp,sp,a5
+  a8:	00010793          	mv	a5,sp
+  ac:	00378793          	addi	a5,a5,3
+  b0:	0027d793          	srli	a5,a5,0x2
+  b4:	00279793          	slli	a5,a5,0x2
+  b8:	fcf43423          	sd	a5,-56(s0)
+  bc:	fc042e23          	sw	zero,-36(s0)
+  c0:	0700006f          	j	130 <.L2>
+
+00000000000000c4 <.L5>:
+  c4:	fffff7b7          	lui	a5,0xfffff
+  c8:	fe040713          	addi	a4,s0,-32
+  cc:	00f70733          	add	a4,a4,a5
+  d0:	fdc42783          	lw	a5,-36(s0)
+  d4:	00279793          	slli	a5,a5,0x2
+  d8:	00f707b3          	add	a5,a4,a5
+  dc:	5207a783          	lw	a5,1312(a5) # fffffffffffff520 <.L2+0xfffffffffffff3f0>
+  e0:	00078713          	mv	a4,a5
+  e4:	06300793          	li	a5,99
+  e8:	02e7c263          	blt	a5,a4,10c <.L3>
+  ec:	fffff7b7          	lui	a5,0xfffff
+  f0:	fe040713          	addi	a4,s0,-32
+  f4:	00f70733          	add	a4,a4,a5
+  f8:	fdc42783          	lw	a5,-36(s0)
+  fc:	00279793          	slli	a5,a5,0x2
+ 100:	00f707b3          	add	a5,a4,a5
+ 104:	5207a783          	lw	a5,1312(a5) # fffffffffffff520 <.L2+0xfffffffffffff3f0>
+ 108:	0080006f          	j	110 <.L4>
+
+000000000000010c <.L3>:
+ 10c:	0ff00793          	li	a5,255
+
+0000000000000110 <.L4>:
+ 110:	fc843683          	ld	a3,-56(s0)
+ 114:	fdc42703          	lw	a4,-36(s0)
+ 118:	00271713          	slli	a4,a4,0x2
+ 11c:	00e68733          	add	a4,a3,a4
+ 120:	00f72023          	sw	a5,0(a4)
+ 124:	fdc42783          	lw	a5,-36(s0)
+ 128:	0017879b          	addiw	a5,a5,1
+ 12c:	fcf42e23          	sw	a5,-36(s0)
+
+0000000000000130 <.L2>:
+ 130:	fdc42703          	lw	a4,-36(s0)
+ 134:	fd842783          	lw	a5,-40(s0)
+ 138:	0007071b          	sext.w	a4,a4
+ 13c:	0007879b          	sext.w	a5,a5
+ 140:	f8f742e3          	blt	a4,a5,c4 <.L5>
+ 144:	00000793          	li	a5,0
+ 148:	00048113          	mv	sp,s1
+ 14c:	00078513          	mv	a0,a5
+ 150:	fffff337          	lui	t1,0xfffff
+ 154:	4f030313          	addi	t1,t1,1264 # fffffffffffff4f0 <.L2+0xfffffffffffff3c0>
+ 158:	00640133          	add	sp,s0,t1
+ 15c:	32010113          	addi	sp,sp,800
+ 160:	7e813083          	ld	ra,2024(sp)
+ 164:	7e013403          	ld	s0,2016(sp)
+ 168:	7d813483          	ld	s1,2008(sp)
+ 16c:	7f010113          	addi	sp,sp,2032
+ 170:	00008067          	ret
+
+Disassembly of section .rodata:
+
+0000000000000000 <.LC0>:
+   0:	00ff                	0xff
+   2:	0000                	unimp
+   4:	00ff                	0xff
+   6:	0000                	unimp
+   8:	00ff                	0xff
+   a:	0000                	unimp
+   c:	00ff                	0xff
+   e:	0000                	unimp
+  10:	00ff                	0xff
+  12:	0000                	unimp
+  14:	00ff                	0xff
+  16:	0000                	unimp
+  18:	00ff                	0xff
+  1a:	0000                	unimp
+  1c:	00ff                	0xff
+  1e:	0000                	unimp
+  20:	00ff                	0xff
+  22:	0000                	unimp
+  24:	00fd                	addi	ra,ra,31
+  26:	0000                	unimp
+  28:	00f1                	addi	ra,ra,28
+  2a:	0000                	unimp
+  2c:	00dc                	addi	a5,sp,68
+  2e:	0000                	unimp
+  30:	000000f3          	0xf3
+  34:	00c6                	slli	ra,ra,0x11
+  36:	0000                	unimp
+  38:	0084                	addi	s1,sp,64
+  3a:	0000                	unimp
+  3c:	00d2                	slli	ra,ra,0x14
+  3e:	0000                	unimp
+  40:	00ff                	0xff
+  42:	0000                	unimp
+  44:	00ff                	0xff
+  46:	0000                	unimp
+  48:	00ff                	0xff
+  4a:	0000                	unimp
+  4c:	00ff                	0xff
+  4e:	0000                	unimp
+  50:	00ff                	0xff
+  52:	0000                	unimp
+  54:	00ff                	0xff
+  56:	0000                	unimp
+  58:	00ff                	0xff
+  5a:	0000                	unimp
+  5c:	00ff                	0xff
+  5e:	0000                	unimp
+  60:	00ff                	0xff
+  62:	0000                	unimp
+  64:	00ff                	0xff
+  66:	0000                	unimp
+  68:	00ff                	0xff
+  6a:	0000                	unimp
+  6c:	00ff                	0xff
+  6e:	0000                	unimp
+  70:	00ff                	0xff
+  72:	0000                	unimp
+  74:	000000e7          	jalr	zero # 0 <.LC0>
+  78:	000000bb          	addw	ra,zero,zero
+  7c:	00c1                	addi	ra,ra,16
+  7e:	0000                	unimp
+  80:	009e                	slli	ra,ra,0x7
+  82:	0000                	unimp
+  84:	0051                	c.nop	20
+  86:	0000                	unimp
+  88:	0035                	c.nop	13
+  8a:	0000                	unimp
+  8c:	0048                	addi	a0,sp,4
+  8e:	0000                	unimp
+  90:	0046                	c.slli	zero,0x11
+  92:	0000                	unimp
+  94:	001c                	0x1c
+  96:	0000                	unimp
+  98:	0050                	addi	a2,sp,4
+  9a:	0000                	unimp
+  9c:	000000c3          	fmadd.s	ft1,ft0,ft0,ft0,rne
+  a0:	00e2                	slli	ra,ra,0x18
+  a2:	0000                	unimp
+  a4:	00f9                	addi	ra,ra,30
+  a6:	0000                	unimp
+  a8:	00ff                	0xff
+  aa:	0000                	unimp
+  ac:	00ff                	0xff
+  ae:	0000                	unimp
+  b0:	00ff                	0xff
+  b2:	0000                	unimp
+  b4:	00ff                	0xff
+  b6:	0000                	unimp
+  b8:	00ff                	0xff
+  ba:	0000                	unimp
+  bc:	00ff                	0xff
+  be:	0000                	unimp
+  c0:	00ff                	0xff
+  c2:	0000                	unimp
+  c4:	00ff                	0xff
+  c6:	0000                	unimp
+  c8:	00ff                	0xff
+  ca:	0000                	unimp
+  cc:	000000cf          	fnmadd.s	ft1,ft0,ft0,ft0,rne
+  d0:	00000053          	fadd.s	ft0,ft0,ft0,rne
+  d4:	00000027          	0x27
+  d8:	0025                	c.nop	9
+  da:	0000                	unimp
+  dc:	0021                	c.nop	8
+  de:	0000                	unimp
+  e0:	0022                	c.slli	zero,0x8
+  e2:	0000                	unimp
+  e4:	0026                	c.slli	zero,0x9
+  e6:	0000                	unimp
+  e8:	001e                	c.slli	zero,0x7
+  ea:	0000                	unimp
+  ec:	001a                	c.slli	zero,0x6
+  ee:	0000                	unimp
+  f0:	0014                	0x14
+  f2:	0000                	unimp
+  f4:	0010                	0x10
+  f6:	0000                	unimp
+  f8:	0019                	c.nop	6
+  fa:	0000                	unimp
+  fc:	0028                	addi	a0,sp,8
+  fe:	0000                	unimp
+ 100:	00ac                	addi	a1,sp,72
+ 102:	0000                	unimp
+ 104:	00ea                	slli	ra,ra,0x1a
+ 106:	0000                	unimp
+ 108:	00fc                	addi	a5,sp,76
+ 10a:	0000                	unimp
+ 10c:	00ff                	0xff
+ 10e:	0000                	unimp
+ 110:	00ff                	0xff
+ 112:	0000                	unimp
+ 114:	00ff                	0xff
+ 116:	0000                	unimp
+ 118:	00ff                	0xff
+ 11a:	0000                	unimp
+ 11c:	00ff                	0xff
+ 11e:	0000                	unimp
+ 120:	00fa                	slli	ra,ra,0x1e
+ 122:	0000                	unimp
+ 124:	000000b7          	lui	ra,0x0
+ 128:	0051                	c.nop	20
+ 12a:	0000                	unimp
+ 12c:	0010                	0x10
+ 12e:	0000                	unimp
+ 130:	0018                	0x18
+ 132:	0000                	unimp
+ 134:	00000017          	auipc	zero,0x0
+ 138:	001f 0000 0025      	0x250000001f
+ 13e:	0000                	unimp
+ 140:	0019                	c.nop	6
+ 142:	0000                	unimp
+ 144:	00000013          	nop
+ 148:	0012                	c.slli	zero,0x4
+ 14a:	0000                	unimp
+ 14c:	0000000f          	fence	unknown,unknown
+ 150:	0000000f          	fence	unknown,unknown
+ 154:	0012                	c.slli	zero,0x4
+ 156:	0000                	unimp
+ 158:	0010                	0x10
+ 15a:	0000                	unimp
+ 15c:	004d                	c.nop	19
+ 15e:	0000                	unimp
+ 160:	006d                	c.nop	27
+ 162:	0000                	unimp
+ 164:	009d                	addi	ra,ra,7
+ 166:	0000                	unimp
+ 168:	000000e3          	beqz	zero,968 <.LC0+0x968>
+ 16c:	00ff                	0xff
+ 16e:	0000                	unimp
+ 170:	00ff                	0xff
+ 172:	0000                	unimp
+ 174:	00ff                	0xff
+ 176:	0000                	unimp
+ 178:	00fe                	slli	ra,ra,0x1f
+ 17a:	0000                	unimp
+ 17c:	00b0                	addi	a2,sp,72
+ 17e:	0000                	unimp
+ 180:	002e                	c.slli	zero,0xb
+ 182:	0000                	unimp
+ 184:	0010                	0x10
+ 186:	0000                	unimp
+ 188:	0009                	c.nop	2
+ 18a:	0000                	unimp
+ 18c:	00000007          	0x7
+ 190:	0008                	0x8
+ 192:	0000                	unimp
+ 194:	0010                	0x10
+ 196:	0000                	unimp
+ 198:	0000000f          	fence	unknown,unknown
+ 19c:	0000000b          	0xb
+ 1a0:	000c                	0xc
+ 1a2:	0000                	unimp
+ 1a4:	000d                	c.nop	3
+ 1a6:	0000                	unimp
+ 1a8:	0000000f          	fence	unknown,unknown
+ 1ac:	0000000f          	fence	unknown,unknown
+ 1b0:	0011                	c.nop	4
+ 1b2:	0000                	unimp
+ 1b4:	000c                	0xc
+ 1b6:	0000                	unimp
+ 1b8:	0018                	0x18
+ 1ba:	0000                	unimp
+ 1bc:	0000002b          	0x2b
+ 1c0:	00000037          	lui	zero,0x0
+ 1c4:	0078                	addi	a4,sp,12
+ 1c6:	0000                	unimp
+ 1c8:	00f6                	slli	ra,ra,0x1d
+ 1ca:	0000                	unimp
+ 1cc:	00ff                	0xff
+ 1ce:	0000                	unimp
+ 1d0:	00fc                	addi	a5,sp,76
+ 1d2:	0000                	unimp
+ 1d4:	000000af          	0xaf
+ 1d8:	0031                	c.nop	12
+ 1da:	0000                	unimp
+ 1dc:	00000007          	0x7
+ 1e0:	000e                	c.slli	zero,0x3
+ 1e2:	0000                	unimp
+ 1e4:	0000000b          	0xb
+ 1e8:	0009                	c.nop	2
+ 1ea:	0000                	unimp
+ 1ec:	00000007          	0x7
+ 1f0:	0008                	0x8
+ 1f2:	0000                	unimp
+ 1f4:	00000007          	0x7
+ 1f8:	0008                	0x8
+ 1fa:	0000                	unimp
+ 1fc:	0009                	c.nop	2
+ 1fe:	0000                	unimp
+ 200:	000c                	0xc
+ 202:	0000                	unimp
+ 204:	0012                	c.slli	zero,0x4
+ 206:	0000                	unimp
+ 208:	0000000f          	fence	unknown,unknown
+ 20c:	00000007          	0x7
+ 210:	000d                	c.nop	3
+ 212:	0000                	unimp
+ 214:	001a                	c.slli	zero,0x6
+ 216:	0000                	unimp
+ 218:	00000023          	sb	zero,0(zero) # 0 <.LC0>
+ 21c:	0026                	c.slli	zero,0x9
+ 21e:	0000                	unimp
+ 220:	006a                	c.slli	zero,0x1a
+ 222:	0000                	unimp
+ 224:	00f4                	addi	a3,sp,76
+ 226:	0000                	unimp
+ 228:	00ff                	0xff
+ 22a:	0000                	unimp
+ 22c:	00c2                	slli	ra,ra,0x10
+ 22e:	0000                	unimp
+ 230:	0028                	addi	a0,sp,8
+ 232:	0000                	unimp
+ 234:	0009                	c.nop	2
+ 236:	0000                	unimp
+ 238:	000d                	c.nop	3
+ 23a:	0000                	unimp
+ 23c:	000d                	c.nop	3
+ 23e:	0000                	unimp
+ 240:	00000017          	auipc	zero,0x0
+ 244:	0019                	c.nop	6
+ 246:	0000                	unimp
+ 248:	0014                	0x14
+ 24a:	0000                	unimp
+ 24c:	0000000f          	fence	unknown,unknown
+ 250:	0000000b          	0xb
+ 254:	000a                	c.slli	zero,0x2
+ 256:	0000                	unimp
+ 258:	00000013          	nop
+ 25c:	0000001b          	sext.w	zero,zero
+ 260:	0034                	addi	a3,sp,8
+ 262:	0000                	unimp
+ 264:	00000047          	fmsub.s	ft0,ft0,ft0,ft0,rne
+ 268:	0030                	addi	a2,sp,8
+ 26a:	0000                	unimp
+ 26c:	00000013          	nop
+ 270:	0000000b          	0xb
+ 274:	0012                	c.slli	zero,0x4
+ 276:	0000                	unimp
+ 278:	0000001b          	sext.w	zero,zero
+ 27c:	0098                	addi	a4,sp,64
+ 27e:	0000                	unimp
+ 280:	000000f7          	0xf7
+ 284:	00f5                	addi	ra,ra,29
+ 286:	0000                	unimp
+ 288:	004c                	addi	a1,sp,4
+ 28a:	0000                	unimp
+ 28c:	000a                	c.slli	zero,0x2
+ 28e:	0000                	unimp
+ 290:	0010                	0x10
+ 292:	0000                	unimp
+ 294:	0000000b          	0xb
+ 298:	000e                	c.slli	zero,0x3
+ 29a:	0000                	unimp
+ 29c:	0010                	0x10
+ 29e:	0000                	unimp
+ 2a0:	0012                	c.slli	zero,0x4
+ 2a2:	0000                	unimp
+ 2a4:	0016                	c.slli	zero,0x5
+ 2a6:	0000                	unimp
+ 2a8:	0021                	c.nop	8
+ 2aa:	0000                	unimp
+ 2ac:	002d                	c.nop	11
+ 2ae:	0000                	unimp
+ 2b0:	00000037          	lui	zero,0x0
+ 2b4:	0052                	c.slli	zero,0x14
+ 2b6:	0000                	unimp
+ 2b8:	0071                	c.nop	28
+ 2ba:	0000                	unimp
+ 2bc:	00000093          	li	ra,0
+ 2c0:	00ac                	addi	a1,sp,72
+ 2c2:	0000                	unimp
+ 2c4:	00a1                	addi	ra,ra,8
+ 2c6:	0000                	unimp
+ 2c8:	0074                	addi	a3,sp,12
+ 2ca:	0000                	unimp
+ 2cc:	0045                	c.nop	17
+ 2ce:	0000                	unimp
+ 2d0:	001e                	c.slli	zero,0x7
+ 2d2:	0000                	unimp
+ 2d4:	0005                	c.nop	1
+ 2d6:	0000                	unimp
+ 2d8:	0084                	addi	s1,sp,64
+ 2da:	0000                	unimp
+ 2dc:	000000f7          	0xf7
+ 2e0:	000000db          	0xdb
+ 2e4:	00000017          	auipc	zero,0x0
+ 2e8:	000d                	c.nop	3
+ 2ea:	0000                	unimp
+ 2ec:	0009                	c.nop	2
+ 2ee:	0000                	unimp
+ 2f0:	0008                	0x8
+ 2f2:	0000                	unimp
+ 2f4:	000a                	c.slli	zero,0x2
+ 2f6:	0000                	unimp
+ 2f8:	000a                	c.slli	zero,0x2
+ 2fa:	0000                	unimp
+ 2fc:	0008                	0x8
+ 2fe:	0000                	unimp
+ 300:	0008                	0x8
+ 302:	0000                	unimp
+ 304:	003d                	c.nop	15
+ 306:	0000                	unimp
+ 308:	00000087          	0x87
+ 30c:	00000097          	auipc	ra,0x0
+ 310:	00a0                	addi	s0,sp,72
+ 312:	0000                	unimp
+ 314:	00bc                	addi	a5,sp,72
+ 316:	0000                	unimp
+ 318:	000000c7          	fmsub.s	ft1,ft0,ft0,ft0,rne
+ 31c:	00c4                	addi	s1,sp,68
+ 31e:	0000                	unimp
+ 320:	000000c7          	fmsub.s	ft1,ft0,ft0,ft0,rne
+ 324:	00c4                	addi	s1,sp,68
+ 326:	0000                	unimp
+ 328:	00b2                	slli	ra,ra,0xc
+ 32a:	0000                	unimp
+ 32c:	008c                	addi	a1,sp,64
+ 32e:	0000                	unimp
+ 330:	0000002f          	0x2f
+ 334:	0064                	addi	s1,sp,12
+ 336:	0000                	unimp
+ 338:	00f8                	addi	a4,sp,76
+ 33a:	0000                	unimp
+ 33c:	00000097          	auipc	ra,0x0
+ 340:	0019                	c.nop	6
+ 342:	0000                	unimp
+ 344:	0000000f          	fence	unknown,unknown
+ 348:	0008                	0x8
+ 34a:	0000                	unimp
+ 34c:	0009                	c.nop	2
+ 34e:	0000                	unimp
+ 350:	0008                	0x8
+ 352:	0000                	unimp
+ 354:	000a                	c.slli	zero,0x2
+ 356:	0000                	unimp
+ 358:	0000000f          	fence	unknown,unknown
+ 35c:	0015                	c.nop	5
+ 35e:	0000                	unimp
+ 360:	0054                	addi	a3,sp,4
+ 362:	0000                	unimp
+ 364:	00b6                	slli	ra,ra,0xd
+ 366:	0000                	unimp
+ 368:	00cd                	addi	ra,ra,19
+ 36a:	0000                	unimp
+ 36c:	00c6                	slli	ra,ra,0x11
+ 36e:	0000                	unimp
+ 370:	00c9                	addi	ra,ra,18
+ 372:	0000                	unimp
+ 374:	00cd                	addi	ra,ra,19
+ 376:	0000                	unimp
+ 378:	000000cb          	fnmsub.s	ft1,ft0,ft0,ft0,rne
+ 37c:	00c5                	addi	ra,ra,17
+ 37e:	0000                	unimp
+ 380:	00c2                	slli	ra,ra,0x10
+ 382:	0000                	unimp
+ 384:	000000bf 000000c3 	0xc3000000bf
+ 38c:	0000008f          	0x8f
+ 390:	0029                	c.nop	10
+ 392:	0000                	unimp
+ 394:	00ca                	slli	ra,ra,0x12
+ 396:	0000                	unimp
+ 398:	0070                	addi	a2,sp,12
+ 39a:	0000                	unimp
+ 39c:	0019                	c.nop	6
+ 39e:	0000                	unimp
+ 3a0:	0012                	c.slli	zero,0x4
+ 3a2:	0000                	unimp
+ 3a4:	0009                	c.nop	2
+ 3a6:	0000                	unimp
+ 3a8:	0009                	c.nop	2
+ 3aa:	0000                	unimp
+ 3ac:	000a                	c.slli	zero,0x2
+ 3ae:	0000                	unimp
+ 3b0:	000c                	0xc
+ 3b2:	0000                	unimp
+ 3b4:	001e                	c.slli	zero,0x7
+ 3b6:	0000                	unimp
+ 3b8:	002e                	c.slli	zero,0xb
+ 3ba:	0000                	unimp
+ 3bc:	0045                	c.nop	17
+ 3be:	0000                	unimp
+ 3c0:	0000008b          	0x8b
+ 3c4:	00c0                	addi	s0,sp,68
+ 3c6:	0000                	unimp
+ 3c8:	00c6                	slli	ra,ra,0x11
+ 3ca:	0000                	unimp
+ 3cc:	00ce                	slli	ra,ra,0x13
+ 3ce:	0000                	unimp
+ 3d0:	00d9                	addi	ra,ra,22
+ 3d2:	0000                	unimp
+ 3d4:	00dc                	addi	a5,sp,68
+ 3d6:	0000                	unimp
+ 3d8:	00d5                	addi	ra,ra,21
+ 3da:	0000                	unimp
+ 3dc:	00ca                	slli	ra,ra,0x12
+ 3de:	0000                	unimp
+ 3e0:	000000bf 000000b9 	0xb9000000bf
+ 3e8:	00bd                	addi	ra,ra,15
+ 3ea:	0000                	unimp
+ 3ec:	005d                	c.nop	23
+ 3ee:	0000                	unimp
+ 3f0:	00a5                	addi	ra,ra,9
+ 3f2:	0000                	unimp
+ 3f4:	00ba                	slli	ra,ra,0xe
+ 3f6:	0000                	unimp
+ 3f8:	00000017          	auipc	zero,0x0
+ 3fc:	00000013          	nop
+ 400:	0008                	0x8
+ 402:	0000                	unimp
+ 404:	000a                	c.slli	zero,0x2
+ 406:	0000                	unimp
+ 408:	0011                	c.nop	4
+ 40a:	0000                	unimp
+ 40c:	0016                	c.slli	zero,0x5
+ 40e:	0000                	unimp
+ 410:	001f 0000 0025      	0x250000001f
+ 416:	0000                	unimp
+ 418:	0034                	addi	a3,sp,8
+ 41a:	0000                	unimp
+ 41c:	0072                	c.slli	zero,0x1c
+ 41e:	0000                	unimp
+ 420:	000000a7          	0xa7
+ 424:	00ba                	slli	ra,ra,0xe
+ 426:	0000                	unimp
+ 428:	00c0                	addi	s0,sp,68
+ 42a:	0000                	unimp
+ 42c:	00ac                	addi	a1,sp,72
+ 42e:	0000                	unimp
+ 430:	00000097          	auipc	ra,0x0
+ 434:	00a0                	addi	s0,sp,72
+ 436:	0000                	unimp
+ 438:	000000bb          	addw	ra,zero,zero
+ 43c:	00c2                	slli	ra,ra,0x10
+ 43e:	0000                	unimp
+ 440:	00bd                	addi	ra,ra,15
+ 442:	0000                	unimp
+ 444:	00c2                	slli	ra,ra,0x10
+ 446:	0000                	unimp
+ 448:	008a                	slli	ra,ra,0x2
+ 44a:	0000                	unimp
+ 44c:	00a1                	addi	ra,ra,8
+ 44e:	0000                	unimp
+ 450:	000000eb          	0xeb
+ 454:	00000017          	auipc	zero,0x0
+ 458:	000d                	c.nop	3
+ 45a:	0000                	unimp
+ 45c:	0009                	c.nop	2
+ 45e:	0000                	unimp
+ 460:	0000000b          	0xb
+ 464:	00000013          	nop
+ 468:	0019                	c.nop	6
+ 46a:	0000                	unimp
+ 46c:	0016                	c.slli	zero,0x5
+ 46e:	0000                	unimp
+ 470:	0010                	0x10
+ 472:	0000                	unimp
+ 474:	0045                	c.nop	17
+ 476:	0000                	unimp
+ 478:	00000093          	li	ra,0
+ 47c:	000000ab          	0xab
+ 480:	000000af          	0xaf
+ 484:	0095                	addi	ra,ra,5
+ 486:	0000                	unimp
+ 488:	007d                	c.nop	31
+ 48a:	0000                	unimp
+ 48c:	007c                	addi	a5,sp,12
+ 48e:	0000                	unimp
+ 490:	00000077          	0x77
+ 494:	00000093          	li	ra,0
+ 498:	00b4                	addi	a3,sp,72
+ 49a:	0000                	unimp
+ 49c:	00c6                	slli	ra,ra,0x11
+ 49e:	0000                	unimp
+ 4a0:	00a4                	addi	s1,sp,72
+ 4a2:	0000                	unimp
+ 4a4:	0050                	addi	a2,sp,4
+ 4a6:	0000                	unimp
+ 4a8:	00d4                	addi	a3,sp,68
+ 4aa:	0000                	unimp
+ 4ac:	000000f3          	0xf3
+ 4b0:	0034                	addi	a3,sp,8
+ 4b2:	0000                	unimp
+ 4b4:	00000007          	0x7
+ 4b8:	0006                	c.slli	zero,0x1
+ 4ba:	0000                	unimp
+ 4bc:	0006                	c.slli	zero,0x1
+ 4be:	0000                	unimp
+ 4c0:	0010                	0x10
+ 4c2:	0000                	unimp
+ 4c4:	0014                	0x14
+ 4c6:	0000                	unimp
+ 4c8:	000a                	c.slli	zero,0x2
+ 4ca:	0000                	unimp
+ 4cc:	0019                	c.nop	6
+ 4ce:	0000                	unimp
+ 4d0:	0078                	addi	a4,sp,12
+ 4d2:	0000                	unimp
+ 4d4:	000000bb          	addw	ra,zero,zero
+ 4d8:	00b6                	slli	ra,ra,0xd
+ 4da:	0000                	unimp
+ 4dc:	00b1                	addi	ra,ra,12
+ 4de:	0000                	unimp
+ 4e0:	00b8                	addi	a4,sp,72
+ 4e2:	0000                	unimp
+ 4e4:	00c5                	addi	ra,ra,17
+ 4e6:	0000                	unimp
+ 4e8:	00c8                	addi	a0,sp,68
+ 4ea:	0000                	unimp
+ 4ec:	00b1                	addi	ra,ra,12
+ 4ee:	0000                	unimp
+ 4f0:	0091                	addi	ra,ra,4
+ 4f2:	0000                	unimp
+ 4f4:	009f 0000 00b2      	0xb20000009f
+ 4fa:	0000                	unimp
+ 4fc:	008d                	addi	ra,ra,3
+ 4fe:	0000                	unimp
+ 500:	0088                	addi	a0,sp,64
+ 502:	0000                	unimp
+ 504:	00f1                	addi	ra,ra,28
+ 506:	0000                	unimp
+ 508:	00f9                	addi	ra,ra,30
+ 50a:	0000                	unimp
+ 50c:	0071                	c.nop	28
+ 50e:	0000                	unimp
+ 510:	0010                	0x10
+ 512:	0000                	unimp
+ 514:	0039                	c.nop	14
+ 516:	0000                	unimp
+ 518:	0026                	c.slli	zero,0x9
+ 51a:	0000                	unimp
+ 51c:	000a                	c.slli	zero,0x2
+ 51e:	0000                	unimp
+ 520:	000c                	0xc
+ 522:	0000                	unimp
+ 524:	000a                	c.slli	zero,0x2
+ 526:	0000                	unimp
+ 528:	0041                	c.nop	16
+ 52a:	0000                	unimp
+ 52c:	00a8                	addi	a0,sp,72
+ 52e:	0000                	unimp
+ 530:	00c1                	addi	ra,ra,16
+ 532:	0000                	unimp
+ 534:	00b9                	addi	ra,ra,14
+ 536:	0000                	unimp
+ 538:	000000b7          	lui	ra,0x0
+ 53c:	00b2                	slli	ra,ra,0xc
+ 53e:	0000                	unimp
+ 540:	000000ab          	0xab
+ 544:	007e                	c.slli	zero,0x1f
+ 546:	0000                	unimp
+ 548:	005a                	c.slli	zero,0x16
+ 54a:	0000                	unimp
+ 54c:	0072                	c.slli	zero,0x1c
+ 54e:	0000                	unimp
+ 550:	00a4                	addi	s1,sp,72
+ 552:	0000                	unimp
+ 554:	0000008b          	0x8b
+ 558:	00000083          	lb	ra,0(zero) # 0 <.LC0>
+ 55c:	0090                	addi	a2,sp,64
+ 55e:	0000                	unimp
+ 560:	00f1                	addi	ra,ra,28
+ 562:	0000                	unimp
+ 564:	00fd                	addi	ra,ra,31
+ 566:	0000                	unimp
+ 568:	00a0                	addi	s0,sp,72
+ 56a:	0000                	unimp
+ 56c:	0035                	c.nop	13
+ 56e:	0000                	unimp
+ 570:	007f                	0x7f
+ 572:	0000                	unimp
+ 574:	0071                	c.nop	28
+ 576:	0000                	unimp
+ 578:	0035                	c.nop	13
+ 57a:	0000                	unimp
+ 57c:	00000013          	nop
+ 580:	001a                	c.slli	zero,0x6
+ 582:	0000                	unimp
+ 584:	005d                	c.nop	23
+ 586:	0000                	unimp
+ 588:	00ad                	addi	ra,ra,11
+ 58a:	0000                	unimp
+ 58c:	000000bb          	addw	ra,zero,zero
+ 590:	000000bf 000000bc 	0xbc000000bf
+ 598:	009e                	slli	ra,ra,0x7
+ 59a:	0000                	unimp
+ 59c:	00a5                	addi	ra,ra,9
+ 59e:	0000                	unimp
+ 5a0:	0076                	c.slli	zero,0x1d
+ 5a2:	0000                	unimp
+ 5a4:	0051                	c.nop	20
+ 5a6:	0000                	unimp
+ 5a8:	009d                	addi	ra,ra,7
+ 5aa:	0000                	unimp
+ 5ac:	00d5                	addi	ra,ra,21
+ 5ae:	0000                	unimp
+ 5b0:	00000097          	auipc	ra,0x0
+ 5b4:	0092                	slli	ra,ra,0x4
+ 5b6:	0000                	unimp
+ 5b8:	0075                	c.nop	29
+ 5ba:	0000                	unimp
+ 5bc:	00f5                	addi	ra,ra,29
+ 5be:	0000                	unimp
+ 5c0:	00ff                	0xff
+ 5c2:	0000                	unimp
+ 5c4:	00ce                	slli	ra,ra,0x13
+ 5c6:	0000                	unimp
+ 5c8:	003e                	c.slli	zero,0xf
+ 5ca:	0000                	unimp
+ 5cc:	00a5                	addi	ra,ra,9
+ 5ce:	0000                	unimp
+ 5d0:	0088                	addi	a0,sp,64
+ 5d2:	0000                	unimp
+ 5d4:	0060                	addi	s0,sp,12
+ 5d6:	0000                	unimp
+ 5d8:	0054                	addi	a3,sp,4
+ 5da:	0000                	unimp
+ 5dc:	002a                	c.slli	zero,0xa
+ 5de:	0000                	unimp
+ 5e0:	0050                	addi	a2,sp,4
+ 5e2:	0000                	unimp
+ 5e4:	00a1                	addi	ra,ra,8
+ 5e6:	0000                	unimp
+ 5e8:	00ba                	slli	ra,ra,0xe
+ 5ea:	0000                	unimp
+ 5ec:	000000bf 000000c9 	0xc9000000bf
+ 5f4:	00c5                	addi	ra,ra,17
+ 5f6:	0000                	unimp
+ 5f8:	00a0                	addi	s0,sp,72
+ 5fa:	0000                	unimp
+ 5fc:	007c                	addi	a5,sp,12
+ 5fe:	0000                	unimp
+ 600:	009f 0000 00d2      	0xd20000009f
+ 606:	0000                	unimp
+ 608:	00e0                	addi	s0,sp,76
+ 60a:	0000                	unimp
+ 60c:	00bd                	addi	ra,ra,15
+ 60e:	0000                	unimp
+ 610:	008a                	slli	ra,ra,0x2
+ 612:	0000                	unimp
+ 614:	007f                	0x7f
+ 616:	0000                	unimp
+ 618:	00f4                	addi	a3,sp,76
+ 61a:	0000                	unimp
+ 61c:	00ff                	0xff
+ 61e:	0000                	unimp
+ 620:	00f0                	addi	a2,sp,76
+ 622:	0000                	unimp
+ 624:	0054                	addi	a3,sp,4
+ 626:	0000                	unimp
+ 628:	009e                	slli	ra,ra,0x7
+ 62a:	0000                	unimp
+ 62c:	007c                	addi	a5,sp,12
+ 62e:	0000                	unimp
+ 630:	006e                	c.slli	zero,0x1b
+ 632:	0000                	unimp
+ 634:	008e                	slli	ra,ra,0x3
+ 636:	0000                	unimp
+ 638:	00000033          	add	zero,zero,zero
+ 63c:	0046                	c.slli	zero,0x11
+ 63e:	0000                	unimp
+ 640:	00a2                	slli	ra,ra,0x8
+ 642:	0000                	unimp
+ 644:	000000b3          	add	ra,zero,zero
+ 648:	00b9                	addi	ra,ra,14
+ 64a:	0000                	unimp
+ 64c:	00c6                	slli	ra,ra,0x11
+ 64e:	0000                	unimp
+ 650:	00ce                	slli	ra,ra,0x13
+ 652:	0000                	unimp
+ 654:	00bd                	addi	ra,ra,15
+ 656:	0000                	unimp
+ 658:	00b1                	addi	ra,ra,12
+ 65a:	0000                	unimp
+ 65c:	00c6                	slli	ra,ra,0x11
+ 65e:	0000                	unimp
+ 660:	000000cf          	fnmadd.s	ft1,ft0,ft0,ft0,rne
+ 664:	000000d3          	fadd.s	ft1,ft0,ft0,rne
+ 668:	00cd                	addi	ra,ra,19
+ 66a:	0000                	unimp
+ 66c:	009a                	slli	ra,ra,0x6
+ 66e:	0000                	unimp
+ 670:	0096                	slli	ra,ra,0x5
+ 672:	0000                	unimp
+ 674:	00f1                	addi	ra,ra,28
+ 676:	0000                	unimp
+ 678:	00ff                	0xff
+ 67a:	0000                	unimp
+ 67c:	00ff                	0xff
+ 67e:	0000                	unimp
+ 680:	00b6                	slli	ra,ra,0xd
+ 682:	0000                	unimp
+ 684:	006e                	c.slli	zero,0x1b
+ 686:	0000                	unimp
+ 688:	00c0                	addi	s0,sp,68
+ 68a:	0000                	unimp
+ 68c:	000000a7          	0xa7
+ 690:	0095                	addi	ra,ra,5
+ 692:	0000                	unimp
+ 694:	0000003f 00000043 	0x430000003f
+ 69c:	0094                	addi	a3,sp,64
+ 69e:	0000                	unimp
+ 6a0:	00a8                	addi	a0,sp,72
+ 6a2:	0000                	unimp
+ 6a4:	000000ab          	0xab
+ 6a8:	00b9                	addi	ra,ra,14
+ 6aa:	0000                	unimp
+ 6ac:	00c6                	slli	ra,ra,0x11
+ 6ae:	0000                	unimp
+ 6b0:	000000cf          	fnmadd.s	ft1,ft0,ft0,ft0,rne
+ 6b4:	00cc                	addi	a1,sp,68
+ 6b6:	0000                	unimp
+ 6b8:	00c4                	addi	s1,sp,68
+ 6ba:	0000                	unimp
+ 6bc:	00c8                	addi	a0,sp,68
+ 6be:	0000                	unimp
+ 6c0:	00d0                	addi	a2,sp,68
+ 6c2:	0000                	unimp
+ 6c4:	000000d3          	fadd.s	ft1,ft0,ft0,rne
+ 6c8:	00c4                	addi	s1,sp,68
+ 6ca:	0000                	unimp
+ 6cc:	00bd                	addi	ra,ra,15
+ 6ce:	0000                	unimp
+ 6d0:	00f1                	addi	ra,ra,28
+ 6d2:	0000                	unimp
+ 6d4:	00ff                	0xff
+ 6d6:	0000                	unimp
+ 6d8:	00ff                	0xff
+ 6da:	0000                	unimp
+ 6dc:	00de                	slli	ra,ra,0x17
+ 6de:	0000                	unimp
+ 6e0:	0028                	addi	a0,sp,8
+ 6e2:	0000                	unimp
+ 6e4:	00a6                	slli	ra,ra,0x9
+ 6e6:	0000                	unimp
+ 6e8:	00d0                	addi	a2,sp,68
+ 6ea:	0000                	unimp
+ 6ec:	00000097          	auipc	ra,0x0
+ 6f0:	0041                	c.nop	16
+ 6f2:	0000                	unimp
+ 6f4:	002c                	addi	a1,sp,8
+ 6f6:	0000                	unimp
+ 6f8:	0070                	addi	a2,sp,12
+ 6fa:	0000                	unimp
+ 6fc:	0098                	addi	a4,sp,64
+ 6fe:	0000                	unimp
+ 700:	0000009b          	sext.w	ra,zero
+ 704:	000000a7          	0xa7
+ 708:	00b6                	slli	ra,ra,0xd
+ 70a:	0000                	unimp
+ 70c:	00b8                	addi	a4,sp,72
+ 70e:	0000                	unimp
+ 710:	00b5                	addi	ra,ra,13
+ 712:	0000                	unimp
+ 714:	00b1                	addi	ra,ra,12
+ 716:	0000                	unimp
+ 718:	00ac                	addi	a1,sp,72
+ 71a:	0000                	unimp
+ 71c:	00ac                	addi	a1,sp,72
+ 71e:	0000                	unimp
+ 720:	00b2                	slli	ra,ra,0xc
+ 722:	0000                	unimp
+ 724:	00ac                	addi	a1,sp,72
+ 726:	0000                	unimp
+ 728:	00b0                	addi	a2,sp,72
+ 72a:	0000                	unimp
+ 72c:	00e9                	addi	ra,ra,26
+ 72e:	0000                	unimp
+ 730:	00ff                	0xff
+ 732:	0000                	unimp
+ 734:	00ff                	0xff
+ 736:	0000                	unimp
+ 738:	00e9                	addi	ra,ra,26
+ 73a:	0000                	unimp
+ 73c:	002a                	c.slli	zero,0xa
+ 73e:	0000                	unimp
+ 740:	0021                	c.nop	8
+ 742:	0000                	unimp
+ 744:	007e                	c.slli	zero,0x1f
+ 746:	0000                	unimp
+ 748:	0085                	addi	ra,ra,1
+ 74a:	0000                	unimp
+ 74c:	00000057          	0x57
+ 750:	0041                	c.nop	16
+ 752:	0000                	unimp
+ 754:	0065                	c.nop	25
+ 756:	0000                	unimp
+ 758:	0081                	addi	ra,ra,0
+ 75a:	0000                	unimp
+ 75c:	00000087          	0x87
+ 760:	0090                	addi	a2,sp,64
+ 762:	0000                	unimp
+ 764:	0000009b          	sext.w	ra,zero
+ 768:	009d                	addi	ra,ra,7
+ 76a:	0000                	unimp
+ 76c:	00a9                	addi	ra,ra,10
+ 76e:	0000                	unimp
+ 770:	000000bb          	addw	ra,zero,zero
+ 774:	008d                	addi	ra,ra,3
+ 776:	0000                	unimp
+ 778:	0050                	addi	a2,sp,4
+ 77a:	0000                	unimp
+ 77c:	0051                	c.nop	20
+ 77e:	0000                	unimp
+ 780:	0084                	addi	s1,sp,64
+ 782:	0000                	unimp
+ 784:	00a5                	addi	ra,ra,9
+ 786:	0000                	unimp
+ 788:	000000f3          	0xf3
+ 78c:	00ff                	0xff
+ 78e:	0000                	unimp
+ 790:	00ff                	0xff
+ 792:	0000                	unimp
+ 794:	00ee                	slli	ra,ra,0x1b
+ 796:	0000                	unimp
+ 798:	0058                	addi	a4,sp,4
+ 79a:	0000                	unimp
+ 79c:	0025                	c.nop	9
+ 79e:	0000                	unimp
+ 7a0:	0050                	addi	a2,sp,4
+ 7a2:	0000                	unimp
+ 7a4:	006c                	addi	a1,sp,12
+ 7a6:	0000                	unimp
+ 7a8:	0076                	c.slli	zero,0x1d
+ 7aa:	0000                	unimp
+ 7ac:	0071                	c.nop	28
+ 7ae:	0000                	unimp
+ 7b0:	0078                	addi	a4,sp,12
+ 7b2:	0000                	unimp
+ 7b4:	0000006f          	j	7b4 <.LC0+0x7b4>
+ 7b8:	006d                	c.nop	27
+ 7ba:	0000                	unimp
+ 7bc:	0078                	addi	a4,sp,12
+ 7be:	0000                	unimp
+ 7c0:	00000077          	0x77
+ 7c4:	0081                	addi	ra,ra,0
+ 7c6:	0000                	unimp
+ 7c8:	00a4                	addi	s1,sp,72
+ 7ca:	0000                	unimp
+ 7cc:	000000c3          	fmadd.s	ft1,ft0,ft0,ft0,rne
+ 7d0:	000000c3          	fmadd.s	ft1,ft0,ft0,ft0,rne
+ 7d4:	000000a3          	sb	zero,1(zero) # 1 <.LC0+0x1>
+ 7d8:	00000083          	lb	ra,0(zero) # 0 <.LC0>
+ 7dc:	0000008f          	0x8f
+ 7e0:	00da                	slli	ra,ra,0x16
+ 7e2:	0000                	unimp
+ 7e4:	00ff                	0xff
+ 7e6:	0000                	unimp
+ 7e8:	00ff                	0xff
+ 7ea:	0000                	unimp
+ 7ec:	00ff                	0xff
+ 7ee:	0000                	unimp
+ 7f0:	000000fb          	0xfb
+ 7f4:	00d0                	addi	a2,sp,68
+ 7f6:	0000                	unimp
+ 7f8:	00c2                	slli	ra,ra,0x10
+ 7fa:	0000                	unimp
+ 7fc:	00b8                	addi	a4,sp,72
+ 7fe:	0000                	unimp
+ 800:	0070                	addi	a2,sp,12
+ 802:	0000                	unimp
+ 804:	00000073          	ecall
+ 808:	0072                	c.slli	zero,0x1c
+ 80a:	0000                	unimp
+ 80c:	0078                	addi	a4,sp,12
+ 80e:	0000                	unimp
+ 810:	0075                	c.nop	29
+ 812:	0000                	unimp
+ 814:	0000006f          	j	814 <.LC0+0x814>
+ 818:	0000007b          	0x7b
+ 81c:	00000083          	lb	ra,0(zero) # 0 <.LC0>
+ 820:	0000008b          	0x8b
+ 824:	00ad                	addi	ra,ra,11
+ 826:	0000                	unimp
+ 828:	00c1                	addi	ra,ra,16
+ 82a:	0000                	unimp
+ 82c:	00c4                	addi	s1,sp,68
+ 82e:	0000                	unimp
+ 830:	00b4                	addi	a3,sp,72
+ 832:	0000                	unimp
+ 834:	00a4                	addi	s1,sp,72
+ 836:	0000                	unimp
+ 838:	0098                	addi	a4,sp,64
+ 83a:	0000                	unimp
+ 83c:	00f0                	addi	a2,sp,76
+ 83e:	0000                	unimp
+ 840:	00ff                	0xff
+ 842:	0000                	unimp
+ 844:	00ff                	0xff
+ 846:	0000                	unimp
+ 848:	00ff                	0xff
+ 84a:	0000                	unimp
+ 84c:	00ff                	0xff
+ 84e:	0000                	unimp
+ 850:	00ff                	0xff
+ 852:	0000                	unimp
+ 854:	00ff                	0xff
+ 856:	0000                	unimp
+ 858:	00f1                	addi	ra,ra,28
+ 85a:	0000                	unimp
+ 85c:	0096                	slli	ra,ra,0x5
+ 85e:	0000                	unimp
+ 860:	006d                	c.nop	27
+ 862:	0000                	unimp
+ 864:	00000063          	beqz	zero,864 <.LC0+0x864>
+ 868:	0066                	c.slli	zero,0x19
+ 86a:	0000                	unimp
+ 86c:	007e                	c.slli	zero,0x1f
+ 86e:	0000                	unimp
+ 870:	0000008f          	0x8f
+ 874:	00000093          	li	ra,0
+ 878:	009c                	addi	a5,sp,64
+ 87a:	0000                	unimp
+ 87c:	0089                	addi	ra,ra,2
+ 87e:	0000                	unimp
+ 880:	007c                	addi	a5,sp,12
+ 882:	0000                	unimp
+ 884:	006d                	c.nop	27
+ 886:	0000                	unimp
+ 888:	00000047          	fmsub.s	ft0,ft0,ft0,ft0,rne
+ 88c:	0034                	addi	a3,sp,8
+ 88e:	0000                	unimp
+ 890:	005e                	c.slli	zero,0x17
+ 892:	0000                	unimp
+ 894:	00c6                	slli	ra,ra,0x11
+ 896:	0000                	unimp
+ 898:	00fe                	slli	ra,ra,0x1f
+ 89a:	0000                	unimp
+ 89c:	00ff                	0xff
+ 89e:	0000                	unimp
+ 8a0:	00ff                	0xff
+ 8a2:	0000                	unimp
+ 8a4:	00ff                	0xff
+ 8a6:	0000                	unimp
+ 8a8:	00ff                	0xff
+ 8aa:	0000                	unimp
+ 8ac:	00ff                	0xff
+ 8ae:	0000                	unimp
+ 8b0:	00ff                	0xff
+ 8b2:	0000                	unimp
+ 8b4:	00ff                	0xff
+ 8b6:	0000                	unimp
+ 8b8:	00d2                	slli	ra,ra,0x14
+ 8ba:	0000                	unimp
+ 8bc:	0072                	c.slli	zero,0x1c
+ 8be:	0000                	unimp
+ 8c0:	00000063          	beqz	zero,8c0 <.LC0+0x8c0>
+ 8c4:	0060                	addi	s0,sp,12
+ 8c6:	0000                	unimp
+ 8c8:	00000077          	0x77
+ 8cc:	0090                	addi	a2,sp,64
+ 8ce:	0000                	unimp
+ 8d0:	0091                	addi	ra,ra,4
+ 8d2:	0000                	unimp
+ 8d4:	00000093          	li	ra,0
+ 8d8:	008c                	addi	a1,sp,64
+ 8da:	0000                	unimp
+ 8dc:	00000077          	0x77
+ 8e0:	003e                	c.slli	zero,0xf
+ 8e2:	0000                	unimp
+ 8e4:	00000013          	nop
+ 8e8:	0015                	c.nop	5
+ 8ea:	0000                	unimp
+ 8ec:	0085                	addi	ra,ra,1
+ 8ee:	0000                	unimp
+ 8f0:	00f4                	addi	a3,sp,76
+ 8f2:	0000                	unimp
+ 8f4:	00ff                	0xff
+ 8f6:	0000                	unimp
+ 8f8:	00ff                	0xff
+ 8fa:	0000                	unimp
+ 8fc:	00ff                	0xff
+ 8fe:	0000                	unimp
+ 900:	00ff                	0xff
+ 902:	0000                	unimp
+ 904:	00ff                	0xff
+ 906:	0000                	unimp
+ 908:	00ff                	0xff
+ 90a:	0000                	unimp
+ 90c:	00ff                	0xff
+ 90e:	0000                	unimp
+ 910:	00ff                	0xff
+ 912:	0000                	unimp
+ 914:	00f0                	addi	a2,sp,76
+ 916:	0000                	unimp
+ 918:	009d                	addi	ra,ra,7
+ 91a:	0000                	unimp
+ 91c:	006c                	addi	a1,sp,12
+ 91e:	0000                	unimp
+ 920:	0070                	addi	a2,sp,12
+ 922:	0000                	unimp
+ 924:	00000077          	0x77
+ 928:	007d                	c.nop	31
+ 92a:	0000                	unimp
+ 92c:	007f                	0x7f
+ 92e:	0000                	unimp
+ 930:	0098                	addi	a4,sp,64
+ 932:	0000                	unimp
+ 934:	00a4                	addi	s1,sp,72
+ 936:	0000                	unimp
+ 938:	008a                	slli	ra,ra,0x2
+ 93a:	0000                	unimp
+ 93c:	00000077          	0x77
+ 940:	0065                	c.nop	25
+ 942:	0000                	unimp
+ 944:	005f 0000 00b7      	0xb70000005f
+ 94a:	0000                	unimp
+ 94c:	00fd                	addi	ra,ra,31
+ 94e:	0000                	unimp
+ 950:	00ff                	0xff
+ 952:	0000                	unimp
+ 954:	00ff                	0xff
+ 956:	0000                	unimp
+ 958:	00ff                	0xff
+ 95a:	0000                	unimp
+ 95c:	00ff                	0xff
+ 95e:	0000                	unimp
+ 960:	00ff                	0xff
+ 962:	0000                	unimp
+ 964:	00ff                	0xff
+ 966:	0000                	unimp
+ 968:	00ff                	0xff
+ 96a:	0000                	unimp
+ 96c:	00ff                	0xff
+ 96e:	0000                	unimp
+ 970:	00ff                	0xff
+ 972:	0000                	unimp
+ 974:	000000e7          	jalr	zero # 0 <.LC0>
+ 978:	0098                	addi	a4,sp,64
+ 97a:	0000                	unimp
+ 97c:	0000007b          	0x7b
+ 980:	007d                	c.nop	31
+ 982:	0000                	unimp
+ 984:	007c                	addi	a5,sp,12
+ 986:	0000                	unimp
+ 988:	00000083          	lb	ra,0(zero) # 0 <.LC0>
+ 98c:	00a0                	addi	s0,sp,72
+ 98e:	0000                	unimp
+ 990:	00000093          	li	ra,0
+ 994:	006a                	c.slli	zero,0x1a
+ 996:	0000                	unimp
+ 998:	0000006f          	j	998 <.LC0+0x998>
+ 99c:	0085                	addi	ra,ra,1
+ 99e:	0000                	unimp
+ 9a0:	008a                	slli	ra,ra,0x2
+ 9a2:	0000                	unimp
+ 9a4:	00da                	slli	ra,ra,0x16
+ 9a6:	0000                	unimp
+ 9a8:	00ff                	0xff
+ 9aa:	0000                	unimp
+ 9ac:	00ff                	0xff
+ 9ae:	0000                	unimp
+ 9b0:	00ff                	0xff
+ 9b2:	0000                	unimp
+ 9b4:	00ff                	0xff
+ 9b6:	0000                	unimp
+ 9b8:	00ff                	0xff
+ 9ba:	0000                	unimp
+ 9bc:	00ff                	0xff
+ 9be:	0000                	unimp
+ 9c0:	00ff                	0xff
+ 9c2:	0000                	unimp
+ 9c4:	00ff                	0xff
+ 9c6:	0000                	unimp
+ 9c8:	00ff                	0xff
+ 9ca:	0000                	unimp
+ 9cc:	00ff                	0xff
+ 9ce:	0000                	unimp
+ 9d0:	00ff                	0xff
+ 9d2:	0000                	unimp
+ 9d4:	00ea                	slli	ra,ra,0x1a
+ 9d6:	0000                	unimp
+ 9d8:	009e                	slli	ra,ra,0x7
+ 9da:	0000                	unimp
+ 9dc:	00000073          	ecall
+ 9e0:	00000077          	0x77
+ 9e4:	007c                	addi	a5,sp,12
+ 9e6:	0000                	unimp
+ 9e8:	008a                	slli	ra,ra,0x2
+ 9ea:	0000                	unimp
+ 9ec:	0092                	slli	ra,ra,0x4
+ 9ee:	0000                	unimp
+ 9f0:	006a                	c.slli	zero,0x1a
+ 9f2:	0000                	unimp
+ 9f4:	0050                	addi	a2,sp,4
+ 9f6:	0000                	unimp
+ 9f8:	0060                	addi	s0,sp,12
+ 9fa:	0000                	unimp
+ 9fc:	0094                	addi	a3,sp,64
+ 9fe:	0000                	unimp
+ a00:	00e8                	addi	a0,sp,76
+ a02:	0000                	unimp
+ a04:	00ff                	0xff
+ a06:	0000                	unimp
+ a08:	00ff                	0xff
+ a0a:	0000                	unimp
+ a0c:	00ff                	0xff
+ a0e:	0000                	unimp
+ a10:	00ff                	0xff
+ a12:	0000                	unimp
+ a14:	00ff                	0xff
+ a16:	0000                	unimp
+ a18:	00ff                	0xff
+ a1a:	0000                	unimp
+ a1c:	00ff                	0xff
+ a1e:	0000                	unimp
+ a20:	00ff                	0xff
+ a22:	0000                	unimp
+ a24:	00ff                	0xff
+ a26:	0000                	unimp
+ a28:	00ff                	0xff
+ a2a:	0000                	unimp
+ a2c:	00ff                	0xff
+ a2e:	0000                	unimp
+ a30:	00ff                	0xff
+ a32:	0000                	unimp
+ a34:	000000f3          	0xf3
+ a38:	000000ab          	0xab
+ a3c:	0000006b          	0x6b
+ a40:	0064                	addi	s1,sp,12
+ a42:	0000                	unimp
+ a44:	0062                	c.slli	zero,0x18
+ a46:	0000                	unimp
+ a48:	0086                	slli	ra,ra,0x1
+ a4a:	0000                	unimp
+ a4c:	00000087          	0x87
+ a50:	00000067          	jr	zero # 0 <.LC0>
+ a54:	0071                	c.nop	28
+ a56:	0000                	unimp
+ a58:	000000bf 000000ff 	0xff000000bf
+ a60:	00ff                	0xff
+ a62:	0000                	unimp
+ a64:	00ff                	0xff
+ a66:	0000                	unimp
+ a68:	00ff                	0xff
+ a6a:	0000                	unimp
+ a6c:	00ff                	0xff
+ a6e:	0000                	unimp
+ a70:	00ff                	0xff
+ a72:	0000                	unimp
+ a74:	00ff                	0xff
+ a76:	0000                	unimp
+ a78:	00ff                	0xff
+ a7a:	0000                	unimp
+ a7c:	00ff                	0xff
+ a7e:	0000                	unimp
+ a80:	00ff                	0xff
+ a82:	0000                	unimp
+ a84:	00ff                	0xff
+ a86:	0000                	unimp
+ a88:	00ff                	0xff
+ a8a:	0000                	unimp
+ a8c:	00ff                	0xff
+ a8e:	0000                	unimp
+ a90:	00ff                	0xff
+ a92:	0000                	unimp
+ a94:	00fd                	addi	ra,ra,31
+ a96:	0000                	unimp
+ a98:	00f6                	slli	ra,ra,0x1d
+ a9a:	0000                	unimp
+ a9c:	000000cf          	fnmadd.s	ft1,ft0,ft0,ft0,rne
+ aa0:	0076                	c.slli	zero,0x1d
+ aa2:	0000                	unimp
+ aa4:	0059                	c.nop	22
+ aa6:	0000                	unimp
+ aa8:	0074                	addi	a3,sp,12
+ aaa:	0000                	unimp
+ aac:	0090                	addi	a2,sp,64
+ aae:	0000                	unimp
+ ab0:	00cc                	addi	a1,sp,68
+ ab2:	0000                	unimp
+ ab4:	00fe                	slli	ra,ra,0x1f
+ ab6:	0000                	unimp
+ ab8:	00ff                	0xff
+ aba:	0000                	unimp
+ abc:	00ff                	0xff
+ abe:	0000                	unimp
+ ac0:	00ff                	0xff
+ ac2:	0000                	unimp
+ ac4:	00ff                	0xff
+	...
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	4700                	lw	s0,8(a4)
+   2:	203a4343          	fmadd.s	ft6,fs4,ft3,ft4,rmm
+   6:	4728                	lw	a0,72(a4)
+   8:	554e                	lw	a0,240(sp)
+   a:	2029                	0x2029
+   c:	2e332e37          	lui	t3,0x2e332
+  10:	0030                	addi	a2,sp,8

@@ -1,0 +1,62 @@
+
+main1.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	f7010113          	addi	sp,sp,-144
+   4:	08813423          	sd	s0,136(sp)
+   8:	09010413          	addi	s0,sp,144
+   c:	00050793          	mv	a5,a0
+  10:	f6b43823          	sd	a1,-144(s0)
+  14:	f6f42e23          	sw	a5,-132(s0)
+  18:	00100793          	li	a5,1
+  1c:	fef42623          	sw	a5,-20(s0)
+  20:	fe042423          	sw	zero,-24(s0)
+  24:	00e00793          	li	a5,14
+  28:	fef42023          	sw	a5,-32(s0)
+  2c:	fe042223          	sw	zero,-28(s0)
+  30:	0480006f          	j	78 <.L2>
+
+0000000000000034 <.L3>:
+  34:	fe442783          	lw	a5,-28(s0)
+  38:	00279793          	slli	a5,a5,0x2
+  3c:	ff040713          	addi	a4,s0,-16
+  40:	00f707b3          	add	a5,a4,a5
+  44:	fe842703          	lw	a4,-24(s0)
+  48:	f8e7ac23          	sw	a4,-104(a5)
+  4c:	fec42703          	lw	a4,-20(s0)
+  50:	fe842783          	lw	a5,-24(s0)
+  54:	00f707bb          	addw	a5,a4,a5
+  58:	fcf42e23          	sw	a5,-36(s0)
+  5c:	fec42783          	lw	a5,-20(s0)
+  60:	fef42423          	sw	a5,-24(s0)
+  64:	fdc42783          	lw	a5,-36(s0)
+  68:	fef42623          	sw	a5,-20(s0)
+  6c:	fe442783          	lw	a5,-28(s0)
+  70:	0017879b          	addiw	a5,a5,1
+  74:	fef42223          	sw	a5,-28(s0)
+
+0000000000000078 <.L2>:
+  78:	fe442703          	lw	a4,-28(s0)
+  7c:	fe042783          	lw	a5,-32(s0)
+  80:	0007071b          	sext.w	a4,a4
+  84:	0007879b          	sext.w	a5,a5
+  88:	faf746e3          	blt	a4,a5,34 <.L3>
+  8c:	00000793          	li	a5,0
+  90:	00078513          	mv	a0,a5
+  94:	08813403          	ld	s0,136(sp)
+  98:	09010113          	addi	sp,sp,144
+  9c:	00008067          	ret
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	4700                	lw	s0,8(a4)
+   2:	203a4343          	fmadd.s	ft6,fs4,ft3,ft4,rmm
+   6:	4728                	lw	a0,72(a4)
+   8:	554e                	lw	a0,240(sp)
+   a:	2029                	0x2029
+   c:	2e332e37          	lui	t3,0x2e332
+  10:	0030                	addi	a2,sp,8

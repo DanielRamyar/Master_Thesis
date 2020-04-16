@@ -42,7 +42,7 @@ namespace SingleCycleRISCV {
         //                                      0, 0, 0, 0, 0, 0, 0, 2,
         //                                      8, 7, 0, 0, 0, 0, 0, 0,
         //                                      0, 0, 0, 0, 0, 0, 0, 0,};
-        private readonly long[] m_register = {0, 0, 2000, 0, 0, 0, 0, 0,
+        private readonly long[] m_register = {0, 0, 8000, 0, 0, 0, 0, 0,
                                              0, 0, 0, 0, 0, 0, 0, 0,
                                              0, 0, 0, 0, 0, 0, 0, 0,
                                              0, 0, 0, 0, 0, 0, 0, 0,};

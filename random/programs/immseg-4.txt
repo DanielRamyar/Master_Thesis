@@ -1,0 +1,143 @@
+
+immseg1.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	f5010113          	addi	sp,sp,-176
+   4:	0a113423          	sd	ra,168(sp)
+   8:	0a813023          	sd	s0,160(sp)
+   c:	08913c23          	sd	s1,152(sp)
+  10:	0b010413          	addi	s0,sp,176
+  14:	00050793          	mv	a5,a0
+  18:	f4b43823          	sd	a1,-176(s0)
+  1c:	f4f42e23          	sw	a5,-164(s0)
+  20:	00010793          	mv	a5,sp
+  24:	00078493          	mv	s1,a5
+  28:	000007b7          	lui	a5,0x0
+  2c:	f6840713          	addi	a4,s0,-152
+  30:	00078793          	mv	a5,a5
+  34:	05c00693          	li	a3,92
+  38:	00068613          	mv	a2,a3
+  3c:	00078593          	mv	a1,a5
+  40:	00070513          	mv	a0,a4
+  44:	00000097          	auipc	ra,0x0
+  48:	000080e7          	jalr	ra # 44 <main+0x44>
+  4c:	01700793          	li	a5,23
+  50:	fcf42c23          	sw	a5,-40(s0)
+  54:	fd842783          	lw	a5,-40(s0)
+  58:	fff78793          	addi	a5,a5,-1
+  5c:	fcf43823          	sd	a5,-48(s0)
+  60:	fd842783          	lw	a5,-40(s0)
+  64:	00279793          	slli	a5,a5,0x2
+  68:	00378793          	addi	a5,a5,3
+  6c:	00f78793          	addi	a5,a5,15
+  70:	0047d793          	srli	a5,a5,0x4
+  74:	00479793          	slli	a5,a5,0x4
+  78:	40f10133          	sub	sp,sp,a5
+  7c:	00010793          	mv	a5,sp
+  80:	00378793          	addi	a5,a5,3
+  84:	0027d793          	srli	a5,a5,0x2
+  88:	00279793          	slli	a5,a5,0x2
+  8c:	fcf43423          	sd	a5,-56(s0)
+  90:	fc042e23          	sw	zero,-36(s0)
+  94:	0600006f          	j	f4 <.L2>
+
+0000000000000098 <.L5>:
+  98:	fdc42783          	lw	a5,-36(s0)
+  9c:	00279793          	slli	a5,a5,0x2
+  a0:	fe040713          	addi	a4,s0,-32
+  a4:	00f707b3          	add	a5,a4,a5
+  a8:	f887a783          	lw	a5,-120(a5)
+  ac:	00078713          	mv	a4,a5
+  b0:	06300793          	li	a5,99
+  b4:	00e7ce63          	blt	a5,a4,d0 <.L3>
+  b8:	fdc42783          	lw	a5,-36(s0)
+  bc:	00279793          	slli	a5,a5,0x2
+  c0:	fe040713          	addi	a4,s0,-32
+  c4:	00f707b3          	add	a5,a4,a5
+  c8:	f887a783          	lw	a5,-120(a5)
+  cc:	0080006f          	j	d4 <.L4>
+
+00000000000000d0 <.L3>:
+  d0:	0ff00793          	li	a5,255
+
+00000000000000d4 <.L4>:
+  d4:	fc843683          	ld	a3,-56(s0)
+  d8:	fdc42703          	lw	a4,-36(s0)
+  dc:	00271713          	slli	a4,a4,0x2
+  e0:	00e68733          	add	a4,a3,a4
+  e4:	00f72023          	sw	a5,0(a4)
+  e8:	fdc42783          	lw	a5,-36(s0)
+  ec:	0017879b          	addiw	a5,a5,1
+  f0:	fcf42e23          	sw	a5,-36(s0)
+
+00000000000000f4 <.L2>:
+  f4:	fdc42703          	lw	a4,-36(s0)
+  f8:	fd842783          	lw	a5,-40(s0)
+  fc:	0007071b          	sext.w	a4,a4
+ 100:	0007879b          	sext.w	a5,a5
+ 104:	f8f74ae3          	blt	a4,a5,98 <.L5>
+ 108:	00000793          	li	a5,0
+ 10c:	00048113          	mv	sp,s1
+ 110:	00078513          	mv	a0,a5
+ 114:	f5040113          	addi	sp,s0,-176
+ 118:	0a813083          	ld	ra,168(sp)
+ 11c:	0a013403          	ld	s0,160(sp)
+ 120:	09813483          	ld	s1,152(sp)
+ 124:	0b010113          	addi	sp,sp,176
+ 128:	00008067          	ret
+
+Disassembly of section .rodata:
+
+0000000000000000 <.LC0>:
+   0:	00b0                	addi	a2,sp,72
+   2:	0000                	unimp
+   4:	002e                	c.slli	zero,0xb
+   6:	0000                	unimp
+   8:	0010                	0x10
+   a:	0000                	unimp
+   c:	0009                	c.nop	2
+   e:	0000                	unimp
+  10:	00000007          	0x7
+  14:	0008                	0x8
+  16:	0000                	unimp
+  18:	0010                	0x10
+  1a:	0000                	unimp
+  1c:	0000000f          	fence	unknown,unknown
+  20:	0000000b          	0xb
+  24:	000c                	0xc
+  26:	0000                	unimp
+  28:	000d                	c.nop	3
+  2a:	0000                	unimp
+  2c:	0000000f          	fence	unknown,unknown
+  30:	0000000f          	fence	unknown,unknown
+  34:	0011                	c.nop	4
+  36:	0000                	unimp
+  38:	000c                	0xc
+  3a:	0000                	unimp
+  3c:	0018                	0x18
+  3e:	0000                	unimp
+  40:	0000002b          	0x2b
+  44:	00000037          	lui	zero,0x0
+  48:	0078                	addi	a4,sp,12
+  4a:	0000                	unimp
+  4c:	00f6                	slli	ra,ra,0x1d
+  4e:	0000                	unimp
+  50:	00ff                	0xff
+  52:	0000                	unimp
+  54:	00fc                	addi	a5,sp,76
+  56:	0000                	unimp
+  58:	000000af          	0xaf
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	4700                	lw	s0,8(a4)
+   2:	203a4343          	fmadd.s	ft6,fs4,ft3,ft4,rmm
+   6:	4728                	lw	a0,72(a4)
+   8:	554e                	lw	a0,240(sp)
+   a:	2029                	0x2029
+   c:	2e332e37          	lui	t3,0x2e332
+  10:	0030                	addi	a2,sp,8
